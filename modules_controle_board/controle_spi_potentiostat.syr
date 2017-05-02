@@ -1,0 +1,478 @@
+Release 14.7 - xst P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.14 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.14 secs
+ 
+--> Reading design: controle_spi_potentiostat.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "controle_spi_potentiostat.prj"
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "controle_spi_potentiostat"
+Output Format                      : NGC
+Target Device                      : xc6slx9-2-tqg144
+
+---- Source Options
+Top Module Name                    : controle_spi_potentiostat
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Shift Register Extraction          : YES
+ROM Style                          : Auto
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Shift Register Minimum Size        : 2
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Auto
+Reduce Control Sets                : Auto
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 16
+Register Duplication               : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Parsing VHDL file "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\usr_package.vhd" into library modules
+Parsing package <usr_package>.
+Parsing package body <usr_package>.
+Parsing VHDL file "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\registre1bit.vhd" into library modules
+Parsing entity <registre1bit>.
+Parsing architecture <Behavioral> of entity <registre1bit>.
+Parsing VHDL file "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\mux_2_1.vhd" into library modules
+Parsing entity <mux_2_1>.
+Parsing architecture <Behavioral> of entity <mux_2_1>.
+Parsing VHDL file "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\rdc_load_nbits.vhd" into library modules
+Parsing entity <rdc_load_nbits>.
+Parsing architecture <Behavioral> of entity <rdc_load_nbits>.
+Parsing VHDL file "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\compteurNbits.vhd" into library modules
+Parsing entity <compteurNbits>.
+Parsing architecture <Behavioral> of entity <compteurnbits>.
+Parsing VHDL file "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\controle_spi_potentiostat.vhd" into library work
+Parsing entity <controle_spi_potentiostat>.
+Parsing architecture <Behavioral> of entity <controle_spi_potentiostat>.
+
+=========================================================================
+*                            HDL Elaboration                            *
+=========================================================================
+
+Elaborating entity <controle_spi_potentiostat> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <compteurNbits> (architecture <Behavioral>) with generics from library <modules>.
+
+Elaborating entity <rdc_load_nbits> (architecture <Behavioral>) with generics from library <modules>.
+
+Elaborating entity <registre1bit> (architecture <Behavioral>) from library <modules>.
+
+Elaborating entity <mux_2_1> (architecture <Behavioral>) from library <modules>.
+INFO:HDLCompiler:679 - "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\controle_spi_potentiostat.vhd" Line 106. Case statement is complete. others clause is never selected
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <controle_spi_potentiostat>.
+    Related source file is "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\controle_spi_potentiostat.vhd".
+    Found 2-bit register for signal <etat_present>.
+    Found finite state machine <FSM_0> for signal <etat_present>.
+    -----------------------------------------------------------------------
+    | States             | 3                                              |
+    | Transitions        | 5                                              |
+    | Inputs             | 2                                              |
+    | Outputs            | 4                                              |
+    | Clock              | CLK_OUT (rising_edge)                          |
+    | Reset              | reset (negative)                               |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | attente                                        |
+    | Power Up State     | attente                                        |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 4-bit comparator greater for signal <n0004> created at line 100
+    Summary:
+	inferred   1 Comparator(s).
+	inferred   1 Finite State Machine(s).
+Unit <controle_spi_potentiostat> synthesized.
+
+Synthesizing Unit <compteurNbits>.
+    Related source file is "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\compteurNbits.vhd".
+        N = 4
+    Found 4-bit register for signal <compteur>.
+    Found 4-bit adder for signal <compteur[3]_GND_7_o_add_0_OUT> created at line 49.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred   4 D-type flip-flop(s).
+Unit <compteurNbits> synthesized.
+
+Synthesizing Unit <rdc_load_nbits>.
+    Related source file is "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\rdc_load_nbits.vhd".
+        N = 8
+    Summary:
+	no macro.
+Unit <rdc_load_nbits> synthesized.
+
+Synthesizing Unit <registre1bit>.
+    Related source file is "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\registre1bit.vhd".
+    Found 1-bit register for signal <q_out>.
+    Summary:
+	inferred   1 D-type flip-flop(s).
+Unit <registre1bit> synthesized.
+
+Synthesizing Unit <mux_2_1>.
+    Related source file is "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\mux_2_1.vhd".
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <mux_2_1> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 1
+ 4-bit adder                                           : 1
+# Registers                                            : 9
+ 1-bit register                                        : 8
+ 4-bit register                                        : 1
+# Comparators                                          : 1
+ 4-bit comparator greater                              : 1
+# Multiplexers                                         : 8
+ 1-bit 2-to-1 multiplexer                              : 8
+# FSMs                                                 : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+Synthesizing (advanced) Unit <compteurNbits>.
+The following registers are absorbed into counter <compteur>: 1 register on signal <compteur>.
+Unit <compteurNbits> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Counters                                             : 1
+ 4-bit up counter                                      : 1
+# Registers                                            : 8
+ Flip-Flops                                            : 8
+# Comparators                                          : 1
+ 4-bit comparator greater                              : 1
+# Multiplexers                                         : 8
+ 1-bit 2-to-1 multiplexer                              : 8
+# FSMs                                                 : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <FSM_0> on signal <etat_present[1:2]> with user encoding.
+----------------------
+ State    | Encoding
+----------------------
+ attente  | 00
+ init     | 01
+ decalage | 10
+----------------------
+
+Optimizing unit <controle_spi_potentiostat> ...
+
+Optimizing unit <rdc_load_nbits> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block controle_spi_potentiostat, actual ratio is 0.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 14
+ Flip-Flops                                            : 14
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Design Summary                             *
+=========================================================================
+
+Top Level Output File Name         : controle_spi_potentiostat.ngc
+
+Primitive and Black Box Usage:
+------------------------------
+# BELS                             : 18
+#      INV                         : 3
+#      LUT2                        : 3
+#      LUT3                        : 4
+#      LUT4                        : 8
+# FlipFlops/Latches                : 14
+#      FDC                         : 10
+#      FDCE                        : 4
+# Clock Buffers                    : 1
+#      BUFG                        : 1
+# IO Buffers                       : 14
+#      IBUF                        : 3
+#      OBUF                        : 11
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 6slx9tqg144-2 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:              14  out of  11440     0%  
+ Number of Slice LUTs:                   18  out of   5720     0%  
+    Number used as Logic:                18  out of   5720     0%  
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:     18
+   Number with an unused Flip Flop:       4  out of     18    22%  
+   Number with an unused LUT:             0  out of     18     0%  
+   Number of fully used LUT-FF pairs:    14  out of     18    77%  
+   Number of unique control sets:         3
+
+IO Utilization: 
+ Number of IOs:                          14
+ Number of bonded IOBs:                  14  out of    102    13%  
+
+Specific Feature Utilization:
+ Number of BUFG/BUFGCTRLs:                1  out of     16     6%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+Timing Report
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clk                                | IBUF+BUFG              | 14    |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -2
+
+   Minimum period: 3.390ns (Maximum Frequency: 294.985MHz)
+   Minimum input arrival time before clock: 3.448ns
+   Maximum output required time after clock: 5.581ns
+   Maximum combinational path delay: 4.921ns
+
+Timing Details:
+---------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 3.390ns (frequency: 294.985MHz)
+  Total number of paths / destination ports: 70 / 30
+-------------------------------------------------------------------------
+Delay:               3.390ns (Levels of Logic = 1)
+  Source:            etat_present_FSM_FFd1 (FF)
+  Destination:       rdc/reg_loop[1].reg/q_out (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: etat_present_FSM_FFd1 to rdc/reg_loop[1].reg/q_out
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDC:C->Q             17   0.525   1.209  etat_present_FSM_FFd1 (etat_present_FSM_FFd1)
+     LUT2:I1->O            8   0.254   0.943  rdc/reg0/reset_inv1 (rdc/reg0/reset_inv)
+     FDC:CLR                   0.459          rdc/reg_loop[1].reg/q_out
+    ----------------------------------------
+    Total                      3.390ns (1.238ns logic, 2.152ns route)
+                                       (36.5% logic, 63.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
+  Total number of paths / destination ports: 3 / 3
+-------------------------------------------------------------------------
+Offset:              3.448ns (Levels of Logic = 2)
+  Source:            reset (PAD)
+  Destination:       etat_present_FSM_FFd1 (FF)
+  Destination Clock: clk rising
+
+  Data Path: reset to etat_present_FSM_FFd1
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             1   1.328   0.681  reset_IBUF (reset_IBUF)
+     INV:I->O              2   0.255   0.725  reset_inv1_INV_0 (reset_inv)
+     FDC:CLR                   0.459          etat_present_FSM_FFd1
+    ----------------------------------------
+    Total                      3.448ns (2.042ns logic, 1.406ns route)
+                                       (59.2% logic, 40.8% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 11 / 10
+-------------------------------------------------------------------------
+Offset:              5.581ns (Levels of Logic = 2)
+  Source:            etat_present_FSM_FFd1 (FF)
+  Destination:       CS (PAD)
+  Source Clock:      clk rising
+
+  Data Path: etat_present_FSM_FFd1 to CS
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDC:C->Q             17   0.525   1.209  etat_present_FSM_FFd1 (etat_present_FSM_FFd1)
+     LUT2:I1->O            1   0.254   0.681  etat_present__n0024<1>1 (CS_OBUF)
+     OBUF:I->O                 2.912          CS_OBUF (CS)
+    ----------------------------------------
+    Total                      5.581ns (3.691ns logic, 1.890ns route)
+                                       (66.1% logic, 33.9% route)
+
+=========================================================================
+Timing constraint: Default path analysis
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Delay:               4.921ns (Levels of Logic = 2)
+  Source:            clk (PAD)
+  Destination:       CLK_OUT (PAD)
+
+  Data Path: clk to CLK_OUT
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             1   1.328   0.681  clk_IBUF (CLK_OUT_OBUF)
+     OBUF:I->O                 2.912          CLK_OUT_OBUF (CLK_OUT)
+    ----------------------------------------
+    Total                      4.921ns (4.240ns logic, 0.681ns route)
+                                       (86.2% logic, 13.8% route)
+
+=========================================================================
+
+Cross Clock Domains Report:
+--------------------------
+
+Clock to Setup on destination clock clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk            |    3.390|         |         |         |
+---------------+---------+---------+---------+---------+
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 6.00 secs
+Total CPU time to Xst completion: 5.71 secs
+ 
+--> 
+
+Total memory usage is 282476 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+
