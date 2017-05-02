@@ -54,7 +54,7 @@ rdc : rdc_load_nbits generic map(8) port map(clk => clk, enable => enable_rdc, r
 																load => valeur_binaire_resitance, output_parallele => output_LED);
 				
 clk_int <= clk;
-CLK_OUT <= clk_int; 	
+	
 														
 process(clk,reset)
 begin
@@ -74,6 +74,8 @@ begin
 			reset_rdc <= '0';
 			mode_rdc <= '0';
 			CS <= '1';
+			--c'est ok?
+			CLK_OUT <= '0'; 
 			if(start = '1') then
 				etat_suivant <= init;
 			else 
@@ -88,6 +90,8 @@ begin
 			reset_rdc <= '1';
 			mode_rdc <= '1';
 			CS <= '0';
+			--c'est ok?
+			CLK_OUT <= '0'; 
 			etat_suivant <= decalage;
 			
 		when decalage =>
@@ -97,6 +101,8 @@ begin
 			reset_rdc <= '1';
 			mode_rdc <= '0';
 			CS <= '0';
+			--c'est ok?
+			CLK_OUT <= clk_int;
 			if(compteur_out >= 8) then
 				etat_suivant <= attente;
 			else
@@ -110,6 +116,8 @@ begin
 			reset_rdc <= '0';
 			mode_rdc <= '0';
 			CS <= '1';
+			--c'est ok?
+			CLK_OUT <= '0'; 
 			etat_suivant <= attente;
 	end case;
 end process;

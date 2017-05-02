@@ -21,9 +21,9 @@ NET "output_LED[5]" LOC = P126;
 NET "output_LED[6]" LOC = P124;
 NET "output_LED[7]" LOC = P123;
 NET "output_LED[2]" LOC = P132;
-NET "CLK_OUT" LOC = P114;
-NET "CS" LOC = P116;
-NET "SDI" LOC = P118;
+NET "CLK_OUT" LOC = P116;
+NET "CS" LOC = P118;
+NET "SDI" LOC = P120;
 NET "clk" LOC = P56;
 
 # PlanAhead Generated physical constraints 

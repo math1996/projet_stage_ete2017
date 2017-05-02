@@ -69,6 +69,9 @@
     <transform xil_pn:end_ts="1493748014" xil_pn:in_ck="2736156231001378094" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="-3199335016136229337" xil_pn:start_ts="1493748005">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="InputAdded"/>
+      <status xil_pn:value="InputChanged"/>
       <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
       <outfile xil_pn:name="controle_spi_potentiostat.lso"/>
       <outfile xil_pn:name="controle_spi_potentiostat.ngc"/>
