@@ -1,3 +1,25 @@
 xst -intstyle ise -ifn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.xst" -ofn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.syr" 
 xst -intstyle ise -ifn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.xst" -ofn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.syr" 
 xst -intstyle ise -ifn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.xst" -ofn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.syr" 
+xst -intstyle ise -ifn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.xst" -ofn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.syr" 
+xst -intstyle ise -ifn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.xst" -ofn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.syr" 
+xst -intstyle ise -ifn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.xst" -ofn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.syr" 
+xst -intstyle ise -ifn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.xst" -ofn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.syr" 
+xst -intstyle ise -ifn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.xst" -ofn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.syr" 
+xst -intstyle ise -ifn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.xst" -ofn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.syr" 
+xst -intstyle ise -ifn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.xst" -ofn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc controle_spi_potentiostat.ucf -p xc6slx9-tqg144-2 controle_spi_potentiostat.ngc controle_spi_potentiostat.ngd  
+map -intstyle ise -p xc6slx9-tqg144-2 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o controle_spi_potentiostat_map.ncd controle_spi_potentiostat.ngd controle_spi_potentiostat.pcf 
+par -w -intstyle ise -ol high -mt off controle_spi_potentiostat_map.ncd controle_spi_potentiostat.ncd controle_spi_potentiostat.pcf 
+trce -intstyle ise -v 3 -s 2 -n 3 -fastpaths -xml controle_spi_potentiostat.twx controle_spi_potentiostat.ncd -o controle_spi_potentiostat.twr controle_spi_potentiostat.pcf -ucf controle_spi_potentiostat.ucf 
+bitgen -intstyle ise -f controle_spi_potentiostat.ut controle_spi_potentiostat.ncd 
+bitgen -intstyle ise -f controle_spi_potentiostat.ut controle_spi_potentiostat.ncd 
+xst -intstyle ise -ifn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.xst" -ofn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc controle_spi_potentiostat.ucf -p xc6slx9-tqg144-2 controle_spi_potentiostat.ngc controle_spi_potentiostat.ngd  
+netgen -intstyle ise -rpw 100 -tpw 0 -ar Structure -tm controle_spi_potentiostat -w -dir netgen/translate -ofmt vhdl -sim controle_spi_potentiostat.ngd controle_spi_potentiostat_translate.vhd 
+xst -intstyle ise -ifn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.xst" -ofn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc controle_spi_potentiostat.ucf -p xc6slx9-tqg144-2 controle_spi_potentiostat.ngc controle_spi_potentiostat.ngd  
+netgen -intstyle ise -rpw 100 -tpw 0 -ar Structure -tm controle_spi_potentiostat -w -dir netgen/translate -ofmt vhdl -sim controle_spi_potentiostat.ngd controle_spi_potentiostat_translate.vhd 
+xst -intstyle ise -ifn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.xst" -ofn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc controle_spi_potentiostat.ucf -p xc6slx9-tqg144-2 controle_spi_potentiostat.ngc controle_spi_potentiostat.ngd  
+netgen -intstyle ise -rpw 100 -tpw 0 -ar Structure -tm controle_spi_potentiostat -w -dir netgen/translate -ofmt vhdl -sim controle_spi_potentiostat.ngd controle_spi_potentiostat_translate.vhd 

@@ -1,0 +1,19 @@
+//! **************************************************************************
+// Written by: Map P.20131013 on Wed May 03 09:48:15 2017
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "data<0>" LOCATE = SITE "P134" LEVEL 1;
+COMP "data<1>" LOCATE = SITE "P133" LEVEL 1;
+COMP "clk" LOCATE = SITE "P56" LEVEL 1;
+COMP "data<2>" LOCATE = SITE "P132" LEVEL 1;
+COMP "data<3>" LOCATE = SITE "P131" LEVEL 1;
+COMP "new_data" LOCATE = SITE "P80" LEVEL 1;
+COMP "data<4>" LOCATE = SITE "P127" LEVEL 1;
+COMP "data<5>" LOCATE = SITE "P126" LEVEL 1;
+COMP "data<6>" LOCATE = SITE "P124" LEVEL 1;
+COMP "data<7>" LOCATE = SITE "P123" LEVEL 1;
+COMP "rx" LOCATE = SITE "P55" LEVEL 1;
+COMP "rst" LOCATE = SITE "P38" LEVEL 1;
+SCHEMATIC END;
+

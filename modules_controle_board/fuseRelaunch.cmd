@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "secureip" -o "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat_tb_isim_translate.exe" -prj "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/controle_spi_potentiostat_tb_translate.prj" "work.controle_spi_potentiostat_tb" 

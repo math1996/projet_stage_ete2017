@@ -49,22 +49,20 @@ signal clk_int : std_logic;
 
 begin
 
-compteur4bit : compteurNbits generic map(4) port map(clk => clk, reset => reset_compteur, enable => enable_compteur, output => compteur_out);
-rdc : rdc_load_nbits generic map(8) port map(clk => clk, enable => enable_rdc, reset => reset_rdc, input => '0', mode => mode_rdc, output => SDI,
+compteur4bit : compteurNbits generic map(4) port map(clk => clk_int, reset => reset_compteur, enable => enable_compteur, output => compteur_out);
+rdc : rdc_load_nbits generic map(8) port map(clk => clk_int, enable => enable_rdc, reset => reset_rdc, input => '0', mode => mode_rdc, output => SDI,
 																load => valeur_binaire_resitance, output_parallele => output_LED);
-				
-clk_int <= clk;
-	
-														
-process(clk,reset)
+diviseur_horlode: diviseur_clk port map(clk => clk, reset => '1', enable => '1', clk_out_reg => clk_int);	
+															
+process(clk_int,reset)
 begin
 if(reset = '0') then
 	etat_present <= attente;
-elsif(clk'event and clk = '1') then
+elsif(clk_int'event and clk_int = '1') then
 	etat_present <= etat_suivant;
 end if;
 end process;
-process(etat_present, compteur_out, start)
+process(etat_present, compteur_out, clk_int)
 begin
 	case etat_present is
 		when attente =>
@@ -76,13 +74,8 @@ begin
 			CS <= '1';
 			--c'est ok?
 			CLK_OUT <= '0'; 
-			if(start = '1') then
-				etat_suivant <= init;
-			else 
-				etat_suivant <= attente;
-			end if;
+			etat_suivant <= init;
 		
-			
 		when init =>
 			enable_compteur <= '0';
 			reset_compteur <= '0';

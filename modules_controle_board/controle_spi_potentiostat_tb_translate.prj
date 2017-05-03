@@ -1,0 +1,2 @@
+vhdl work "netgen/translate/controle_spi_potentiostat_translate.vhd"
+vhdl work "controle_spi_potentiostat_tb.vhd"

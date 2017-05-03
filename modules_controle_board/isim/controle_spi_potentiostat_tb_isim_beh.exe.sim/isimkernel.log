@@ -1,0 +1,29 @@
+Command line:
+   controle_spi_potentiostat_tb_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  52308
+
+Wed May 03 09:26:16 2017
+
+
+ Elaboration Time: 0.265625 sec
+
+ Current Memory Usage: 1502.06 Meg
+
+ Total Signals          : 112
+ Total Nets             : 85
+ Total Signal Drivers   : 33
+ Total Blocks           : 37
+ Total Primitive Blocks : 22
+ Total Processes        : 26
+ Total Traceable Variables  : 26
+ Total Scalar Nets and Variables : 486
+Total Line Count : 99
+
+ Total Simulation Time: 0.328125 sec
+
+ Current Memory Usage: 1502.06 Meg
+
+Wed May 03 09:26:34 2017
+

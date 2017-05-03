@@ -44,6 +44,12 @@ generic(N: integer := 4);
            output : out  STD_LOGIC_VECTOR(N-1 downto 0));
 end component;
 
+component diviseur_clk is
+	Port ( clk : in  STD_LOGIC;
+           reset,enable : in  STD_LOGIC;
+           clk_out_reg : out  STD_LOGIC);
+end component;
+
 component rdc_load_nbits is
 generic(N: integer := 8);
     Port ( load : in  STD_LOGIC_VECTOR(N-1 downto 0);

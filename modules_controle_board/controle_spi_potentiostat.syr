@@ -3,14 +3,14 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 --> Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.14 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.10 secs
  
 --> Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.14 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.10 secs
  
 --> Reading design: controle_spi_potentiostat.prj
 
@@ -117,6 +117,9 @@ Parsing architecture <Behavioral> of entity <mux_2_1>.
 Parsing VHDL file "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\rdc_load_nbits.vhd" into library modules
 Parsing entity <rdc_load_nbits>.
 Parsing architecture <Behavioral> of entity <rdc_load_nbits>.
+Parsing VHDL file "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\diviseur_clk.vhd" into library modules
+Parsing entity <diviseur_clk>.
+Parsing architecture <Behavioral> of entity <diviseur_clk>.
 Parsing VHDL file "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\compteurNbits.vhd" into library modules
 Parsing entity <compteurNbits>.
 Parsing architecture <Behavioral> of entity <compteurnbits>.
@@ -137,7 +140,9 @@ Elaborating entity <rdc_load_nbits> (architecture <Behavioral>) with generics fr
 Elaborating entity <registre1bit> (architecture <Behavioral>) from library <modules>.
 
 Elaborating entity <mux_2_1> (architecture <Behavioral>) from library <modules>.
-INFO:HDLCompiler:679 - "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\controle_spi_potentiostat.vhd" Line 106. Case statement is complete. others clause is never selected
+
+Elaborating entity <diviseur_clk> (architecture <Behavioral>) from library <modules>.
+INFO:HDLCompiler:679 - "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\controle_spi_potentiostat.vhd" Line 105. Case statement is complete. others clause is never selected
 
 =========================================================================
 *                           HDL Synthesis                               *
@@ -145,14 +150,15 @@ INFO:HDLCompiler:679 - "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_co
 
 Synthesizing Unit <controle_spi_potentiostat>.
     Related source file is "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\controle_spi_potentiostat.vhd".
+WARNING:Xst:647 - Input <start> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found 2-bit register for signal <etat_present>.
     Found finite state machine <FSM_0> for signal <etat_present>.
     -----------------------------------------------------------------------
     | States             | 3                                              |
-    | Transitions        | 5                                              |
-    | Inputs             | 2                                              |
+    | Transitions        | 4                                              |
+    | Inputs             | 1                                              |
     | Outputs            | 4                                              |
-    | Clock              | CLK_OUT (rising_edge)                          |
+    | Clock              | clk_int (rising_edge)                          |
     | Reset              | reset (negative)                               |
     | Reset type         | asynchronous                                   |
     | Reset State        | attente                                        |
@@ -160,9 +166,10 @@ Synthesizing Unit <controle_spi_potentiostat>.
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 4-bit comparator greater for signal <n0004> created at line 100
+    Found 4-bit comparator greater for signal <n0001> created at line 99
     Summary:
 	inferred   1 Comparator(s).
+	inferred   1 Multiplexer(s).
 	inferred   1 Finite State Machine(s).
 Unit <controle_spi_potentiostat> synthesized.
 
@@ -196,19 +203,30 @@ Synthesizing Unit <mux_2_1>.
 	inferred   1 Multiplexer(s).
 Unit <mux_2_1> synthesized.
 
+Synthesizing Unit <diviseur_clk>.
+    Related source file is "C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\diviseur_clk.vhd".
+    Found 27-bit register for signal <clk_int>.
+    Found 27-bit adder for signal <clk_int[26]_clk_int[26]_mux_1_OUT> created at line 50.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  27 D-type flip-flop(s).
+Unit <diviseur_clk> synthesized.
+
 =========================================================================
 HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 1
+# Adders/Subtractors                                   : 2
+ 27-bit adder                                          : 1
  4-bit adder                                           : 1
-# Registers                                            : 9
+# Registers                                            : 10
  1-bit register                                        : 8
+ 27-bit register                                       : 1
  4-bit register                                        : 1
 # Comparators                                          : 1
  4-bit comparator greater                              : 1
-# Multiplexers                                         : 8
- 1-bit 2-to-1 multiplexer                              : 8
+# Multiplexers                                         : 9
+ 1-bit 2-to-1 multiplexer                              : 9
 # FSMs                                                 : 1
 
 =========================================================================
@@ -222,11 +240,16 @@ Synthesizing (advanced) Unit <compteurNbits>.
 The following registers are absorbed into counter <compteur>: 1 register on signal <compteur>.
 Unit <compteurNbits> synthesized (advanced).
 
+Synthesizing (advanced) Unit <diviseur_clk>.
+The following registers are absorbed into counter <clk_int>: 1 register on signal <clk_int>.
+Unit <diviseur_clk> synthesized (advanced).
+
 =========================================================================
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# Counters                                             : 1
+# Counters                                             : 2
+ 27-bit up counter                                     : 1
  4-bit up counter                                      : 1
 # Registers                                            : 8
  Flip-Flops                                            : 8
@@ -242,14 +265,38 @@ Macro Statistics
 *                         Low Level Synthesis                           *
 =========================================================================
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <FSM_0> on signal <etat_present[1:2]> with user encoding.
+Optimizing FSM <FSM_0> on signal <etat_present[1:3]> with one-hot encoding.
 ----------------------
  State    | Encoding
 ----------------------
- attente  | 00
- init     | 01
- decalage | 10
+ attente  | 001
+ init     | 010
+ decalage | 100
 ----------------------
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_3> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_4> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_5> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_6> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_7> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_8> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_9> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_10> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_11> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_12> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_13> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_14> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_15> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_16> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_17> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_18> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_19> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_20> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_21> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_22> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_23> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_24> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_25> of sequential type is unconnected in block <controle_spi_potentiostat>.
+WARNING:Xst:2677 - Node <diviseur_horlode/clk_int_26> of sequential type is unconnected in block <controle_spi_potentiostat>.
 
 Optimizing unit <controle_spi_potentiostat> ...
 
@@ -265,8 +312,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 14
- Flip-Flops                                            : 14
+# Registers                                            : 18
+ Flip-Flops                                            : 18
 
 =========================================================================
 
@@ -289,18 +336,25 @@ Top Level Output File Name         : controle_spi_potentiostat.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 18
-#      INV                         : 3
-#      LUT2                        : 3
-#      LUT3                        : 4
-#      LUT4                        : 8
-# FlipFlops/Latches                : 14
-#      FDC                         : 10
-#      FDCE                        : 4
+# BELS                             : 27
+#      GND                         : 1
+#      INV                         : 5
+#      LUT1                        : 2
+#      LUT2                        : 10
+#      LUT3                        : 2
+#      LUT4                        : 1
+#      MUXCY                       : 2
+#      VCC                         : 1
+#      XORCY                       : 3
+# FlipFlops/Latches                : 18
+#      FD                          : 3
+#      FDC                         : 2
+#      FDCE                        : 12
+#      FDP                         : 1
 # Clock Buffers                    : 1
-#      BUFG                        : 1
-# IO Buffers                       : 14
-#      IBUF                        : 3
+#      BUFGP                       : 1
+# IO Buffers                       : 12
+#      IBUF                        : 1
 #      OBUF                        : 11
 
 Device utilization summary:
@@ -310,20 +364,20 @@ Selected Device : 6slx9tqg144-2
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:              14  out of  11440     0%  
- Number of Slice LUTs:                   18  out of   5720     0%  
-    Number used as Logic:                18  out of   5720     0%  
+ Number of Slice Registers:              18  out of  11440     0%  
+ Number of Slice LUTs:                   20  out of   5720     0%  
+    Number used as Logic:                20  out of   5720     0%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:     18
-   Number with an unused Flip Flop:       4  out of     18    22%  
-   Number with an unused LUT:             0  out of     18     0%  
-   Number of fully used LUT-FF pairs:    14  out of     18    77%  
-   Number of unique control sets:         3
+ Number of LUT Flip Flop pairs used:     21
+   Number with an unused Flip Flop:       3  out of     21    14%  
+   Number with an unused LUT:             1  out of     21     4%  
+   Number of fully used LUT-FF pairs:    17  out of     21    80%  
+   Number of unique control sets:         4
 
 IO Utilization: 
  Number of IOs:                          14
- Number of bonded IOBs:                  14  out of    102    13%  
+ Number of bonded IOBs:                  13  out of    102    12%  
 
 Specific Feature Utilization:
  Number of BUFG/BUFGCTRLs:                1  out of     16     6%  
@@ -346,11 +400,13 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
------------------------------------+------------------------+-------+
-Clock Signal                       | Clock buffer(FF name)  | Load  |
------------------------------------+------------------------+-------+
-clk                                | IBUF+BUFG              | 14    |
------------------------------------+------------------------+-------+
+-----------------------------------+----------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)      | Load  |
+-----------------------------------+----------------------------+-------+
+clk                                | BUFGP                      | 3     |
+diviseur_horlode/clk_int_2         | NONE(etat_present_FSM_FFd3)| 15    |
+-----------------------------------+----------------------------+-------+
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
 Asynchronous Control Signals Information:
 ----------------------------------------
@@ -360,10 +416,10 @@ Timing Summary:
 ---------------
 Speed Grade: -2
 
-   Minimum period: 3.390ns (Maximum Frequency: 294.985MHz)
-   Minimum input arrival time before clock: 3.448ns
+   Minimum period: 3.063ns (Maximum Frequency: 326.477MHz)
+   Minimum input arrival time before clock: 3.488ns
    Maximum output required time after clock: 5.581ns
-   Maximum combinational path delay: 4.921ns
+   Maximum combinational path delay: No path found
 
 Timing Details:
 ---------------
@@ -371,83 +427,108 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 3.390ns (frequency: 294.985MHz)
-  Total number of paths / destination ports: 70 / 30
+  Clock period: 2.211ns (frequency: 452.284MHz)
+  Total number of paths / destination ports: 6 / 3
 -------------------------------------------------------------------------
-Delay:               3.390ns (Levels of Logic = 1)
-  Source:            etat_present_FSM_FFd1 (FF)
-  Destination:       rdc/reg_loop[1].reg/q_out (FF)
+Delay:               2.211ns (Levels of Logic = 2)
+  Source:            diviseur_horlode/clk_int_2 (FF)
+  Destination:       diviseur_horlode/clk_int_2 (FF)
   Source Clock:      clk rising
   Destination Clock: clk rising
 
-  Data Path: etat_present_FSM_FFd1 to rdc/reg_loop[1].reg/q_out
+  Data Path: diviseur_horlode/clk_int_2 to diviseur_horlode/clk_int_2
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC:C->Q             17   0.525   1.209  etat_present_FSM_FFd1 (etat_present_FSM_FFd1)
-     LUT2:I1->O            8   0.254   0.943  rdc/reg0/reset_inv1 (rdc/reg0/reset_inv)
-     FDC:CLR                   0.459          rdc/reg_loop[1].reg/q_out
+     FD:C->Q              17   0.525   1.209  diviseur_horlode/clk_int_2 (diviseur_horlode/clk_int_2)
+     LUT1:I0->O            0   0.254   0.000  diviseur_horlode/Mcount_clk_int_xor<2>_rt (diviseur_horlode/Mcount_clk_int_xor<2>_rt)
+     XORCY:LI->O           1   0.149   0.000  diviseur_horlode/Mcount_clk_int_xor<2> (Result<2>)
+     FD:D                      0.074          diviseur_horlode/clk_int_2
     ----------------------------------------
-    Total                      3.390ns (1.238ns logic, 2.152ns route)
-                                       (36.5% logic, 63.5% route)
+    Total                      2.211ns (1.002ns logic, 1.209ns route)
+                                       (45.3% logic, 54.7% route)
 
 =========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
+Timing constraint: Default period analysis for Clock 'diviseur_horlode/clk_int_2'
+  Clock period: 3.063ns (frequency: 326.477MHz)
+  Total number of paths / destination ports: 55 / 39
+-------------------------------------------------------------------------
+Delay:               3.063ns (Levels of Logic = 1)
+  Source:            etat_present_FSM_FFd3 (FF)
+  Destination:       rdc/reg0/q_out (FF)
+  Source Clock:      diviseur_horlode/clk_int_2 rising
+  Destination Clock: diviseur_horlode/clk_int_2 rising
+
+  Data Path: etat_present_FSM_FFd3 to rdc/reg0/q_out
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDP:C->Q             11   0.525   1.038  etat_present_FSM_FFd3 (etat_present_FSM_FFd3)
+     INV:I->O              8   0.255   0.943  etat_present__n0021<0>1_INV_0 (enable_rdc)
+     FDCE:CE                   0.302          rdc/reg_fin/q_out
+    ----------------------------------------
+    Total                      3.063ns (1.082ns logic, 1.981ns route)
+                                       (35.3% logic, 64.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'diviseur_horlode/clk_int_2'
   Total number of paths / destination ports: 3 / 3
 -------------------------------------------------------------------------
-Offset:              3.448ns (Levels of Logic = 2)
+Offset:              3.488ns (Levels of Logic = 2)
   Source:            reset (PAD)
-  Destination:       etat_present_FSM_FFd1 (FF)
-  Destination Clock: clk rising
+  Destination:       etat_present_FSM_FFd3 (FF)
+  Destination Clock: diviseur_horlode/clk_int_2 rising
 
-  Data Path: reset to etat_present_FSM_FFd1
+  Data Path: reset to etat_present_FSM_FFd3
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O             1   1.328   0.681  reset_IBUF (reset_IBUF)
-     INV:I->O              2   0.255   0.725  reset_inv1_INV_0 (reset_inv)
-     FDC:CLR                   0.459          etat_present_FSM_FFd1
+     INV:I->O              3   0.255   0.765  reset_inv1_INV_0 (reset_inv)
+     FDP:PRE                   0.459          etat_present_FSM_FFd3
     ----------------------------------------
-    Total                      3.448ns (2.042ns logic, 1.406ns route)
-                                       (59.2% logic, 40.8% route)
+    Total                      3.488ns (2.042ns logic, 1.446ns route)
+                                       (58.5% logic, 41.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'diviseur_horlode/clk_int_2'
+  Total number of paths / destination ports: 11 / 11
+-------------------------------------------------------------------------
+Offset:              5.420ns (Levels of Logic = 2)
+  Source:            etat_present_FSM_FFd1 (FF)
+  Destination:       CLK_OUT (PAD)
+  Source Clock:      diviseur_horlode/clk_int_2 rising
+
+  Data Path: etat_present_FSM_FFd1 to CLK_OUT
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDC:C->Q              8   0.525   1.052  etat_present_FSM_FFd1 (etat_present_FSM_FFd1)
+     LUT2:I0->O            1   0.250   0.681  etat_present_CLK_OUT1 (CLK_OUT_OBUF)
+     OBUF:I->O                 2.912          CLK_OUT_OBUF (CLK_OUT)
+    ----------------------------------------
+    Total                      5.420ns (3.687ns logic, 1.733ns route)
+                                       (68.0% logic, 32.0% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
-  Total number of paths / destination ports: 11 / 10
+  Total number of paths / destination ports: 1 / 1
 -------------------------------------------------------------------------
 Offset:              5.581ns (Levels of Logic = 2)
-  Source:            etat_present_FSM_FFd1 (FF)
-  Destination:       CS (PAD)
+  Source:            diviseur_horlode/clk_int_2 (FF)
+  Destination:       CLK_OUT (PAD)
   Source Clock:      clk rising
 
-  Data Path: etat_present_FSM_FFd1 to CS
+  Data Path: diviseur_horlode/clk_int_2 to CLK_OUT
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC:C->Q             17   0.525   1.209  etat_present_FSM_FFd1 (etat_present_FSM_FFd1)
-     LUT2:I1->O            1   0.254   0.681  etat_present__n0024<1>1 (CS_OBUF)
-     OBUF:I->O                 2.912          CS_OBUF (CS)
+     FD:C->Q              17   0.525   1.209  diviseur_horlode/clk_int_2 (diviseur_horlode/clk_int_2)
+     LUT2:I1->O            1   0.254   0.681  etat_present_CLK_OUT1 (CLK_OUT_OBUF)
+     OBUF:I->O                 2.912          CLK_OUT_OBUF (CLK_OUT)
     ----------------------------------------
     Total                      5.581ns (3.691ns logic, 1.890ns route)
                                        (66.1% logic, 33.9% route)
-
-=========================================================================
-Timing constraint: Default path analysis
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Delay:               4.921ns (Levels of Logic = 2)
-  Source:            clk (PAD)
-  Destination:       CLK_OUT (PAD)
-
-  Data Path: clk to CLK_OUT
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IBUF:I->O             1   1.328   0.681  clk_IBUF (CLK_OUT_OBUF)
-     OBUF:I->O                 2.912          CLK_OUT_OBUF (CLK_OUT)
-    ----------------------------------------
-    Total                      4.921ns (4.240ns logic, 0.681ns route)
-                                       (86.2% logic, 13.8% route)
 
 =========================================================================
 
@@ -459,20 +540,28 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |    3.390|         |         |         |
+clk            |    2.211|         |         |         |
 ---------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock diviseur_horlode/clk_int_2
+--------------------------+---------+---------+---------+---------+
+                          | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock              |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+--------------------------+---------+---------+---------+---------+
+diviseur_horlode/clk_int_2|    3.063|         |         |         |
+--------------------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
 Total REAL time to Xst completion: 6.00 secs
-Total CPU time to Xst completion: 5.71 secs
+Total CPU time to Xst completion: 5.96 secs
  
 --> 
 
 Total memory usage is 282476 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    0 (   0 filtered)
-Number of infos    :    0 (   0 filtered)
+Number of warnings :   25 (   0 filtered)
+Number of infos    :    1 (   0 filtered)
 
