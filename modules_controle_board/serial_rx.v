@@ -1,5 +1,5 @@
 module serial_rx #(
-        parameter CLK_PER_BIT = 50
+        parameter CLK_PER_BIT = 25
     )(
         input clk,
         input rst,
@@ -16,7 +16,8 @@ module serial_rx #(
     WAIT_HALF = 2'd1,
     WAIT_FULL = 2'd2,
     WAIT_HIGH = 2'd3;
-
+    
+	 wire rst_n = ~rst;
     reg [CTR_SIZE-1:0] ctr_d, ctr_q;
     reg [2:0] bit_ctr_d, bit_ctr_q;
     reg [7:0] data_d, data_q;
@@ -75,7 +76,7 @@ module serial_rx #(
     end
 
     always @(posedge clk) begin
-        if (rst) begin
+        if (rst_n) begin
             ctr_q <= 1'b0;
             bit_ctr_q <= 3'b0;
             new_data_q <= 1'b0;

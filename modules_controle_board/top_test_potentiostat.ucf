@@ -1,0 +1,14 @@
+
+# PlanAhead Generated physical constraints 
+
+NET "clk" LOC = P56 | IOSTANDARD = LVTTL ;
+NET "reset" LOC = P38 | IOSTANDARD = LVTTL;
+NET "rx" LOC = P55 | IOSTANDARD = LVTTL;
+NET "data_out[7]" LOC = P123 | IOSTANDARD = LVTTL;
+NET "data_out[6]" LOC = P124 | IOSTANDARD = LVTTL;
+NET "data_out[5]" LOC = P126 | IOSTANDARD = LVTTL;
+NET "data_out[4]" LOC = P127 | IOSTANDARD = LVTTL;
+NET "data_out[3]" LOC = P131 | IOSTANDARD = LVTTL;
+NET "data_out[2]" LOC = P132 | IOSTANDARD = LVTTL;
+NET "data_out[1]" LOC = P133 | IOSTANDARD = LVTTL;
+NET "data_out[0]" LOC = P134 | IOSTANDARD = LVTTL;

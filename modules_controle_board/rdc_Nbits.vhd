@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    12:44:56 11/08/2016 
+-- Create Date:    10:40:29 05/04/2017 
 -- Design Name: 
--- Module Name:    diviseur_clk - Behavioral 
+-- Module Name:    rdc_Nbits - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -18,8 +18,10 @@
 --
 ----------------------------------------------------------------------------------
 library IEEE;
+library modules;
+use modules.usr_package.all;
 use IEEE.STD_LOGIC_1164.ALL;
-use ieee.std_logic_unsigned.all;
+
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 --use IEEE.NUMERIC_STD.ALL;
@@ -29,30 +31,25 @@ use ieee.std_logic_unsigned.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity diviseur_clk is
-    Port ( clk : in  STD_LOGIC;
-           reset,enable : in  STD_LOGIC;
-           clk_out_reg : out  STD_LOGIC);
-end diviseur_clk;
+entity rdc_Nbits is
+generic(N : integer :=8);
+    Port ( input, clk, reset, enable : in  STD_LOGIC;
+           data_output_parallele : out  STD_LOGIC_VECTOR (N-1 downto 0));
+end rdc_Nbits;
 
-architecture Behavioral of diviseur_clk is
+architecture Behavioral of rdc_Nbits is
 
-signal clk_int : std_logic_vector(26 downto 0);
+signal q_int : std_logic_vector(N-1 downto 0);
 
 begin
 
-process(clk,reset,enable)
-begin
-if(reset = '0') then
-	clk_int <= (others => '0');
-elsif(clk'event and clk = '1') then
-		if(enable = '1') then
-			clk_int <= clk_int + 1;
-		end if;
-end if;
-end process;
+reg0 : registre1bit port map(clk => clk, reset => reset, en => enable, d => input, q_out => q_int(0));
 
---changer pour implémentation physique
-clk_out_reg <= clk_int(1);
+reg_loop : for i in 1 to N-1 generate
+	reg: registre1bit port map(clk => clk, reset => reset, en => enable, d => q_int(i-1), q_out => q_int(i));
+end generate;
+
+data_output_parallele <= q_int;
+
 end Behavioral;
 

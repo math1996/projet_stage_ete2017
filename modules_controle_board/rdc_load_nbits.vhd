@@ -37,8 +37,7 @@ generic(N: integer := 8);
     Port ( load : in  STD_LOGIC_VECTOR(N-1 downto 0);
            enable,reset,clk, input : in  STD_LOGIC;
            mode : in  STD_LOGIC;
-           output : out  STD_LOGIC;
-			  output_parallele : out std_logic_vector(N-1 downto 0));
+           output : out  STD_LOGIC);
 end rdc_load_nbits;
 
 architecture Behavioral of rdc_load_nbits is
@@ -66,6 +65,5 @@ end generate;
 mux_fin: mux_2_1 port map(choix => mode, input(0) => q_int(N-2), input(1) => load(N-1), output => sortie_mux(N-1));
 
 output <= q_int(N-1);
-output_parallele <= q_int;
 end Behavioral;
 

@@ -1,7 +1,0 @@
-vhdl modules "usr_package.vhd"
-vhdl modules "registre1bit.vhd"
-vhdl modules "mux_2_1.vhd"
-vhdl modules "rdc_load_nbits.vhd"
-vhdl modules "diviseur_clk.vhd"
-vhdl modules "compteurNbits.vhd"
-vhdl work "controle_spi_potentiostat.vhd"

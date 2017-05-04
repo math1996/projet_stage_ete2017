@@ -30,7 +30,12 @@ package usr_package is
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
-
+component rdc_Nbits is
+generic(N : integer :=8);
+    Port ( input, clk, reset, enable : in  STD_LOGIC;
+           data_output_parallele : out  STD_LOGIC_VECTOR (N-1 downto 0));
+end component;
+			  
 component registreNbits is 
 	generic(N: integer := 8);
     Port ( clk,reset,en : in  STD_LOGIC;
@@ -55,8 +60,7 @@ generic(N: integer := 8);
     Port ( load : in  STD_LOGIC_VECTOR(N-1 downto 0);
            enable,reset,clk, input : in  STD_LOGIC;
            mode : in  STD_LOGIC;
-           output : out  STD_LOGIC;
-			  output_parallele : out std_logic_vector(N-1 downto 0));
+           output : out  STD_LOGIC);
 end component;
 
 component registre1bit is
@@ -68,6 +72,12 @@ component mux_2_1 is
  Port ( choix : in  STD_LOGIC;
            input : in  STD_LOGIC_VECTOR (1 downto 0);
            output : out  STD_LOGIC);
+end component;
+
+component controle_spi_potentiostat is
+Port(clk, reset, start : in std_logic;
+			load_in : in std_logic_vector;
+			CLK_OUT, CS, SDI : out std_logic);
 end component;
 
 end usr_package;
