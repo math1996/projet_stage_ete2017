@@ -21,7 +21,7 @@ library IEEE;
 library modules;
 use modules.usr_package.all;
 use IEEE.STD_LOGIC_1164.ALL;
-
+use ieee.std_logic_unsigned.all;
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 --use IEEE.NUMERIC_STD.ALL;
@@ -32,26 +32,27 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity configuration_spi_adc_12bits is
-    Port ( clk, reset, start, DOUT  : in  STD_LOGIC;
-           DIN, SCLK, CS: out  STD_LOGIC);
+    Port ( clk, reset, start : in  STD_LOGIC;
+			  load : in std_logic_vector(15 downto 0);
+           DIN, SCLK, CS, occupe, termine: out  STD_LOGIC);
 end configuration_spi_adc_12bits;
 
 architecture Behavioral of configuration_spi_adc_12bits is
 
-type etat is (attente, load_p1, dec_p1, load_p2, dec_p2, load_p3, dec_p3, load_p4, dec_p4, fin1, fin2, fin3);
+type etat_config_adc_12bits is (attente, load_valeur, decalage, fin);
 
 --à changer pour contrôler via le port série?
 signal load_int: std_logic_vector(15 downto 0);
-signal reset_rdc, enable_rdc, mode_rdc, clk_int : std_logic;
+signal reset_rdc, enable_rdc, mode_rdc, clk_int, reset_compteur, enable_compteur : std_logic;
 signal compteur : std_logic_vector(4 downto 0);
-signal etat_present, etat_suivant : etat;
+signal etat_present, etat_suivant : etat_config_adc_12bits;
 
 begin
 
 clk_int <= clk;
 
 rdc : rdc_load_nbits generic map(16) port map(clk => clk, reset => reset_rdc, enable => enable_rdc, input => '0', mode => mode_rdc,
-															output => DIN, load => load_int);
+															output => DIN, load => load);
 compteur5bit : compteurNbits generic map(5) port map(clk => clk, reset => reset_compteur, enable => enable_compteur, output => compteur);															
 
 process(clk,reset)
@@ -63,7 +64,7 @@ elsif(clk'event and clk = '1') then
 end if;
 end process;
 
-process(start, compteur, etat_present)
+process(start, compteur, etat_present, clk_int)
 begin
 	case etat_present is
 		when attente =>
@@ -72,54 +73,56 @@ begin
 			mode_rdc <= '0';
 			reset_compteur <= '0';
 			enable_compteur <= '0';
-			load_int <= (others => '0');
 			CS <= '1';
 			SCLK <= '1';
+			occupe <= '0';
+			termine <= '0';
 			if(start = '1') then
-				etat_suivant <= load_p1;
+				etat_suivant <= load_valeur;
 			else
 				etat_suivant <= attente;
 			end if;
 		
-		when load_p1 =>
+		when load_valeur => 
 			reset_rdc <= '1';
 			enable_rdc <= '1';
 			mode_rdc <= '1';
 			reset_compteur <= '0';
 			enable_compteur <= '0';
-			load_int <= ("1010101010100000"); -- choisir la valeur
 			CS <= '0';
 			SCLK <= '1';
-			etat_suivant <= dec_p1;
+			occupe <= '1';
+			termine <= '0';
+			etat_suivant <= decalage;
 			
-		when dec_p1 =>
+		when decalage =>
 			reset_rdc <= '1';
 			enable_rdc <= '1';
 			mode_rdc <= '0';
 			reset_compteur <= '1';
 			enable_compteur <= '1';
-			load_int <= (others => '0');
 			CS <= '0';
 			SCLK <= clk_int;
+			occupe <= '1';
+			termine <= '0';
 			if(compteur >= 15) then
-				etat_suivant <= fin1;
+				etat_suivant <= fin;
 			else
-				etat_suivant <= dec_p1;
+				etat_suivant <= decalage;
 			end if;
-		
-		--attendre 3 cycle d'horloge? nécessaire à 12.5 MHz?
-		when fin1 =>
-			reset_rdc <= '1';
-			enable_rdc <= '1';
+			
+		when fin =>
+			reset_rdc <= '0';
+			enable_rdc <= '0';
 			mode_rdc <= '0';
 			reset_compteur <= '0';
-			enable_compteur <= '1';
-			load_int <= (others => '0');
+			enable_compteur <= '0';
 			CS <= '1';
 			SCLK <= '1';
-		
-		--faire la même chose pour les 3 autres programmations!
-		
+			occupe <= '1';
+			termine <= '1';
+			etat_suivant <= attente;
+			
 		when others =>
 			reset_rdc <= '0';
 			enable_rdc <= '0';
@@ -129,6 +132,8 @@ begin
 			load_int <= (others => '0');
 			CS <= '1';
 			SCLK <= '1';
+			occupe <= '0';
+			termine <= '0';
 			etat_suivant <= attente;
 	end case;
 end process;

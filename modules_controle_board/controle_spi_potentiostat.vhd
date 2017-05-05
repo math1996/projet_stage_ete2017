@@ -34,12 +34,13 @@ use ieee.std_logic_unsigned.all;
 entity controle_spi_potentiostat is
 	Port(clk, reset, start : in std_logic;
 			load_in : in std_logic_vector;
-			CLK_OUT, CS, SDI : out std_logic);
+			CLK_OUT, CS, SDI : out std_logic;
+			occupe, termine : out std_logic);
 end controle_spi_potentiostat;
 
 architecture Behavioral of controle_spi_potentiostat is
 
-type etat is (attente, init, decalage);
+type etat is (attente, init, decalage, fin);
 signal etat_present, etat_suivant : etat;
 
 
@@ -75,6 +76,8 @@ begin
 			mode_rdc <= '0';
 			CS <= '1';
 			CLK_OUT <= '0';
+			occupe <= '0';
+			termine <= '0';
 			if(start = '1') then
 				etat_suivant <= init;
 			else
@@ -89,6 +92,8 @@ begin
 			mode_rdc <= '1';
 			CS <= '0';
 			CLK_OUT <= '0';
+			occupe <= '1';
+			termine <= '0';
 			etat_suivant <= decalage;
 			
 		when decalage =>
@@ -98,12 +103,26 @@ begin
 			reset_rdc <= '1';
 			mode_rdc <= '0';
 			CS <= '0';
-			CLK_OUT <= clk_int;
+			CLK_OUT <= not(clk_int);
+			occupe <= '1';
+			termine <= '0';
 			if(compteur_out >= 7) then
-				etat_suivant <= attente;
+				etat_suivant <= fin;
 			else
 				etat_suivant <= decalage;
 			end if;
+		
+		when fin =>
+			enable_compteur <= '0';
+			reset_compteur <= '0';
+			enable_rdc <= '0';
+			reset_rdc <= '0';
+			mode_rdc <= '0';
+			CS <= '1';
+			CLK_OUT <= '0';
+			occupe <= '1';
+			termine <= '1';
+			etat_suivant <= attente;
 			
 		when others =>
 			enable_compteur <= '0';
@@ -113,6 +132,8 @@ begin
 			mode_rdc <= '0';
 			CS <= '1';
 			CLK_OUT <= '0';
+			occupe <= '0';
+			termine <= '0';
 			etat_suivant <= attente;
 	end case;
 end process;

@@ -1,3 +1,7 @@
-work	"rdc_Nbits.vhd"
+work	"FSM_configurer_adc_12bits.vhd"
+modules	"compteurNbits.vhd"
+modules	"configuration_spi_adc_12bits.vhd"
+modules	"mux_2_1.vhd"
+modules	"rdc_load_nbits.vhd"
 modules	"registre1bit.vhd"
 modules	"usr_package.vhd"

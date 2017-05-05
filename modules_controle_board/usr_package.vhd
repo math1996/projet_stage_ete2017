@@ -77,7 +77,14 @@ end component;
 component controle_spi_potentiostat is
 Port(clk, reset, start : in std_logic;
 			load_in : in std_logic_vector;
-			CLK_OUT, CS, SDI : out std_logic);
+			CLK_OUT, CS, SDI : out std_logic;
+			occupe, termine : out std_logic);
+end component;
+
+component configuration_spi_adc_12bits is
+    Port ( clk, reset, start : in  STD_LOGIC;
+			  load : in std_logic_vector(15 downto 0);
+           DIN, SCLK, CS, occupe, termine: out  STD_LOGIC);
 end component;
 
 end usr_package;

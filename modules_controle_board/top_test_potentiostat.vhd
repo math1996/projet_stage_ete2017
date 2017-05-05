@@ -33,7 +33,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity top_test_potentiostat is
     Port ( clk, reset, rx : in  STD_LOGIC;
-           data_out : out  STD_LOGIC_VECTOR (7 downto 0));
+           data_out : out  STD_LOGIC_VECTOR (7 downto 0);
+			  SDI, CS, CLK_OUT :out std_logic);
 end top_test_potentiostat;
 
 architecture Behavioral of top_test_potentiostat is
@@ -46,7 +47,7 @@ end component;
 
 --clk_int est l'horloge divisé à 12.5 MHz
 --clk est l'horloge du mojo à 50 MHz
-signal start_int, clk_out_int, enable_rdc_affichage_int, input_rdc_int, clk_int : std_logic;
+signal start_int, clk_out_int, enable_rdc_affichage_int, input_rdc_int, clk_int, occupe_int, termine_int : std_logic;
 signal data_int : std_logic_vector(7 downto 0);
 
 begin
@@ -56,12 +57,18 @@ diviseur_horloge: diviseur_clk port map(clk => clk, reset => '1', enable => '1',
 
 
 rdc_controle_spi: controle_spi_potentiostat port map(clk => clk_int, reset => reset, start => start_int, load_in => data_int, CLK_OUT => clk_out_int,
-															CS => enable_rdc_affichage_int, SDI => input_rdc_int);
+															CS => enable_rdc_affichage_int, SDI => input_rdc_int, occupe => occupe_int, termine => termine_int);
 
 port_serie : serial_rx port map(clk =>	clk_int, rst => reset, rx => rx, data => data_int, new_data	=> start_int);
 
-
+--seulement pour les test, retirer pour vrai implémentation
+--connecter les sortie du module de controle SPI directement aux sortie (SDI,CLK_OUT,CS)
 rdc_output_led_test: rdc_NBits generic map(8) port map(clk => clk_out_int, reset => reset, enable => not(enable_rdc_affichage_int),
 																			input => input_rdc_int, data_output_parallele => data_out);
+																			
+CLK_OUT <= clk_out_int;
+SDI <= input_rdc_int;
+CS <= enable_rdc_affichage_int;
+																			
 end Behavioral;
 
