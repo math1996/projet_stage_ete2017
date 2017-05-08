@@ -145,7 +145,7 @@ case etat_present is
 	when CR =>
 		reset_spi <= '1';
 		demarrer_transfert <= '0';
-		load_int <= b"1_00_000_00_00_1_1_00_00"; --sequence register 
+		load_int <= b"1_00_000_00_00_0_1_00_00"; --sequence register 
 		occupe <= '1';
 		termine <= '0';
 		if(termine_int = '1') then

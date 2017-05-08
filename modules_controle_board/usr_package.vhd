@@ -30,6 +30,26 @@ package usr_package is
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component memoire_tampon_NxM is
+generic(N : integer:= 8;
+			M : integer:= 8);
+    Port ( clk, enable, reset : in  STD_LOGIC;
+           input : in  STD_LOGIC_VECTOR (N-1 downto 0);
+           output : out  STD_LOGIC_VECTOR (N-1 downto 0));
+end component;
+
+component recuperation_donnee_spi_adc_10bits is
+    Port ( clk,start,reset, SSTRB, DOUT : in  STD_LOGIC;
+           CS, SCLK, occupe, termine : out  STD_LOGIC;
+           data_out : out  STD_LOGIC_VECTOR (15 downto 0));
+end component;
+
+component configuration_spi_adc_10bits is
+    Port ( clk,start,reset : in  STD_LOGIC;
+				load : in std_logic_vector(7 downto 0);
+				termine, occupe, DIN, SCLK, CS : out std_logic);
+end component;
+
 component rdc_Nbits is
 generic(N : integer :=8);
     Port ( input, clk, reset, enable : in  STD_LOGIC;
