@@ -13,6 +13,8 @@ use IEEE.STD_LOGIC_1164.all;
 
 package usr_package is
 
+type tableau_memoire is array(natural range <>) of std_logic_vector(15 downto 0);
+
 -- type <new_type> is
 --  record
 --    <type_name>        : std_logic_vector( 7 downto 0);
@@ -30,9 +32,32 @@ package usr_package is
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component FSM_serial_tx is
+    Port ( clk, start, reset : in  STD_LOGIC;
+				data : in std_logic_vector(7 downto 0);
+				tx, occupe, termine: out  STD_LOGIC);
+end component;
+
+component controle_spi_adc_12bits is
+    Port ( clk, start, reset, DOUT : in  STD_LOGIC;
+           DIN, SCLK, CS, occupe, termine : out  STD_LOGIC;
+			  --output temporaire
+			  donnees : out STD_LOGIC_VECTOR(15 downto 0));
+end component;
+
+component FSM_configurer_adc_12bits is
+    Port ( clk, start, reset : in  STD_LOGIC;
+           occupe, termine, CS, SCLK, DIN : out  STD_LOGIC);
+end component;
+
+component FSM_recuperer_donnee_adc_12bits is
+    Port ( clk, start, reset, DOUT : in  STD_LOGIC;
+           SCLK, CS, occupe, termine  : out  STD_LOGIC;
+			  data_out : out std_logic_vector(15 downto 0));
+end component;
+
 component memoire_tampon_NxM is
-generic(N : integer:= 8;
-			M : integer:= 8);
+generic(N : integer:=8 ; M : integer:= 8);
     Port ( clk, enable, reset : in  STD_LOGIC;
            input : in  STD_LOGIC_VECTOR (N-1 downto 0);
            output : out  STD_LOGIC_VECTOR (N-1 downto 0));

@@ -1,0 +1,6 @@
+vhdl modules "usr_package.vhd"
+vhdl modules "registre1bit.vhd"
+vhdl modules "rdc_Nbits.vhd"
+vhdl modules "compteurNbits.vhd"
+vhdl modules "FSM_recuperer_donnee_adc_12bits.vhd"
+vhdl work "recup_donnee_adc12bit_tb.vhd"

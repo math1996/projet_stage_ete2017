@@ -39,7 +39,7 @@ end recuperation_donnee_spi_adc_10bits;
 
 architecture Behavioral of recuperation_donnee_spi_adc_10bits is
 
-type etat_recup_data is (attente, attente_donnee, recuperation, fin);
+type etat_recup_data is (attente, attente_donnee, recuperation, fin, demarrage);
 
 signal etat_present, etat_suivant : etat_recup_data;
 signal donnee_int : std_logic_vector(15 downto 0);
@@ -90,10 +90,21 @@ begin
 		occupe <= '1';
 		termine <= '0';
 		if(SSTRB = '1') then
-			etat_suivant <= recuperation;
+			etat_suivant <= demarrage;
 		else
 			etat_suivant <= attente_donnee;
 		end if;
+		
+	when demarrage =>
+		reset_rdc <= '0';
+		enable_rdc <= '0';
+		reset_compteur <= '0';
+		enable_compteur <= '0';
+		CS <= '0';
+		SCLK <= '0';
+		occupe <= '1';
+		termine <= '0';
+		etat_suivant <= recuperation;
 		
 	when recuperation => 
 		reset_rdc <= '1';

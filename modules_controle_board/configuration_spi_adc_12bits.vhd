@@ -55,6 +55,7 @@ rdc : rdc_load_nbits generic map(16) port map(clk => clk, reset => reset_rdc, en
 															output => DIN, load => load);
 compteur5bit : compteurNbits generic map(5) port map(clk => clk, reset => reset_compteur, enable => enable_compteur, output => compteur);															
 
+--machine à état de l'envoie des données vers les registres de l'adc 12 bits
 process(clk,reset)
 begin
 if(reset = '0') then
@@ -117,7 +118,7 @@ begin
 			mode_rdc <= '0';
 			reset_compteur <= '0';
 			enable_compteur <= '0';
-			CS <= '1';
+			CS <= '0';
 			SCLK <= '1';
 			occupe <= '1';
 			termine <= '1';

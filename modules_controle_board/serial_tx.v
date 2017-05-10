@@ -1,10 +1,10 @@
 module serial_tx #(
-        parameter CLK_PER_BIT = 50
+        parameter CLK_PER_BIT = 100
     )(
         input clk,
         input rst,
         output tx,
-        input block,
+        input block_tx,
         output busy,
         input [7:0] data,
         input new_data
@@ -31,7 +31,7 @@ module serial_tx #(
     assign busy = busy_q;
 
     always @(*) begin
-        block_d = block;
+        block_d = block_tx;
         ctr_d = ctr_q;
         bit_ctr_d = bit_ctr_q;
         data_d = data_q;

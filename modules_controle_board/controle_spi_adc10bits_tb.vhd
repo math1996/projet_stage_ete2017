@@ -117,7 +117,7 @@ BEGIN
 		start <= '0';
 		wait for clk_period*25;
 		sstrb <= '1';
-		wait for clk_period;
+		wait for clk_period*2;
 		DOUT <= '1';
 		wait for clk_period;
 		DOUT <= '0';
