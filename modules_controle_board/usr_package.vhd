@@ -32,6 +32,13 @@ type tableau_memoire is array(natural range <>) of std_logic_vector(15 downto 0)
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component FSM_envoyer_Noctets is
+generic(N: integer:=1);
+    Port ( clk, reset, start : in  STD_LOGIC;
+           data : in  STD_LOGIC_VECTOR ((8*N)-1 downto 0);
+           tx, occupe, termine : out  STD_LOGIC);
+end component;
+
 component controle_spi_adc_10bits is
     Port ( start, clk, reset, DOUT, SSTRB : in  STD_LOGIC;
            DIN, SCLK, CS, occupe, termine : out  STD_LOGIC;

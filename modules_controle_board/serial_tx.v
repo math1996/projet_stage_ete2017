@@ -18,7 +18,7 @@ module serial_tx #(
     START_BIT = 2'd1,
     DATA = 2'd2,
     STOP_BIT = 2'd3;
-
+		
     reg [CTR_SIZE-1:0] ctr_d, ctr_q;
     reg [2:0] bit_ctr_d, bit_ctr_q;
     reg [7:0] data_d, data_q;
@@ -91,7 +91,7 @@ module serial_tx #(
     end
 
     always @(posedge clk) begin
-        if (rst) begin
+        if (!rst) begin
             state_q <= IDLE;
             tx_q <= 1'b1;
         end else begin

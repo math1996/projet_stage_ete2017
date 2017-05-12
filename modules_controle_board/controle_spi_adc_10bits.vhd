@@ -67,7 +67,7 @@ registre_tampon : registreNbits generic map(16) port map(clk => clk, reset => re
 																		
 SCLK <= fsm_recup_sclk or fsm_config_sclk;
 CS <= fsm_recup_cs and fsm_config_cs;
-occupe <= fsm_config_occupe or fsm_recup_occupe;
+occupe <= fsm_recup_occupe or fsm_config_occupe;
 
 process(clk, reset)
 begin
@@ -127,6 +127,7 @@ begin
 			start_fsm_config <= '0';
 			load_int <= (others => '0');
 			termine <= '0';
+			occupe <= '0';
 			etat_suivant <= attente;
 	end case;
 end process;

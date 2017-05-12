@@ -52,58 +52,22 @@ component serial_rx is
 			new_data : out std_logic);
 end component;
 
-type etat_test_com_serie is (attente, attente_busy, envoie);
-signal etat_present, etat_suivant : etat_test_com_serie;
-signal block_tx_int, new_data_int, busy_int, ready_int, clk_int : std_logic;
+signal termine_int, occupe_int, ready_int, clk_int : std_logic;
 signal data_recu : std_Logic_vector(7 downto 0);
-
+signal data_int_add : std_logic_vector(7 downto 0);
+signal data_int : std_logic_vector(15 downto 0);
 
 begin
 
 diviseur_horloge: diviseur_clk generic map(4) port map(clk => clk, reset => reset, enable => '1', clk_out_reg => clk_int);
 
-com_serie_tx : serial_tx port map(clk => clk_int, rst => reset, block_tx => '0', new_data => new_data_int, data => data_recu, busy => busy_int, tx => tx);
+com_serie_tx : FSM_envoyer_Noctets generic map(2) port map(clk => clk_int, reset => reset, start => ready_int, data => data_int, tx => tx, occupe => occupe_int, termine => termine_int);
 com_serie_rx : serial_rx port map(clk => clk_int, rst => reset, rx => rx, data => data_recu, new_data => ready_int);
 
-data_out_parallele <= data_recu;
+data_out_parallele <= data_int_add;
+data_int_add <= data_recu + 1;
+data_int(15 downto 8) <= data_recu;
+data_int(7 downto 0) <= data_int_add;
 
-process(clk_int, reset)
-begin
-	if(reset = '0') then
-		etat_present <= attente;
-	elsif(clk_int'event and clk_int = '1') then
-		etat_present <= etat_suivant;
-	end if;
-end process;
-
-process(ready_int, busy_int, etat_present)
-begin
-	case etat_present is
-		when attente =>
-			new_data_int <= '0';
-			if(ready_int = '1') then	
-				etat_suivant <= attente_busy;
-			else
-				etat_suivant <= attente;
-			end if;
-		
-		when attente_busy =>
-			new_data_int <= '0';
-			if(busy_int = '0') then
-				etat_suivant <= envoie;
-			else
-				etat_suivant <= attente_busy;
-			end if;
-		
-		when envoie =>
-			new_data_int <= '1';
-			etat_suivant <= attente;
-		
-		when others =>
-			new_data_int <= '0';
-			etat_suivant <= attente;
-			
-	end case;
-end process;
 end Behavioral;
 

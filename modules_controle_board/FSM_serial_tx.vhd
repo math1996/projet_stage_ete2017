@@ -43,7 +43,7 @@ component serial_tx is
 			busy, tx : out std_logic);
 end component;
 
-type etat_test_com_serie is (attente, attente_busy, envoie);
+type etat_test_com_serie is (attente, attente_busy, envoie, attente_fin_envoie, fin);
 signal etat_present, etat_suivant : etat_test_com_serie;
 signal block_tx_int, new_data_int, busy_int, ready_int : std_logic;
 
@@ -51,7 +51,6 @@ begin
 
 com_serie_tx : serial_tx port map(clk => clk, rst => reset, block_tx => '0', new_data => new_data_int, data => data, busy => busy_int, tx => tx);
 occupe <= busy_int;
-termine <= new_data_int;
 
 process(clk, reset)
 begin
@@ -67,6 +66,7 @@ begin
 	case etat_present is
 		when attente =>
 			new_data_int <= '0';
+			termine <= '0';
 			if(start = '1') then	
 				etat_suivant <= attente_busy;
 			else
@@ -75,6 +75,7 @@ begin
 		
 		when attente_busy =>
 			new_data_int <= '0';
+			termine <= '0';
 			if(busy_int = '0') then
 				etat_suivant <= envoie;
 			else
@@ -83,8 +84,23 @@ begin
 		
 		when envoie =>
 			new_data_int <= '1';
-			etat_suivant <= attente;
+			termine <= '0';
+			etat_suivant <= attente_fin_envoie;
 		
+		when attente_fin_envoie =>
+			new_data_int <= '0';
+			termine <= '0';
+			if(busy_int = '1') then
+				etat_suivant <= attente_fin_envoie;
+			else
+				etat_suivant <= fin;
+			end if;
+			
+		when fin =>
+			new_data_int <= '0';
+			termine <= '1';
+			etat_suivant <= attente;
+			
 		when others =>
 			new_data_int <= '0';
 			etat_suivant <= attente;
