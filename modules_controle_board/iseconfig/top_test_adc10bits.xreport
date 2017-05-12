@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2017-05-11T15:11:47</DateModified>
+  <DateModified>2017-05-12T08:58:48</DateModified>
   <ModuleName>top_test_adc10bits</ModuleName>
-  <SummaryTimeStamp>2017-05-11T14:57:15</SummaryTimeStamp>
-  <SavedFilePath>C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/iseconfig/top_test_adc12bits.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board\</ImplementationReportsDirectory>
-  <DateInitialized>2017-05-11T15:11:46</DateInitialized>
+  <SummaryTimeStamp>Unknown</SummaryTimeStamp>
+  <SavedFilePath>C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/iseconfig/top_test_adc10bits.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board</ImplementationReportsDirectory>
+  <DateInitialized>2017-05-12T08:58:40</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>
  <body>

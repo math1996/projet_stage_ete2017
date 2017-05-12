@@ -32,6 +32,15 @@ type tableau_memoire is array(natural range <>) of std_logic_vector(15 downto 0)
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component controle_spi_adc_10bits is
+    Port ( start, clk, reset, DOUT, SSTRB : in  STD_LOGIC;
+           DIN, SCLK, CS, occupe, termine : out  STD_LOGIC;
+			  --output temporaire
+			  canal : in  std_logic_vector(2 downto 0);
+			  donnes : out std_logic_vector(15 downto 0));
+end component;
+
+
 component FSM_serial_tx is
     Port ( clk, start, reset : in  STD_LOGIC;
 				data : in std_logic_vector(7 downto 0);
@@ -41,12 +50,14 @@ end component;
 component controle_spi_adc_12bits is
     Port ( clk, start, reset, DOUT : in  STD_LOGIC;
            DIN, SCLK, CS, occupe, termine : out  STD_LOGIC;
+			canal : in std_logic_vector(2 downto 0);
 			  --output temporaire
 			  donnees : out STD_LOGIC_VECTOR(15 downto 0));
 end component;
 
 component FSM_configurer_adc_12bits is
     Port ( clk, start, reset : in  STD_LOGIC;
+				canal : in std_logic_vector(2 downto 0);
            occupe, termine, CS, SCLK, DIN : out  STD_LOGIC);
 end component;
 
@@ -95,6 +106,7 @@ generic(N: integer := 4);
 end component;
 
 component diviseur_clk is
+generic(N : integer :=0);
 	Port ( clk : in  STD_LOGIC;
            reset,enable : in  STD_LOGIC;
            clk_out_reg : out  STD_LOGIC);

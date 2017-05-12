@@ -53,7 +53,7 @@ signal data_int : std_logic_vector(7 downto 0);
 begin
 
 --horloge divisé à 12.5 MHz
-diviseur_horloge: diviseur_clk port map(clk => clk, reset => '1', enable => '1', clk_out_reg => clk_int);
+diviseur_horloge: diviseur_clk generic map(1) port map(clk => clk, reset => '1', enable => '1', clk_out_reg => clk_int);
 
 
 rdc_controle_spi: controle_spi_potentiostat port map(clk => clk_int, reset => reset, start => start_int, load_in => data_int, CLK_OUT => clk_out_int,

@@ -18,7 +18,10 @@
 --
 ----------------------------------------------------------------------------------
 library IEEE;
+library modules;
+use modules.usr_package.all;
 use IEEE.STD_LOGIC_1164.ALL;
+use ieee.std_logic_unsigned.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -51,22 +54,24 @@ end component;
 
 type etat_test_com_serie is (attente, attente_busy, envoie);
 signal etat_present, etat_suivant : etat_test_com_serie;
-signal block_tx_int, new_data_int, busy_int, ready_int : std_logic;
+signal block_tx_int, new_data_int, busy_int, ready_int, clk_int : std_logic;
 signal data_recu : std_Logic_vector(7 downto 0);
 
 
 begin
 
-com_serie_tx : serial_tx port map(clk => clk, rst => reset, block_tx => '0', new_data => new_data_int, data => data_recu, busy => busy_int, tx => tx);
-com_serie_rx : serial_rx port map(clk => clk, rst => reset, rx => rx, data => data_recu, new_data => ready_int);
+diviseur_horloge: diviseur_clk generic map(4) port map(clk => clk, reset => reset, enable => '1', clk_out_reg => clk_int);
+
+com_serie_tx : serial_tx port map(clk => clk_int, rst => reset, block_tx => '0', new_data => new_data_int, data => data_recu, busy => busy_int, tx => tx);
+com_serie_rx : serial_rx port map(clk => clk_int, rst => reset, rx => rx, data => data_recu, new_data => ready_int);
 
 data_out_parallele <= data_recu;
 
-process(clk, reset)
+process(clk_int, reset)
 begin
 	if(reset = '0') then
 		etat_present <= attente;
-	elsif(clk'event and clk = '1') then
+	elsif(clk_int'event and clk_int = '1') then
 		etat_present <= etat_suivant;
 	end if;
 end process;

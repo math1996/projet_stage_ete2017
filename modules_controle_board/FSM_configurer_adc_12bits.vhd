@@ -33,6 +33,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity FSM_configurer_adc_12bits is
     Port ( clk, start, reset : in  STD_LOGIC;
+				--temporaire por tests
+				canal : in std_logic_vector(2 downto 0);
            occupe, termine, CS, SCLK, DIN : out  STD_LOGIC);
 end FSM_configurer_adc_12bits;
 
@@ -59,7 +61,7 @@ begin
 	end if;
 end process;
 
-process(start, termine_int, etat_present)
+process(start, termine_int, etat_present, canal)
 begin
 case etat_present is
 	when attente =>
@@ -119,7 +121,7 @@ case etat_present is
 	when SR =>
 		reset_spi <= '1';
 		demarrer_transfert <= '0';
-		load_int <= b"1_11_10000000_00000"; --sequence register 
+		load_int <= b"1_11_00000000_00000"; --sequence register 
 		termine <= '0';
 		if(termine_int = '1') then
 			etat_suivant <= start_CR;
@@ -137,7 +139,7 @@ case etat_present is
 	when CR =>
 		reset_spi <= '1';
 		demarrer_transfert <= '0';
-		load_int <= b"1_00_000_00_00_0_1_00_00"; --sequence register 
+		load_int <= b"1_00" & canal & b"00_00_0_1_00_00"; --control register 
 		termine <= '0';
 		if(termine_int = '1') then
 			etat_suivant <= fin;

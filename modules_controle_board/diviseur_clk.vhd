@@ -30,6 +30,7 @@ use ieee.std_logic_unsigned.all;
 --use UNISIM.VComponents.all;
 
 entity diviseur_clk is
+generic(N : integer := 0);
     Port ( clk : in  STD_LOGIC;
            reset,enable : in  STD_LOGIC;
            clk_out_reg : out  STD_LOGIC);
@@ -37,7 +38,7 @@ end diviseur_clk;
 
 architecture Behavioral of diviseur_clk is
 
-signal clk_int : std_logic_vector(26 downto 0);
+signal clk_int : std_logic_vector(24 downto 0);
 
 begin
 
@@ -53,6 +54,6 @@ end if;
 end process;
 
 --changer pour implémentation physique
-clk_out_reg <= clk_int(1);
+clk_out_reg <= clk_int(N);
 end Behavioral;
 

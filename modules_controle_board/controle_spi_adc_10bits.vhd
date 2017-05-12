@@ -36,6 +36,7 @@ entity controle_spi_adc_10bits is
     Port ( start, clk, reset, DOUT, SSTRB : in  STD_LOGIC;
            DIN, SCLK, CS, occupe, termine : out  STD_LOGIC;
 			  --output temporaire
+			  canal : in  std_logic_vector(2 downto 0);
 			  donnes : out std_logic_vector(15 downto 0));
 end controle_spi_adc_10bits;
 
@@ -57,14 +58,15 @@ begin
 
 config_adc10bits: configuration_spi_adc_10bits port map(clk => clk, start => start_fsm_config, reset => reset_fsm_config, load => load_int, termine => fsm_config_termine, 
 																			occupe => fsm_config_occupe, DIN => DIN, SCLK => fsm_config_sclk, CS => fsm_config_cs);
+																			
 recup_donnee: recuperation_donnee_spi_adc_10bits port map(clk => clk, start => fsm_config_termine, reset => reset_fsm_recup, SSTRB => SSTRB, DOUT => DOUT,
 																				CS => fsm_recup_cs, SCLK => fsm_recup_sclk, occupe => fsm_recup_occupe, termine => fsm_recup_termine, 
 																				data_out => donnee_recupere);
-memoire_tmp: memoire_tampon_NxM generic map(16, 8) port map(clk => clk, reset => reset, enable => fsm_recup_termine, input => donnee_recupere, output => donnes);
 																				
+registre_tampon : registreNbits generic map(16) port map(clk => clk, reset => reset, en => fsm_recup_termine, d => donnee_recupere, q_out => donnes);
+																		
 SCLK <= fsm_recup_sclk or fsm_config_sclk;
 CS <= fsm_recup_cs and fsm_config_cs;
-
 occupe <= fsm_config_occupe or fsm_recup_occupe;
 
 process(clk, reset)
@@ -76,7 +78,7 @@ begin
 	end if;
 end process;
 
-process(start, etat_present, fsm_recup_termine)
+process(start, etat_present, fsm_recup_termine, canal)
 begin
 	case etat_present is 
 		when attente =>
@@ -103,7 +105,7 @@ begin
 			reset_fsm_config <= '1';
 			reset_fsm_recup <= '1';
 			start_fsm_config <= '0';
-			load_int <= b"1_000_0_1_10"; --configurer l'adc
+			load_int <= b"1" & canal & b"0_1_10"; --configurer l'adc
 			termine <= '0';
 			if(fsm_recup_termine = '1') then
 				etat_suivant <= fin;

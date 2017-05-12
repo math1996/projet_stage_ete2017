@@ -35,6 +35,7 @@ use ieee.std_logic_unsigned.all;
 entity controle_spi_adc_12bits is
     Port ( clk, start, reset, DOUT : in  STD_LOGIC;
            DIN, SCLK, CS, occupe, termine : out  STD_LOGIC;
+				canal : in std_logic_vector(2 downto 0);
 			  --output temporaire
 			  donnees : out STD_LOGIC_VECTOR(15 downto 0));
 end controle_spi_adc_12bits;
@@ -51,7 +52,7 @@ signal etat_present, etat_suivant: etat_fsm_ctrl_adc12bits;
 begin
 
 config_adc12bits : FSM_configurer_adc_12bits port map(clk => clk, reset => reset_FSM_config, start => start_FSM_config, occupe => occupe_FSM_config,
-																		termine => termine_FSM_config, CS => cs_FSM_config, SCLK => sclk_FSM_config, DIN => DIN);
+																		termine => termine_FSM_config, CS => cs_FSM_config, SCLK => sclk_FSM_config, DIN => DIN, canal => canal);
 recup_donnee : FSM_recuperer_donnee_adc_12bits port map(clk => clk, reset => reset_FSM_recup, start => start_FSM_recup, DOUT => DOUT, 
 																			SCLK => sclk_FSM_recup, CS => cs_FSM_recup, occupe => occupe_FSM_recup, termine => termine_FSM_recup,
 																			data_out => donnee_int);

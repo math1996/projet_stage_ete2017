@@ -87,8 +87,8 @@ begin
 		when demarrage =>
 			reset_compteur <= '0';
 			enable_compteur <= '0';
-			reset_rdc <= '0';
-			enable_rdc <= '0';
+			reset_rdc <= '1';
+			enable_rdc <= '1';
 			CS <= '0';
 			SCLK <= '1';
 			occupe <= '1';
@@ -104,7 +104,7 @@ begin
 			SCLK <= clk_int;
 			occupe <= '1';
 			termine <= '0';
-			if(compteur >= 15) then
+			if(compteur >= 14) then
 				etat_suivant <= fin;
 			else
 				etat_suivant <= recuperation;
