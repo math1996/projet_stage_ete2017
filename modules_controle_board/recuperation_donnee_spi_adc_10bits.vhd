@@ -48,16 +48,16 @@ signal compteur : std_logic_vector(4 downto 0);
 
 begin
 
-rdc_recup: rdc_Nbits generic map(16) port map(clk => clk, reset => reset_rdc, enable => enable_rdc, input => DOUT, data_output_parallele => donnee_int);
-compteur_5bits : compteurNbits generic map(5) port map(clk => clk, reset => reset_compteur, enable => enable_compteur, output => compteur);
+rdc_recup: rdc_Nbits generic map(16) port map(clk => clk_int, reset => reset_rdc, enable => enable_rdc, input => DOUT, data_output_parallele => donnee_int);
+compteur_5bits : compteurNbits generic map(5) port map(clk => clk_int, reset => reset_compteur, enable => enable_compteur, output => compteur);
 clk_int <= clk;
 data_out <= donnee_int;
 
-process(clk, reset)
+process(clk_int, reset)
 begin
 if(reset = '0') then
 	etat_present <= attente;
-elsif(clk'event and clk = '1') then
+elsif(clk_int'event and clk_int = '1') then
 	etat_present <= etat_suivant;
 end if;
 end process;

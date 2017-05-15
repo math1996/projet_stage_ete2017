@@ -34,7 +34,7 @@ use ieee.std_logic_unsigned.all;
 
 entity top_test_adc10bits is
     Port ( clk, DOUT, SSTRB, reset, rx : in  STD_LOGIC;
-           DIN, SCLK, CS, tx, occupe: out  STD_LOGIC;
+           DIN, SCLK, CS, SHDN, tx, occupe: out  STD_LOGIC;
 			  data_out : out std_logic_vector(7 downto 0));
 end top_test_adc10bits;
 
@@ -57,7 +57,8 @@ DIN <= input_rdc_int;
 diviseur_horloge : diviseur_clk generic map(4) port map(clk => clk, reset => reset, enable => '1', clk_out_reg => clk_int);
 
 ctrl_spi_adc10bits : controle_spi_adc_10bits port map(start => data_rdy, clk => clk_int, reset => reset, DOUT => DOUT, SSTRB => SSTRB, DIN => input_rdc_int, SCLK => clk_out_int,
-																		CS => enable_rdc_affichage_int, occupe => occupe, termine => termine_int, donnes => data_int, canal => data_recu(2 downto 0));
+																		CS => enable_rdc_affichage_int, occupe => occupe, termine => termine_int, donnes => data_int, canal => data_recu(2 downto 0),
+																		SHDN => SHDN);
 com_serie_tx : FSM_envoyer_Noctets generic map(2) port map(clk => clk_int, reset => reset, start => termine_int, data => data_int, tx => tx, occupe => occupe_envoie, termine => termine_envoie);																		
 com_serie_rx : serial_rx port map(clk => clk_int, rst => reset, rx => rx, data => data_recu, new_data => data_rdy);
 

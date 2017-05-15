@@ -51,17 +51,17 @@ signal clk_int : std_logic;
 begin
 
 --essayer avec clk ou not_clk -> respecter contraintes temporelles
-compteur4bit : compteurNbits generic map(4) port map(clk => clk, reset => reset_compteur, enable => enable_compteur, output => compteur_out);
-rdc : rdc_load_nbits generic map(8) port map(clk => clk, enable => enable_rdc, reset => reset_rdc, input => '0', mode => mode_rdc, output => SDI,
+compteur4bit : compteurNbits generic map(4) port map(clk => clk_int, reset => reset_compteur, enable => enable_compteur, output => compteur_out);
+rdc : rdc_load_nbits generic map(8) port map(clk => clk_int, enable => enable_rdc, reset => reset_rdc, input => '0', mode => mode_rdc, output => SDI,
 																load => load_in);
 															
 clk_int <= clk;
 							
-process(clk,reset)
+process(clk_int,reset)
 begin
 if(reset = '0') then
 	etat_present <= attente;
-elsif(clk'event and clk = '1') then
+elsif(clk_int'event and clk_int = '1') then
 	etat_present <= etat_suivant;
 end if;
 end process;

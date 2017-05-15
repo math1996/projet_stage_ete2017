@@ -41,7 +41,7 @@ end component;
 
 component controle_spi_adc_10bits is
     Port ( start, clk, reset, DOUT, SSTRB : in  STD_LOGIC;
-           DIN, SCLK, CS, occupe, termine : out  STD_LOGIC;
+           DIN, SCLK, CS, occupe, termine, SHDN : out  STD_LOGIC;
 			  --output temporaire
 			  canal : in  std_logic_vector(2 downto 0);
 			  donnes : out std_logic_vector(15 downto 0));

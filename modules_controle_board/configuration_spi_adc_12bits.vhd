@@ -51,16 +51,16 @@ begin
 
 clk_int <= clk;
 
-rdc : rdc_load_nbits generic map(16) port map(clk => clk, reset => reset_rdc, enable => enable_rdc, input => '0', mode => mode_rdc,
+rdc : rdc_load_nbits generic map(16) port map(clk => clk_int, reset => reset_rdc, enable => enable_rdc, input => '0', mode => mode_rdc,
 															output => DIN, load => load);
-compteur5bit : compteurNbits generic map(5) port map(clk => clk, reset => reset_compteur, enable => enable_compteur, output => compteur);															
+compteur5bit : compteurNbits generic map(5) port map(clk => clk_int, reset => reset_compteur, enable => enable_compteur, output => compteur);															
 
 --machine à état de l'envoie des données vers les registres de l'adc 12 bits
-process(clk,reset)
+process(clk_int,reset)
 begin
 if(reset = '0') then
 	etat_present <= attente;
-elsif(clk'event and clk = '1') then	
+elsif(clk_int'event and clk_int = '1') then	
 	etat_present <= etat_suivant;
 end if;
 end process;

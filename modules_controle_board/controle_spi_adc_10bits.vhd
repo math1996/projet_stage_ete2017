@@ -34,7 +34,7 @@ use ieee.std_logic_unsigned.all;
 
 entity controle_spi_adc_10bits is
     Port ( start, clk, reset, DOUT, SSTRB : in  STD_LOGIC;
-           DIN, SCLK, CS, occupe, termine : out  STD_LOGIC;
+           DIN, SCLK, CS, occupe, termine, SHDN: out  STD_LOGIC;
 			  --output temporaire
 			  canal : in  std_logic_vector(2 downto 0);
 			  donnes : out std_logic_vector(15 downto 0));
@@ -68,6 +68,7 @@ registre_tampon : registreNbits generic map(16) port map(clk => clk, reset => re
 SCLK <= fsm_recup_sclk or fsm_config_sclk;
 CS <= fsm_recup_cs and fsm_config_cs;
 occupe <= fsm_recup_occupe or fsm_config_occupe;
+SHDN <= '1';
 
 process(clk, reset)
 begin

@@ -33,7 +33,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity FSM_configurer_adc_12bits is
     Port ( clk, start, reset : in  STD_LOGIC;
-				--temporaire por tests
+				--temporaire pour tests
 				canal : in std_logic_vector(2 downto 0);
            occupe, termine, CS, SCLK, DIN : out  STD_LOGIC);
 end FSM_configurer_adc_12bits;
