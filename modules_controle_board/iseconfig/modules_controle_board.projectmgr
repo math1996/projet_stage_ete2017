@@ -15,6 +15,7 @@
          <ClosedNode>/Unassigned User Library Modules/FSM_configurer_adc_12bits - Behavioral</ClosedNode>
          <ClosedNode>/Unassigned User Library Modules/FSM_recuperer_donnee_adc_12bits - Behavioral</ClosedNode>
          <ClosedNode>/Unassigned User Library Modules/configuration_serie_dac_16bits - Behavioral</ClosedNode>
+         <ClosedNode>/Unassigned User Library Modules/controle_serie_dac_16bits - Behavioral</ClosedNode>
          <ClosedNode>/Unassigned User Library Modules/controle_spi_potentiostat - Behavioral</ClosedNode>
          <ClosedNode>/Unassigned User Library Modules/controle_spi_potentiostat - Behavioral/rdc - rdc_load_nbits - Behavioral</ClosedNode>
          <ClosedNode>/Unassigned User Library Modules/memoire_tampon_16xM - Behavioral</ClosedNode>
@@ -22,6 +23,7 @@
          <ClosedNode>/configuration_serie_dac_16bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|configuration_serie_dac_16bits.vhd</ClosedNode>
          <ClosedNode>/configuration_spi_adc_10bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|configuration_spi_adc_10bits.vhd</ClosedNode>
          <ClosedNode>/configuration_spi_adc_12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|configuration_spi_adc_12bits.vhd/rdc - rdc_load_nbits - Behavioral</ClosedNode>
+         <ClosedNode>/controle_serie_dac_16bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|controle_serie_dac_16bits.vhd</ClosedNode>
          <ClosedNode>/controle_spi_adc_10bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_adc_10bits.vhd</ClosedNode>
          <ClosedNode>/controle_spi_adc_10bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_adc_10bits.vhd/config_adc10bits - configuration_spi_adc_10bits - Behavioral</ClosedNode>
          <ClosedNode>/controle_spi_adc_10bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_adc_10bits.vhd/memoire_tmp - memoire_tampon_NxM - Behavioral</ClosedNode>
@@ -35,6 +37,7 @@
          <ClosedNode>/test_serial_tx - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_serial_tx.vhd</ClosedNode>
          <ClosedNode>/test_serial_tx - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_serial_tx.vhd/com_serie_tx - FSM_envoyer_Noctets - Behavioral</ClosedNode>
          <ClosedNode>/test_serial_tx - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_serial_tx.vhd/com_serie_tx - FSM_serial_tx - Behavioral</ClosedNode>
+         <ClosedNode>/top_test_adc10bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc10bits.vhd</ClosedNode>
          <ClosedNode>/top_test_adc10bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc10bits.vhd/com_serie_tx - FSM_envoyer_Noctets - Behavioral</ClosedNode>
          <ClosedNode>/top_test_adc10bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc10bits.vhd/ctrl_spi_adc10bits - controle_spi_adc_10bits - Behavioral/config_adc10bits - configuration_spi_adc_10bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_adc10bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc10bits.vhd/ctrl_spi_adc10bits - controle_spi_adc_10bits - Behavioral/recup_donnee - recuperation_donnee_spi_adc_10bits - Behavioral</ClosedNode>
@@ -44,6 +47,9 @@
          <ClosedNode>/top_test_adc12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc12bits.vhd/controle_adc12bits - controle_spi_adc_12bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_adc12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc12bits.vhd/controle_adc12bits - controle_spi_adc_12bits - Behavioral/config_adc12bits - FSM_configurer_adc_12bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_adc12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc12bits.vhd/controle_adc12bits - controle_spi_adc_12bits - Behavioral/recup_donnee - FSM_recuperer_donnee_adc_12bits - Behavioral</ClosedNode>
+         <ClosedNode>/top_test_dac16bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_dac16bits.vhd</ClosedNode>
+         <ClosedNode>/top_test_dac16bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_dac16bits.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral</ClosedNode>
+         <ClosedNode>/top_test_dac16bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_dac16bits.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral/config_serie_dac16bits - configuration_serie_dac_16bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd</ClosedNode>
          <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd/port_serie - serial_rx</ClosedNode>
          <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd/rdc_controle_spi - controle_spi_potentiostat - Behavioral</ClosedNode>
@@ -51,13 +57,13 @@
          <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd/rdc_output_led_test - rdc_Nbits - Behavioral</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>config_adc10bits - configuration_spi_adc_10bits - Behavioral (C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/configuration_spi_adc_10bits.vhd)</SelectedItem>
+         <SelectedItem>top_test_dac16bits - Behavioral (C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/top_test_dac16bits.vhd)</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000002a6000000020000000000000000000000000200000064ffffffff000000810000000300000002000002a60000000100000003000000000000000100000003</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000001bc000000020000000000000000000000000200000064ffffffff000000810000000300000002000001bc0000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>config_adc10bits - configuration_spi_adc_10bits - Behavioral (C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/configuration_spi_adc_10bits.vhd)</CurrentItem>
+      <CurrentItem>top_test_dac16bits - Behavioral (C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/top_test_dac16bits.vhd)</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="" guiview="Process" >
       <ClosedNodes>
@@ -91,7 +97,7 @@
       <SelectedItems>
          <SelectedItem>usr_package.vhd</SelectedItem>
       </SelectedItems>
-      <ScrollbarPosition orientation="vertical" >10</ScrollbarPosition>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000000000000000100000000000000000000000000000000000000f6000000010001000100000000000000000000000064ffffffff000000810000000000000001000000f60000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
@@ -135,15 +141,15 @@
          <ClosedNode>Synthesize - XST</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem/>
+         <SelectedItem></SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000000000000000000170000000010000000100000000000000000000000064ffffffff000000810000000000000001000001700000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000000000000000000107000000010000000100000000000000000000000064ffffffff000000810000000000000001000001070000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem/>
+      <CurrentItem></CurrentItem>
    </ItemView>
-   <SourceProcessView>000000ff0000000000000002000001890000012501000000050100000002</SourceProcessView>
+   <SourceProcessView>000000ff0000000000000002000001120000015e01000000050100000002</SourceProcessView>
    <CurrentView>Implementation</CurrentView>
    <ItemView engineview="BehavioralSim" guiview="Source" compilemode="AutoCompile" >
       <ClosedNodes>
@@ -173,7 +179,7 @@
       <SelectedItems>
          <SelectedItem>config_spi_adc10bits_tb - behavior (C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/config_spi_adc10bits_tb.vhd)</SelectedItem>
       </SelectedItems>
-      <ScrollbarPosition orientation="vertical" >8</ScrollbarPosition>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000002a6000000020000000000000000000000000200000064ffffffff000000810000000300000002000002a60000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>

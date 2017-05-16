@@ -18,7 +18,10 @@
 --
 ----------------------------------------------------------------------------------
 library IEEE;
+library modules;
+use modules.usr_package.all;
 use IEEE.STD_LOGIC_1164.ALL;
+use ieee.std_logic_unsigned.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -37,15 +40,22 @@ end controle_serie_dac_16bits;
 
 architecture Behavioral of controle_serie_dac_16bits is
 
+signal clk_int : std_logic;
+
 begin
+
+clk_int <= clk;
 
 OSR1 <= '0';
 OSR2 <= '0';
 BPB <= '0';
 MUTEB <= '1';
 RSTB <= '0';
+SCLK <= not(clk_int);
 
---config_serie_dac16bits : configuration_serie_dac
-
+config_serie_dac16bits : configuration_serie_dac_16bits port map(clk => clk_int, reset => reset, start => start,
+																						load => load, FSYNC => FSYNC, DIN => DIN,
+																						occupe => occupe, termine => termine);
+																						
 end Behavioral;
 

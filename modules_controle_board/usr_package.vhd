@@ -32,6 +32,18 @@ type tableau_memoire is array(natural range <>) of std_logic_vector(15 downto 0)
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component controle_serie_dac_16bits is
+    Port ( clk, reset, start : in  STD_LOGIC;
+           load : in  STD_LOGIC_VECTOR (15 downto 0);
+           FSYNC, SCLK, DIN, OSR1, OSR2, BPB, MUTEB, RSTB, occupe, termine : out  STD_LOGIC);
+end component;
+
+component configuration_serie_dac_16bits is
+    Port ( clk, reset, start  : in  STD_LOGIC;
+				load : in std_logic_vector(15 downto 0);
+           FSYNC, DIN, occupe, termine : out  STD_LOGIC);
+end component;
+
 component FSM_envoyer_Noctets is
 generic(N: integer:=1);
     Port ( clk, reset, start : in  STD_LOGIC;
