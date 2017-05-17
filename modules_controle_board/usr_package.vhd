@@ -32,6 +32,20 @@ type tableau_memoire is array(natural range <>) of std_logic_vector(15 downto 0)
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component FSM_conversion_seq_choix_canaux_adc12bits is
+    Port ( clk, start, reset, arret_conversion, termine_rdc_config, termine_rdc_recup : in  STD_LOGIC;
+           choix_canaux : in  STD_LOGIC_VECTOR (7 downto 0);
+           termine, demarrer_transfert, demarrer_recup : out  STD_LOGIC;
+           load : out  STD_LOGIC_VECTOR (15 downto 0));
+end component;
+
+component FSM_convertir_1canal_adc12bits is
+    Port ( clk, reset, start, arret_conversion, termine_RDC_config, termine_RDC_recup : in  STD_LOGIC;
+				canal_conversion : in std_logic_vector(2 downto 0);
+           termine, demarrer_transfert, demarrer_recup : out  STD_LOGIC;
+           load : out  STD_LOGIC_VECTOR (15 downto 0));
+end component;
+
 component controle_serie_dac_16bits is
     Port ( clk, reset, start : in  STD_LOGIC;
            load : in  STD_LOGIC_VECTOR (15 downto 0);

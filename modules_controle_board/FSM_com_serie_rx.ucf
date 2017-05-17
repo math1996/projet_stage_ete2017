@@ -1,0 +1,19 @@
+
+# PlanAhead Generated physical constraints 
+
+NET "clk" LOC = P56 | IOSTANDARD = LVTTL;
+NET "reset" LOC = P38 | IOSTANDARD = LVTTL;
+NET "rx" LOC = P55 | IOSTANDARD = LVTTL;
+NET "start_1CH" LOC = P85 | IOSTANDARD = LVTTL;
+NET "start_seq" LOC = P84 | IOSTANDARD = LVTTL;
+NET "sequence[7]" LOC = P123 | IOSTANDARD = LVTTL;
+NET "sequence[6]" LOC = P124 | IOSTANDARD = LVTTL;
+NET "sequence[5]" LOC = P126 | IOSTANDARD = LVTTL;
+NET "sequence[4]" LOC = P127 | IOSTANDARD = LVTTL;
+NET "sequence[3]" LOC = P131 | IOSTANDARD = LVTTL;
+NET "sequence[2]" LOC = P132 | IOSTANDARD = LVTTL;
+NET "sequence[1]" LOC = P133 | IOSTANDARD = LVTTL;
+NET "sequence[0]" LOC = P134 | IOSTANDARD = LVTTL;
+NET "canal[2]" LOC = P17 | IOSTANDARD = LVTTL;
+NET "canal[1]" LOC = P21 | IOSTANDARD = LVTTL;
+NET "canal[0]" LOC = P22 | IOSTANDARD = LVTTL;
