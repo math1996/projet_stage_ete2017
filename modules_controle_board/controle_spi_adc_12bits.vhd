@@ -36,7 +36,6 @@ entity controle_spi_adc_12bits is
     Port ( clk, start, reset, DOUT : in  STD_LOGIC;
            DIN, SCLK, CS, occupe, termine : out  STD_LOGIC;
 				canal : in std_logic_vector(2 downto 0);
-			  --output temporaire
 			  donnees : out STD_LOGIC_VECTOR(15 downto 0));
 end controle_spi_adc_12bits;
 

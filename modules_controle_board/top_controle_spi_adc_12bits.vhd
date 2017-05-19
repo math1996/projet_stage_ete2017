@@ -31,6 +31,10 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
+--top module du controle SPI d l'ADC 12 bits, implémente les modes de
+--fonctionnement de l'ADC 12 bits, permet de configurer et récupérer 
+--les données jusqu'à ce qu'on signal un arrêt
+
 entity top_controle_spi_adc_12bits is
     Port ( clk, start, reset, DOUT, arret : in  STD_LOGIC;
            occupe, termine, CS, SCLK, DIN : out  STD_LOGIC;

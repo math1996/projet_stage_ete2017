@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\top_test_model_RC_solution.ncd
+OUTFILE=C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board\top_test_model_RC_solution.bit
+FAMILY=Spartan6
+PART=xc6slx9-2tqg144
+WORKINGDIR=C:\Users\Mathieu\Desktop\projet_stage_ete2017\modules_controle_board
+LICENSE=WebPack
+USER_INFO=211237173_0_0_656

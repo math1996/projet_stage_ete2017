@@ -108,7 +108,7 @@ begin
 		when valeur_max_pos =>
 			reset_ctrl <= '1';
 			start_ctrl <= '0';
-			load_int <= X"7FFF";
+			load_int <= X"0000";
 			termine <= '0';
 			if(termine_dac = '1') then
 				etat_suivant <= fin;
@@ -119,7 +119,7 @@ begin
 		when valeur_mid_pos =>
 			reset_ctrl <= '1';
 			start_ctrl <= '0';
-			load_int <= X"4000"; -- ou 4FFF?
+			load_int <= X"F216"; -- ou 4FFF?
 			termine <= '0';
 			if(termine_dac = '1') then
 				etat_suivant <= fin;
@@ -130,7 +130,7 @@ begin
 		when valeur_max_neg =>
 			reset_ctrl <= '1';
 			start_ctrl <= '0';
-			load_int <= X"8000";
+			load_int <= X"E42D";
 			termine <= '0';
 			if(termine_dac = '1') then
 				etat_suivant <= fin;
@@ -141,7 +141,7 @@ begin
 		when valeur_mid_neg =>
 			reset_ctrl <= '1';
 			start_ctrl <= '0';
-			load_int <= X"BFFF";
+			load_int <= X"D643";
 			termine <= '0';
 			if(termine_dac = '1') then
 				etat_suivant <= fin;
