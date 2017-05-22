@@ -32,6 +32,22 @@ type tableau_memoire is array(natural range <>) of std_logic_vector(15 downto 0)
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component generation_onde_carre is
+    Port ( clk, reset, start, termine_dac : in  STD_LOGIC;
+           nb_cycle : in  STD_LOGIC_VECTOR (7 downto 0);
+           duty_cycle : in  STD_LOGIC_VECTOR (31 downto 0);
+           nb_coup_horloge_par_cycle : in  STD_LOGIC_VECTOR (31 downto 0);
+           amplitude : in  STD_LOGIC_VECTOR (15 downto 0);
+           offset : in  STD_LOGIC_VECTOR (15 downto 0);
+           onde_genere : out  STD_LOGIC_VECTOR (15 downto 0);
+			  occupe, termine, demarrer_transfert : out std_logic);
+end component;
+
+component addition_offset is
+    Port ( amplitude, offset : in  STD_LOGIC_VECTOR (15 downto 0);
+           resultat : out  STD_LOGIC_VECTOR (15 downto 0));
+end component;
+
 component FSM_conversion_seq_choix_canaux_adc12bits is
     Port ( clk, start, reset, arret_conversion, termine_rdc_config, termine_rdc_recup : in  STD_LOGIC;
            choix_canaux : in  STD_LOGIC_VECTOR (7 downto 0);

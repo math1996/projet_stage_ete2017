@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    10:12:34 05/15/2017 
+-- Create Date:    12:25:18 05/22/2017 
 -- Design Name: 
--- Module Name:    controle_serie_dac_16bits - Behavioral 
+-- Module Name:    addition_offset - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -32,30 +32,22 @@ use ieee.std_logic_unsigned.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity controle_serie_dac_16bits is
-    Port ( clk, reset, start : in  STD_LOGIC;
-           load : in  STD_LOGIC_VECTOR (15 downto 0);
-           FSYNC, SCLK, DIN, OSR1, OSR2, BPB, MUTEB, RSTB, occupe, termine : out  STD_LOGIC);
-end controle_serie_dac_16bits;
+entity addition_offset is
+    Port ( amplitude, offset : in  STD_LOGIC_VECTOR (15 downto 0);
+           resultat : out  STD_LOGIC_VECTOR (15 downto 0));
+end addition_offset;
 
-architecture Behavioral of controle_serie_dac_16bits is
+architecture Behavioral of addition_offset is
 
-signal clk_int, mid_scale_int : std_logic;
+signal resultat_int : std_logic_vector(15 downto 0);
+
 
 begin
 
-clk_int <= clk;
+resultat_int <= amplitude + offset;
 
-OSR1 <= '0';
-OSR2 <= '0';
-BPB <= '0';
-MUTEB <= reset;
-RSTB <= '0';
-SCLK <= not(clk_int);
-
-config_serie_dac16bits : configuration_serie_dac_16bits port map(clk => clk_int, reset => reset, start => start,
-																						load => load, FSYNC => FSYNC, DIN => DIN,
-																						occupe => occupe, termine => termine);
-																						
+resultat <= resultat_int when resultat_int(15) = '0' else
+				not(not(resultat_int) + 1);
+				
 end Behavioral;
 

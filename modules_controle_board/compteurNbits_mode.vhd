@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    10:12:34 05/15/2017 
+-- Create Date:    07:37:51 05/22/2017 
 -- Design Name: 
--- Module Name:    controle_serie_dac_16bits - Behavioral 
+-- Module Name:    compteurNbits_mode - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -32,30 +32,35 @@ use ieee.std_logic_unsigned.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity controle_serie_dac_16bits is
-    Port ( clk, reset, start : in  STD_LOGIC;
-           load : in  STD_LOGIC_VECTOR (15 downto 0);
-           FSYNC, SCLK, DIN, OSR1, OSR2, BPB, MUTEB, RSTB, occupe, termine : out  STD_LOGIC);
-end controle_serie_dac_16bits;
+entity compteurNbits_mode is
+generic(N: integer := 8);
+    Port ( clk, reset, enable, mode : in  STD_LOGIC;
+           compteur_out : out  STD_LOGIC_VECTOR (N-1 downto 0);
+           pas : in  STD_LOGIC_VECTOR (N-1 downto 0));
+end compteurNbits_mode;
 
-architecture Behavioral of controle_serie_dac_16bits is
+architecture Behavioral of compteurNbits_mode is
 
-signal clk_int, mid_scale_int : std_logic;
+signal compteur_int : std_logic_vector(N-1 downto 0);
 
 begin
 
-clk_int <= clk;
+process(clk, reset, pas, mode, enable)
+begin
+	if(reset = '0') then
+		compteur_int <= (others => '0');
+	elsif(clk'event and clk = '1') then
+		if(enable = '1') then
+			if(mode = '0') then
+				compteur_int <= compteur_int + pas;
+			else
+				compteur_int <= compteur_int - pas;
+			end if;
+		end if;
+	end if;
+end process;
 
-OSR1 <= '0';
-OSR2 <= '0';
-BPB <= '0';
-MUTEB <= reset;
-RSTB <= '0';
-SCLK <= not(clk_int);
+compteur_out <= compteur_int;
 
-config_serie_dac16bits : configuration_serie_dac_16bits port map(clk => clk_int, reset => reset, start => start,
-																						load => load, FSYNC => FSYNC, DIN => DIN,
-																						occupe => occupe, termine => termine);
-																						
 end Behavioral;
 
