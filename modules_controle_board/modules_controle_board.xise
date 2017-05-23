@@ -627,6 +627,7 @@
     <binding xil_pn:location="/top_test_adc10bits" xil_pn:name="top_test_adc10bits.ucf"/>
     <binding xil_pn:location="/top_test_dac16bits" xil_pn:name="top_test_dac16bits.ucf"/>
     <binding xil_pn:location="/top_test_model_RC_solution" xil_pn:name="FSM_com_serie_rx.ucf"/>
+    <binding xil_pn:location="/test_generation_onde_carre" xil_pn:name="test_generation_onde_carre.ucf"/>
   </bindings>
 
   <libraries>

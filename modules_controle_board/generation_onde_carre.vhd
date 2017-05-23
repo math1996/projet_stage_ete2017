@@ -46,13 +46,13 @@ end generation_onde_carre;
 architecture Behavioral of generation_onde_carre is
 
 --dans ce cas-ci, on génère à l'Infinie pour les tests
-type etat_fsm_onde_carre is (attente, partie_positive, attente_dac1, attente_positive, partie_negative, attente_dac2, attente_negative);
+type etat_fsm_onde_carre is (attente, partie_positive, attente_dac1, attente_positive, partie_negative, attente_dac2, attente_negative, compter_nb_cycle, verification_fin, fin);
 signal etat_present, etat_suivant : etat_fsm_onde_carre;
 
 signal compte_nb_coup_horloge_par_cycle : std_logic_vector(31 downto 0);
 signal compte_nb_cycle : std_logic_vector(7 downto 0);
 signal resultat_pos, resultat_neg : std_logic_vector(15 downto 0);
-signal enable_compteur_nchpc, reset_compteur_nchpc, enable_compteur_nc, reset_compteur_nc, mode : std_logic;
+signal enable_compteur_nchpc, reset_compteur_nchpc, enable_compteur_nc, reset_compteur_nc: std_logic;
 
 begin
 
@@ -60,9 +60,6 @@ compteur_nb_coup_horloge_par_cyle : compteurNbits generic map(32) port map(clk =
 																									reset => reset_compteur_nchpc, output =>compte_nb_coup_horloge_par_cycle);
 																									
 compteur_nb_cycle : compteurNbits generic map(8) port map(clk => clk, enable => enable_compteur_nc, reset => reset_compteur_nc, output => compte_nb_cycle);
-
-onde_genere <= resultat_pos when mode = '0' else
-					resultat_neg;
 
 add_offset_partie_pos : addition_offset port map(amplitude => amplitude, offset => offset, resultat => resultat_pos);
 add_offset_partie_neg : addition_offset port map(amplitude => (not(amplitude) + 1), offset => offset, resultat => resultat_neg);
@@ -77,7 +74,8 @@ begin
 	end if;
 end process;
 
-process(etat_present, compte_nb_coup_horloge_par_cycle, compte_nb_cycle, termine_dac, start, duty_cycle, nb_coup_horloge_par_cycle )
+process(etat_present, compte_nb_coup_horloge_par_cycle, compte_nb_cycle, termine_dac,
+			start, duty_cycle, nb_coup_horloge_par_cycle, nb_cycle, resultat_pos, resultat_neg)
 begin
 	case etat_present is
 		when attente =>
@@ -86,7 +84,9 @@ begin
 			reset_compteur_nc <= '0';
 			enable_compteur_nc <= '0';
 			demarrer_transfert <= '0';
-			mode <= '0';
+			onde_genere <= (others => '0');
+			occupe <= '0';
+			termine <= '0';
 			if(start = '1') then
 				etat_suivant <= partie_positive;
 			else
@@ -96,19 +96,23 @@ begin
 		when partie_positive =>
 			reset_compteur_nchpc <= '0';
 			enable_compteur_nchpc <= '0';
-			reset_compteur_nc <= '0';
+			reset_compteur_nc <= '1';
 			enable_compteur_nc <= '0';
 			demarrer_transfert <= '1';
-			mode <= '0';
+			onde_genere <= resultat_pos;
+			occupe <= '1';
+			termine <= '0';
 			etat_suivant <= attente_dac1;
 			
 		when attente_dac1 =>
 			reset_compteur_nchpc <= '0';
 			enable_compteur_nchpc <= '0';
-			reset_compteur_nc <= '0';
+			reset_compteur_nc <= '1';
 			enable_compteur_nc <= '0';
 			demarrer_transfert <= '0';
-			mode <= '0';
+			onde_genere <= resultat_pos;
+			occupe <= '1';
+			termine <= '0';
 			if(termine_dac = '1') then
 				etat_suivant <= attente_positive;
 			else
@@ -118,10 +122,12 @@ begin
 		when attente_positive =>
 			reset_compteur_nchpc <= '1';
 			enable_compteur_nchpc <= '1';
-			reset_compteur_nc <= '0';
+			reset_compteur_nc <= '1';
 			enable_compteur_nc <= '0';
 			demarrer_transfert <= '0';
-			mode <= '0';
+			onde_genere <= (others => '0');
+			occupe <= '1';
+			termine <= '0';
 			if(compte_nb_coup_horloge_par_cycle >= duty_cycle) then
 				etat_suivant <= partie_negative;
 			else
@@ -131,19 +137,23 @@ begin
 		when partie_negative =>
 			reset_compteur_nchpc <= '1';
 			enable_compteur_nchpc <= '0';
-			reset_compteur_nc <= '0';
+			reset_compteur_nc <= '1';
 			enable_compteur_nc <= '0';
 			demarrer_transfert <= '1';
-			mode <= '1';
+			onde_genere <= resultat_neg;
+			occupe <= '1';
+			termine <= '0';
 			etat_suivant <= attente_dac2;
 			
 		when attente_dac2 =>
 			reset_compteur_nchpc <= '1';
 			enable_compteur_nchpc <= '0';
-			reset_compteur_nc <= '0';
+			reset_compteur_nc <= '1';
 			enable_compteur_nc <= '0';
 			demarrer_transfert <= '0';
-			mode <= '1';
+			onde_genere <= resultat_neg;
+			occupe <= '1';
+			termine <= '0';
 			if(termine_dac = '1') then
 				etat_suivant <= attente_negative;
 			else
@@ -153,23 +163,64 @@ begin
 		when attente_negative =>
 			reset_compteur_nchpc <= '1';
 			enable_compteur_nchpc <= '1';
-			reset_compteur_nc <= '0';
+			reset_compteur_nc <= '1';
 			enable_compteur_nc <= '0';
 			demarrer_transfert <= '0';
-			mode <= '1';
+			onde_genere <= (others => '0');
+			occupe <= '1';
+			termine <= '0';
 			if(compte_nb_coup_horloge_par_cycle >= nb_coup_horloge_par_cycle) then
 				etat_suivant <= partie_positive;
 			else
 				etat_suivant <= attente_negative;
 			end if;
 			
+--		when compter_nb_cycle =>
+--			reset_compteur_nchpc <= '1';
+--			enable_compteur_nchpc <= '1';
+--			reset_compteur_nc <= '1';
+--			enable_compteur_nc <= '1';
+--			demarrer_transfert <= '0';
+--			onde_genere <= (others => '0');
+--			occupe <= '1';
+--			termine <= '0';
+--			etat_suivant <= verification_fin;
+--			
+--		when verification_fin =>
+--			reset_compteur_nchpc <= '1';
+--			enable_compteur_nchpc <= '1';
+--			reset_compteur_nc <= '1';
+--			enable_compteur_nc <= '0';
+--			demarrer_transfert <= '0';
+--			onde_genere <= (others => '0');
+--			occupe <= '1';
+--			termine <= '0';
+--			if(compte_nb_cycle >= nb_cycle) then
+--				etat_suivant <= fin;
+--			else
+--				etat_suivant <= partie_positive;
+--			end if;
+--			
+--		when fin =>
+--			reset_compteur_nchpc <= '0';
+--			enable_compteur_nchpc <= '0';
+--			reset_compteur_nc <= '0';
+--			enable_compteur_nc <= '0';
+--			demarrer_transfert <= '1';
+--			onde_genere <= (others => '0');
+--			occupe <= '1';
+--			termine <= '1';
+--			etat_suivant <= attente;
+					
 		when others =>
 			reset_compteur_nchpc <= '0';
 			enable_compteur_nchpc <= '0';
 			reset_compteur_nc <= '0';
 			enable_compteur_nc <= '0';
 			demarrer_transfert <= '0';
-			mode <= '0';
+			onde_genere <= (others => '0');
+			occupe <= '0';
+			termine <= '0';
 			etat_suivant <= attente;
 	end case;
 end process;

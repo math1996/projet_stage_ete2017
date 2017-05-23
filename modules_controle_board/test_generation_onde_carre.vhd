@@ -71,7 +71,7 @@ amplitude_int <= "0111111111111111" when mode = "101" else	--4.6 V
 						
 offset_int <= "0000110111101001" when mode = "001" else		--0.5 V
 					"0011011110100110" when mode = "010" else		--2 V
-					"1100100001011010" when mode = "111" else		-- -2 V
+					"1110101100100010" when mode = "111" else		-- -0.75 V
 					"1110010000101101" when mode = "110" else		-- -1 V
 					(others => '0');										--0 V
 					
@@ -84,7 +84,7 @@ duty_cycle_int <= "00000000000000000000010011100010" when mode = "000" else	--50
 						"00000000000000000011000011010100" when mode = "110" else	--50 %
 						"00000000000000000000010011100010"; 								--50 %
  
-nb_cycle_int <= (others => '0');
+nb_cycle_int <= (others =>'0');
 
 
 occupe <= occupe_dac or occupe_gen;

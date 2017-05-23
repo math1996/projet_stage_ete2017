@@ -60,7 +60,7 @@ begin
 diviseur_horloge : diviseur_clk generic map(0) port map(clk => clk, reset => reset, enable => '1', clk_out_reg => clk_int);
 
 com_serie_rx : serial_rx port map(clk => clk_int, rst => reset, rx => rx, data => data_recu, new_data => demarrer);
-ctrl_serie_dac16 : controle_serie_dac_16bits port map(clk => clk_int, reset => reset_ctrl, start => start_ctrl,
+ctrl_serie_dac16 : controle_serie_dac_16bits port map(clk => clk_int, reset => reset, start => start_ctrl,
 																		load => load_int, FSYNC => FSYNC, SCLK => SCLK, DIN => DIN,
 																		OSR1 => OSR1, OSR2 => OSR2, BPB => BPB, MUTEB => MUTEB, 
 																		RSTB => RSTB, occupe => occupe, termine => termine_dac);
@@ -80,7 +80,6 @@ process(demarrer, etat_present, termine_dac, mode)
 begin
 	case etat_present is 
 		when attente =>
-			reset_ctrl <= '0';
 			start_ctrl <= '0';
 			load_int <= (others => '0');
 			termine <= '0';
@@ -91,7 +90,6 @@ begin
 			end if;
 			
 		when demarrage =>
-			reset_ctrl <= '1';
 			start_ctrl <= '1';
 			load_int <= (others => '0');
 			termine <= '0';
@@ -106,9 +104,8 @@ begin
 			end if;
 			
 		when valeur_max_pos =>
-			reset_ctrl <= '1';
 			start_ctrl <= '0';
-			load_int <= X"0000";
+			load_int <= "1100000000000000";
 			termine <= '0';
 			if(termine_dac = '1') then
 				etat_suivant <= fin;
@@ -117,9 +114,8 @@ begin
 			end if;
 			
 		when valeur_mid_pos =>
-			reset_ctrl <= '1';
 			start_ctrl <= '0';
-			load_int <= X"F216"; -- ou 4FFF?
+			load_int <= "1010110010000110"; -- ou 4FFF?
 			termine <= '0';
 			if(termine_dac = '1') then
 				etat_suivant <= fin;
@@ -128,7 +124,6 @@ begin
 			end if;
 		
 		when valeur_max_neg =>
-			reset_ctrl <= '1';
 			start_ctrl <= '0';
 			load_int <= X"E42D";
 			termine <= '0';
@@ -139,7 +134,6 @@ begin
 			end if;
 		
 		when valeur_mid_neg =>
-			reset_ctrl <= '1';
 			start_ctrl <= '0';
 			load_int <= X"D643";
 			termine <= '0';
@@ -150,14 +144,12 @@ begin
 			end if;
 		
 		when fin =>
-			reset_ctrl <= '0';
 			start_ctrl <= '0';
 			load_int <= (others => '1');
 			termine <= '1';
 			etat_suivant <= attente;
 			
 		when others => 
-			reset_ctrl <= '0';
 			start_ctrl <= '0';
 			load_int <= (others => '1');
 			etat_suivant <= attente;

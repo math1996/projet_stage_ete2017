@@ -121,9 +121,9 @@ BEGIN
       wait for clk_period*10;
 		reset <= '1';
 		start <= '1';
-		offset <= "1110010000101101";
-		amplitude <= "0000110111101001";
-		nb_cycle <= (others => '0');
+		offset <= "0000110111101001";
+		amplitude <= "0001101111010011";
+		nb_cycle <= "00000011";
 		nb_coup_horloge_par_cycle <= "00000000000000000000100111000100";
 		duty_cycle <= "00000000000000000000001001110001";
 		wait for clk_period;
