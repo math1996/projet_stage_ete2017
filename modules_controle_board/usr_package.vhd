@@ -32,9 +32,26 @@ type tableau_memoire is array(natural range <>) of std_logic_vector(15 downto 0)
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component generation_onde_triangle is
+    Port ( clk, reset, start, termine_dac : in  STD_LOGIC;
+           temps_attente : in  STD_LOGIC_VECTOR (31 downto 0);
+           pas_comptage : in  STD_LOGIC_VECTOR (15 downto 0);
+           amplitude : in  STD_LOGIC_VECTOR (15 downto 0);
+           offset : in  STD_LOGIC_VECTOR (15 downto 0);
+           onde_genere : out  STD_LOGIC_VECTOR (15 downto 0);
+			  demarrer_transfert, occupe, termine : out std_logic);
+end component;
+
+component compteurNbits_mode is
+generic(N: integer := 8);
+    Port ( clk, reset, enable, mode : in  STD_LOGIC;
+           compteur_out : out  STD_LOGIC_VECTOR (N-1 downto 0);
+           pas : in  STD_LOGIC_VECTOR (N-1 downto 0));
+end component;
+
 component generation_onde_carre is
     Port ( clk, reset, start, termine_dac : in  STD_LOGIC;
-           nb_cycle : in  STD_LOGIC_VECTOR (7 downto 0);
+           nombre_cycle : in  STD_LOGIC_VECTOR (7 downto 0);
            duty_cycle : in  STD_LOGIC_VECTOR (31 downto 0);
            nb_coup_horloge_par_cycle : in  STD_LOGIC_VECTOR (31 downto 0);
            amplitude : in  STD_LOGIC_VECTOR (15 downto 0);

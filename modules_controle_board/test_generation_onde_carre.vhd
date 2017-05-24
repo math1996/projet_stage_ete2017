@@ -84,8 +84,14 @@ duty_cycle_int <= "00000000000000000000010011100010" when mode = "000" else	--50
 						"00000000000000000011000011010100" when mode = "110" else	--50 %
 						"00000000000000000000010011100010"; 								--50 %
  
-nb_cycle_int <= (others =>'0');
-
+nb_cycle_int <=   "00001000" when mode = "000" else 	--8 cycles
+						"11001000" when mode = "001" else		--200 cycles
+						"00000010" when mode = "010" else		--2 cycles
+						"11111111" when mode = "011" else		--255 cycles
+						"00000001" when mode = "100" else		--1 cycle
+						"10011011" when mode = "101" else		--155 cycles
+						"11101111" when mode = "110" else		--239 cycles
+						"11001000";										--200 cycles
 
 occupe <= occupe_dac or occupe_gen;
 termine <= termine_gen;
@@ -101,7 +107,7 @@ ctrl_serie_dac16 : controle_serie_dac_16bits port map(clk => clk_int, reset => r
 																		RSTB => RSTB, occupe => occupe_dac, termine => termine_dac);
 
 gen_onde_carre : generation_onde_carre port map(clk => clk_int, reset => reset, start => new_data_int, termine_dac => termine_dac,
-																nb_cycle => nb_cycle_int, duty_cycle => duty_cycle_int, nb_coup_horloge_par_cycle => nb_coup_horloge_par_cycle_int,
+																nombre_cycle => nb_cycle_int, duty_cycle => duty_cycle_int, nb_coup_horloge_par_cycle => nb_coup_horloge_par_cycle_int,
 																amplitude => amplitude_int, offset => offset_int, onde_genere => load_int, occupe => occupe_gen, termine => termine_gen,
 																demarrer_transfert => start_transfert_int);
 														

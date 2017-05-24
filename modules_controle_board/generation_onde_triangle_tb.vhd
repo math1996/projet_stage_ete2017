@@ -2,15 +2,15 @@
 -- Company: 
 -- Engineer:
 --
--- Create Date:   10:24:39 05/22/2017
+-- Create Date:   13:38:39 05/24/2017
 -- Design Name:   
--- Module Name:   C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/generation_onde_carre_tb.vhd
+-- Module Name:   C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/generation_onde_triangle_tb.vhd
 -- Project Name:  modules_controle_board
 -- Target Device:  
 -- Tool versions:  
 -- Description:   
 -- 
--- VHDL Test Bench Created by ISE for module: generation_onde_carre
+-- VHDL Test Bench Created by ISE for module: generation_onde_triangle
 -- 
 -- Dependencies:
 -- 
@@ -26,37 +26,33 @@
 -- simulation model.
 --------------------------------------------------------------------------------
 LIBRARY ieee;
-library modules;
-use modules.usr_package.all;
-use IEEE.STD_LOGIC_1164.ALL;
-use ieee.std_logic_unsigned.all;
+USE ieee.std_logic_1164.ALL;
  
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
  
-ENTITY generation_onde_carre_tb IS
-END generation_onde_carre_tb;
+ENTITY generation_onde_triangle_tb IS
+END generation_onde_triangle_tb;
  
-ARCHITECTURE behavior OF generation_onde_carre_tb IS 
+ARCHITECTURE behavior OF generation_onde_triangle_tb IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT generation_onde_carre
+    COMPONENT generation_onde_triangle
     PORT(
          clk : IN  std_logic;
          reset : IN  std_logic;
          start : IN  std_logic;
          termine_dac : IN  std_logic;
-         nombre_cycle : IN  std_logic_vector(7 downto 0);
-         duty_cycle : IN  std_logic_vector(31 downto 0);
-         nb_coup_horloge_par_cycle : IN  std_logic_vector(31 downto 0);
+         temps_attente : IN  std_logic_vector(31 downto 0);
+         pas_comptage : IN  std_logic_vector(15 downto 0);
          amplitude : IN  std_logic_vector(15 downto 0);
          offset : IN  std_logic_vector(15 downto 0);
          onde_genere : OUT  std_logic_vector(15 downto 0);
+         demarrer_transfert : OUT  std_logic;
          occupe : OUT  std_logic;
-         termine : OUT  std_logic;
-         demarrer_transfert : OUT  std_logic
+         termine : OUT  std_logic
         );
     END COMPONENT;
     
@@ -66,17 +62,16 @@ ARCHITECTURE behavior OF generation_onde_carre_tb IS
    signal reset : std_logic := '0';
    signal start : std_logic := '0';
    signal termine_dac : std_logic := '0';
-   signal nombre_cycle : std_logic_vector(7 downto 0) := (others => '0');
-   signal duty_cycle : std_logic_vector(31 downto 0) := (others => '0');
-   signal nb_coup_horloge_par_cycle : std_logic_vector(31 downto 0) := (others => '0');
+   signal temps_attente : std_logic_vector(31 downto 0) := (others => '0');
+   signal pas_comptage : std_logic_vector(15 downto 0) := (others => '0');
    signal amplitude : std_logic_vector(15 downto 0) := (others => '0');
    signal offset : std_logic_vector(15 downto 0) := (others => '0');
 
  	--Outputs
    signal onde_genere : std_logic_vector(15 downto 0);
+   signal demarrer_transfert : std_logic;
    signal occupe : std_logic;
    signal termine : std_logic;
-   signal demarrer_transfert : std_logic;
 
    -- Clock period definitions
    constant clk_period : time := 40 ns;
@@ -84,20 +79,19 @@ ARCHITECTURE behavior OF generation_onde_carre_tb IS
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: generation_onde_carre PORT MAP (
+   uut: generation_onde_triangle PORT MAP (
           clk => clk,
           reset => reset,
           start => start,
           termine_dac => termine_dac,
-          nombre_cycle => nombre_cycle,
-          duty_cycle => duty_cycle,
-          nb_coup_horloge_par_cycle => nb_coup_horloge_par_cycle,
+          temps_attente => temps_attente,
+          pas_comptage => pas_comptage,
           amplitude => amplitude,
           offset => offset,
           onde_genere => onde_genere,
+          demarrer_transfert => demarrer_transfert,
           occupe => occupe,
-          termine => termine,
-          demarrer_transfert => demarrer_transfert
+          termine => termine
         );
 
    -- Clock process definitions
@@ -116,18 +110,18 @@ BEGIN
       -- hold reset state for 100 ns.
       wait for 100 ns;	
 		reset <= '0';
-		termine_dac <= '1';
-		start <= '0';
       wait for clk_period*10;
+		wait for clk_period/2;
 		reset <= '1';
 		start <= '1';
-		offset <= "0000110111101001";
-		amplitude <= "0001101111010011";
-		nombre_cycle <= "00000011";
-		nb_coup_horloge_par_cycle <= "00000000000000000000100111000100";
-		duty_cycle <= "00000000000000000000001001110001";
+		termine_dac <= '1';
+		temps_attente <= "00000000000000000000000000000000";
+		pas_comptage <=  "0000000000010010";
+		amplitude <= "0000001010110110";
+		offset <= "0000000000000000";
 		wait for clk_period;
 		start <= '0';
+		
       -- insert stimulus here 
 
       wait;

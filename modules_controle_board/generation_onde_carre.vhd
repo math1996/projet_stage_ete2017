@@ -34,7 +34,7 @@ use ieee.std_logic_unsigned.all;
 
 entity generation_onde_carre is
     Port ( clk, reset, start, termine_dac : in  STD_LOGIC;
-           nb_cycle : in  STD_LOGIC_VECTOR (7 downto 0);
+           nombre_cycle : in  STD_LOGIC_VECTOR (7 downto 0);
            duty_cycle : in  STD_LOGIC_VECTOR (31 downto 0);
            nb_coup_horloge_par_cycle : in  STD_LOGIC_VECTOR (31 downto 0);
            amplitude : in  STD_LOGIC_VECTOR (15 downto 0);
@@ -46,12 +46,12 @@ end generation_onde_carre;
 architecture Behavioral of generation_onde_carre is
 
 --dans ce cas-ci, on génère à l'Infinie pour les tests
-type etat_fsm_onde_carre is (attente, partie_positive, attente_dac1, attente_positive, partie_negative, attente_dac2, attente_negative, compter_nb_cycle, verification_fin, fin);
+type etat_fsm_onde_carre is (attente, partie_positive, attente_dac1, attente_positive, partie_negative, attente_dac2, attente_negative, verification_fin, fin);
 signal etat_present, etat_suivant : etat_fsm_onde_carre;
 
 signal compte_nb_coup_horloge_par_cycle : std_logic_vector(31 downto 0);
-signal compte_nb_cycle : std_logic_vector(7 downto 0);
-signal resultat_pos, resultat_neg : std_logic_vector(15 downto 0);
+signal compte_nombre_cycle : std_logic_vector(7 downto 0);
+signal resultat_pos, resultat_neg, amplitude_int : std_logic_vector(15 downto 0);
 signal enable_compteur_nchpc, reset_compteur_nchpc, enable_compteur_nc, reset_compteur_nc: std_logic;
 
 begin
@@ -59,12 +59,14 @@ begin
 compteur_nb_coup_horloge_par_cyle : compteurNbits generic map(32) port map(clk => clk, enable => enable_compteur_nchpc,
 																									reset => reset_compteur_nchpc, output =>compte_nb_coup_horloge_par_cycle);
 																									
-compteur_nb_cycle : compteurNbits generic map(8) port map(clk => clk, enable => enable_compteur_nc, reset => reset_compteur_nc, output => compte_nb_cycle);
+compteur_nb_cycle : compteurNbits generic map(8) port map(clk => clk, enable => enable_compteur_nc, reset => reset_compteur_nc, output => compte_nombre_cycle);
 
 add_offset_partie_pos : addition_offset port map(amplitude => amplitude, offset => offset, resultat => resultat_pos);
-add_offset_partie_neg : addition_offset port map(amplitude => (not(amplitude) + 1), offset => offset, resultat => resultat_neg);
+add_offset_partie_neg : addition_offset port map(amplitude => amplitude_int, offset => offset, resultat => resultat_neg);
 
+amplitude_int <= not(amplitude) + 1;
 
+--machine à état générant l'onde carrée
 process(clk, reset)
 begin
 	if(reset = '0') then	
@@ -74,8 +76,8 @@ begin
 	end if;
 end process;
 
-process(etat_present, compte_nb_coup_horloge_par_cycle, compte_nb_cycle, termine_dac,
-			start, duty_cycle, nb_coup_horloge_par_cycle, nb_cycle, resultat_pos, resultat_neg)
+process(etat_present, compte_nb_coup_horloge_par_cycle, compte_nombre_cycle, termine_dac,
+			start, duty_cycle, nb_coup_horloge_par_cycle, nombre_cycle, resultat_pos, resultat_neg)
 begin
 	case etat_present is
 		when attente =>
@@ -97,7 +99,7 @@ begin
 			reset_compteur_nchpc <= '0';
 			enable_compteur_nchpc <= '0';
 			reset_compteur_nc <= '1';
-			enable_compteur_nc <= '0';
+			enable_compteur_nc <= '1';
 			demarrer_transfert <= '1';
 			onde_genere <= resultat_pos;
 			occupe <= '1';
@@ -169,48 +171,37 @@ begin
 			onde_genere <= (others => '0');
 			occupe <= '1';
 			termine <= '0';
-			if(compte_nb_coup_horloge_par_cycle >= nb_coup_horloge_par_cycle) then
-				etat_suivant <= partie_positive;
+			if(compte_nb_coup_horloge_par_cycle >= (nb_coup_horloge_par_cycle - 1)) then
+				etat_suivant <= verification_fin;
 			else
 				etat_suivant <= attente_negative;
 			end if;
+		
+		when verification_fin =>
+			reset_compteur_nchpc <= '1';
+			enable_compteur_nchpc <= '1';
+			reset_compteur_nc <= '1';
+			enable_compteur_nc <= '0';
+			demarrer_transfert <= '0';
+			onde_genere <= (others => '0');
+			occupe <= '1';
+			termine <= '0';
+			if(compte_nombre_cycle >= nombre_cycle) then
+				etat_suivant <= fin;
+			else
+				etat_suivant <= partie_positive;
+			end if;
 			
---		when compter_nb_cycle =>
---			reset_compteur_nchpc <= '1';
---			enable_compteur_nchpc <= '1';
---			reset_compteur_nc <= '1';
---			enable_compteur_nc <= '1';
---			demarrer_transfert <= '0';
---			onde_genere <= (others => '0');
---			occupe <= '1';
---			termine <= '0';
---			etat_suivant <= verification_fin;
---			
---		when verification_fin =>
---			reset_compteur_nchpc <= '1';
---			enable_compteur_nchpc <= '1';
---			reset_compteur_nc <= '1';
---			enable_compteur_nc <= '0';
---			demarrer_transfert <= '0';
---			onde_genere <= (others => '0');
---			occupe <= '1';
---			termine <= '0';
---			if(compte_nb_cycle >= nb_cycle) then
---				etat_suivant <= fin;
---			else
---				etat_suivant <= partie_positive;
---			end if;
---			
---		when fin =>
---			reset_compteur_nchpc <= '0';
---			enable_compteur_nchpc <= '0';
---			reset_compteur_nc <= '0';
---			enable_compteur_nc <= '0';
---			demarrer_transfert <= '1';
---			onde_genere <= (others => '0');
---			occupe <= '1';
---			termine <= '1';
---			etat_suivant <= attente;
+		when fin =>
+			reset_compteur_nchpc <= '0';
+			enable_compteur_nchpc <= '0';
+			reset_compteur_nc <= '0';
+			enable_compteur_nc <= '0';
+			demarrer_transfert <= '1';
+			onde_genere <= (others => '0');
+			occupe <= '1';
+			termine <= '1';
+			etat_suivant <= attente;
 					
 		when others =>
 			reset_compteur_nchpc <= '0';

@@ -1,3 +1,6 @@
+modules	"addition_offset.vhd"
 modules	"compteurNbits.vhd"
-work	"generation_onde_carre.vhd"
+modules	"compteurNbits_mode.vhd"
+work	"generation_onde_triangle.vhd"
+modules	"registre1bit.vhd"
 modules	"usr_package.vhd"
