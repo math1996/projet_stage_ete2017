@@ -45,7 +45,7 @@ component serial_rx is
 			new_data : out std_logic);
 end component;
 
-signal data_recu, nb_cycle_int : std_logic_vector(7 downto 0);
+signal data_recu, nombre_cycle_int : std_logic_vector(7 downto 0);
 signal clk_int, start_transfert_int, termine_dac, new_data_int, occupe_dac, occupe_gen, termine_gen : std_logic;
 signal offset_int, amplitude_int, load_int, pas_comptage_int : std_logic_vector(15 downto 0);
 signal mode : std_logic_vector(2 downto 0);
@@ -55,35 +55,45 @@ begin
 
 occupe <= occupe_dac or occupe_gen;
 termine <= termine_gen;
+mode <= data_recu(2 downto 0);
 
+--revoir la manière dont on teste!!!!!
+--!!!!!!!!!! 
 
---revérifier les calculs avant de tester!!!!
-amplitude_int <= "0001101111010011" when mode = "000" else	--1 v
-				 "0001101111010011" when mode = "001" else	--1 v
-				 "0001101111010011" when mode = "010" else	--1 v
-				 "0000001011001000" when mode = "011" else	--0.1 v
-				 "0000001011001000" when mode = "100" else	--0.1 v
-				 "0000110111101001" when mode = "101" else	--0.5 v
-				 "0010100110111100" when mode = "110" else	--1.5 v
-				 "0111110010111000";									--4.6 v (un peu en bas)
-				 
-offset_int <= "0000110111101001" when mode = "011" else	--0.5 v
-					"0000110111101001" when mode = "100" else	--0.5 v
-					"1110010000101101" when mode = "101" else	-- -1 v
-					"1111001000010111" when mode = "111" else	-- -0.5 v
-					(others => '0');
-			 
-pas_comptage_int <= "0000000010110110" when mode = "000" else	--182
-							"0000000000011011" when mode = "001" else	--27
-							"0000000000000010" when mode = "010" else	--2
-							"0000000000000001" when mode = "011" else	--1
-							"0000000000010000" when mode = "100" else	--16
-							"0000000000001100" when mode = "101" else	--12
-							"0000000000000011" when mode = "110" else	--3
-							"0000001101000111";								--839
+--amplitude_int <= "0001101111010011";
+--offset_int <= "0000110111101001";
+--pas_comptage_int <= "0000000000000011";
+--temps_attente_int <= "00000000000000000000000000000001";
 
-temps_attente_int <= "00000000000000000000000001001000" when mode = "011" else	--attendre 72 toc
-							(others => '0');
+--amplitude_int <=  "0001101111010011" when mode = "000" else	--1 v
+--						"0001101111010011" when mode = "001" else	--1 v
+--						"0001101111010011" when mode = "010" else	--1 v
+--						"0000001011001000" when mode = "011" else	--0.1 v
+--						"0000001011001000" when mode = "100" else	--0.1 v
+--						"0000110111101001" when mode = "101" else	--0.5 v
+--						"0010100110111100" when mode = "110" else	--1.5 v
+--						"1111111111111111";									--empecher trim
+--				 
+--offset_int <=  "0110111101001001" when mode = "011" else	--0.5 v
+--					"1000100101111001" when mode = "100" else	--0.5 v
+--					"0011011010101101" when mode = "101" else	-- -1 v
+--					"1110110110110111" when mode = "111" else --empecher trimm
+--					(others => '0');
+--			 
+--pas_comptage_int <=  "0000000011100100" when mode = "000" else	--239
+--							"0000000000100010" when mode = "001" else	--34
+--							"0000000000000011" when mode = "010" else	--3
+--							"0000000000000001" when mode = "011" else	--1
+--							"0000000000010100" when mode = "100" else	--20
+--							"0000000000001111" when mode = "101" else	--15
+--							"0000001100000100" when mode = "110" else	--4
+--							"1111111111111111";								--empecher trim
+--
+--temps_attente_int <= "00000000000000000000000001001000" when mode = "011" else	--attendre 70 toc
+--							"11111111111111111111111111111111" when mode = "111" else	--empecher trim
+--							(others => '0');
+
+nombre_cycle_int <=  data_recu;	
 							
 							
 
@@ -96,8 +106,10 @@ ctrl_serie_dac16 : controle_serie_dac_16bits port map(clk => clk_int, reset => r
 																		load => load_int, FSYNC => FSYNC, SCLK => SCLK, DIN => DIN,
 																		OSR1 => OSR1, OSR2 => OSR2, BPB => BPB, MUTEB => MUTEB, 
 																		RSTB => RSTB, occupe => occupe_dac, termine => termine_dac);
+																		
 gen_onde_triangle : generation_onde_triangle port map(clk => clk_int, reset => reset, start => new_data_int, termine_dac => termine_dac,
 																		temps_attente => temps_attente_int, pas_comptage => pas_comptage_int, amplitude => amplitude_int,
-																		offset => offset_int, onde_genere => load_int, demarrer_transfert => start_transfert_int, occupe => occupe_gen, termine => termine_gen); 
+																		offset => offset_int, onde_genere => load_int, demarrer_transfert => start_transfert_int, nombre_cycle => nombre_cycle_int,
+																		occupe => occupe_gen, termine => termine_gen); 
 end Behavioral;
 

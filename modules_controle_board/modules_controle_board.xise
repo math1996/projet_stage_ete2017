@@ -42,7 +42,7 @@
     </file>
     <file xil_pn:name="registreNbits.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="6"/>
       <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="usr_package.vhd" xil_pn:type="FILE_VHDL">
@@ -52,7 +52,7 @@
     </file>
     <file xil_pn:name="diviseur_clk.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="11"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="12"/>
       <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="controle_spi_potentiostat_tb.vhd" xil_pn:type="FILE_VHDL">
@@ -63,7 +63,7 @@
     </file>
     <file xil_pn:name="serial_rx.v" xil_pn:type="FILE_VERILOG">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="9"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="10"/>
     </file>
     <file xil_pn:name="serial_tx.v" xil_pn:type="FILE_VERILOG">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
@@ -195,7 +195,7 @@
     </file>
     <file xil_pn:name="configuration_serie_dac_16bits.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="6"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="7"/>
       <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="top_test_adc10bits.vhd" xil_pn:type="FILE_VHDL">
@@ -218,7 +218,7 @@
     </file>
     <file xil_pn:name="controle_serie_dac_16bits.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="12"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="13"/>
       <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="top_test_dac16bits.vhd" xil_pn:type="FILE_VHDL">
@@ -260,7 +260,7 @@
     </file>
     <file xil_pn:name="compteurNbits_mode.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="3"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="7"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="8"/>
       <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="compteurNbits_mode_tb.vhd" xil_pn:type="FILE_VHDL">
@@ -286,7 +286,7 @@
     </file>
     <file xil_pn:name="addition_offset.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="5"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="8"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="9"/>
       <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="test_generation_onde_carre.ucf" xil_pn:type="FILE_UCF">
@@ -294,7 +294,7 @@
     </file>
     <file xil_pn:name="generation_onde_triangle.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="6"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="10"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="11"/>
       <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="generation_onde_triangle_tb.vhd" xil_pn:type="FILE_VHDL">
@@ -305,7 +305,10 @@
     </file>
     <file xil_pn:name="test_generation_onde_triangle.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="172"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="13"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="14"/>
+    </file>
+    <file xil_pn:name="test_generation_onde_triangle.ucf" xil_pn:type="FILE_UCF">
+      <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
     </file>
   </files>
 

@@ -38,6 +38,7 @@ component generation_onde_triangle is
            pas_comptage : in  STD_LOGIC_VECTOR (15 downto 0);
            amplitude : in  STD_LOGIC_VECTOR (15 downto 0);
            offset : in  STD_LOGIC_VECTOR (15 downto 0);
+			  nombre_cycle : in std_logic_vector(7 downto 0);
            onde_genere : out  STD_LOGIC_VECTOR (15 downto 0);
 			  demarrer_transfert, occupe, termine : out std_logic);
 end component;
