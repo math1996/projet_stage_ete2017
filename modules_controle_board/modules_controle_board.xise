@@ -36,12 +36,12 @@
       <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="registre1bit.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="2"/>
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
       <association xil_pn:name="Implementation" xil_pn:seqID="2"/>
       <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="registreNbits.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="2"/>
       <association xil_pn:name="Implementation" xil_pn:seqID="6"/>
       <library xil_pn:name="modules"/>
     </file>
@@ -304,8 +304,13 @@
       <association xil_pn:name="PostTranslateSimulation" xil_pn:seqID="2"/>
     </file>
     <file xil_pn:name="test_generation_onde_triangle.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="172"/>
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="15"/>
+    </file>
+    <file xil_pn:name="buffer_8xM.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
       <association xil_pn:name="Implementation" xil_pn:seqID="14"/>
+      <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="test_generation_onde_triangle.ucf" xil_pn:type="FILE_UCF">
       <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
@@ -647,6 +652,7 @@
     <binding xil_pn:location="/top_test_dac16bits" xil_pn:name="top_test_dac16bits.ucf"/>
     <binding xil_pn:location="/top_test_model_RC_solution" xil_pn:name="FSM_com_serie_rx.ucf"/>
     <binding xil_pn:location="/test_generation_onde_carre" xil_pn:name="test_generation_onde_carre.ucf"/>
+    <binding xil_pn:location="/test_generation_onde_triangle" xil_pn:name="test_generation_onde_triangle.ucf"/>
   </bindings>
 
   <libraries>

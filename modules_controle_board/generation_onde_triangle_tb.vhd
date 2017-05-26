@@ -26,7 +26,10 @@
 -- simulation model.
 --------------------------------------------------------------------------------
 LIBRARY ieee;
-USE ieee.std_logic_1164.ALL;
+library modules;
+use modules.usr_package.all;
+use IEEE.STD_LOGIC_1164.ALL;
+use ieee.std_logic_unsigned.all;
  
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -49,6 +52,7 @@ ARCHITECTURE behavior OF generation_onde_triangle_tb IS
          pas_comptage : IN  std_logic_vector(15 downto 0);
          amplitude : IN  std_logic_vector(15 downto 0);
          offset : IN  std_logic_vector(15 downto 0);
+			nombre_cycle : in std_logic_vector(7 downto 0);
          onde_genere : OUT  std_logic_vector(15 downto 0);
          demarrer_transfert : OUT  std_logic;
          occupe : OUT  std_logic;
@@ -66,6 +70,7 @@ ARCHITECTURE behavior OF generation_onde_triangle_tb IS
    signal pas_comptage : std_logic_vector(15 downto 0) := (others => '0');
    signal amplitude : std_logic_vector(15 downto 0) := (others => '0');
    signal offset : std_logic_vector(15 downto 0) := (others => '0');
+	signal nombre_cycle :  std_logic_vector(7 downto 0) := (others => '0');
 
  	--Outputs
    signal onde_genere : std_logic_vector(15 downto 0);
@@ -78,6 +83,7 @@ ARCHITECTURE behavior OF generation_onde_triangle_tb IS
  
 BEGIN
  
+
 	-- Instantiate the Unit Under Test (UUT)
    uut: generation_onde_triangle PORT MAP (
           clk => clk,
@@ -91,7 +97,8 @@ BEGIN
           onde_genere => onde_genere,
           demarrer_transfert => demarrer_transfert,
           occupe => occupe,
-          termine => termine
+          termine => termine, 
+			 nombre_cycle => nombre_cycle
         );
 
    -- Clock process definitions
@@ -119,6 +126,7 @@ BEGIN
 		pas_comptage <=  "0000000000010010";
 		amplitude <= "0000001010110110";
 		offset <= "0000000000000000";
+		nombre_cycle <= "00000100";
 		wait for clk_period;
 		start <= '0';
 		

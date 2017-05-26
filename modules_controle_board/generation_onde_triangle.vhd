@@ -46,7 +46,7 @@ end generation_onde_triangle;
 architecture Behavioral of generation_onde_triangle is
 
 type etat_onde_triangle is (attente, load_input, partie_up_pos, attente_dac1_pos, attente_partie_up_pos, partie_down_pos, attente_dac2_pos, attente_partie_down_pos, 
-										 partie_up_neg, attente_dac1_neg, attente_partie_up_neg, partie_down_neg, attente_dac2_neg, attente_partie_down_neg, verification_fin, fin);
+										 partie_up_neg, attente_dac1_neg, attente_partie_up_neg, partie_down_neg, attente_dac2_neg, attente_partie_down_neg, verification_fin, fin, compter_cycle);
 signal etat_present, etat_suivant : etat_onde_triangle;
 
 signal compte_attente, temps_attente_int : std_logic_vector(31 downto 0);
@@ -141,10 +141,26 @@ begin
 			choix_signe <= '0';
 			start_load <= '1';
 			reset_input <= '1';
+			etat_suivant <= compter_cycle;
+		
+		when compter_cycle =>
+			enable_nc <= '1';
+			reset_nc <= '1';
+			enable_co <= '0';
+			reset_co <= '1';
+			mode_co <= '0';
+			enable_attente <= '0';
+			reset_attente <= '0';
+			demarrer_transfert <= '0';
+			occupe <= '1';
+			termine <= '0';
+			choix_signe <= '0';
+			start_load <= '0';
+			reset_input <= '1';
 			etat_suivant <= partie_up_pos;
 			
 		when partie_up_pos =>
-			enable_nc <= '1';
+			enable_nc <= '0';
 			reset_nc <= '1';
 			enable_co <= '1';
 			reset_co <= '1';
@@ -392,7 +408,7 @@ begin
 			if(cmp_fin = '1') then
 				etat_suivant <= fin;
 			else
-				etat_suivant <= partie_up_pos;
+				etat_suivant <= compter_cycle;
 			end if;
 			
 			

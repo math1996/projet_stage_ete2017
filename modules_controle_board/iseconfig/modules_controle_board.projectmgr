@@ -39,10 +39,11 @@
          <ClosedNode>/mojo_top C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|mojo_top.v/avr_interface - avr_interface/serial_rx - serial_rx</ClosedNode>
          <ClosedNode>/recuperation_donnee_spi_adc_10bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|recuperation_donnee_spi_adc_10bits.vhd</ClosedNode>
          <ClosedNode>/test_generation_onde_carre - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_carre.vhd</ClosedNode>
-         <ClosedNode>/test_generation_onde_carre - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_carre.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral</ClosedNode>
+         <ClosedNode>/test_generation_onde_carre - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_carre.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral/config_serie_dac16bits - configuration_serie_dac_16bits - Behavioral/rdc - rdc_load_nbits - Behavioral</ClosedNode>
          <ClosedNode>/test_generation_onde_carre - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_carre.vhd/gen_onde_carre - generation_onde_carre - Behavioral</ClosedNode>
-         <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd</ClosedNode>
+         <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd/buffer_rx - buffer_8xM - Behavioral</ClosedNode>
          <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral</ClosedNode>
+         <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral/config_serie_dac16bits - configuration_serie_dac_16bits - Behavioral/rdc - rdc_load_nbits - Behavioral</ClosedNode>
          <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd/gen_onde_triangle - generation_onde_triangle - Behavioral</ClosedNode>
          <ClosedNode>/test_serial_tx - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_serial_tx.vhd</ClosedNode>
          <ClosedNode>/test_serial_tx - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_serial_tx.vhd/com_serie_tx - FSM_serial_tx - Behavioral</ClosedNode>
@@ -80,7 +81,7 @@
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000001f4000000020000000000000000000000000200000064ffffffff000000810000000300000002000001f40000000100000003000000000000000100000003</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000234000000020000000000000000000000000200000064ffffffff000000810000000300000002000002340000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
       <CurrentItem>test_generation_onde_triangle - Behavioral (C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/test_generation_onde_triangle.vhd)</CurrentItem>
    </ItemView>
@@ -94,7 +95,7 @@
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000000000000000000194000000010000000100000000000000000000000064ffffffff000000810000000000000001000001940000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000011b000000010000000100000000000000000000000064ffffffff0000008100000000000000010000011b0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
       <CurrentItem>Design Utilities</CurrentItem>
    </ItemView>
@@ -114,13 +115,13 @@
          <ClosedNodesVersion>1</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>usr_package.vhd</SelectedItem>
+         <SelectedItem>buffer_8xM.vhd</SelectedItem>
       </SelectedItems>
-      <ScrollbarPosition orientation="vertical" >16</ScrollbarPosition>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000000000000001000000000000000000000000000000000000010b000000010001000100000000000000000000000064ffffffff0000008100000000000000010000010b0000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000000000000000100000000000000000000000000000000000000f8000000010001000100000000000000000000000064ffffffff000000810000000000000001000000f80000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem>usr_package.vhd</CurrentItem>
+      <CurrentItem>buffer_8xM.vhd</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_VHDL_ARCHITECTURE" guiview="Process" >
       <ClosedNodes>
@@ -133,27 +134,26 @@
          <ClosedNode>Implement Design/Translate</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem>Generate Programming File</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000010a000000010000000100000000000000000000000064ffffffff0000008100000000000000010000010a0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem>Generate Programming File</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_UCF" guiview="Process" >
       <ClosedNodes>
          <ClosedNodesVersion>1</ClosedNodesVersion>
-         <ClosedNode>User Constraints</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem/>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000011c000000010000000100000000000000000000000064ffffffff0000008100000000000000010000011c0000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000011b000000010000000100000000000000000000000064ffffffff0000008100000000000000010000011b0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem/>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_VERILOG" guiview="Process" >
       <ClosedNodes>
@@ -163,15 +163,15 @@
          <ClosedNode>Synthesize - XST</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem/>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000011c000000010000000100000000000000000000000064ffffffff0000008100000000000000010000011c0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem/>
    </ItemView>
-   <SourceProcessView>000000ff000000000000000200000169000000e401000000050100000002</SourceProcessView>
+   <SourceProcessView>000000ff0000000000000002000001080000014b01000000050100000002</SourceProcessView>
    <CurrentView>Implementation</CurrentView>
    <ItemView engineview="BehavioralSim" guiview="Source" compilemode="AutoCompile" >
       <ClosedNodes>
@@ -191,6 +191,7 @@
          <ClosedNode>/controle_spi_potentiostat_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_potentiostat_tb.vhd</ClosedNode>
          <ClosedNode>/controle_spi_potentiostat_tb - behavior C:|Users|Mathieu|Documents|Session 4|stage_ete_2017|test_mojo|controle_spi_potentiostat_tb.vhd</ClosedNode>
          <ClosedNode>/generation_onde_carre_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|generation_onde_carre_tb.vhd</ClosedNode>
+         <ClosedNode>/generation_onde_triangle_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|generation_onde_triangle_tb.vhd</ClosedNode>
          <ClosedNode>/memoire_tampon_16xM - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|memoire_tampon_16xM.vhd</ClosedNode>
          <ClosedNode>/memoire_tampon_16xM_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|memoire_tampon_16xM_tb.vhd</ClosedNode>
          <ClosedNode>/rdc_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|rdc_tb.vhd</ClosedNode>
@@ -209,7 +210,7 @@
       <SelectedItems>
          <SelectedItem>generation_onde_triangle_tb - behavior (C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/generation_onde_triangle_tb.vhd)</SelectedItem>
       </SelectedItems>
-      <ScrollbarPosition orientation="vertical" >4</ScrollbarPosition>
+      <ScrollbarPosition orientation="vertical" >7</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000002a8000000020000000000000000000000000200000064ffffffff000000810000000300000002000002a80000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
@@ -238,7 +239,7 @@
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000011c000000010000000100000000000000000000000064ffffffff0000008100000000000000010000011c0000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000011b000000010000000100000000000000000000000064ffffffff0000008100000000000000010000011b0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
       <CurrentItem>Simulate Behavioral Model</CurrentItem>
    </ItemView>
@@ -254,6 +255,7 @@
          <ClosedNode>/controle_spi_potentiostat_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_potentiostat_tb.vhd</ClosedNode>
          <ClosedNode>/controle_spi_potentiostat_tb - behavior C:|Users|Mathieu|Documents|Session 4|stage_ete_2017|test_mojo|controle_spi_potentiostat_tb.vhd</ClosedNode>
          <ClosedNode>/generation_onde_carre_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|generation_onde_carre_tb.vhd</ClosedNode>
+         <ClosedNode>/generation_onde_triangle_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|generation_onde_triangle_tb.vhd</ClosedNode>
          <ClosedNode>/memoire_tampon_16xM_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|memoire_tampon_16xM_tb.vhd</ClosedNode>
          <ClosedNode>/rdc_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|rdc_tb.vhd</ClosedNode>
          <ClosedNode>/recup_donnee_adc12bit_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|recup_donnee_adc12bit_tb.vhd</ClosedNode>
@@ -266,7 +268,7 @@
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >1</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000210000000020000000000000000000000000200000064ffffffff000000810000000300000002000002100000000100000003000000000000000100000003</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000203000000020000000000000000000000000200000064ffffffff000000810000000300000002000002030000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
       <CurrentItem>generation_onde_triangle_tb - behavior (C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/generation_onde_triangle_tb.vhd)</CurrentItem>
    </ItemView>
@@ -289,12 +291,12 @@
          <ClosedNodesVersion>1</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>Simulate Post-Translate Model</SelectedItem>
+         <SelectedItem>ISim Simulator</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000011c000000010000000100000000000000000000000064ffffffff0000008100000000000000010000011c0000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000011b000000010000000100000000000000000000000064ffffffff0000008100000000000000010000011b0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem>Simulate Post-Translate Model</CurrentItem>
+      <CurrentItem>ISim Simulator</CurrentItem>
    </ItemView>
 </Project>

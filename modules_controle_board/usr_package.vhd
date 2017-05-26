@@ -14,7 +14,7 @@ use IEEE.STD_LOGIC_1164.all;
 package usr_package is
 
 type tableau_memoire is array(natural range <>) of std_logic_vector(15 downto 0);
-
+type tableau_memoire_8bits is array(natural range <>) of std_logic_vector(7 downto 0);
 -- type <new_type> is
 --  record
 --    <type_name>        : std_logic_vector( 7 downto 0);
@@ -31,6 +31,13 @@ type tableau_memoire is array(natural range <>) of std_logic_vector(15 downto 0)
 -- function <function_name>  (signal <signal_name> : in <type_declaration>) return <type_declaration>;
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
+
+component buffer_8xM is
+generic(M : integer:= 8);
+    Port ( clk, enable, reset : in  STD_LOGIC;
+           input : in  STD_LOGIC_VECTOR (7 downto 0);
+           output : out  tableau_memoire_8bits(M-1 downto 0));
+end component;
 
 component generation_onde_triangle is
     Port ( clk, reset, start, termine_dac : in  STD_LOGIC;
