@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    14:15:39 05/24/2017 
+-- Create Date:    15:55:35 05/30/2017 
 -- Design Name: 
--- Module Name:    test_generation_onde_triangle - Behavioral 
+-- Module Name:    test_generation_onde_sinus - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -32,12 +32,12 @@ use ieee.std_logic_unsigned.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity test_generation_onde_triangle is
+entity test_generation_onde_sinus is
     Port ( clk, reset, rx : in  STD_LOGIC;
            occupe, termine, FSYNC, SCLK, DIN, OSR1, OSR2, BPB, MUTEB, RSTB : out  STD_LOGIC);
-end test_generation_onde_triangle;
+end test_generation_onde_sinus;
 
-architecture Behavioral of test_generation_onde_triangle is
+architecture Behavioral of test_generation_onde_sinus is
 
 component serial_rx is 
 	port(clk, rst, rx : in std_logic;
@@ -45,53 +45,34 @@ component serial_rx is
 			new_data : out std_logic);
 end component;
 
-type etat_test_gen_tri is (attente, demarrage);
-signal etat_suivant, etat_present : etat_test_gen_tri;
+type etat_test_gen_sin is (attente, demarrage);
+signal etat_suivant, etat_present : etat_test_gen_sin;
 
-
-signal data_recu, nombre_cycle_int : std_logic_vector(7 downto 0);
-signal clk_int, start_transfert_int, termine_dac, new_data_int, reset_compteur, occupe_dac, occupe_gen, termine_gen, start_gen, comparaison, reset_int: std_logic;
-signal offset_int, amplitude_int, load_int, pas_comptage_int : std_logic_vector(15 downto 0);
-signal temps_attente_int : std_logic_vector(31 downto 0);
-signal output_buffer_rx : tableau_memoire_8bits(10 downto 0);
+signal data_recu : std_logic_vector(7 downto 0);
+signal new_data_int, clk_int, occupe_dac, termine_dac, reset_int, reset_compteur,
+			comparaison, start_gen, start_transfert_int: std_logic;
+signal output_buffer_rx : tableau_memoire_8bits(9 downto 0);
 signal compte_buffer : std_logic_vector(3 downto 0);
+signal load_int : std_logic_vector(15 downto 0);
 
 begin
 
-occupe <= occupe_gen;
-termine <= termine_gen;
-comparaison <= '1' when compte_buffer >= 11 else
+reset_int <= reset_compteur and reset;
+comparaison <= '1' when compte_buffer >= 10 else
 					'0';
 
-nombre_cycle_int <=  output_buffer_rx(10);	
-amplitude_int(15 downto 8) <= output_buffer_rx(9);
-amplitude_int(7 downto 0) <= output_buffer_rx(8);
-offset_int(15 downto 8) <= output_buffer_rx(7);
-offset_int(7 downto 0) <= output_buffer_rx(6);
-pas_comptage_int(15 downto 8) <= output_buffer_rx(5);
-pas_comptage_int(7 downto 0) <= output_buffer_rx(4);
-temps_attente_int(31 downto 24) <= output_buffer_rx(3);
-temps_attente_int(23 downto 16) <= output_buffer_rx(2);
-temps_attente_int(15 downto 8) <= output_buffer_rx(1);
-temps_attente_int(7 downto 0) <= output_buffer_rx(0);							
-							
-reset_int <= reset and reset_compteur;
-
---clk à 25 MHz
-diviseur_horloge : diviseur_clk generic map(0) port map(clk => clk, reset => reset, enable => '1', clk_out_reg => clk_int);
+--reset à connecter le générateur d'onde sinusïdale!!
 
 com_serie_rx : serial_rx port map(clk => clk_int, rst => reset, rx => rx, data => data_recu, new_data => new_data_int);
+
 ctrl_serie_dac16 : controle_serie_dac_16bits port map(clk => clk_int, reset => reset, start => start_transfert_int,
 																		load => load_int, FSYNC => FSYNC, SCLK => SCLK, DIN => DIN,
 																		OSR1 => OSR1, OSR2 => OSR2, BPB => BPB, MUTEB => MUTEB, 
 																		RSTB => RSTB, occupe => occupe_dac, termine => termine_dac);
-																		
-gen_onde_triangle : generation_onde_triangle port map(clk => clk_int, reset => reset, start => start_gen, termine_dac => termine_dac,
-																		temps_attente => temps_attente_int, pas_comptage => pas_comptage_int, amplitude => amplitude_int,
-																		offset => offset_int, onde_genere => load_int, demarrer_transfert => start_transfert_int, nombre_cycle => nombre_cycle_int,
-																		occupe => occupe_gen, termine => termine_gen); 
-																		
-buffer_rx : buffer_8xM generic map(11) port map(clk => clk_int, enable => new_data_int, reset => reset, input => data_recu, output => output_buffer_rx);
+
+diviseur_horloge : diviseur_clk generic map(0) port map(clk => clk, reset => reset, enable => '1', clk_out_reg => clk_int);
+
+buffer_rx : buffer_8xM generic map(10) port map(clk => clk_int, enable => new_data_int, reset => reset, input => data_recu, output => output_buffer_rx);
 
 compteur_start : compteurNbits generic map(4) port map(clk => clk_int, enable => new_data_int, reset => reset_int, output => compte_buffer);
 
@@ -126,6 +107,6 @@ begin
 			etat_suivant <= attente;
 	end case;
 end process;
-															
+
 end Behavioral;
 

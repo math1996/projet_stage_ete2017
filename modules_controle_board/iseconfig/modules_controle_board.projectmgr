@@ -7,6 +7,7 @@
    <ItemView engineview="SynthesisOnly" guiview="Source" compilemode="AutoCompile" >
       <ClosedNodes>
          <ClosedNodesVersion>2</ClosedNodesVersion>
+         <ClosedNode>/FSM_com_serie_rx - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|FSM_com_serie_rx.vhd</ClosedNode>
          <ClosedNode>/FSM_configurer_adc_12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|FSM_configurer_adc_12bits.vhd</ClosedNode>
          <ClosedNode>/FSM_configurer_adc_12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|FSM_configurer_adc_12bits.vhd/rdc_configurer_adc_12bits - configuration_spi_adc_12bits - Behavioral</ClosedNode>
          <ClosedNode>/FSM_configurer_adc_12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|FSM_configurer_adc_12bits.vhd/rdc_configurer_adc_12bits - configuration_spi_adc_12bits - Behavioral/rdc - rdc_load_nbits - Behavioral</ClosedNode>
@@ -33,6 +34,7 @@
          <ClosedNode>/controle_spi_adc_12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_adc_12bits.vhd/rdc - rdc_load_nbits - Behavioral</ClosedNode>
          <ClosedNode>/controle_spi_potentiostat - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_potentiostat.vhd/rdc - rdc_load_nbits - Behavioral</ClosedNode>
          <ClosedNode>/generation_onde_carre - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|generation_onde_carre.vhd</ClosedNode>
+         <ClosedNode>/generation_onde_sin - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|generation_onde_sin.vhd</ClosedNode>
          <ClosedNode>/generation_onde_triangle - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|generation_onde_triangle.vhd</ClosedNode>
          <ClosedNode>/memoire_tampon_16xM - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|memoire_tampon_16xM.vhd</ClosedNode>
          <ClosedNode>/mojo_top C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|mojo_top.v/avr_interface - avr_interface/serial_rx - serial_rx</ClosedNode>
@@ -40,50 +42,67 @@
          <ClosedNode>/test_generation_onde_carre - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_carre.vhd</ClosedNode>
          <ClosedNode>/test_generation_onde_carre - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_carre.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral/config_serie_dac16bits - configuration_serie_dac_16bits - Behavioral/rdc - rdc_load_nbits - Behavioral</ClosedNode>
          <ClosedNode>/test_generation_onde_carre - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_carre.vhd/gen_onde_carre - generation_onde_carre - Behavioral</ClosedNode>
+         <ClosedNode>/test_generation_onde_carre - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_carre.vhd</ClosedNode>
+         <ClosedNode>/test_generation_onde_carre - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_carre.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral</ClosedNode>
+         <ClosedNode>/test_generation_onde_carre - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_carre.vhd/gen_onde_carre - generation_onde_carre - Behavioral</ClosedNode>
+         <ClosedNode>/test_generation_onde_sinus - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_sinus.vhd</ClosedNode>
+         <ClosedNode>/test_generation_onde_sinus - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_sinus.vhd/buffer_rx - buffer_8xM - Behavioral</ClosedNode>
+         <ClosedNode>/test_generation_onde_sinus - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_sinus.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral</ClosedNode>
          <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd</ClosedNode>
          <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd/buffer_rx - buffer_8xM - Behavioral</ClosedNode>
          <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral</ClosedNode>
          <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral/config_serie_dac16bits - configuration_serie_dac_16bits - Behavioral/rdc - rdc_load_nbits - Behavioral</ClosedNode>
          <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd/gen_onde_triangle - generation_onde_triangle - Behavioral</ClosedNode>
+         <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd</ClosedNode>
+         <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd/buffer_rx - buffer_8xM - Behavioral</ClosedNode>
+         <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral</ClosedNode>
+         <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd/gen_onde_triangle - generation_onde_triangle - Behavioral</ClosedNode>
          <ClosedNode>/test_serial_tx - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_serial_tx.vhd/com_serie_tx - FSM_envoyer_Noctets - Behavioral</ClosedNode>
          <ClosedNode>/test_serial_tx - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_serial_tx.vhd/com_serie_tx - FSM_serial_tx - Behavioral</ClosedNode>
+         <ClosedNode>/test_serial_tx - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_serial_tx.vhd</ClosedNode>
          <ClosedNode>/top_controle_spi_adc_12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_controle_spi_adc_12bits.vhd</ClosedNode>
          <ClosedNode>/top_controle_spi_adc_12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_controle_spi_adc_12bits.vhd/rdc_configuration_adc12bits - configuration_spi_adc_12bits - Behavioral</ClosedNode>
          <ClosedNode>/top_controle_spi_adc_12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_controle_spi_adc_12bits.vhd/rdc_recuperation_adc12bits - FSM_recuperer_donnee_adc_12bits - Behavioral</ClosedNode>
+         <ClosedNode>/top_controle_spi_adc_12bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_controle_spi_adc_12bits.vhd</ClosedNode>
          <ClosedNode>/top_test_adc10bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc10bits.vhd</ClosedNode>
          <ClosedNode>/top_test_adc10bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc10bits.vhd/com_serie_tx - FSM_envoyer_Noctets - Behavioral</ClosedNode>
          <ClosedNode>/top_test_adc10bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc10bits.vhd/ctrl_spi_adc10bits - controle_spi_adc_10bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_adc10bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc10bits.vhd/ctrl_spi_adc10bits - controle_spi_adc_10bits - Behavioral/config_adc10bits - configuration_spi_adc_10bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_adc10bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc10bits.vhd/ctrl_spi_adc10bits - controle_spi_adc_10bits - Behavioral/recup_donnee - recuperation_donnee_spi_adc_10bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_adc10bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc10bits.vhd/rdc_output_led_test - rdc_Nbits - Behavioral</ClosedNode>
+         <ClosedNode>/top_test_adc10bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc10bits.vhd</ClosedNode>
          <ClosedNode>/top_test_adc12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc12bits.vhd</ClosedNode>
          <ClosedNode>/top_test_adc12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc12bits.vhd/com_serie_tx - FSM_serial_tx - Behavioral</ClosedNode>
          <ClosedNode>/top_test_adc12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc12bits.vhd/controle_adc12bits - controle_spi_adc_12bits - Behavioral/config_adc12bits - FSM_configurer_adc_12bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_adc12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc12bits.vhd/controle_adc12bits - controle_spi_adc_12bits - Behavioral/config_adc12bits - FSM_configurer_adc_12bits - Behavioral/rdc_configurer_adc_12bits - configuration_spi_adc_12bits - Behavioral/rdc - rdc_load_nbits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_adc12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc12bits.vhd/controle_adc12bits - controle_spi_adc_12bits - Behavioral/recup_donnee - FSM_recuperer_donnee_adc_12bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_adc12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc12bits.vhd/controle_adc12bits - controle_spi_adc_12bits - Behavioral/recup_donnee - FSM_recuperer_donnee_adc_12bits - Behavioral/rdc_recup - rdc_Nbits - Behavioral</ClosedNode>
+         <ClosedNode>/top_test_adc12bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc12bits.vhd</ClosedNode>
          <ClosedNode>/top_test_dac16bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_dac16bits.vhd</ClosedNode>
          <ClosedNode>/top_test_dac16bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_dac16bits.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_dac16bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_dac16bits.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral/config_serie_dac16bits - configuration_serie_dac_16bits - Behavioral/rdc - rdc_load_nbits - Behavioral</ClosedNode>
+         <ClosedNode>/top_test_dac16bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_dac16bits.vhd</ClosedNode>
          <ClosedNode>/top_test_model_RC_solution - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_model_RC_solution.vhd</ClosedNode>
          <ClosedNode>/top_test_model_RC_solution - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_model_RC_solution.vhd/com_serie_tx - FSM_envoyer_Noctets - Behavioral</ClosedNode>
          <ClosedNode>/top_test_model_RC_solution - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_model_RC_solution.vhd/test_ctrl_serie_dac16bits - controle_serie_dac_16bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_model_RC_solution - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_model_RC_solution.vhd/test_ctrl_spi_adc10bits - controle_spi_adc_10bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_model_RC_solution - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_model_RC_solution.vhd/test_ctrl_spi_adc12bits - controle_spi_adc_12bits - Behavioral</ClosedNode>
+         <ClosedNode>/top_test_model_RC_solution - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_model_RC_solution.vhd</ClosedNode>
          <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd</ClosedNode>
          <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd/port_serie - serial_rx</ClosedNode>
          <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd/rdc_controle_spi - controle_spi_potentiostat - Behavioral</ClosedNode>
          <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd/rdc_controle_spi - controle_spi_potentiostat - Behavioral/rdc - rdc_load_nbits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd/rdc_output_led_test - rdc_Nbits - Behavioral</ClosedNode>
+         <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>test_serial_tx - Behavioral (C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/test_serial_tx.vhd)</SelectedItem>
+         <SelectedItem>test_generation_onde_sinus - Behavioral (C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/test_generation_onde_sinus.vhd)</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000001f2000000020000000000000000000000000200000064ffffffff000000810000000300000002000001f20000000100000003000000000000000100000003</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000001e4000000020000000000000000000000000200000064ffffffff000000810000000300000002000001e40000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>test_serial_tx - Behavioral (C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/test_serial_tx.vhd)</CurrentItem>
+      <CurrentItem>test_generation_onde_sinus - Behavioral (C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/test_generation_onde_sinus.vhd)</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="" guiview="Process" >
       <ClosedNodes>
@@ -106,7 +125,7 @@
       <SelectedItems/>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000000000000010000000000000000000000000000000000000252000000040101000100000000000000000000000064ffffffff000000810000000000000004000000420000000100000000000000240000000100000000000000660000000100000000000001860000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000000000000010000000000000000000000000000000000000392000000040101000100000000000000000000000064ffffffff000000810000000000000004000000420000000100000000000000240000000100000000000000660000000100000000000002c60000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
       <CurrentItem>compteurNbits.vhd</CurrentItem>
    </ItemView>
@@ -115,13 +134,13 @@
          <ClosedNodesVersion>1</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>buffer_8xM.vhd</SelectedItem>
+         <SelectedItem>compteurNbits.vhd</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000000000000000100000000000000000000000000000000000000f8000000010001000100000000000000000000000064ffffffff000000810000000000000001000000f80000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem>buffer_8xM.vhd</CurrentItem>
+      <CurrentItem>compteurNbits.vhd</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_VHDL_ARCHITECTURE" guiview="Process" >
       <ClosedNodes>
@@ -134,13 +153,13 @@
          <ClosedNode>Implement Design/Translate</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>Generate Programming File</SelectedItem>
+         <SelectedItem>Check Syntax</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000011b000000010000000100000000000000000000000064ffffffff0000008100000000000000010000011b0000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001df000000010000000100000000000000000000000064ffffffff000000810000000000000001000001df0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem>Generate Programming File</CurrentItem>
+      <CurrentItem>Check Syntax</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_UCF" guiview="Process" >
       <ClosedNodes>
@@ -151,7 +170,7 @@
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000011b000000010000000100000000000000000000000064ffffffff0000008100000000000000010000011b0000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000000000000000000232000000010000000100000000000000000000000064ffffffff000000810000000000000001000002320000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
       <CurrentItem/>
    </ItemView>
@@ -163,15 +182,15 @@
          <ClosedNode>Synthesize - XST</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem/>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000011b000000010000000100000000000000000000000064ffffffff0000008100000000000000010000011b0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem/>
    </ItemView>
-   <SourceProcessView>000000ff0000000000000002000000d0000001d101000000050100000002</SourceProcessView>
+   <SourceProcessView>000000ff0000000000000002000000dd000000b101000000050100000002</SourceProcessView>
    <CurrentView>Implementation</CurrentView>
    <ItemView engineview="BehavioralSim" guiview="Source" compilemode="AutoCompile" >
       <ClosedNodes>
@@ -179,42 +198,65 @@
          <ClosedNode>/FSM_com_serie_rx - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|FSM_com_serie_rx.vhd</ClosedNode>
          <ClosedNode>/Unassigned User Library Modules</ClosedNode>
          <ClosedNode>/compteurNbits_mode_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|compteurNbits_mode_tb.vhd</ClosedNode>
+         <ClosedNode>/compteurNbits_mode_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|compteurNbits_mode_tb.vhd</ClosedNode>
          <ClosedNode>/config_dac16bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|config_dac16bits_tb.vhd</ClosedNode>
+         <ClosedNode>/config_dac16bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|config_dac16bits_tb.vhd</ClosedNode>
          <ClosedNode>/config_spi_adc10bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|config_spi_adc10bits_tb.vhd</ClosedNode>
+         <ClosedNode>/config_spi_adc10bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|config_spi_adc10bits_tb.vhd</ClosedNode>
          <ClosedNode>/configuration_spi_adc_12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|configuration_spi_adc_12bits.vhd</ClosedNode>
          <ClosedNode>/configuration_spi_adc_12bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|configuration_spi_adc_12bits_tb.vhd</ClosedNode>
          <ClosedNode>/controle_spi_adc10bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_adc10bits_tb.vhd</ClosedNode>
          <ClosedNode>/controle_spi_adc10bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_adc10bits_tb.vhd/uut - controle_spi_adc_10bits - Behavioral/config_adc10bits - configuration_spi_adc_10bits - Behavioral</ClosedNode>
          <ClosedNode>/controle_spi_adc10bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_adc10bits_tb.vhd/uut - controle_spi_adc_10bits - Behavioral/recup_donnee - recuperation_donnee_spi_adc_10bits - Behavioral</ClosedNode>
+         <ClosedNode>/controle_spi_adc10bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_adc10bits_tb.vhd</ClosedNode>
          <ClosedNode>/controle_spi_adc12bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_adc12bits_tb.vhd</ClosedNode>
+         <ClosedNode>/controle_spi_adc12bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_adc12bits_tb.vhd</ClosedNode>
          <ClosedNode>/controle_spi_potentiostat - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_potentiostat.vhd</ClosedNode>
          <ClosedNode>/controle_spi_potentiostat_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_potentiostat_tb.vhd</ClosedNode>
          <ClosedNode>/controle_spi_potentiostat_tb - behavior C:|Users|Mathieu|Documents|Session 4|stage_ete_2017|test_mojo|controle_spi_potentiostat_tb.vhd</ClosedNode>
+         <ClosedNode>/controle_spi_potentiostat_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_potentiostat_tb.vhd</ClosedNode>
+         <ClosedNode>/gen_onde_sin_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|gen_onde_sin_tb.vhd</ClosedNode>
          <ClosedNode>/generation_onde_carre_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|generation_onde_carre_tb.vhd</ClosedNode>
+         <ClosedNode>/generation_onde_carre_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|generation_onde_carre_tb.vhd</ClosedNode>
          <ClosedNode>/generation_onde_triangle_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|generation_onde_triangle_tb.vhd</ClosedNode>
+         <ClosedNode>/generation_onde_triangle_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|generation_onde_triangle_tb.vhd</ClosedNode>
          <ClosedNode>/memoire_tampon_16xM - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|memoire_tampon_16xM.vhd</ClosedNode>
          <ClosedNode>/memoire_tampon_16xM_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|memoire_tampon_16xM_tb.vhd</ClosedNode>
+         <ClosedNode>/memoire_tampon_16xM_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|memoire_tampon_16xM_tb.vhd</ClosedNode>
          <ClosedNode>/rdc_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|rdc_tb.vhd</ClosedNode>
+         <ClosedNode>/rdc_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|rdc_tb.vhd</ClosedNode>
          <ClosedNode>/recup_donnee_adc12bit_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|recup_donnee_adc12bit_tb.vhd</ClosedNode>
+         <ClosedNode>/recup_donnee_adc12bit_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|recup_donnee_adc12bit_tb.vhd</ClosedNode>
          <ClosedNode>/recup_donnee_spi_adc10bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|recup_donnee_spi_adc10bits_tb.vhd</ClosedNode>
+         <ClosedNode>/recup_donnee_spi_adc10bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|recup_donnee_spi_adc10bits_tb.vhd</ClosedNode>
          <ClosedNode>/test_FSM_configurer_adc12bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_FSM_configurer_adc12bits_tb.vhd</ClosedNode>
          <ClosedNode>/test_FSM_configurer_adc12bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_FSM_configurer_adc12bits_tb.vhd/uut - FSM_configurer_adc_12bits - Behavioral/rdc_configurer_adc_12bits - configuration_spi_adc_12bits - Behavioral</ClosedNode>
+         <ClosedNode>/test_FSM_configurer_adc12bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_FSM_configurer_adc12bits_tb.vhd</ClosedNode>
          <ClosedNode>/test_generation_onde_carre - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_carre.vhd</ClosedNode>
+         <ClosedNode>/test_generation_onde_carre - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_carre.vhd</ClosedNode>
+         <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd</ClosedNode>
          <ClosedNode>/test_serial_tx - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_serial_tx.vhd</ClosedNode>
+         <ClosedNode>/test_serial_tx - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_serial_tx.vhd</ClosedNode>
          <ClosedNode>/top_control_spi_adc12bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_control_spi_adc12bits_tb.vhd</ClosedNode>
+         <ClosedNode>/top_control_spi_adc12bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_control_spi_adc12bits_tb.vhd</ClosedNode>
          <ClosedNode>/top_test_adc10bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc10bits.vhd</ClosedNode>
+         <ClosedNode>/top_test_adc10bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc10bits.vhd</ClosedNode>
          <ClosedNode>/top_test_adc12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc12bits.vhd</ClosedNode>
+         <ClosedNode>/top_test_adc12bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_adc12bits.vhd</ClosedNode>
          <ClosedNode>/top_test_dac16bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_dac16bits.vhd</ClosedNode>
+         <ClosedNode>/top_test_dac16bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_dac16bits.vhd</ClosedNode>
+         <ClosedNode>/top_test_model_RC_solution - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_model_RC_solution.vhd</ClosedNode>
          <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd</ClosedNode>
+         <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>generation_onde_triangle_tb - behavior (C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/generation_onde_triangle_tb.vhd)</SelectedItem>
+         <SelectedItem>gen_onde_sin_tb - behavior (C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/gen_onde_sin_tb.vhd)</SelectedItem>
       </SelectedItems>
-      <ScrollbarPosition orientation="vertical" >7</ScrollbarPosition>
+      <ScrollbarPosition orientation="vertical" >5</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000002a8000000020000000000000000000000000200000064ffffffff000000810000000300000002000002a80000000100000003000000000000000100000003</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000203000000020000000000000000000000000200000064ffffffff000000810000000300000002000002030000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>generation_onde_triangle_tb - behavior (C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/generation_onde_triangle_tb.vhd)</CurrentItem>
+      <CurrentItem>gen_onde_sin_tb - behavior (C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/gen_onde_sin_tb.vhd)</CurrentItem>
    </ItemView>
    <ItemView engineview="BehavioralSim" sourcetype="" guiview="Process" >
       <ClosedNodes>
@@ -226,7 +268,7 @@
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000000000000000000170000000010000000100000000000000000000000064ffffffff000000810000000000000001000001700000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001f0000000010000000100000000000000000000000064ffffffff000000810000000000000001000001f00000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
       <CurrentItem>Design Utilities</CurrentItem>
    </ItemView>
@@ -239,7 +281,7 @@
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000011b000000010000000100000000000000000000000064ffffffff0000008100000000000000010000011b0000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001f0000000010000000100000000000000000000000064ffffffff000000810000000000000001000001f00000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
       <CurrentItem>Simulate Behavioral Model</CurrentItem>
    </ItemView>
@@ -247,30 +289,45 @@
       <ClosedNodes>
          <ClosedNodesVersion>2</ClosedNodesVersion>
          <ClosedNode>/compteurNbits_mode_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|compteurNbits_mode_tb.vhd</ClosedNode>
+         <ClosedNode>/compteurNbits_mode_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|compteurNbits_mode_tb.vhd</ClosedNode>
          <ClosedNode>/config_dac16bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|config_dac16bits_tb.vhd</ClosedNode>
+         <ClosedNode>/config_dac16bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|config_dac16bits_tb.vhd</ClosedNode>
          <ClosedNode>/config_spi_adc10bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|config_spi_adc10bits_tb.vhd</ClosedNode>
          <ClosedNode>/config_spi_adc10bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|config_spi_adc10bits_tb.vhd/uut - configuration_spi_adc_10bits - Structure</ClosedNode>
+         <ClosedNode>/config_spi_adc10bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|config_spi_adc10bits_tb.vhd</ClosedNode>
          <ClosedNode>/controle_spi_adc10bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_adc10bits_tb.vhd</ClosedNode>
+         <ClosedNode>/controle_spi_adc10bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_adc10bits_tb.vhd</ClosedNode>
          <ClosedNode>/controle_spi_adc12bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_adc12bits_tb.vhd</ClosedNode>
+         <ClosedNode>/controle_spi_adc12bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_adc12bits_tb.vhd</ClosedNode>
          <ClosedNode>/controle_spi_potentiostat_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_potentiostat_tb.vhd</ClosedNode>
          <ClosedNode>/controle_spi_potentiostat_tb - behavior C:|Users|Mathieu|Documents|Session 4|stage_ete_2017|test_mojo|controle_spi_potentiostat_tb.vhd</ClosedNode>
+         <ClosedNode>/controle_spi_potentiostat_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|controle_spi_potentiostat_tb.vhd</ClosedNode>
+         <ClosedNode>/gen_onde_sin_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|gen_onde_sin_tb.vhd</ClosedNode>
          <ClosedNode>/generation_onde_carre_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|generation_onde_carre_tb.vhd</ClosedNode>
+         <ClosedNode>/generation_onde_carre_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|generation_onde_carre_tb.vhd</ClosedNode>
          <ClosedNode>/generation_onde_triangle_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|generation_onde_triangle_tb.vhd</ClosedNode>
+         <ClosedNode>/generation_onde_triangle_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|generation_onde_triangle_tb.vhd</ClosedNode>
          <ClosedNode>/memoire_tampon_16xM_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|memoire_tampon_16xM_tb.vhd</ClosedNode>
+         <ClosedNode>/memoire_tampon_16xM_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|memoire_tampon_16xM_tb.vhd</ClosedNode>
          <ClosedNode>/rdc_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|rdc_tb.vhd</ClosedNode>
+         <ClosedNode>/rdc_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|rdc_tb.vhd</ClosedNode>
          <ClosedNode>/recup_donnee_adc12bit_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|recup_donnee_adc12bit_tb.vhd</ClosedNode>
+         <ClosedNode>/recup_donnee_adc12bit_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|recup_donnee_adc12bit_tb.vhd</ClosedNode>
          <ClosedNode>/recup_donnee_spi_adc10bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|recup_donnee_spi_adc10bits_tb.vhd</ClosedNode>
+         <ClosedNode>/recup_donnee_spi_adc10bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|recup_donnee_spi_adc10bits_tb.vhd</ClosedNode>
          <ClosedNode>/test_FSM_configurer_adc12bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_FSM_configurer_adc12bits_tb.vhd</ClosedNode>
+         <ClosedNode>/test_FSM_configurer_adc12bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_FSM_configurer_adc12bits_tb.vhd</ClosedNode>
          <ClosedNode>/top_control_spi_adc12bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_control_spi_adc12bits_tb.vhd</ClosedNode>
+         <ClosedNode>/top_control_spi_adc12bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_control_spi_adc12bits_tb.vhd</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>generation_onde_triangle_tb - behavior (C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/generation_onde_triangle_tb.vhd)</SelectedItem>
+         <SelectedItem>gen_onde_sin_tb - behavior (C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/gen_onde_sin_tb.vhd)</SelectedItem>
       </SelectedItems>
-      <ScrollbarPosition orientation="vertical" >1</ScrollbarPosition>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000203000000020000000000000000000000000200000064ffffffff000000810000000300000002000002030000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>generation_onde_triangle_tb - behavior (C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/generation_onde_triangle_tb.vhd)</CurrentItem>
+      <CurrentItem>gen_onde_sin_tb - behavior (C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/gen_onde_sin_tb.vhd)</CurrentItem>
    </ItemView>
    <ItemView engineview="PostTransSim" sourcetype="" guiview="Process" >
       <ClosedNodes>
@@ -282,7 +339,7 @@
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000000000000000000170000000010000000100000000000000000000000064ffffffff000000810000000000000001000001700000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001f0000000010000000100000000000000000000000064ffffffff000000810000000000000001000001f00000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
       <CurrentItem>Design Utilities</CurrentItem>
    </ItemView>
@@ -291,12 +348,12 @@
          <ClosedNodesVersion>1</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>ISim Simulator</SelectedItem>
+         <SelectedItem/>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000011b000000010000000100000000000000000000000064ffffffff0000008100000000000000010000011b0000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001f0000000010000000100000000000000000000000064ffffffff000000810000000000000001000001f00000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem>ISim Simulator</CurrentItem>
+      <CurrentItem/>
    </ItemView>
 </Project>

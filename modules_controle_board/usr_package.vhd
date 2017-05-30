@@ -32,6 +32,12 @@ type tableau_memoire_8bits is array(natural range <>) of std_logic_vector(7 down
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component LUT_1024_sin is
+    Port ( adresse : in  STD_LOGIC_VECTOR (9 downto 0);
+           valeur : out  STD_LOGIC_VECTOR (15 downto 0));
+end component;
+
+
 component buffer_8xM is
 generic(M : integer:= 8);
     Port ( clk, enable, reset : in  STD_LOGIC;
