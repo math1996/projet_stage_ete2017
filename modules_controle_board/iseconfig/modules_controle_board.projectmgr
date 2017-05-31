@@ -48,6 +48,7 @@
          <ClosedNode>/test_generation_onde_sinus - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_sinus.vhd</ClosedNode>
          <ClosedNode>/test_generation_onde_sinus - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_sinus.vhd/buffer_rx - buffer_8xM - Behavioral</ClosedNode>
          <ClosedNode>/test_generation_onde_sinus - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_sinus.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral</ClosedNode>
+         <ClosedNode>/test_generation_onde_sinus - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_sinus.vhd/gen_sinus - generation_onde_sin - Behavioral</ClosedNode>
          <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd</ClosedNode>
          <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd/buffer_rx - buffer_8xM - Behavioral</ClosedNode>
          <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral</ClosedNode>
@@ -88,6 +89,10 @@
          <ClosedNode>/top_test_model_RC_solution - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_model_RC_solution.vhd/test_ctrl_spi_adc10bits - controle_spi_adc_10bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_model_RC_solution - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_model_RC_solution.vhd/test_ctrl_spi_adc12bits - controle_spi_adc_12bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_model_RC_solution - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_model_RC_solution.vhd</ClosedNode>
+         <ClosedNode>/top_test_model_RC_solution - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_model_RC_solution.vhd/com_serie_tx - FSM_envoyer_Noctets - Behavioral</ClosedNode>
+         <ClosedNode>/top_test_model_RC_solution - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_model_RC_solution.vhd/test_ctrl_serie_dac16bits - controle_serie_dac_16bits - Behavioral</ClosedNode>
+         <ClosedNode>/top_test_model_RC_solution - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_model_RC_solution.vhd/test_ctrl_spi_adc10bits - controle_spi_adc_10bits - Behavioral</ClosedNode>
+         <ClosedNode>/top_test_model_RC_solution - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_model_RC_solution.vhd/test_ctrl_spi_adc12bits - controle_spi_adc_12bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd</ClosedNode>
          <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd/port_serie - serial_rx</ClosedNode>
          <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd/rdc_controle_spi - controle_spi_potentiostat - Behavioral</ClosedNode>
@@ -96,13 +101,13 @@
          <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>test_generation_onde_sinus - Behavioral (C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/test_generation_onde_sinus.vhd)</SelectedItem>
+         <SelectedItem>test_generation_onde_triangle - Behavioral (C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/test_generation_onde_triangle.vhd)</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000001e4000000020000000000000000000000000200000064ffffffff000000810000000300000002000001e40000000100000003000000000000000100000003</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000234000000020000000000000000000000000200000064ffffffff000000810000000300000002000002340000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>test_generation_onde_sinus - Behavioral (C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/test_generation_onde_sinus.vhd)</CurrentItem>
+      <CurrentItem>test_generation_onde_triangle - Behavioral (C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/test_generation_onde_triangle.vhd)</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="" guiview="Process" >
       <ClosedNodes>
@@ -114,7 +119,7 @@
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000011b000000010000000100000000000000000000000064ffffffff0000008100000000000000010000011b0000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001f0000000010000000100000000000000000000000064ffffffff000000810000000000000001000001f00000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
       <CurrentItem>Design Utilities</CurrentItem>
    </ItemView>
@@ -134,13 +139,13 @@
          <ClosedNodesVersion>1</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>compteurNbits.vhd</SelectedItem>
+         <SelectedItem>usr_package.vhd</SelectedItem>
       </SelectedItems>
-      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="vertical" >11</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000000000000000100000000000000000000000000000000000000f8000000010001000100000000000000000000000064ffffffff000000810000000000000001000000f80000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000000000000000100000000000000000000000000000000000001df000000010001000100000000000000000000000064ffffffff000000810000000000000001000001df0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem>compteurNbits.vhd</CurrentItem>
+      <CurrentItem>usr_package.vhd</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_VHDL_ARCHITECTURE" guiview="Process" >
       <ClosedNodes>
@@ -153,26 +158,26 @@
          <ClosedNode>Implement Design/Translate</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>Check Syntax</SelectedItem>
+         <SelectedItem></SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001df000000010000000100000000000000000000000064ffffffff000000810000000000000001000001df0000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001f0000000010000000100000000000000000000000064ffffffff000000810000000000000001000001f00000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem>Check Syntax</CurrentItem>
+      <CurrentItem></CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_UCF" guiview="Process" >
       <ClosedNodes>
          <ClosedNodesVersion>1</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem/>
+         <SelectedItem></SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000000000000000000232000000010000000100000000000000000000000064ffffffff000000810000000000000001000002320000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001f0000000010000000100000000000000000000000064ffffffff000000810000000000000001000001f00000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem/>
+      <CurrentItem></CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_VERILOG" guiview="Process" >
       <ClosedNodes>
@@ -186,16 +191,17 @@
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000011b000000010000000100000000000000000000000064ffffffff0000008100000000000000010000011b0000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001f0000000010000000100000000000000000000000064ffffffff000000810000000000000001000001f00000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
       <CurrentItem/>
    </ItemView>
-   <SourceProcessView>000000ff0000000000000002000000dd000000b101000000050100000002</SourceProcessView>
+   <SourceProcessView>000000ff00000000000000020000014f0000011801000000050100000002</SourceProcessView>
    <CurrentView>Implementation</CurrentView>
    <ItemView engineview="BehavioralSim" guiview="Source" compilemode="AutoCompile" >
       <ClosedNodes>
          <ClosedNodesVersion>2</ClosedNodesVersion>
          <ClosedNode>/FSM_com_serie_rx - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|FSM_com_serie_rx.vhd</ClosedNode>
+         <ClosedNode>/FSM_com_serie_rx - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|FSM_com_serie_rx.vhd</ClosedNode>
          <ClosedNode>/Unassigned User Library Modules</ClosedNode>
          <ClosedNode>/compteurNbits_mode_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|compteurNbits_mode_tb.vhd</ClosedNode>
          <ClosedNode>/compteurNbits_mode_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|compteurNbits_mode_tb.vhd</ClosedNode>
@@ -234,6 +240,7 @@
          <ClosedNode>/test_FSM_configurer_adc12bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_FSM_configurer_adc12bits_tb.vhd</ClosedNode>
          <ClosedNode>/test_generation_onde_carre - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_carre.vhd</ClosedNode>
          <ClosedNode>/test_generation_onde_carre - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_carre.vhd</ClosedNode>
+         <ClosedNode>/test_generation_onde_sinus - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_sinus.vhd</ClosedNode>
          <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd</ClosedNode>
          <ClosedNode>/test_serial_tx - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_serial_tx.vhd</ClosedNode>
          <ClosedNode>/test_serial_tx - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_serial_tx.vhd</ClosedNode>
@@ -250,13 +257,13 @@
          <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>gen_onde_sin_tb - behavior (C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/gen_onde_sin_tb.vhd)</SelectedItem>
+         <SelectedItem>compteurNbits_mode_tb - behavior (C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/compteurNbits_mode_tb.vhd)</SelectedItem>
       </SelectedItems>
-      <ScrollbarPosition orientation="vertical" >5</ScrollbarPosition>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000203000000020000000000000000000000000200000064ffffffff000000810000000300000002000002030000000100000003000000000000000100000003</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000226000000020000000000000000000000000200000064ffffffff000000810000000300000002000002260000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>gen_onde_sin_tb - behavior (C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/gen_onde_sin_tb.vhd)</CurrentItem>
+      <CurrentItem>compteurNbits_mode_tb - behavior (C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/compteurNbits_mode_tb.vhd)</CurrentItem>
    </ItemView>
    <ItemView engineview="BehavioralSim" sourcetype="" guiview="Process" >
       <ClosedNodes>

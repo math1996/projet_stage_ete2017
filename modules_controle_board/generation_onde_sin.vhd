@@ -291,7 +291,7 @@ begin
 			else
 				etat_suivant <= attente_neg;
 			end if;
-			
+	
 		when verification_fin =>
 			start_load <= '0';
 			reset_input <= '1';

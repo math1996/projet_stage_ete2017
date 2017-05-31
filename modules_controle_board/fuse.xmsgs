@@ -5,5 +5,11 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
+<msg type="warning" file="HDLCompiler" num="89" delta="unknown" >"C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/compteurNbits_mode_tb.vhd" Line 70: &lt;<arg fmt="%s" index="1">compteurnbits_mode</arg>&gt; remains a black-box since it has no binding entity.
+</msg>
+
+<msg type="warning" file="Simulator" num="648" delta="unknown" >&quot;<arg fmt="%s" index="1">C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/compteurNbits_mode_tb.vhd</arg>&quot; Line <arg fmt="%d" index="2">70</arg>. Instance <arg fmt="%s" index="3">compteurnbits_mode</arg> is unbound
+</msg>
+
 </messages>
 

@@ -48,20 +48,35 @@ end component;
 type etat_test_gen_sin is (attente, demarrage);
 signal etat_suivant, etat_present : etat_test_gen_sin;
 
-signal data_recu : std_logic_vector(7 downto 0);
+signal data_recu, nb_cycle_int, pas_int : std_logic_vector(7 downto 0);
 signal new_data_int, clk_int, occupe_dac, termine_dac, reset_int, reset_compteur,
-			comparaison, start_gen, start_transfert_int: std_logic;
+			comparaison, start_gen, start_transfert_int, occupe_gen, termine_gen: std_logic;
 signal output_buffer_rx : tableau_memoire_8bits(9 downto 0);
 signal compte_buffer : std_logic_vector(3 downto 0);
-signal load_int : std_logic_vector(15 downto 0);
+signal load_int, amplitude_int, offset_int : std_logic_vector(15 downto 0);
+signal temps_attente_int : std_logic_vector(31 downto 0);
+
 
 begin
+
+occupe <= occupe_gen or occupe_dac;
+termine <= termine_gen;
 
 reset_int <= reset_compteur and reset;
 comparaison <= '1' when compte_buffer >= 10 else
 					'0';
 
---reset à connecter le générateur d'onde sinusïdale!!
+nb_cycle_int <= output_buffer_rx(9);
+temps_attente_int(31 downto 24) <= output_buffer_rx(8);
+temps_attente_int(23 downto 16) <= output_buffer_rx(7);
+temps_attente_int(15 downto 8) <= output_buffer_rx(6);
+temps_attente_int(7 downto 0) <= output_buffer_rx(5);
+pas_int <= output_buffer_rx(4);
+amplitude_int(15 downto 8) <= output_buffer_rx(3);
+amplitude_int(7 downto 0) <= output_buffer_rx(2);
+offset_int(15 downto 8) <= output_buffer_rx(1);
+offset_int(7 downto 0) <= output_buffer_rx(0);
+
 
 com_serie_rx : serial_rx port map(clk => clk_int, rst => reset, rx => rx, data => data_recu, new_data => new_data_int);
 
@@ -69,6 +84,10 @@ ctrl_serie_dac16 : controle_serie_dac_16bits port map(clk => clk_int, reset => r
 																		load => load_int, FSYNC => FSYNC, SCLK => SCLK, DIN => DIN,
 																		OSR1 => OSR1, OSR2 => OSR2, BPB => BPB, MUTEB => MUTEB, 
 																		RSTB => RSTB, occupe => occupe_dac, termine => termine_dac);
+																		
+gen_sinus : generation_onde_sin port map(clk => clk_int, reset => reset, start => start_gen, termine_dac => termine_dac, temps_attente => temps_attente_int,
+																			pas => pas_int, amplitude => amplitude_int, offset => offset_int, nombre_cycle => nb_cycle_int, 
+																			onde_genere => load_int, demarrer_transfert => start_transfert_int, occupe => occupe_gen, termine => termine_gen);
 
 diviseur_horloge : diviseur_clk generic map(0) port map(clk => clk, reset => reset, enable => '1', clk_out_reg => clk_int);
 

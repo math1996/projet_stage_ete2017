@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2017-05-22T14:34:37</DateModified>
-  <ModuleName>test_generation_onde_carre</ModuleName>
+  <DateModified>2017-05-31T15:08:54</DateModified>
+  <ModuleName>FSM_com_serie_rx</ModuleName>
   <SummaryTimeStamp>2017-05-22T14:34:13</SummaryTimeStamp>
-  <SavedFilePath>C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/iseconfig/top_test_model_RC_solution.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board</ImplementationReportsDirectory>
-  <DateInitialized>2017-05-22T14:20:21</DateInitialized>
+  <SavedFilePath>C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/iseconfig/top_test_model_RC_solution.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board\</ImplementationReportsDirectory>
+  <DateInitialized>2017-05-31T15:08:01</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>
  <body>

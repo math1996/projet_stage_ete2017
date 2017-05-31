@@ -32,6 +32,17 @@ type tableau_memoire_8bits is array(natural range <>) of std_logic_vector(7 down
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component generation_onde_sin is
+    Port ( clk, reset, start, termine_dac : in  STD_LOGIC;
+           temps_attente : in  STD_LOGIC_VECTOR (31 downto 0);
+           pas : in  STD_LOGIC_VECTOR (7 downto 0);
+           amplitude : in  STD_LOGIC_VECTOR (15 downto 0);
+           offset : in  STD_LOGIC_VECTOR (15 downto 0);
+			  nombre_cycle : in std_logic_vector(7 downto 0);
+           onde_genere : out  STD_LOGIC_VECTOR (15 downto 0);
+           demarrer_transfert, occupe, termine : out  STD_LOGIC);
+end component;
+
 component LUT_1024_sin is
     Port ( adresse : in  STD_LOGIC_VECTOR (9 downto 0);
            valeur : out  STD_LOGIC_VECTOR (15 downto 0));
