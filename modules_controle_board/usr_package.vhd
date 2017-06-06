@@ -32,6 +32,13 @@ type tableau_memoire_8bits is array(natural range <>) of std_logic_vector(7 down
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component generation_pulse is
+    Port ( clk, reset, enable : in  STD_LOGIC;
+           onde_tri, offset_tri : in  STD_LOGIC_VECTOR (15 downto 0);
+			  choix_horloge : in std_logic_vector(3 downto 0);
+           onde_tri_pulse : out  STD_LOGIC_VECTOR (15 downto 0));
+end component;
+
 component generation_onde_sin is
     Port ( clk, reset, start, termine_dac : in  STD_LOGIC;
            temps_attente : in  STD_LOGIC_VECTOR (31 downto 0);

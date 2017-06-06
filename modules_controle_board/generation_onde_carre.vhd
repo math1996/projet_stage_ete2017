@@ -131,8 +131,8 @@ begin
 			etat_suivant <= attente_dac1;
 			
 		when attente_dac1 =>
-			reset_compteur_nchpc <= '0';
-			enable_compteur_nchpc <= '0';
+			reset_compteur_nchpc <= '1';
+			enable_compteur_nchpc <= '1';
 			reset_compteur_nc <= '1';
 			enable_compteur_nc <= '0';
 			demarrer_transfert <= '0';
@@ -166,7 +166,7 @@ begin
 			
 		when partie_negative =>
 			reset_compteur_nchpc <= '1';
-			enable_compteur_nchpc <= '0';
+			enable_compteur_nchpc <= '1';
 			reset_compteur_nc <= '1';
 			enable_compteur_nc <= '0';
 			demarrer_transfert <= '1';
@@ -179,7 +179,7 @@ begin
 			
 		when attente_dac2 =>
 			reset_compteur_nchpc <= '1';
-			enable_compteur_nchpc <= '0';
+			enable_compteur_nchpc <= '1';
 			reset_compteur_nc <= '1';
 			enable_compteur_nc <= '0';
 			demarrer_transfert <= '0';
@@ -205,7 +205,7 @@ begin
 			termine <= '0';
 			start_load <= '0';
 			reset_input <= '1';
-			if(compte_nb_coup_horloge_par_cycle >= (nb_coup_horloge_par_cycle_int - 1)) then
+			if(compte_nb_coup_horloge_par_cycle >= nb_coup_horloge_par_cycle_int) then
 				etat_suivant <= verification_fin;
 			else
 				etat_suivant <= attente_negative;

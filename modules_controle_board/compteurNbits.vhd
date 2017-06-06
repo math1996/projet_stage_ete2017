@@ -2,7 +2,7 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    15:34:40 05/01/2017 
+-- Create Date:    09:56:31 06/01/2017 
 -- Design Name: 
 -- Module Name:    compteurNbits - Behavioral 
 -- Project Name: 
@@ -18,11 +18,14 @@
 --
 ----------------------------------------------------------------------------------
 library IEEE;
+library modules;
+use modules.usr_package.all;
 use IEEE.STD_LOGIC_1164.ALL;
+use ieee.std_logic_unsigned.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
-use ieee.std_logic_unsigned.all;
+--use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx primitives in this code.
@@ -52,6 +55,7 @@ end if;
 end process;
 
 output <= compteur;
+
 
 end Behavioral;
 

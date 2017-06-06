@@ -66,7 +66,7 @@ compteur_attente : compteurNbits generic map(32) port map( clk => clk, enable =>
 add_offset_partie_pos : addition_offset port map(amplitude => onde_genere_int, offset => offset_int, resultat => resultat_pos);
 add_offset_partie_neg : addition_offset port map(amplitude => (not(onde_genere_int) +1) , offset => offset_int, resultat => resultat_neg);
 
---registre pour loader les entrées que l'ont va utiliser
+--registre pour loader les entrées que l'on va utiliser
 registre_temps_attente : registreNbits generic map(32) port map(clk => clk, en => start_load,  reset => reset_input, d => temps_attente, q_out => temps_attente_int);
 registre_pas_comptage : registreNbits generic map(16) port map(clk => clk, en => start_load, reset => reset_input, d => pas_comptage, q_out => pas_comptage_int);
 registre_amplitude : registreNbits generic map(16) port map(clk => clk, en => start_load, reset => reset_input, d => amplitude, q_out => amplitude_int);

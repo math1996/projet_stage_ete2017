@@ -36,7 +36,8 @@ entity top_test_model_RC_solution is
     Port ( clk, reset, rx, DOUT_12bits, DOUT_10bits, SSTRB_10bits : in  STD_LOGIC;
            tx, CS_12bits, DIN_12bits, SCLK_12bits : out  STD_LOGIC;
            CS_10bits, DIN_10bits, SCLK_10bits, SHDN_10bits, occupe : out  STD_LOGIC;
-           BPB_dac, OSR1_dac, OSR2_dac, RSTB_dac, MUTEB_dac, FSYNC_dac, SCLK_dac, DIN_dac : out  STD_LOGIC);
+           BPB_dac, OSR1_dac, OSR2_dac, RSTB_dac, MUTEB_dac, FSYNC_dac, SCLK_dac, DIN_dac : out  STD_LOGIC;
+			  adc10_termine, adc12_termine : out std_logic);
 end top_test_model_RC_solution;
 
 architecture Behavioral of top_test_model_RC_solution is
@@ -61,16 +62,19 @@ signal etat_present, etat_suivant : etat_test_modele_RC;
 
 begin
 
+adc10_termine <= reg_termine2;
+adc12_termine <= reg_termine1;
+
 --occupe <= occupe_adc12bits or occupe_adc10bits or occupe_dac or occupe_envoie;
 choix <= data_recu(6 downto 4);
 
-load_int <= X"342B" when choix = "000" else
-				X"22CB" when choix = "001" else
-				X"1164" when choix = "010" else
-				X"0000" when choix = "011" else
-				X"F216" when choix = "100" else
-				X"E42D" when choix = "101" else
-				X"D643" when choix = "110" else
+load_int <= X"342B" when choix = "000" else -- 1,87 V
+				X"22CB" when choix = "001" else -- 1,25 V
+				X"1164" when choix = "010" else -- 0,62 V
+				X"0000" when choix = "011" else -- 0 V
+				X"F215" when choix = "100" else -- -0.5 V
+				X"E42C" when choix = "101" else -- -1 V
+				X"D642" when choix = "110" else -- -1.5 V
 				X"0000";
 
 compteur_10bits : compteurNbits generic map(10) port map(clk => clk_int, enable => enable_compteur, reset => reset_compteur, output => compteur);

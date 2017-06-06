@@ -66,7 +66,7 @@ valeurs_sin : LUT_1024_sin port map(adresse => compteur_LUT, valeur => valeur_in
 
 --compteur permettant d'accérder à la LUT
 compteur_acces_LUT : compteurNbits_mode generic map(10) port map(clk => clk, reset => reset_LUT, enable => enable_LUT, mode => '0',
-																						pas => "00" & pas, compteur_out => compteur_LUT);
+																						pas => "00" & pas_int, compteur_out => compteur_LUT);
 --compteur du temps d'attente
 compteur_attente_DAC : compteurNbits generic map(32) port map(clk => clk, reset => reset_attente, enable => enable_attente, output => compteur_attente);		
 
