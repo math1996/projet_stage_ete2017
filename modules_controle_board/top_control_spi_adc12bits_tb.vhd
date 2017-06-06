@@ -42,7 +42,7 @@ ARCHITECTURE behavior OF top_control_spi_adc12bits_tb IS
     COMPONENT top_controle_spi_adc_12bits
     PORT(
          clk : IN  std_logic;
-         start : IN  std_logic;
+         start_seq, start_1CH : IN  std_logic;
          reset : IN  std_logic;
          DOUT : IN  std_logic;
          arret : IN  std_logic;
@@ -60,7 +60,7 @@ ARCHITECTURE behavior OF top_control_spi_adc12bits_tb IS
 
    --Inputs
    signal clk : std_logic := '0';
-   signal start : std_logic := '0';
+   signal start_seq, start_1CH : std_logic := '0';
    signal reset : std_logic := '0';
    signal DOUT : std_logic := '0';
    signal arret : std_logic := '0';
@@ -77,14 +77,14 @@ ARCHITECTURE behavior OF top_control_spi_adc12bits_tb IS
 
    -- Clock period definitions
    constant clk_period : time := 10 ns;
-   constant SCLK_period : time := 10 ns;
  
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
    uut: top_controle_spi_adc_12bits PORT MAP (
           clk => clk,
-          start => start,
+          start_seq => start_seq,
+			 start_1CH => start_1CH,
           reset => reset,
           DOUT => DOUT,
           arret => arret,
@@ -116,17 +116,17 @@ BEGIN
 		reset <= '0';
       wait for clk_period*10;
 		reset <= '1';
-		start <= '1';
+		start_seq <= '1';
+		start_1CH <= '0';
 		canal <= "000";
 		sequence <= "01110111";
 		arret <= '0';
 		wait for clk_period;
 		DOUT <= '1';
-		start <= '0';
-		wait for clk_period*33;
+		start_1CH <= '0';
+		start_seq <= '0';
+		wait for clk_period*100;
 		arret <= '1';
-		wait for clk_period*10;
-		start <= '0';
 		
       -- insert stimulus here 
 

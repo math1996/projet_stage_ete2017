@@ -38,7 +38,8 @@ end FSM_conversion_seq_choix_canaux_adc12bits;
 
 architecture Behavioral of FSM_conversion_seq_choix_canaux_adc12bits is
 
-type etat_FSM_choix_canaux_seq_adc12bits is (attente, start_SR, SR, start_CR, CR, demarrer_conversion, attente_conversion, fin);
+type etat_FSM_choix_canaux_seq_adc12bits is (attente,start_RR1, RR1, start_RR2, RR2, start_SR, SR, start_CR, CR,
+															demarrer_conversion, attente_conversion, fin);
 signal etat_present, etat_suivant : etat_FSM_choix_canaux_seq_adc12bits;
 
 
@@ -62,11 +63,47 @@ begin
 			load <= (others => '0');
 			termine <= '0';
 			if(start = '1') then
-				etat_suivant <= start_SR;
+				etat_suivant <= start_RR1;
 			else
 				etat_suivant <= attente;
 			end if;
+		
+		when start_RR1 =>
+			demarrer_transfert <= '1';
+			demarrer_recup <= '0';
+			load <= (others => '0');
+			termine <= '0';
+			etat_suivant <= RR1;
 			
+		when RR1 =>
+			demarrer_transfert <= '0';
+			demarrer_recup <= '0';
+			load <= b"1_01_01010101_00000";
+			termine <= '0';
+			if(termine_RDC_config = '1') then
+				etat_suivant <= start_RR2;
+			else
+				etat_suivant <= RR1;
+			end if;
+			
+		when start_RR2 =>
+			demarrer_transfert <= '1';
+			demarrer_recup <= '0';
+			load <= (others => '0');
+			termine <= '0';
+			etat_suivant <= RR2;
+			
+		when RR2 =>
+			demarrer_transfert <= '0';
+			demarrer_recup <= '0';
+			load <= b"1_10_01010101_00000";
+			termine <= '0';
+			if(termine_RDC_config = '1') then
+				etat_suivant <= start_SR;
+			else
+				etat_suivant <= RR2;
+			end if;
+		
 		when start_SR =>
 			demarrer_transfert <= '1';
 			demarrer_recup <= '0';
