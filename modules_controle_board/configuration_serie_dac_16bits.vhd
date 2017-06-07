@@ -48,7 +48,11 @@ signal etat_present, etat_suivant : etat_config_dac;
 
 begin
 
-rdc : rdc_load_nbits generic map(16) port map(clk => clk, reset => reset_rdc, enable => enable_rdc, mode => mode_rdc, load => load, input => '0', output => DIN);
+--registre à décalage des données à envoyer au DAC
+rdc : rdc_load_nbits generic map(16) port map(clk => clk, reset => reset_rdc, enable => enable_rdc, mode => mode_rdc, load => load, input => '0',
+															 output => DIN);
+															 
+--compteur de nombre de décalage															 
 compteur_5bits : compteurNbits generic map(5) port map(clk => clk, reset => reset_compteur, enable => enable_compteur, output => compteur);
 
 

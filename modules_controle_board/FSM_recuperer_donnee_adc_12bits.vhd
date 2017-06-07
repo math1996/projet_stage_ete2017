@@ -49,8 +49,12 @@ signal donnee_int : std_logic_vector(15 downto 0);
 
 begin
 
+--compteur du nombre de décalage
 compteur_5bits: compteurNbits generic map(5) port map(clk => clk_int, reset => reset_compteur, enable => enable_compteur, output => compteur);
+
+--registre de décalage de la récupération des donnéees
 rdc_recup : rdc_Nbits generic map(16) port map(clk => clk_int, reset => reset_rdc, enable => enable_rdc, input => DOUT, data_output_parallele => donnee_int);
+
 clk_int <= clk;
 
 --sorties

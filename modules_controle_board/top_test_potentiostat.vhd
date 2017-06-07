@@ -45,8 +45,6 @@ component serial_rx is
 			new_data : out std_logic);
 end component;
 
---clk_int est l'horloge divisé à 12.5 MHz
---clk est l'horloge du mojo à 50 MHz
 signal start_int, clk_out_int, enable_rdc_affichage_int, input_rdc_int, clk_int, occupe_int, termine_int : std_logic;
 signal data_int : std_logic_vector(7 downto 0);
 

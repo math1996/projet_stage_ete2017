@@ -39,12 +39,13 @@ end FSM_conversion_seq_choix_canaux_adc12bits;
 architecture Behavioral of FSM_conversion_seq_choix_canaux_adc12bits is
 
 type etat_FSM_choix_canaux_seq_adc12bits is (attente,start_RR1, RR1, start_RR2, RR2, start_SR, SR, start_CR, CR,
-															demarrer_conversion, attente_conversion, fin);
+															demarrer_conversion, attente_conversion, fin, verification_fin);
 signal etat_present, etat_suivant : etat_FSM_choix_canaux_seq_adc12bits;
 
 
 begin
 
+--machine à état de la conversion séquentielle des canaux
 process(clk, reset)
 begin 
 	if(reset = '0') then
@@ -139,7 +140,7 @@ begin
 			else
 				etat_suivant <= CR;
 			end if;
-			
+		
 		when demarrer_conversion =>
 			demarrer_transfert <= '0';
 			demarrer_recup <= '1';
@@ -152,14 +153,21 @@ begin
 			demarrer_recup <= '0';
 			load <= (others => '0');
 			termine <= '0';
-			if(arret_conversion = '0' and termine_RDC_recup = '0') then
-				etat_suivant <= attente_conversion;
-			elsif(arret_conversion = '0' and termine_RDC_recup = '1') then
-				etat_suivant <= demarrer_conversion;
-			elsif(arret_conversion = '1' and termine_RDC_recup = '0') then
-				etat_suivant <= attente_conversion;
+			if(termine_RDC_recup = '1') then
+				etat_suivant <= verification_fin;
 			else
+				etat_suivant <= attente_conversion;
+			end if;
+			
+		when verification_fin =>
+			demarrer_transfert <= '0';
+			demarrer_recup <= '0';
+			load <= (others => '0');
+			termine <= '0';
+			if(arret_conversion = '1') then
 				etat_suivant <= fin;
+			else
+				etat_suivant <= demarrer_conversion;
 			end if;
 			
 		when fin =>

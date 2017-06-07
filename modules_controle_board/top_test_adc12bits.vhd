@@ -64,10 +64,12 @@ diviseur_horloge : diviseur_clk generic map (1) port map(clk => clk, reset => re
 controle_adc12bits : controle_spi_adc_12bits port map(clk => clk_divise_int, reset => reset, start => start_ctrl_adc12bits, DOUT => DOUT, DIN => DIN,
 															SCLK => SCLK, CS => CS, occupe => occupe_int, termine => termine_int, donnees => donnees_adc, canal => data_recu(7 downto 5));
 
+--module de communication série rx
 com_serie_rx : serial_rx port map(clk => clk_divise_int, rst => reset, rx => rx, data => data_recu, new_data => ready);
 
 output_led_conversion <= donnees_adc(7 downto 0);
---machine à état du controle du test
+
+--machine à état du controle du test de l'ADC 12 bits
 process(clk_divise_int, reset)
 begin
 	if(reset = '0') then

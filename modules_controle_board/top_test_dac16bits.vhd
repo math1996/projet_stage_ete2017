@@ -57,9 +57,13 @@ signal etat_present, etat_suivant : etat_test_ctrl_dac;
 
 begin
 
+--diviseur d'horloge à 25 MHz
 diviseur_horloge : diviseur_clk generic map(0) port map(clk => clk, reset => reset, enable => '1', clk_out_reg => clk_int);
 
+--module de communication série rx
 com_serie_rx : serial_rx port map(clk => clk_int, rst => reset, rx => rx, data => data_recu, new_data => demarrer);
+
+--module de controle série du DAC
 ctrl_serie_dac16 : controle_serie_dac_16bits port map(clk => clk_int, reset => reset, start => start_ctrl,
 																		load => load_int, FSYNC => FSYNC, SCLK => SCLK, DIN => DIN,
 																		OSR1 => OSR1, OSR2 => OSR2, BPB => BPB, MUTEB => MUTEB, 

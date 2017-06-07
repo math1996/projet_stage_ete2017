@@ -32,6 +32,33 @@ type tableau_memoire_8bits is array(natural range <>) of std_logic_vector(7 down
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component top_controle_adc_12bits is
+    Port ( clk, reset, start, DOUT : in  STD_LOGIC;
+           canal_conversion : in  STD_LOGIC_VECTOR (2 downto 0);
+           sequence_conversion : in  STD_LOGIC_VECTOR (7 downto 0);
+           mode_conversion : in  STD_LOGIC_VECTOR (1 downto 0);
+           nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);
+           nb_canaux_conversion : in  STD_LOGIC_VECTOR (3 downto 0);
+           donne_conversion_pret, CS, SCLK, DIN, occupe, termine : out  STD_LOGIC;
+           donne_conversion : out  STD_LOGIC_VECTOR (15 downto 0));
+end component;
+
+component top_controle_spi_adc_12bits is
+    Port ( clk, start_seq, start_1CH, reset, DOUT, arret : in  STD_LOGIC;
+           occupe, termine, data_rdy, CS, SCLK, DIN : out  STD_LOGIC;
+           data_out_conversion : out  STD_LOGIC_VECTOR (15 downto 0);
+           canal : in  STD_LOGIC_VECTOR (2 downto 0);
+			  sequence : in std_logic_vector(7 downto 0));
+end component;
+
+component FSM_controle_mode_adc_12bits is
+    Port ( clk, reset, start, termine_conversion_canal, fin_conversion : in  STD_LOGIC;
+           mode : in  STD_LOGIC_VECTOR (1 downto 0);
+           nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);
+			  nb_canaux : in std_logic_vector(3 downto 0);
+           start_1CH, start_seq, arret, occupe, termine : out  STD_LOGIC);
+end component;
+
 component generation_pulse is
     Port ( clk, reset, enable : in  STD_LOGIC;
            onde_tri, offset_tri : in  STD_LOGIC_VECTOR (15 downto 0);

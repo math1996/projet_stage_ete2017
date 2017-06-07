@@ -38,7 +38,7 @@ end FSM_convertir_1canal_adc12bits;
 
 architecture Behavioral of FSM_convertir_1canal_adc12bits is
 
-type etat_FSM_1canal is (attente, start_RR1, RR1, start_RR2, RR2, start_CR, CR, demarrer_conversion, attente_conversion, fin);
+type etat_FSM_1canal is (attente, start_RR1, RR1, start_RR2, RR2, start_CR, CR, demarrer_conversion, attente_conversion, fin, verification_fin);
 signal etat_present, etat_suivant : etat_FSM_1canal;
 
 begin
@@ -130,17 +130,24 @@ begin
 		
 		when attente_conversion =>
 			demarrer_transfert <= '0';
-			demarrer_recup <= '1';
+			demarrer_recup <= '0';
 			load <= (others => '0');
 			termine <= '0';
-			if(arret_conversion = '0' and termine_RDC_recup = '0') then
-				etat_suivant <= attente_conversion;
-			elsif(arret_conversion = '0' and termine_RDC_recup = '1') then
-				etat_suivant <= demarrer_conversion;
-			elsif(arret_conversion = '1' and termine_RDC_recup = '0') then
-				etat_suivant <= attente_conversion;
+			if(termine_RDC_recup = '1') then
+				etat_suivant <= verification_fin;
 			else
+				etat_suivant <= attente_conversion;
+			end if;
+			
+		when verification_fin =>
+			demarrer_transfert <= '0';
+			demarrer_recup <= '0';
+			load <= (others => '0');
+			termine <= '0';
+			if(arret_conversion = '1') then
 				etat_suivant <= fin;
+			else
+				etat_suivant <= demarrer_conversion;
 			end if;
 			
 		when fin =>

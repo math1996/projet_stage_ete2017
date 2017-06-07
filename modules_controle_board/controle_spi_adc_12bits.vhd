@@ -50,6 +50,7 @@ signal etat_present, etat_suivant: etat_fsm_ctrl_adc12bits;
 
 begin
 
+
 config_adc12bits : FSM_configurer_adc_12bits port map(clk => clk, reset => reset_FSM_config, start => start_FSM_config, occupe => occupe_FSM_config,
 																		termine => termine_FSM_config, CS => cs_FSM_config, SCLK => sclk_FSM_config, DIN => DIN, canal => canal);
 recup_donnee : FSM_recuperer_donnee_adc_12bits port map(clk => clk, reset => reset_FSM_recup, start => start_FSM_recup, DOUT => DOUT, 

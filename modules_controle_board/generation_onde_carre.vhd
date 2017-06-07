@@ -73,6 +73,7 @@ registre_duty_cycle : registreNbits generic map(32) port map(clk => clk, en => s
 registre_nchpc : registreNbits generic map(32) port map(clk => clk, en => start_load, reset => reset_input, d => nb_coup_horloge_par_cycle, q_out => nb_coup_horloge_par_cycle_int);
 registre_amplitude : registreNbits generic map(16) port map(clk => clk, en => start_load, reset => reset_input, d => amplitude, q_out => amplitude_int);
 registre_offset : registreNbits generic map(16) port map(clk => clk, en => start_load, reset => reset_input, d => offset, q_out => offset_int);
+
 --machine à état générant l'onde carrée
 process(clk, reset)
 begin

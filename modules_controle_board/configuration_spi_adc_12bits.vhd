@@ -51,8 +51,11 @@ begin
 
 clk_int <= clk;
 
+--registre à décalage pour envoyer les données de configuration
 rdc : rdc_load_nbits generic map(16) port map(clk => clk_int, reset => reset_rdc, enable => enable_rdc, input => '0', mode => mode_rdc,
 															output => DIN, load => load);
+															
+--compteur du nombre de décalage															
 compteur5bit : compteurNbits generic map(5) port map(clk => clk_int, reset => reset_compteur, enable => enable_compteur, output => compteur);															
 
 --machine à état de l'envoie des données vers les registres de l'adc 12 bits

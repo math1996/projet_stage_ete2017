@@ -46,6 +46,7 @@ begin
 
 clk_int <= clk;
 
+--sortie de controle du DAC
 OSR1 <= '0';
 OSR2 <= '0';
 BPB <= '0';
@@ -53,6 +54,7 @@ MUTEB <= reset;
 RSTB <= '0';
 SCLK <= not(clk_int);
 
+--module de la configuration du DAC
 config_serie_dac16bits : configuration_serie_dac_16bits port map(clk => clk_int, reset => reset, start => start,
 																						load => load, FSYNC => FSYNC, DIN => DIN,
 																						occupe => occupe, termine => termine);

@@ -76,25 +76,30 @@ load_int <= X"342B" when choix = "000" else -- 1,87 V
 				X"E42C" when choix = "101" else -- -1 V
 				X"D642" when choix = "110" else -- -1.5 V
 				X"0000";
-
+--compteur d'attente du transitoire
 compteur_10bits : compteurNbits generic map(10) port map(clk => clk_int, enable => enable_compteur, reset => reset_compteur, output => compteur);
 
+--diviseur d'horloge à 1.5 MHz
 diviseur_horloge : diviseur_clk generic map(4) port map(clk => clk, reset => reset, enable => '1', clk_out_reg => clk_int);
 
+--module controle SPI de l'ADC 12 bits
 test_ctrl_spi_adc12bits : controle_spi_adc_12bits port map(clk => clk_int, start => start_test, reset  => reset, 
 																			DOUT => DOUT_12bits, DIN => DIN_12bits, SCLK => SCLK_12bits,
 																			CS => CS_12bits, occupe => occupe_adc12bits, termine => termine_adc12bits,
 																			canal => "000", donnees => data_adc_12bits);
-																			
+
+--module de controle SPI de l'ADC 10 bits																			
 test_ctrl_spi_adc10bits : controle_spi_adc_10bits port map(clk => clk_int, reset => reset, start => start_test, DOUT => DOUT_10bits, SSTRB => SSTRB_10bits,
 																				DIN => DIN_10bits, SCLK => SCLK_10bits, CS => CS_10bits, SHDN => SHDN_10bits,
 																				occupe => occupe_adc10bits, termine => termine_adc10bits, canal => "000",
 																				donnes => data_adc_10bits);
-																			
+
+--module de controle série du DAC 16 bits																			
 test_ctrl_serie_dac16bits : controle_serie_dac_16bits port map(clk => clk_int, reset => reset, start => start_consigne, load => load_int,
 																					FSYNC => FSYNC_dac, SCLK => SCLK_dac, DIN => DIN_dac, OSR1 => OSR1_dac, OSR2 => OSR2_dac,
 																					BPB => BPB_dac, MUTEB => MUTEB_dac, RSTB => RSTB_dac, occupe => occupe_dac, termine => termine_dac);
 
+--modules de communication série
 com_serie_rx : serial_rx port map(clk => clk_int, rst => reset, rx => rx, data => data_recu, new_data => demarrer);
 com_serie_tx : FSM_envoyer_Noctets generic map(2) port map(clk => clk_int, reset => reset, start => demarrer_envoie, data => data_int, tx => tx, occupe => occupe_envoie, termine => termine_envoie);
 

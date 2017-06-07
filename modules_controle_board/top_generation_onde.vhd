@@ -73,7 +73,7 @@ begin
 --assignation des signaux et sorties
 occupe <= occupe_dac or occupe_onde_carre or occupe_onde_tri or occupe_onde_sin;
 
---Vérifier s'il faut les changer
+--comparateurs
 cmp_attente_carre <= '1' when compte_buffer >= 13 else
 							'0';
 							
