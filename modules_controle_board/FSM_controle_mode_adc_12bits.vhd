@@ -36,28 +36,21 @@ entity FSM_controle_mode_adc_12bits is
            mode : in  STD_LOGIC_VECTOR (1 downto 0);
            nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);
 			  nb_canaux : in std_logic_vector(3 downto 0);
-           start_1CH, start_seq, arret, occupe, termine : out  STD_LOGIC);
+           start_1CH, start_seq, arret, occupe, termine, enable_input, reset_input : out  STD_LOGIC);
 end FSM_controle_mode_adc_12bits;
 
 architecture Behavioral of FSM_controle_mode_adc_12bits is
 
-type etat_ctrl_mode_adc12bits is (attente, load_input, choix_mode, demarrer_conversion_mode1, demarrer_conversion_seq, attente_conversion_mode1,
+type etat_ctrl_mode_adc12bits is (attente, choix_mode_load_input, demarrer_conversion_mode1, demarrer_conversion_seq, attente_conversion_mode1,
 											 attente_conversion_seq, arret_conversion, fin, compter_cycle_conversion);
 signal etat_present, etat_suivant : etat_ctrl_mode_adc12bits;
 
-signal reset_input, enable_input, enable_compteur_nb_cycle_conv, reset_compteur_nb_cycle_conv, enable_compteur_nb_canaux_conv,
+signal enable_compteur_nb_cycle_conv, reset_compteur_nb_cycle_conv, enable_compteur_nb_canaux_conv,
 		 reset_compteur_nb_canaux_conv, cmp_fin_conversion, cmp_nb_canaux_converti : std_logic;
-signal mode_int : std_logic_vector(1 downto 0);
-signal nb_cycle_conversion_int, compte_nb_cycle_conversion : std_logic_vector(31 downto 0);
-signal nb_canaux_int, compte_nb_canaux_conv : std_logic_vector(3 downto 0);
+signal compte_nb_cycle_conversion : std_logic_vector(31 downto 0);
+signal compte_nb_canaux_conv : std_logic_vector(3 downto 0);
 
 begin
-
---registre des entrées
-registre_mode : registreNbits generic map(2) port map(clk => clk, reset => reset_input, en => enable_input, d => mode, q_out => mode_int);
-registre_nb_cycle_conversion : registreNbits generic map(32) port map(clk => clk, reset => reset_input, en => enable_input, d => nb_cycle_conversion,
-																							 q_out => nb_cycle_conversion_int);
-registre_nb_canaux : registreNbits generic map(4) port map(clk => clk, reset => reset_input, en => enable_input, d => nb_canaux, q_out => nb_canaux_int);
 
 --compteur du nb de cycle de conversion
 compteur_nb_cycle_conversion : compteurNbits generic map(32) port map(clk => clk, enable => enable_compteur_nb_cycle_conv,
@@ -68,10 +61,10 @@ compteur_nb_canaux_converti : compteurNbits generic map(4) port map(clk => clk, 
 																						 reset => reset_compteur_nb_canaux_conv, output => compte_nb_canaux_conv);
 
 --comparateurs
-cmp_fin_conversion <= '1' when 	compte_nb_cycle_conversion >= nb_cycle_conversion_int else
+cmp_fin_conversion <= '1' when 	compte_nb_cycle_conversion >= nb_cycle_conversion else
 							 '0';
 							 
-cmp_nb_canaux_converti <= '1' when compte_nb_canaux_conv >= nb_canaux_int else
+cmp_nb_canaux_converti <= '1' when compte_nb_canaux_conv >= nb_canaux else
 								  '0';
 																						 
 --machine à état du contrôle des modes
@@ -84,7 +77,7 @@ begin
 	end if;
 end process;
 
-process(etat_present, mode_int, start, termine_conversion_canal, fin_conversion, cmp_fin_conversion, cmp_nb_canaux_converti)
+process(etat_present, mode, start, termine_conversion_canal, fin_conversion, cmp_fin_conversion, cmp_nb_canaux_converti)
 begin
 	case etat_present is
 		when attente =>
@@ -100,12 +93,12 @@ begin
 			occupe <= '0';
 			termine <= '0';
 			if(start = '1') then
-				etat_suivant <= load_input;
+				etat_suivant <= choix_mode_load_input;
 			else
 				etat_suivant <= attente;
 			end if;
 			
-		when load_input =>
+		when choix_mode_load_input =>
 			reset_input <= '1';
 			enable_input <= '1';
 			enable_compteur_nb_cycle_conv <= '0';
@@ -117,25 +110,11 @@ begin
 			arret <= '0';
 			occupe <= '1';
 			termine <= '0';
-			etat_suivant <= choix_mode;
-			
-		when choix_mode =>
-			reset_input <= '1';
-			enable_input <= '0';
-			enable_compteur_nb_cycle_conv <= '0';
-			reset_compteur_nb_cycle_conv <= '0';
-			enable_compteur_nb_canaux_conv <= '0';
-			reset_compteur_nb_canaux_conv <= '0';
-			start_1CH <= '0';
-			start_seq <= '0';
-			arret <= '0';
-			occupe <= '1';
-			termine <= '0';
-			if(mode_int = "01") then
+			if(mode = "01") then
 				etat_suivant <= demarrer_conversion_mode1;
-			elsif(mode_int = "10") then
+			elsif(mode = "10") then
 				etat_suivant <= demarrer_conversion_seq;
-			elsif(mode_int = "11") then
+			elsif(mode = "11") then
 				etat_suivant <= demarrer_conversion_seq;
 			else
 				etat_suivant <= attente;

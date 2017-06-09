@@ -56,7 +56,7 @@ component FSM_controle_mode_adc_12bits is
            mode : in  STD_LOGIC_VECTOR (1 downto 0);
            nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);
 			  nb_canaux : in std_logic_vector(3 downto 0);
-           start_1CH, start_seq, arret, occupe, termine : out  STD_LOGIC);
+           start_1CH, start_seq, arret, occupe, termine, reset_input, enable_input : out  STD_LOGIC);
 end component;
 
 component generation_pulse is

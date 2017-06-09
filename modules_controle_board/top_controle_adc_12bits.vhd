@@ -46,20 +46,33 @@ end top_controle_adc_12bits;
 architecture Behavioral of top_controle_adc_12bits is
 
 signal start_seq_int, start_1Ch_int, arret_conversion, occupe_conversion, termine_conversion, donne_conversion_pret_int,
-		 occupe_mode, termine_mode : std_logic;
+		 occupe_mode, termine_mode, reset_input, enable_input : std_logic;
+signal canal_conversion_int : std_logic_vector(2 downto 0);
+signal mode_conversion_int : std_logic_vector(1 downto 0);
+signal nb_cycle_conversion_int : std_logic_vector(31 downto 0);
+signal nb_canaux_conversion_int : std_logic_vector(3 downto 0);
+signal sequence_conversion_int : std_logic_vector(7 downto 0);
 
 begin
+
+--registre des inputs
+registre_mode : registreNbits generic map(2) port map(clk => clk, reset => reset_input, en => enable_input, d => mode_conversion, q_out => mode_conversion_int);
+registre_nb_cycle_conv : registreNbits generic map(32) port map(clk => clk, reset => reset_input, en => enable_input, d => nb_cycle_conversion, q_out => nb_cycle_conversion_int);
+registre_nb_canaux : registreNbits generic map(4) port map(clk => clk, reset => reset_input, en => enable_input, d => nb_canaux_conversion, q_out => nb_canaux_conversion_int);
+registre_canal_conv : registreNbits generic map(3) port map(clk => clk, reset => reset_input, en => enable_input, d => canal_conversion, q_out => canal_conversion_int);
+registre_sequence_conv : registreNbits generic map(8) port map(clk => clk, reset => reset_input, en => enable_input, d => sequence_conversion, q_out => sequence_conversion_int);
+
 
 --module de controle de l'ADC 12 bits
 ctrl_adc_12bits : top_controle_spi_adc_12bits port map(clk => clk, start_seq => start_seq_int, start_1CH => start_1CH_int, reset => reset, 
 																		 DOUT => DOUT, arret => arret_conversion, occupe => occupe_conversion, termine => termine_conversion,
 																		 data_rdy => donne_conversion_pret_int, CS => CS, SCLK => SCLK, DIN => DIN, data_out_conversion => donne_conversion,
-																		 canal => canal_conversion, sequence => sequence_conversion);
+																		 canal => canal_conversion_int, sequence => sequence_conversion_int);
 --module de controle de mode de l'ADC 12 bits
 FSM_ctrl_mode : FSM_controle_mode_adc_12bits port map(clk => clk, reset => reset, start => start, termine_conversion_canal => donne_conversion_pret_int,
-																		fin_conversion => termine_conversion, mode => mode_conversion, nb_cycle_conversion => nb_cycle_conversion,
-																		nb_canaux => nb_canaux_conversion, start_1CH => start_1CH_int, start_seq => start_seq_int, occupe => occupe_mode,
-																		termine => termine_mode, arret => arret_conversion);
+																		fin_conversion => termine_conversion, mode => mode_conversion_int, nb_cycle_conversion => nb_cycle_conversion_int,
+																		nb_canaux => nb_canaux_conversion_int, start_1CH => start_1CH_int, start_seq => start_seq_int, occupe => occupe_mode,
+																		termine => termine_mode, arret => arret_conversion, reset_input => reset_input, enable_input => enable_input);
 																		
 --signaux sortie
 donne_conversion_pret <= donne_conversion_pret_int;
