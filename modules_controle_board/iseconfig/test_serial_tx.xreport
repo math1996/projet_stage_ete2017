@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2017-05-30T10:48:21</DateModified>
-  <ModuleName>LUT_1024_sin</ModuleName>
-  <SummaryTimeStamp>2017-05-11T12:14:16</SummaryTimeStamp>
+  <DateModified>2017-06-09T12:53:43</DateModified>
+  <ModuleName>top_test_mode_adc_12bits</ModuleName>
+  <SummaryTimeStamp>2017-06-09T12:42:17</SummaryTimeStamp>
   <SavedFilePath>C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/iseconfig/test_serial_tx.xreport</SavedFilePath>
   <ImplementationReportsDirectory>C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board\</ImplementationReportsDirectory>
-  <DateInitialized>2017-05-30T10:48:20</DateInitialized>
+  <DateInitialized>2017-06-09T09:45:05</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>
  <body>

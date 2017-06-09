@@ -152,7 +152,7 @@ end component;
 
 component FSM_envoyer_Noctets is
 generic(N: integer:=1);
-    Port ( clk, reset, start : in  STD_LOGIC;
+    Port ( clk, reset, start, block_tx : in  STD_LOGIC;
            data : in  STD_LOGIC_VECTOR ((8*N)-1 downto 0);
            tx, occupe, termine : out  STD_LOGIC);
 end component;
@@ -167,7 +167,7 @@ end component;
 
 
 component FSM_serial_tx is
-    Port ( clk, start, reset : in  STD_LOGIC;
+    Port ( clk, start, reset, block_tx : in  STD_LOGIC;
 				data : in std_logic_vector(7 downto 0);
 				tx, occupe, termine: out  STD_LOGIC);
 end component;

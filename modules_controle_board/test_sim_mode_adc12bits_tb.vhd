@@ -26,7 +26,10 @@
 -- simulation model.
 --------------------------------------------------------------------------------
 LIBRARY ieee;
-USE ieee.std_logic_1164.ALL;
+library modules;
+use modules.usr_package.all;
+use IEEE.STD_LOGIC_1164.ALL;
+use ieee.std_logic_unsigned.all;
  
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -51,7 +54,7 @@ ARCHITECTURE behavior OF test_sim_mode_adc12bits_tb IS
          tx : OUT  std_logic;
          occupe : OUT  std_logic;
          termine : OUT  std_logic;
-         data_out : OUT  std_logic_vector(15 downto 0)
+         data_out_test : OUT  std_logic_vector(15 downto 0)
         );
     END COMPONENT;
     
@@ -69,7 +72,7 @@ ARCHITECTURE behavior OF test_sim_mode_adc12bits_tb IS
    signal tx : std_logic;
    signal occupe : std_logic;
    signal termine : std_logic;
-   signal data_out : std_logic_vector(15 downto 0);
+   signal data_out_test : std_logic_vector(15 downto 0);
 
    -- Clock period definitions
    constant clk_period : time := 20 ns;
@@ -88,7 +91,7 @@ BEGIN
           tx => tx,
           occupe => occupe,
           termine => termine,
-          data_out => data_out
+          data_out_test => data_out_test
         );
 
    -- Clock process definitions
@@ -115,7 +118,7 @@ BEGIN
 		wait for clk_period*100;
 		rx <= '1';
 		wait for clk_period*100;
-		rx <= '1';
+		rx <= '0';
 		wait for clk_period*100;
 		rx <= '0';
 		wait for clk_period*100;

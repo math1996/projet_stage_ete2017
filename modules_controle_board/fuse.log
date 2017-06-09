@@ -1,0 +1,39 @@
+Running: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/test_sim_mode_adc12bits_tb_isim_beh.exe -prj C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/test_sim_mode_adc12bits_tb_beh.prj work.test_sim_mode_adc12bits_tb work.glbl 
+ISim P.20131013 (signature 0x7708f090)
+Number of CPUs detected in this system: 4
+Turning on mult-threading, number of parallel sub-compilation jobs: 8 
+Determining compilation order of HDL files
+Analyzing Verilog file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/serial_tx.v" into library work
+WARNING:HDLCompiler:693 - "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/serial_tx.v" Line 14: Parameter declaration becomes local in serial_tx with formal parameter declaration list
+Analyzing Verilog file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/serial_rx.v" into library work
+WARNING:HDLCompiler:693 - "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/serial_rx.v" Line 12: Parameter declaration becomes local in serial_rx with formal parameter declaration list
+Analyzing Verilog file "C:/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/usr_package.vhd" into library modules
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/registre1bit.vhd" into library modules
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/mux_2_1.vhd" into library modules
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/rdc_Nbits.vhd" into library modules
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/rdc_load_nbits.vhd" into library modules
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/compteurNbits.vhd" into library modules
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/registreNbits.vhd" into library modules
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/FSM_recuperer_donnee_adc_12bits.vhd" into library modules
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/FSM_convertir_1canal_adc12bits.vhd" into library modules
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/FSM_conversion_seq_choix_canaux_adc12bits.vhd" into library modules
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/configuration_spi_adc_12bits.vhd" into library modules
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/top_controle_spi_adc_12bits.vhd" into library modules
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/FSM_serial_tx.vhd" into library modules
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/FSM_controle_mode_adc_12bits.vhd" into library modules
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/top_controle_adc_12bits.vhd" into library modules
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/memoire_tampon_NxM.vhd" into library modules
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/FSM_envoyer_Noctets.vhd" into library modules
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/diviseur_clk.vhd" into library modules
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/buffer_8xM.vhd" into library modules
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/top_test_mode_adc_12bits.vhd" into library work
+WARNING:HDLCompiler:946 - "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/top_test_mode_adc_12bits.vhd" Line 80: Actual for formal port enable is neither a static name nor a globally static expression
+WARNING:HDLCompiler:946 - "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/top_test_mode_adc_12bits.vhd" Line 84: Actual for formal port reset is neither a static name nor a globally static expression
+WARNING:HDLCompiler:946 - "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/top_test_mode_adc_12bits.vhd" Line 88: Actual for formal port reset is neither a static name nor a globally static expression
+WARNING:HDLCompiler:946 - "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/top_test_mode_adc_12bits.vhd" Line 109: Actual for formal port enable is neither a static name nor a globally static expression
+Parsing VHDL file "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/test_sim_mode_adc12bits_tb.vhd" into library work
+Starting static elaboration
+WARNING:HDLCompiler:89 - "C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/FSM_serial_tx.vhd" Line 52: <serial_tx> remains a black-box since it has no binding entity.
+Completed static elaboration
+ERROR:Simulator:793 - Unable to elaborate instantiated module serial_tx

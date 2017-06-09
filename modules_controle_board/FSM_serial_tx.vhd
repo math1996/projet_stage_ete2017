@@ -30,7 +30,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity FSM_serial_tx is
-    Port ( clk, start, reset : in  STD_LOGIC;
+    Port ( clk, start, reset, block_tx : in  STD_LOGIC;
 				data : in std_logic_vector(7 downto 0);
 				tx, occupe, termine: out  STD_LOGIC);
 end FSM_serial_tx;
@@ -49,7 +49,8 @@ signal block_tx_int, new_data_int, busy_int, ready_int : std_logic;
 
 begin
 
-com_serie_tx : serial_tx port map(clk => clk, rst => reset, block_tx => '0', new_data => new_data_int, data => data, busy => busy_int, tx => tx);
+com_serie_tx : serial_tx port map(clk => clk, rst => reset, block_tx => block_tx, new_data => new_data_int, data => data, busy => busy_int, tx => tx);
+
 occupe <= busy_int;
 
 process(clk, reset)

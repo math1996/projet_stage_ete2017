@@ -57,6 +57,8 @@ signal clk_divise_int, termine_int, occupe_int, ready, occupe_envoie, envoyer_da
 
 begin
 
+tx <= '1';
+
 --choisir 12.5 MHz comme fréquence d'horloge
 diviseur_horloge : diviseur_clk generic map (1) port map(clk => clk, reset => reset, enable => '1', clk_out_reg => clk_divise_int);
 
@@ -67,7 +69,7 @@ controle_adc12bits : controle_spi_adc_12bits port map(clk => clk_divise_int, res
 --module de communication série rx
 com_serie_rx : serial_rx port map(clk => clk_divise_int, rst => reset, rx => rx, data => data_recu, new_data => ready);
 
-output_led_conversion <= donnees_adc(7 downto 0);
+output_led_conversion <= donnees_adc(15 downto 8);
 
 --machine à état du controle du test de l'ADC 12 bits
 process(clk_divise_int, reset)

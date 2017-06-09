@@ -35,7 +35,6 @@ use ieee.std_logic_unsigned.all;
 entity controle_spi_adc_10bits is
     Port ( start, clk, reset, DOUT, SSTRB : in  STD_LOGIC;
            DIN, SCLK, CS, occupe, termine, SHDN: out  STD_LOGIC;
-			  --output temporaire
 			  canal : in  std_logic_vector(2 downto 0);
 			  donnes : out std_logic_vector(15 downto 0));
 end controle_spi_adc_10bits;
@@ -56,20 +55,22 @@ signal etat_present, etat_suivant : etat_ctrl_adc10bits;
 
 begin
 
+--module de configuration de l'ADC 10 bits
 config_adc10bits: configuration_spi_adc_10bits port map(clk => clk, start => start_fsm_config, reset => reset_fsm_config, load => load_int, termine => fsm_config_termine, 
 																			occupe => fsm_config_occupe, DIN => DIN, SCLK => fsm_config_sclk, CS => fsm_config_cs);
-																			
+
+--module de récupération des données de l'ADC 10 bits																			
 recup_donnee: recuperation_donnee_spi_adc_10bits port map(clk => clk, start => fsm_config_termine, reset => reset_fsm_recup, SSTRB => SSTRB, DOUT => DOUT,
 																				CS => fsm_recup_cs, SCLK => fsm_recup_sclk, occupe => fsm_recup_occupe, termine => fsm_recup_termine, 
-																				data_out => donnee_recupere);
-																				
-registre_tampon : registreNbits generic map(16) port map(clk => clk, reset => reset, en => fsm_recup_termine, d => donnee_recupere, q_out => donnes);
-																		
+																				data_out => donnes);
+				
+--signaux de sortie																		
 SCLK <= fsm_recup_sclk or fsm_config_sclk;
 CS <= fsm_recup_cs and fsm_config_cs;
 occupe <= fsm_recup_occupe or fsm_config_occupe;
 SHDN <= '1';
 
+--machine à état gérant une conversion
 process(clk, reset)
 begin
 	if(reset = '0') then
@@ -115,8 +116,8 @@ begin
 			end if;
 			
 		when fin =>
-			reset_fsm_config <= '0';
-			reset_fsm_recup <= '0';
+			reset_fsm_config <= '1';
+			reset_fsm_recup <= '1';
 			start_fsm_config <= '0';
 			load_int <= (others => '0');
 			termine <= '1';
@@ -128,7 +129,6 @@ begin
 			start_fsm_config <= '0';
 			load_int <= (others => '0');
 			termine <= '0';
-			occupe <= '0';
 			etat_suivant <= attente;
 	end case;
 end process;

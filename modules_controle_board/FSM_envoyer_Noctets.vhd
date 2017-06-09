@@ -34,7 +34,7 @@ use ieee.std_logic_unsigned.all;
 
 entity FSM_envoyer_Noctets is
 generic(N: integer:=1);
-    Port ( clk, reset, start : in  STD_LOGIC;
+    Port ( clk, reset, start, block_tx : in  STD_LOGIC;
            data : in  STD_LOGIC_VECTOR ((8*N)-1 downto 0);
            tx, occupe, termine : out  STD_LOGIC);
 end FSM_envoyer_Noctets;
@@ -50,7 +50,7 @@ signal data_int :std_logic_vector(7 downto 0);
 begin
 
 com_serie_tx : FSM_serial_tx port map(clk => clk, start => demarrage_transfert, reset => reset_tx, data => data_int, tx => tx,
-													occupe => occupe, termine => termine_transfert);
+													occupe => occupe, termine => termine_transfert, block_tx => block_tx);
 													
 process(clk, reset)
 begin
