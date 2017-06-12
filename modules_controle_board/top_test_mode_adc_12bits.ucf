@@ -2,16 +2,15 @@
 # PlanAhead Generated physical constraints 
 
 NET "termine" LOC = P134 | IOSTANDARD = LVTTL;
-NET "tx" LOC = P59 | IOSTANDARD = LVTTL;
-NET "rx" LOC = P55 | IOSTANDARD = LVTTL;
+NET "tx" LOC = P114 | IOSTANDARD = LVTTL;
+NET "rx" LOC = P111 | IOSTANDARD = LVTTL;
 NET "DOUT" LOC = P50 | IOSTANDARD = LVTTL;
 NET "DIN" LOC = P15 | IOSTANDARD = LVTTL;
 NET "CS" LOC = P14 | IOSTANDARD = LVTTL;
 NET "clk" LOC = P56 | IOSTANDARD = LVTTL;
 NET "reset" LOC = P38 | IOSTANDARD = LVTTL;
 NET "SCLK" LOC = P51 | IOSTANDARD = LVTTL;
-NET "occupe" LOC = P66 | IOSTANDARD = LVTTL;
-NET "block_tx" LOC = P39 | IOSTANDARD = LVTTL;
+NET "occupe" LOC = P123 | IOSTANDARD = LVTTL;
 NET "data_out_test[0]" LOC = P104 | IOSTANDARD = LVTTL;
 NET "data_out_test[1]" LOC = P78 | IOSTANDARD = LVTTL;
 NET "data_out_test[2]" LOC = P80 | IOSTANDARD = LVTTL;
@@ -27,4 +26,4 @@ NET "data_out_test[11]" LOC = P131 | IOSTANDARD = LVTTL;
 NET "data_out_test[12]" LOC = P127 | IOSTANDARD = LVTTL;
 NET "data_out_test[13]" LOC = P126 | IOSTANDARD = LVTTL;
 NET "data_out_test[14]" LOC = P124 | IOSTANDARD = LVTTL;
-NET "data_out_test[15]" LOC = P123 | IOSTANDARD = LVTTL;
+NET "data_out_test[15]" LOC = P66 | IOSTANDARD = LVTTL;

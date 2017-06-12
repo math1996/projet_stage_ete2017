@@ -43,7 +43,7 @@ component serial_tx is
 			busy, tx : out std_logic);
 end component;
 
-type etat_test_com_serie is (attente, attente_busy, envoie, attente_fin_envoie, fin);
+type etat_test_com_serie is (attente, envoie, attente_fin_envoie, fin);
 signal etat_present, etat_suivant : etat_test_com_serie;
 signal block_tx_int, new_data_int, busy_int, ready_int : std_logic;
 
@@ -69,20 +69,11 @@ begin
 			new_data_int <= '0';
 			termine <= '0';
 			if(start = '1') then	
-				etat_suivant <= attente_busy;
+				etat_suivant <= envoie;
 			else
 				etat_suivant <= attente;
 			end if;
-		
-		when attente_busy =>
-			new_data_int <= '0';
-			termine <= '0';
-			if(busy_int = '0') then
-				etat_suivant <= envoie;
-			else
-				etat_suivant <= attente_busy;
-			end if;
-		
+			
 		when envoie =>
 			new_data_int <= '1';
 			termine <= '0';
@@ -104,6 +95,7 @@ begin
 			
 		when others =>
 			new_data_int <= '0';
+			termine <= '0';
 			etat_suivant <= attente;
 			
 	end case;

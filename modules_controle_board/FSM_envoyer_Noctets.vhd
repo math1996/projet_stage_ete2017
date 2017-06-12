@@ -34,23 +34,26 @@ use ieee.std_logic_unsigned.all;
 
 entity FSM_envoyer_Noctets is
 generic(N: integer:=1);
-    Port ( clk, reset, start, block_tx : in  STD_LOGIC;
+    Port ( clk, reset, start : in  STD_LOGIC;
            data : in  STD_LOGIC_VECTOR ((8*N)-1 downto 0);
            tx, occupe, termine : out  STD_LOGIC);
 end FSM_envoyer_Noctets;
 
 architecture Behavioral of FSM_envoyer_Noctets is
 
-type etat_fsm_envoie_Noctets is (attente, demarrage1, attente1, demarrage2, attente2, fin);
+type etat_fsm_envoie_Noctets is (attente, demarrage1, attente1, demarrage2, attente2, fin, tampon);
 signal etat_present, etat_suivant : etat_fsm_envoie_Noctets;
 
-signal reset_tx, demarrage_transfert, termine_transfert: std_logic;
+signal reset_tx, demarrage_transfert, termine_transfert, mode: std_logic;
 signal data_int :std_logic_vector(7 downto 0);
 
 begin
 
 com_serie_tx : FSM_serial_tx port map(clk => clk, start => demarrage_transfert, reset => reset_tx, data => data_int, tx => tx,
-													occupe => occupe, termine => termine_transfert, block_tx => block_tx);
+													occupe => occupe, termine => termine_transfert, block_tx => '0');
+
+data_int <= data(15 downto 8) when mode = '0' else
+				data(7 downto 0);
 													
 process(clk, reset)
 begin
@@ -68,42 +71,50 @@ begin
 			demarrage_transfert <= '0';
 			reset_tx <= '0';
 			termine <= '0';
-			data_int <= (others => '0');
+			mode <= '0';
 			if(start = '1') then
 				etat_suivant <= demarrage1;
 			else
 				etat_suivant <= attente;
 			end if;
+			
 		when demarrage1 =>
 			demarrage_transfert <= '1';
 			reset_tx <= '1';
 			termine <= '0';
-			data_int <= data(15 downto 8);
+			mode <= '0';
 			etat_suivant <= attente1;
 	
 		when attente1 =>
 			demarrage_transfert <= '0';
 			reset_tx <= '1';
 			termine <= '0';
-			data_int <= data(15 downto 8);
+			mode <= '0';
 			if(termine_transfert = '1') then
-				etat_suivant <= demarrage2;
+				etat_suivant <= tampon;
 			else	
 				etat_suivant <= attente1;
 			end if;
+		
+		when tampon =>
+			demarrage_transfert <= '0';
+			reset_tx <= '1';
+			termine <= '0';
+			mode <= '0';
+			etat_suivant <= demarrage2;
 			
 		when demarrage2 =>
 			demarrage_transfert <= '1';
 			reset_tx <= '1';
 			termine <= '0';
-			data_int <= data(7 downto 0);
+			mode <= '1';
 			etat_suivant <= attente2;
 		
 		when attente2 =>
 			demarrage_transfert <= '0';
 			reset_tx <= '1';
 			termine <= '0';
-			data_int <= data(7 downto 0);
+			mode <= '1';
 			if(termine_transfert = '1') then
 				etat_suivant <= fin;
 			else
@@ -114,14 +125,14 @@ begin
 			demarrage_transfert <= '0';
 			reset_tx <= '0';
 			termine <= '1';
-			data_int <= (others => '1');
+			mode <= '0';
 			etat_suivant <= attente;
 			
 		when others =>
 			demarrage_transfert <= '0';
 			reset_tx <= '0';
 			termine <= '0';
-			data_int <= (others => '1');
+			mode <= '0';
 			etat_suivant <= attente;
 	end case;
 end process;

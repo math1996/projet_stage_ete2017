@@ -41,7 +41,7 @@ end FSM_controle_mode_adc_12bits;
 
 architecture Behavioral of FSM_controle_mode_adc_12bits is
 
-type etat_ctrl_mode_adc12bits is (attente, choix_mode_load_input, demarrer_conversion_mode1, demarrer_conversion_seq, attente_conversion_mode1,
+type etat_ctrl_mode_adc12bits is (attente, choix_mode, load_input, demarrer_conversion_mode1, demarrer_conversion_seq, attente_conversion_mode1,
 											 attente_conversion_seq, arret_conversion, fin, compter_cycle_conversion);
 signal etat_present, etat_suivant : etat_ctrl_mode_adc12bits;
 
@@ -93,14 +93,28 @@ begin
 			occupe <= '0';
 			termine <= '0';
 			if(start = '1') then
-				etat_suivant <= choix_mode_load_input;
+				etat_suivant <= load_input;
 			else
 				etat_suivant <= attente;
 			end if;
 			
-		when choix_mode_load_input =>
+		when load_input =>
 			reset_input <= '1';
 			enable_input <= '1';
+			enable_compteur_nb_cycle_conv <= '0';
+			reset_compteur_nb_cycle_conv <= '0';
+			enable_compteur_nb_canaux_conv <= '0';
+			reset_compteur_nb_canaux_conv <= '0';
+			start_1CH <= '0';
+			start_seq <= '0';
+			arret <= '0';
+			occupe <= '1';
+			termine <= '0';
+			etat_suivant <= choix_mode;
+		
+		when choix_mode =>
+			reset_input <= '1';
+			enable_input <= '0';
 			enable_compteur_nb_cycle_conv <= '0';
 			reset_compteur_nb_cycle_conv <= '0';
 			enable_compteur_nb_canaux_conv <= '0';
@@ -113,8 +127,6 @@ begin
 			if(mode = "01") then
 				etat_suivant <= demarrer_conversion_mode1;
 			elsif(mode = "10") then
-				etat_suivant <= demarrer_conversion_seq;
-			elsif(mode = "11") then
 				etat_suivant <= demarrer_conversion_seq;
 			else
 				etat_suivant <= attente;

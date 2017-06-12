@@ -34,7 +34,7 @@ use ieee.std_logic_unsigned.all;
 
 
 entity top_test_mode_adc_12bits is
-    Port ( clk, reset, DOUT, rx, block_tx: in  STD_LOGIC;
+    Port ( clk, reset, DOUT, rx: in  STD_LOGIC;
 				data_out_test : out std_logic_vector(15 downto 0);
            CS, SCLK, DIN, tx, occupe, termine : out  STD_LOGIC);
 end top_test_mode_adc_12bits;
@@ -67,7 +67,7 @@ signal compteur_envoie : std_logic_vector(5 downto 0);
 begin
 
 --signaux sortie
-occupe <= occupe_adc or occupe_envoie;
+occupe <= occupe_envoie or occupe_adc;
 data_out_test <= data_out_int;
 --diviseur d'horloge à 12.5 MHz
 diviseur_horloge : diviseur_clk generic map (1) port map(clk => clk, reset => reset, enable => '1', clk_out_reg => clk_int);
@@ -96,7 +96,7 @@ cmp_param_1CH <= '1' when compte_buffer_rx >= 5 else
 cmp_param_seq <= '1' when compte_buffer_rx >= 6 else
 					  '0';
 					  
-cmp_fin_envoie <= '1' when compteur_envoie >= "000100" else
+cmp_fin_envoie <= '1' when compteur_envoie >= 32 else
 						'0';
 
 --assignation des signaux pour le buffer de réception
@@ -112,7 +112,7 @@ buffer_recup : memoire_tampon_NxM generic map(16,32) port map(clk => clk_int, en
 
 --communication série tx
 com_serie_tx : FSM_envoyer_Noctets generic map(2) port map(clk => clk_int, reset => reset, start => start_envoie, data => data_out_int, tx => tx,
-																				occupe => occupe_envoie, termine	=> termine_envoie, block_tx => block_tx);
+																				occupe => occupe_envoie, termine	=> termine_envoie);
 --compteur du nombre de donnée envoyée
 compteur_data_envoie : compteurNbits generic map(6) port map(clk => clk_int, reset => reset_compteur_envoie, enable => enable_compteur_envoie, output => compteur_envoie);
 																			
@@ -265,7 +265,7 @@ begin
 			start_adc <= '0';
 			reset_compteur <= '0';
 			enable_compteur <= '0';
-			termine <= '1';
+			termine <= '0';
 			start_envoie <= '0';
 			decalage_envoie <= '1';
 			reset_compteur_envoie <= '1';
@@ -285,12 +285,12 @@ begin
 			start_adc <= '0';
 			reset_compteur <= '0';
 			enable_compteur <= '0';
-			termine <= '0';
+			termine <= '1';
 			start_envoie <= '0';
 			decalage_envoie <= '0';
 			reset_compteur_envoie <= '0';
 			enable_compteur_envoie <= '0';
-			etat_suivant <= fin;
+			etat_suivant <= attente;
 		
 		when others => 
 			reset_buffer_rx <= '0';

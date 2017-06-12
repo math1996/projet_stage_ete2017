@@ -33,18 +33,12 @@ use ieee.std_logic_unsigned.all;
 --use UNISIM.VComponents.all;
 
 entity test_serial_tx is
-    Port ( clk, reset, rx , block_tx : in  STD_LOGIC;
+    Port ( clk, reset, rx : in  STD_LOGIC;
            tx : out  STD_LOGIC;
 			  data_out_parallele : out std_logic_vector(7 downto 0));
 end test_serial_tx;
 
 architecture Behavioral of test_serial_tx is
-
-component serial_tx is 
-	port(clk, rst, block_tx, new_data : in std_logic;
-			data : in std_logic_vector(7 downto 0);
-			busy, tx : out std_logic);
-end component;
 
 component serial_rx is 
 	port(clk, rst, rx : in std_logic;
@@ -52,12 +46,19 @@ component serial_rx is
 			new_data : out std_logic);
 end component;
 
+component serial_tx is 
+	port(clk, rst, block_tx, new_data : in std_logic;
+			data : in std_logic_vector(7 downto 0);
+			busy, tx : out std_logic);
+end component;
+
 type etat_test_tx is (attente, demarrer_envoie, attente_envoie, fin_envoie, fin);
 signal etat_present, etat_suivant : etat_test_tx;
 
-signal termine_int, occupe_int, ready_int, clk_int, reset_compteur, enable_compteur, start_envoie, cmp : std_logic;
+signal termine_int, occupe_int, ready_int, clk_int, reset_compteur, enable_compteur, start_envoie, cmp, busy_int, demarrer_transfert,
+			occupe_envoie, termine_envoie, mode: std_logic;
 signal data_recu : std_Logic_vector(7 downto 0);
-signal data_int_add : std_logic_vector(7 downto 0);
+signal data_int_add, data_envoie : std_logic_vector(7 downto 0);
 signal data_int : std_logic_vector(15 downto 0);
 signal compteur : std_logic_vector(7 downto 0);
 
@@ -130,7 +131,7 @@ begin
 			start_envoie <= '0';
 			reset_compteur <= '0';
 			enable_compteur <= '0';
-			etat_suivant <= fin;
+			etat_suivant <= attente;
 		
 		when others => 
 			start_envoie <= '0';
@@ -141,12 +142,105 @@ begin
 	end case;	
 end process;
 
+--mux
+--data_envoie <= data_int(15 downto 8) when mode = '0' else
+--					data_int(7 downto 0);
 
-diviseur_horloge: diviseur_clk generic map(4) port map(clk => clk, reset => reset, enable => '1', clk_out_reg => clk_int);
+diviseur_horloge: diviseur_clk generic map(1) port map(clk => clk, reset => reset, enable => '1', clk_out_reg => clk_int);
 
 com_serie_tx : FSM_envoyer_Noctets generic map(2) port map(clk => clk_int, reset => reset, start => start_envoie, data => data_int, tx => tx,
-																			occupe => occupe_int, termine => termine_int, block_tx => block_tx);
+																		occupe => occupe_int, termine => termine_int);
 com_serie_rx : serial_rx port map(clk => clk_int, rst => reset, rx => rx, data => data_recu, new_data => ready_int);
+
+--com_serie_tx : serial_tx port map(clk => clk_int, rst => reset, block_tx => '0', new_data => demarrer_transfert, data => data_int_add, busy => busy_int, tx => tx);
+--com_serie_tx : FSM_serial_tx port map(clk => clk_int, start => demarrer_transfert, reset => reset, block_tx => '0', data => data_envoie, tx => tx, occupe => occupe_envoie,
+--												termine => termine_envoie);
+
+--process(reset, clk_int)
+--begin
+--	if(reset = '0') then
+--		etat_present <= attente;
+--	elsif(clk_int'event and clk_int = '1') then
+--		etat_present <= etat_suivant;
+--	end if;
+--end process;
+--
+--process(etat_present, cmp, ready_int, termine_envoie)
+--begin
+--	case etat_present is 
+--		when attente =>
+--			enable_compteur <= '0';
+--			reset_compteur <= '0';
+--			demarrer_transfert <= '0';
+--			mode <= '0';
+--			if(ready_int = '1') then
+--				etat_suivant <= demarrer1;
+--			else
+--				etat_suivant <= attente;
+--			end if;
+--			
+--		when demarrer1 =>
+--			enable_compteur <= '1';
+--			reset_compteur <= '1';
+--			demarrer_transfert <= '1';
+--			mode <= '0';
+--			etat_suivant <= attente_envoie1;
+--		
+--		when attente_envoie1 =>
+--			enable_compteur <= '0';
+--			reset_compteur <= '1';
+--			demarrer_transfert <= '0';
+--			mode <= '0';
+--			if(termine_envoie = '1') then
+--				etat_suivant <= tampon;
+--			else
+--				etat_suivant <= attente_envoie1;
+--			end if;
+--		
+--		when tampon =>
+--			enable_compteur <= '0';
+--			reset_compteur <= '1';
+--			demarrer_transfert <= '0';
+--			mode <= '0';
+--			etat_suivant <= demarrer2;
+--		
+--		when demarrer2 =>
+--			enable_compteur <= '0';
+--			reset_compteur <= '1';
+--			demarrer_transfert <= '1';
+--			mode <= '1';
+--			etat_suivant <= attente_envoie2;
+--		
+--		when attente_envoie2 =>
+--			enable_compteur <= '0';
+--			reset_compteur <= '1';
+--			demarrer_transfert <= '0';
+--			mode <= '1';
+--			if(termine_envoie = '1') then
+--				etat_suivant <= fin_envoie;
+--			else
+--				etat_suivant <= attente_envoie2;
+--			end if;
+--			
+--		when fin_envoie =>
+--			enable_compteur <= '0';
+--			reset_compteur <= '1';
+--			demarrer_transfert <= '0';
+--			mode <= '1';
+--			if(cmp = '1') then
+--				etat_suivant <= attente;
+--			else
+--				etat_suivant <= demarrer1;
+--			end if;
+--			
+--		when others =>
+--			enable_compteur <= '0';
+--			reset_compteur <= '0';
+--			demarrer_transfert <= '0';
+--			mode <= '0';
+--			etat_suivant <= attente;
+--	end case;	
+--end process;
 
 data_out_parallele <= data_int_add;
 data_int_add <= data_recu + 1;
