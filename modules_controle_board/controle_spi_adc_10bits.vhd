@@ -62,8 +62,10 @@ config_adc10bits: configuration_spi_adc_10bits port map(clk => clk, start => sta
 --module de récupération des données de l'ADC 10 bits																			
 recup_donnee: recuperation_donnee_spi_adc_10bits port map(clk => clk, start => fsm_config_termine, reset => reset_fsm_recup, SSTRB => SSTRB, DOUT => DOUT,
 																				CS => fsm_recup_cs, SCLK => fsm_recup_sclk, occupe => fsm_recup_occupe, termine => fsm_recup_termine, 
-																				data_out => donnes);
-				
+																				data_out => donnee_recupere);
+--registre de sortie de récupération des données
+registre_sortie: registreNbits generic map(16) port map(clk => clk, reset => reset, en => fsm_recup_termine, d => donnee_recupere,	q_out => donnes);
+			
 --signaux de sortie																		
 SCLK <= fsm_recup_sclk or fsm_config_sclk;
 CS <= fsm_recup_cs and fsm_config_cs;

@@ -45,8 +45,8 @@ end top_controle_adc_10bits;
 
 architecture Behavioral of top_controle_adc_10bits is
 
-signal start_conv_recup, occupe_conversion_recup, termine_conversion_recup, occupe_fsm_mode : std_logic;
-signal canal_conversion_int : std_logic_vector(2 downto 0);
+signal start_conv_recup, occupe_conversion_recup, termine_conversion_recup, occupe_mode, enable_input, reset_input : std_logic;
+signal canal_conversion_int, canal_a_convertir_int : std_logic_vector(2 downto 0);
 signal mode_conversion_int : std_logic_vector(1 downto 0);
 signal nb_cycle_conversion_int : std_logic_vector(31 downto 0);
 signal nb_canaux_conversion_int : std_logic_vector(3 downto 0);
@@ -55,10 +55,9 @@ signal sequence_conversion_int : std_logic_vector(7 downto 0);
 
 begin
 
-
 --signaux de sortie
-donne_conversion_pret <= termine_conversion_recup;
-occupe <= occupe_conversion_recup or occupe_fsm_mode;
+donnee_conversion_pret <= termine_conversion_recup;
+occupe <= occupe_conversion_recup or occupe_mode;
 
 --registre des inputs
 registre_canal_conv : registreNbits generic map(3) port map(clk => clk, reset => reset_input, en => enable_input, d => canal_conversion, q_out => canal_conversion_int);
@@ -69,11 +68,15 @@ registre_nb_canaux_conv : registreNbits generic map(4) port map(clk => clk, rese
 
 --module de controle et de récupération des données de l'ADC 10 bits
 ctrl_recup_adc10bits : controle_spi_adc_10bits port map(clk => clk, reset => reset, start => start_conv_recup, DOUT => DOUT, SSTRB => SSTRB, DIN => DIN, SCLK => SCLK, CS => CS,
-																		 occupe => occupe_conversion_recup, termine => termine_conversion_recup, SHDN => SHDN, canal => canal_conversion_int,
-																		 donnes => donne_conversion);
+																		 occupe => occupe_conversion_recup, termine => termine_conversion_recup, SHDN => SHDN, canal => canal_a_convertir_int,
+																		 donnes => donnee_conversion);
+
 																		 
 --module de controle des modes de fonctionnement de l'ADC 10 bits
---implémenter la FSM gérant les modes + tester en simulation!!!																		 
+fsm_ctrl_mode: FSM_controle_mode_adc_10bits port map(clk => clk, reset => reset, start => start, termine_conversion_canal => termine_conversion_recup, mode => mode_conversion_int,
+																	  sequence => sequence_conversion_int, nb_cycle_conversion => nb_cycle_conversion_int, nb_canaux => nb_canaux_conversion_int,
+																	  canal_conversion => canal_conversion_int, canal_a_convertir => canal_a_convertir_int, occupe => occupe_mode, termine => termine,
+																	  enable_input => enable_input, reset_input => reset_input, start_conversion => start_conv_recup);																		 
 
 end Behavioral;
 

@@ -32,6 +32,28 @@ type tableau_memoire_8bits is array(natural range <>) of std_logic_vector(7 down
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component top_controle_adc_10bits is
+    Port ( clk, reset, start, DOUT, SSTRB : in  STD_LOGIC;
+			  canal_conversion : in  STD_LOGIC_VECTOR (2 downto 0);
+           sequence_conversion : in  STD_LOGIC_VECTOR (7 downto 0);
+           mode_conversion : in  STD_LOGIC_VECTOR (1 downto 0);
+           nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);
+           nb_canaux_conversion : in  STD_LOGIC_VECTOR (3 downto 0);
+           donnee_conversion_pret, DIN, SCLK, CS, SHDN, occupe, termine : out  STD_LOGIC;
+			  donnee_conversion : out std_logic_vector(15 downto 0));
+end component;
+
+component FSM_controle_mode_adc_10bits is
+    Port ( clk, reset, start, termine_conversion_canal : in  STD_LOGIC;
+           mode : in  STD_LOGIC_VECTOR (1 downto 0);
+			  sequence : in std_logic_vector(7 downto 0);
+           nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);
+           nb_canaux : in  STD_LOGIC_VECTOR (3 downto 0);
+			  canal_conversion : in std_logic_vector(2 downto 0);
+			  canal_a_convertir : out std_logic_vector(2 downto 0);
+           occupe, termine, enable_input, reset_input, start_conversion : out  STD_LOGIC);
+end component;
+
 component top_controle_adc_12bits is
     Port ( clk, reset, start, DOUT : in  STD_LOGIC;
            canal_conversion : in  STD_LOGIC_VECTOR (2 downto 0);
