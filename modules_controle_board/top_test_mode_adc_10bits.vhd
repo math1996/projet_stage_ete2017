@@ -64,7 +64,7 @@ signal compteur_envoie : std_logic_vector(5 downto 0);
 begin
 
 --signaux sortie
-occupe <= occupe_envoie or occupe_adc;
+occupe <= occupe_adc;
 
 --diviseur d'horloge à 1.5625 MHz
 diviseur_horloge : diviseur_clk generic map (4) port map(clk => clk, reset => reset, enable => '1', clk_out_reg => clk_int);
@@ -184,7 +184,7 @@ begin
 			else
 				etat_suivant <= attente_param_seq;
 			end if;
-			
+		
 		when demarrer_conversion =>
 			reset_buffer_rx <= '1';
 			reset_mode<= '1';

@@ -32,6 +32,23 @@ type tableau_memoire_8bits is array(natural range <>) of std_logic_vector(7 down
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component FSM_conversion_1CH_adc10bits is
+    Port ( clk, reset, start, termine_conversion : in  STD_LOGIC;
+           nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);
+			  canal_a_convertir : in std_logic_vector(2 downto 0);
+           start_conversion, occupe, termine : out  STD_LOGIC;
+			  canal_conversion : out std_logic_vector(2 downto 0));
+end component;
+
+component FSM_conversion_seq_adc10bits is
+    Port ( clk, reset, start, termine_conversion : in  STD_LOGIC;
+           nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);
+           nb_canaux : in  STD_LOGIC_VECTOR (3 downto 0);
+           sequence : in  STD_LOGIC_VECTOR (7 downto 0);
+           start_conversion, occupe, termine : out  STD_LOGIC;
+           canal_conversion : out  STD_LOGIC_VECTOR (2 downto 0));
+end component;
+
 component top_controle_adc_10bits is
     Port ( clk, reset, start, DOUT, SSTRB : in  STD_LOGIC;
 			  canal_conversion : in  STD_LOGIC_VECTOR (2 downto 0);

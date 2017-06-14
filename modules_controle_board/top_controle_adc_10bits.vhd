@@ -51,13 +51,14 @@ signal mode_conversion_int : std_logic_vector(1 downto 0);
 signal nb_cycle_conversion_int : std_logic_vector(31 downto 0);
 signal nb_canaux_conversion_int : std_logic_vector(3 downto 0);
 signal sequence_conversion_int : std_logic_vector(7 downto 0);
-
+signal donnee_conversion_int : std_logic_vector(15 downto 0);
 
 begin
 
 --signaux de sortie
 donnee_conversion_pret <= termine_conversion_recup;
-occupe <= occupe_conversion_recup or occupe_mode;
+occupe <= occupe_mode or occupe_conversion_recup;
+donnee_conversion <= donnee_conversion_int(15 downto 3) & canal_a_convertir_int;
 
 --registre des inputs
 registre_canal_conv : registreNbits generic map(3) port map(clk => clk, reset => reset_input, en => enable_input, d => canal_conversion, q_out => canal_conversion_int);
@@ -69,7 +70,7 @@ registre_nb_canaux_conv : registreNbits generic map(4) port map(clk => clk, rese
 --module de controle et de récupération des données de l'ADC 10 bits
 ctrl_recup_adc10bits : controle_spi_adc_10bits port map(clk => clk, reset => reset, start => start_conv_recup, DOUT => DOUT, SSTRB => SSTRB, DIN => DIN, SCLK => SCLK, CS => CS,
 																		 occupe => occupe_conversion_recup, termine => termine_conversion_recup, SHDN => SHDN, canal => canal_a_convertir_int,
-																		 donnes => donnee_conversion);
+																		 donnes => donnee_conversion_int);
 
 																		 
 --module de controle des modes de fonctionnement de l'ADC 10 bits
