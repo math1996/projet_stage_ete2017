@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2017-06-06T15:40:43</DateModified>
-  <ModuleName>top_test_mode_adc_12bits</ModuleName>
+  <DateModified>2017-06-15T15:27:50</DateModified>
+  <ModuleName>top_generation_onde</ModuleName>
   <SummaryTimeStamp>2017-06-06T15:09:52</SummaryTimeStamp>
   <SavedFilePath>C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/iseconfig/top_generation_onde.xreport</SavedFilePath>
   <ImplementationReportsDirectory>C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board\</ImplementationReportsDirectory>

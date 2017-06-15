@@ -146,7 +146,7 @@ end process;
 --data_envoie <= data_int(15 downto 8) when mode = '0' else
 --					data_int(7 downto 0);
 
-diviseur_horloge: diviseur_clk generic map(1) port map(clk => clk, reset => reset, enable => '1', clk_out_reg => clk_int);
+diviseur_horloge: diviseur_clk generic map(0) port map(clk => clk, reset => reset, enable => '1', clk_out_reg => clk_int);
 
 com_serie_tx : FSM_envoyer_Noctets generic map(2) port map(clk => clk_int, reset => reset, start => start_envoie, data => data_int, tx => tx,
 																		occupe => occupe_int, termine => termine_int);

@@ -80,7 +80,6 @@
          <ClosedNode>/top_controle_spi_adc_12bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_controle_spi_adc_12bits.vhd/rdc_recuperation_adc12bits - FSM_recuperer_donnee_adc_12bits - Behavioral</ClosedNode>
          <ClosedNode>/top_controle_spi_adc_12bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_controle_spi_adc_12bits.vhd/rdc_configuration_adc12bits - configuration_spi_adc_12bits - Behavioral</ClosedNode>
          <ClosedNode>/top_controle_spi_adc_12bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_controle_spi_adc_12bits.vhd/rdc_recuperation_adc12bits - FSM_recuperer_donnee_adc_12bits - Behavioral</ClosedNode>
-         <ClosedNode>/top_generation_onde - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_generation_onde.vhd</ClosedNode>
          <ClosedNode>/top_generation_onde - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_generation_onde.vhd/buffer_rx - buffer_8xM - Behavioral</ClosedNode>
          <ClosedNode>/top_generation_onde - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_generation_onde.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral</ClosedNode>
          <ClosedNode>/top_generation_onde - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_generation_onde.vhd/gen_onde_carre - generation_onde_carre - Behavioral</ClosedNode>
@@ -114,6 +113,7 @@
          <ClosedNode>/top_test_dac16bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_dac16bits.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral/config_serie_dac16bits - configuration_serie_dac_16bits - Behavioral/rdc - rdc_load_nbits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_dac16bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_dac16bits.vhd</ClosedNode>
          <ClosedNode>/top_test_dac16bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_dac16bits.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral</ClosedNode>
+         <ClosedNode>/top_test_mode_adc_10bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_mode_adc_10bits.vhd</ClosedNode>
          <ClosedNode>/top_test_mode_adc_10bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_mode_adc_10bits.vhd/buffer_recup - memoire_tampon_NxM - Behavioral</ClosedNode>
          <ClosedNode>/top_test_mode_adc_10bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_mode_adc_10bits.vhd/buffer_rx - buffer_8xM - Behavioral</ClosedNode>
          <ClosedNode>/top_test_mode_adc_10bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_mode_adc_10bits.vhd/com_serie_tx - FSM_envoyer_Noctets - Behavioral</ClosedNode>
@@ -125,6 +125,7 @@
          <ClosedNode>/top_test_mode_adc_12bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_mode_adc_12bits.vhd/buffer_recup - memoire_tampon_NxM - Behavioral</ClosedNode>
          <ClosedNode>/top_test_mode_adc_12bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_mode_adc_12bits.vhd/buffer_rx - buffer_8xM - Behavioral</ClosedNode>
          <ClosedNode>/top_test_mode_adc_12bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_mode_adc_12bits.vhd/com_serie_tx - FSM_envoyer_Noctets - Behavioral</ClosedNode>
+         <ClosedNode>/top_test_mode_adc_12bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_mode_adc_12bits.vhd/ctrl_adc12bits - top_controle_adc_12bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_mode_adc_12bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_mode_adc_12bits.vhd/ctrl_adc12bits - top_controle_adc_12bits - Behavioral/FSM_ctrl_mode - FSM_controle_mode_adc_12bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_mode_adc_12bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_mode_adc_12bits.vhd/ctrl_adc12bits - top_controle_adc_12bits - Behavioral/ctrl_adc_12bits - top_controle_spi_adc_12bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_mode_adc_12bits - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_mode_adc_12bits.vhd/ctrl_adc12bits - top_controle_adc_12bits - Behavioral/ctrl_adc_12bits - top_controle_spi_adc_12bits - Behavioral/rdc_configuration_adc12bits - configuration_spi_adc_12bits - Behavioral</ClosedNode>
@@ -148,13 +149,13 @@
          <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>top_test_mode_adc_10bits - Behavioral (C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/top_test_mode_adc_10bits.vhd)</SelectedItem>
+         <SelectedItem>top_generation_onde - Behavioral (C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/top_generation_onde.vhd)</SelectedItem>
       </SelectedItems>
-      <ScrollbarPosition orientation="vertical" >13</ScrollbarPosition>
+      <ScrollbarPosition orientation="vertical" >2</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000279000000020000000000000000000000000200000064ffffffff000000810000000300000002000002790000000100000003000000000000000100000003</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000002020000000100000001000000640000023d000000020000000000000000000000000200000064ffffffff0000008100000003000000020000023d0000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>top_test_mode_adc_10bits - Behavioral (C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/top_test_mode_adc_10bits.vhd)</CurrentItem>
+      <CurrentItem>top_generation_onde - Behavioral (C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/top_generation_onde.vhd)</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="" guiview="Process" >
       <ClosedNodes>
@@ -188,9 +189,9 @@
       <SelectedItems>
          <SelectedItem>usr_package.vhd</SelectedItem>
       </SelectedItems>
-      <ScrollbarPosition orientation="vertical" >14</ScrollbarPosition>
+      <ScrollbarPosition orientation="vertical" >28</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000000000000001000000000000000000000000000000000000015c000000010001000100000000000000000000000064ffffffff0000008100000000000000010000015c0000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000000000000000100000000000000000000000000000000000000f8000000010001000100000000000000000000000064ffffffff000000810000000000000001000000f80000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
       <CurrentItem>usr_package.vhd</CurrentItem>
    </ItemView>
@@ -205,26 +206,26 @@
          <ClosedNode>Implement Design/Translate</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem>Generate Programming File</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000015c000000010000000100000000000000000000000064ffffffff0000008100000000000000010000015c0000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000026a000000010000000100000000000000000000000064ffffffff0000008100000000000000010000026a0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem>Generate Programming File</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_UCF" guiview="Process" >
       <ClosedNodes>
          <ClosedNodesVersion>1</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem/>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000016d000000010000000100000000000000000000000064ffffffff0000008100000000000000010000016d0000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000027b000000010000000100000000000000000000000064ffffffff0000008100000000000000010000027b0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem/>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_VERILOG" guiview="Process" >
       <ClosedNodes>
@@ -234,15 +235,15 @@
          <ClosedNode>Synthesize - XST</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem/>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000016d000000010000000100000000000000000000000064ffffffff0000008100000000000000010000016d0000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000027b000000010000000100000000000000000000000064ffffffff0000008100000000000000010000027b0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem/>
    </ItemView>
-   <SourceProcessView>000000ff0000000000000002000001260000017001000000050100000002</SourceProcessView>
+   <SourceProcessView>000000ff00000000000000020000019f000000cf01000000050100000002</SourceProcessView>
    <CurrentView>Implementation</CurrentView>
    <ItemView engineview="BehavioralSim" guiview="Source" compilemode="AutoCompile" >
       <ClosedNodes>
@@ -423,13 +424,13 @@
          <ClosedNodesVersion>1</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem/>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000016d000000010000000100000000000000000000000064ffffffff0000008100000000000000010000016d0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem/>
    </ItemView>
    <ItemView engineview="PostMapSim" guiview="Source" compilemode="AutoCompile" >
       <ClosedNodes>
@@ -468,13 +469,13 @@
          <ClosedNode>Design Utilities</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem/>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000016d000000010000000100000000000000000000000064ffffffff0000008100000000000000010000016d0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem/>
    </ItemView>
    <ItemView engineview="BehavioralSim" sourcetype="DESUT_VERILOG" guiview="Process" >
       <ClosedNodes>
@@ -495,13 +496,13 @@
          <ClosedNodesVersion>1</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem/>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000016d000000010000000100000000000000000000000064ffffffff0000008100000000000000010000016d0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem/>
    </ItemView>
    <ItemView engineview="PostRouteSim" guiview="Source" compilemode="AutoCompile" >
       <ClosedNodes>
@@ -542,13 +543,13 @@
          <ClosedNode>Design Utilities</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem/>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000016d000000010000000100000000000000000000000064ffffffff0000008100000000000000010000016d0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem/>
    </ItemView>
    <ItemView engineview="PostRouteSim" sourcetype="DESUT_VHDL_ARCHITECTURE" guiview="Process" >
       <ClosedNodes>
