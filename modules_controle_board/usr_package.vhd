@@ -32,6 +32,20 @@ type tableau_memoire_8bits is array(natural range <>) of std_logic_vector(7 down
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component top_generation_forme_onde is
+    Port ( clk, reset, start : in  STD_LOGIC;
+			  nb_cycle : std_logic_vector(7 downto 0);
+			  choix_onde : std_logic_vector(2 downto 0);
+			  amplitude, offset : std_logic_vector(15 downto 0);
+			  duty_cycle_carre, nb_coup_horloge_par_cycle_carre : std_logic_vector(31 downto 0);
+			  pas_comptage_tri : std_logic_vector(15 downto 0);
+			  temps_attente_tri, temps_attente_sin : std_logic_vector(31 downto 0);
+			  pas_comptage_sin : std_logic_vector(7 downto 0);
+			  choix_clk_pulse : std_logic_vector(3 downto 0);
+           occupe, termine, FSYNC, SCLK, DIN, OSR1, OSR2, BPB, MUTEB, RSTB : out  STD_LOGIC);
+end component;
+
+
 component FSM_conversion_1CH_adc10bits is
     Port ( clk, reset, start, termine_conversion : in  STD_LOGIC;
            nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);

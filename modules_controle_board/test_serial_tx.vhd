@@ -65,7 +65,7 @@ signal compteur : std_logic_vector(7 downto 0);
 begin
 
 
-cmp <= '1' when compteur >=  data_recu else
+cmp <= '1' when compteur >=  16 else
 		 '0';
 
 process(clk_int, reset_compteur, enable_compteur)

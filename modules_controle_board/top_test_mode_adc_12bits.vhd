@@ -111,8 +111,8 @@ buffer_recup : memoire_tampon_NxM generic map(16,32) port map(clk => clk_int, en
 																				  input => data_conversion, output => data_out_int);	
 
 --communication série tx
-com_serie_tx : FSM_envoyer_Noctets generic map(2) port map(clk => clk_int, reset => reset, start => start_envoie, data => data_out_int, tx => tx,
-																				occupe => occupe_envoie, termine	=> termine_envoie);
+--com_serie_tx : FSM_envoyer_Noctets generic map(2) port map(clk => clk_int, reset => reset, start => start_envoie, data => data_out_int, tx => tx,
+--																				occupe => occupe_envoie, termine	=> termine_envoie);
 --compteur du nombre de donnée envoyée
 compteur_data_envoie : compteurNbits generic map(6) port map(clk => clk_int, reset => reset_compteur_envoie, enable => enable_compteur_envoie, output => compteur_envoie);
 																			
