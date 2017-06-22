@@ -38,7 +38,7 @@ entity generation_onde_triangle is
            pas_comptage : in  STD_LOGIC_VECTOR (15 downto 0);
            amplitude : in  STD_LOGIC_VECTOR (15 downto 0);
            offset : in  STD_LOGIC_VECTOR (15 downto 0);
-			  nombre_cycle : in std_logic_vector(7 downto 0);
+			  nombre_cycle : in std_logic_vector(31 downto 0);
            onde_genere : out  STD_LOGIC_VECTOR (15 downto 0);
 			  demarrer_transfert, occupe, termine : out std_logic);
 end generation_onde_triangle;
@@ -49,16 +49,15 @@ type etat_onde_triangle is (attente, load_input, partie_up_pos, attente_dac1_pos
 										 partie_up_neg, attente_dac1_neg, attente_partie_up_neg, partie_down_neg, attente_dac2_neg, attente_partie_down_neg, verification_fin, fin, compter_cycle);
 signal etat_present, etat_suivant : etat_onde_triangle;
 
-signal compte_attente, temps_attente_int : std_logic_vector(31 downto 0);
+signal compte_attente, temps_attente_int, compte_nb_cycle, nombre_cycle_int : std_logic_vector(31 downto 0);
 signal enable_nc, reset_nc, enable_co, reset_co, mode_co, signe_partie, choix_signe, reset_attente,
 			enable_attente, cmp_seuil, cmp_attente, cmp_zero, cmp_fin, start_load, reset_input: std_logic;
 signal onde_genere_int, resultat_pos, resultat_neg, pas_comptage_int, amplitude_int, offset_int : std_logic_vector(15 downto 0);
-signal compte_nb_cycle, nombre_cycle_int : std_logic_vector(7 downto 0);			
 
 begin
 
 --compteurs
-compteur_nb_cycle : compteurNbits generic map(8) port map(clk => clk, enable => enable_nc, reset => reset_nc, output => compte_nb_cycle);
+compteur_nb_cycle : compteurNbits generic map(32) port map(clk => clk, enable => enable_nc, reset => reset_nc, output => compte_nb_cycle);
 compteur_onde : compteurNbits_mode generic map(16) port map(clk => clk, reset => reset_co, enable => enable_co, mode => mode_co, pas => pas_comptage_int, compteur_out => onde_genere_int);
 compteur_attente : compteurNbits generic map(32) port map( clk => clk, enable => enable_attente, reset => reset_attente, output => compte_attente);
 
@@ -71,7 +70,7 @@ registre_temps_attente : registreNbits generic map(32) port map(clk => clk, en =
 registre_pas_comptage : registreNbits generic map(16) port map(clk => clk, en => start_load, reset => reset_input, d => pas_comptage, q_out => pas_comptage_int);
 registre_amplitude : registreNbits generic map(16) port map(clk => clk, en => start_load, reset => reset_input, d => amplitude, q_out => amplitude_int);
 registre_offset : registreNbits generic map(16) port map(clk => clk, en => start_load, reset => reset_input, d => offset, q_out => offset_int);
-registre_nombre_cycle : registreNbits generic map(8) port map(clk => clk, en => start_load, reset => reset_input, d => nombre_cycle, q_out => nombre_cycle_int);
+registre_nombre_cycle : registreNbits generic map(32) port map(clk => clk, en => start_load, reset => reset_input, d => nombre_cycle, q_out => nombre_cycle_int);
 
 --sortie de l'onde générée
 onde_genere <= resultat_pos when choix_signe = '0' else

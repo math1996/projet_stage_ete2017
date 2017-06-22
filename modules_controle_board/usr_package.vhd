@@ -34,10 +34,9 @@ type tableau_memoire_8bits is array(natural range <>) of std_logic_vector(7 down
 
 component top_generation_forme_onde is
     Port ( clk, reset, start : in  STD_LOGIC;
-			  nb_cycle : std_logic_vector(7 downto 0);
 			  choix_onde : std_logic_vector(2 downto 0);
 			  amplitude, offset : std_logic_vector(15 downto 0);
-			  duty_cycle_carre, nb_coup_horloge_par_cycle_carre : std_logic_vector(31 downto 0);
+			  duty_cycle_carre, nb_coup_horloge_par_cycle_carre, nb_cycle: std_logic_vector(31 downto 0);
 			  pas_comptage_tri : std_logic_vector(15 downto 0);
 			  temps_attente_tri, temps_attente_sin : std_logic_vector(31 downto 0);
 			  pas_comptage_sin : std_logic_vector(7 downto 0);
@@ -125,7 +124,7 @@ component generation_onde_sin is
            pas : in  STD_LOGIC_VECTOR (7 downto 0);
            amplitude : in  STD_LOGIC_VECTOR (15 downto 0);
            offset : in  STD_LOGIC_VECTOR (15 downto 0);
-			  nombre_cycle : in std_logic_vector(7 downto 0);
+			  nombre_cycle : in std_logic_vector(31 downto 0);
            onde_genere : out  STD_LOGIC_VECTOR (15 downto 0);
            demarrer_transfert, occupe, termine : out  STD_LOGIC);
 end component;
@@ -149,7 +148,7 @@ component generation_onde_triangle is
            pas_comptage : in  STD_LOGIC_VECTOR (15 downto 0);
            amplitude : in  STD_LOGIC_VECTOR (15 downto 0);
            offset : in  STD_LOGIC_VECTOR (15 downto 0);
-			  nombre_cycle : in std_logic_vector(7 downto 0);
+			  nombre_cycle : in std_logic_vector(31 downto 0);
            onde_genere : out  STD_LOGIC_VECTOR (15 downto 0);
 			  demarrer_transfert, occupe, termine : out std_logic);
 end component;
@@ -163,7 +162,7 @@ end component;
 
 component generation_onde_carre is
     Port ( clk, reset, start, termine_dac : in  STD_LOGIC;
-           nombre_cycle : in  STD_LOGIC_VECTOR (7 downto 0);
+           nombre_cycle : in  STD_LOGIC_VECTOR (31 downto 0);
            duty_cycle : in  STD_LOGIC_VECTOR (31 downto 0);
            nb_coup_horloge_par_cycle : in  STD_LOGIC_VECTOR (31 downto 0);
            amplitude : in  STD_LOGIC_VECTOR (15 downto 0);

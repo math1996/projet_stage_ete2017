@@ -34,7 +34,7 @@ use ieee.std_logic_unsigned.all;
 
 entity generation_onde_carre is
     Port ( clk, reset, start, termine_dac : in  STD_LOGIC;
-           nombre_cycle : in  STD_LOGIC_VECTOR (7 downto 0);
+           nombre_cycle : in  STD_LOGIC_VECTOR (31 downto 0);
            duty_cycle : in  STD_LOGIC_VECTOR (31 downto 0);
            nb_coup_horloge_par_cycle : in  STD_LOGIC_VECTOR (31 downto 0);
            amplitude : in  STD_LOGIC_VECTOR (15 downto 0);
@@ -49,8 +49,7 @@ architecture Behavioral of generation_onde_carre is
 type etat_fsm_onde_carre is (attente, load_input, partie_positive, attente_dac1, attente_positive, partie_negative, attente_dac2, attente_negative, verification_fin, fin);
 signal etat_present, etat_suivant : etat_fsm_onde_carre;
 
-signal compte_nb_coup_horloge_par_cycle, duty_cycle_int, nb_coup_horloge_par_cycle_int : std_logic_vector(31 downto 0);
-signal compte_nombre_cycle, nombre_cycle_int : std_logic_vector(7 downto 0);
+signal compte_nb_coup_horloge_par_cycle, duty_cycle_int, nb_coup_horloge_par_cycle_int, nombre_cycle_int, compte_nombre_cycle : std_logic_vector(31 downto 0);
 signal resultat_pos, resultat_neg, amplitude_int, offset_int : std_logic_vector(15 downto 0);
 signal enable_compteur_nchpc, reset_compteur_nchpc, enable_compteur_nc, reset_compteur_nc, start_load, reset_input: std_logic;
 
@@ -61,14 +60,14 @@ compteur_nb_coup_horloge_par_cyle : compteurNbits generic map(32) port map(clk =
 																									reset => reset_compteur_nchpc, output =>compte_nb_coup_horloge_par_cycle);
 																									
 --compteur du nombre de cycle effectué																								
-compteur_nb_cycle : compteurNbits generic map(8) port map(clk => clk, enable => enable_compteur_nc, reset => reset_compteur_nc, output => compte_nombre_cycle);
+compteur_nb_cycle : compteurNbits generic map(32) port map(clk => clk, enable => enable_compteur_nc, reset => reset_compteur_nc, output => compte_nombre_cycle);
 
 --ajouter l'offset
 add_offset_partie_pos : addition_offset port map(amplitude => amplitude_int, offset => offset_int, resultat => resultat_pos);
 add_offset_partie_neg : addition_offset port map(amplitude => (not(amplitude_int) + 1), offset => offset_int, resultat => resultat_neg);
 
 --registre pour loader les entrées
-registre_nb_cycle : registreNbits generic map(8) port map(clk => clk, en => start_load,  reset => reset_input, d => nombre_cycle, q_out => nombre_cycle_int);
+registre_nb_cycle : registreNbits generic map(32) port map(clk => clk, en => start_load,  reset => reset_input, d => nombre_cycle, q_out => nombre_cycle_int);
 registre_duty_cycle : registreNbits generic map(32) port map(clk => clk, en => start_load, reset => reset_input, d => duty_cycle, q_out => duty_cycle_int);
 registre_nchpc : registreNbits generic map(32) port map(clk => clk, en => start_load, reset => reset_input, d => nb_coup_horloge_par_cycle, q_out => nb_coup_horloge_par_cycle_int);
 registre_amplitude : registreNbits generic map(16) port map(clk => clk, en => start_load, reset => reset_input, d => amplitude, q_out => amplitude_int);

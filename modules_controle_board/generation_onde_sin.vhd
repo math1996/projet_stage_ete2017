@@ -38,7 +38,7 @@ entity generation_onde_sin is
            pas : in  STD_LOGIC_VECTOR (7 downto 0);
            amplitude : in  STD_LOGIC_VECTOR (15 downto 0);
            offset : in  STD_LOGIC_VECTOR (15 downto 0);
-			  nombre_cycle : in std_logic_vector(7 downto 0);
+			  nombre_cycle : in std_logic_vector(31 downto 0);
            onde_genere : out  STD_LOGIC_VECTOR (15 downto 0);
            demarrer_transfert, occupe, termine : out  STD_LOGIC);
 end generation_onde_sin;
@@ -55,8 +55,8 @@ signal compteur_LUT : std_logic_vector(9 downto 0);
 signal valeur_int, offset_int, resultat_pos, resultat_neg, amplitude_int, amplitude_onde : std_logic_vector(15 downto 0);
 signal reset_LUT, enable_LUT, start_load, reset_input, cmp_attente, cmp_fin_LUT, cmp_fin,
 			reset_attente, enable_attente, reset_nc, enable_nc, mode : std_logic;
-signal pas_int, compteur_nb_cycle, nombre_cycle_int : std_logic_vector(7 downto 0);
-signal temps_attente_int, compteur_attente, multiplication_amplitude : std_logic_vector(31 downto 0);
+signal pas_int : std_logic_vector(7 downto 0);
+signal temps_attente_int, compteur_attente, multiplication_amplitude, compteur_nb_cycle, nombre_cycle_int : std_logic_vector(31 downto 0);
 signal seuil, seuil_test : std_logic_vector(10 downto 0);
 
 begin
@@ -71,14 +71,14 @@ compteur_acces_LUT : compteurNbits_mode generic map(10) port map(clk => clk, res
 compteur_attente_DAC : compteurNbits generic map(32) port map(clk => clk, reset => reset_attente, enable => enable_attente, output => compteur_attente);		
 
 --compteur du nombre de cycles
-compteur_cycle	: compteurNbits generic map(8) port map(clk => clk, reset => reset_nc, enable => enable_nc, output => compteur_nb_cycle);																		
+compteur_cycle	: compteurNbits generic map(32) port map(clk => clk, reset => reset_nc, enable => enable_nc, output => compteur_nb_cycle);																		
 																						
 --registre des input
 registre_temps_attente : registreNbits generic map(32) port map(clk => clk, reset => reset_input, en => start_load, d => temps_attente, q_out => temps_attente_int);																					
 registre_pas : registreNbits generic map(8) port map(clk => clk, reset => reset_input, en => start_load, d => pas, q_out => pas_int);																					
 registre_amplitude : registreNbits generic map(16) port map(clk => clk, reset => reset_input, en => start_load, d => amplitude, q_out => amplitude_int);																					
 registre_offset : registreNbits generic map(16) port map(clk => clk, reset => reset_input, en => start_load, d => offset, q_out => offset_int);	
-registre_nb_cycle : registreNbits generic map(8) port map(clk => clk, reset => reset_input, en => start_load, d => nombre_cycle, q_out => nombre_cycle_int);
+registre_nb_cycle : registreNbits generic map(32) port map(clk => clk, reset => reset_input, en => start_load, d => nombre_cycle, q_out => nombre_cycle_int);
 
 --multiplier l'amplitude avec la valeur normalisée																			
 multiplication_amplitude <= amplitude_int * valeur_int;
