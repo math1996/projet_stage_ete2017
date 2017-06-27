@@ -2,15 +2,15 @@
 -- Company: 
 -- Engineer:
 --
--- Create Date:   09:40:40 05/15/2017
+-- Create Date:   15:00:48 06/27/2017
 -- Design Name:   
--- Module Name:   C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/config_dac16bits_tb.vhd
+-- Module Name:   C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/controleur_PID_tb.vhd
 -- Project Name:  modules_controle_board
 -- Target Device:  
 -- Tool versions:  
 -- Description:   
 -- 
--- VHDL Test Bench Created by ISE for module: configuration_serie_dac_16bits
+-- VHDL Test Bench Created by ISE for module: controleur_PID
 -- 
 -- Dependencies:
 -- 
@@ -25,33 +25,32 @@
 -- to guarantee that the testbench will bind correctly to the post-implementation 
 -- simulation model.
 --------------------------------------------------------------------------------
-library IEEE;
-library modules;
-use modules.usr_package.all;
-use IEEE.STD_LOGIC_1164.ALL;
-use ieee.std_logic_unsigned.all;
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
  
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
  
-ENTITY config_dac16bits_tb IS
-END config_dac16bits_tb;
+ENTITY controleur_PID_tb IS
+END controleur_PID_tb;
  
-ARCHITECTURE behavior OF config_dac16bits_tb IS 
+ARCHITECTURE behavior OF controleur_PID_tb IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT configuration_serie_dac_16bits
+    COMPONENT controleur_PID
     PORT(
          clk : IN  std_logic;
          reset : IN  std_logic;
          start : IN  std_logic;
-         load : IN  std_logic_vector(15 downto 0);
-         FSYNC : OUT  std_logic;
-         DIN : OUT  std_logic;
+         Ek0 : IN  std_logic_vector(15 downto 0);
+         Ek1 : IN  std_logic_vector(15 downto 0);
+         Ek2 : IN  std_logic_vector(15 downto 0);
+         u : OUT  std_logic;
+         termine : OUT  std_logic;
          occupe : OUT  std_logic;
-         termine : OUT  std_logic
+         transfert_dac : OUT  std_logic
         );
     END COMPONENT;
     
@@ -60,13 +59,15 @@ ARCHITECTURE behavior OF config_dac16bits_tb IS
    signal clk : std_logic := '0';
    signal reset : std_logic := '0';
    signal start : std_logic := '0';
-   signal load : std_logic_vector(15 downto 0) := (others => '0');
+   signal Ek0 : std_logic_vector(15 downto 0) := (others => '0');
+   signal Ek1 : std_logic_vector(15 downto 0) := (others => '0');
+   signal Ek2 : std_logic_vector(15 downto 0) := (others => '0');
 
  	--Outputs
-   signal FSYNC : std_logic;
-   signal DIN : std_logic;
-   signal occupe : std_logic;
+   signal u : std_logic;
    signal termine : std_logic;
+   signal occupe : std_logic;
+   signal transfert_dac : std_logic;
 
    -- Clock period definitions
    constant clk_period : time := 10 ns;
@@ -74,15 +75,17 @@ ARCHITECTURE behavior OF config_dac16bits_tb IS
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: configuration_serie_dac_16bits PORT MAP (
+   uut: controleur_PID PORT MAP (
           clk => clk,
           reset => reset,
           start => start,
-          load => load,
-          FSYNC => FSYNC,
-          DIN => DIN,
+          Ek0 => Ek0,
+          Ek1 => Ek1,
+          Ek2 => Ek2,
+          u => u,
+          termine => termine,
           occupe => occupe,
-          termine => termine
+          transfert_dac => transfert_dac
         );
 
    -- Clock process definitions
@@ -94,21 +97,13 @@ BEGIN
 		wait for clk_period/2;
    end process;
  
- 
 
    -- Stimulus process
    stim_proc: process
    begin		
       -- hold reset state for 100 ns.
       wait for 100 ns;	
-		reset <= '0';
-		wait for clk_period;
-		reset <= '1';
-		start <= '1';
-		load <= b"1011_0110_1111_0010";
-		wait for clk_period;
-		start <= '0';
-		
+
       wait for clk_period*10;
 
       -- insert stimulus here 

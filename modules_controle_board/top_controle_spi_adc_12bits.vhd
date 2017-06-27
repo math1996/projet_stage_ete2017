@@ -48,7 +48,7 @@ architecture Behavioral of top_controle_spi_adc_12bits is
 signal start_config, start_config1, start_config2, start_recup, start_recup1, start_recup2, 
 			sclk_config, sclk_recup, cs_config, cs_recup, termine1, termine2,
 			occupe_config, occupe_recup, termine_config, termine_recup : std_logic;
-signal load_config, load_config1, load_config2 : std_logic_vector(15 downto 0);
+signal load_config, load_config1, load_config2, data_out_int : std_logic_vector(15 downto 0);
 
 
 begin
@@ -73,7 +73,7 @@ rdc_configuration_adc12bits : configuration_spi_adc_12bits port map(clk => clk, 
 --module de récupération des données de l'ADC 12 bits																							
 rdc_recuperation_adc12bits : FSM_recuperer_donnee_adc_12bits port map(clk => clk, start => start_recup, reset => reset, DOUT => DOUT,
 																							 SCLK => sclk_recup, CS => cs_recup, occupe => occupe_recup, termine => termine_recup,
-																							 data_out => data_out_conversion);
+																							 data_out => data_out_int);
 
 --module de conversion d'un seul canal
 FSM_conversion_1canal : FSM_convertir_1canal_adc12bits port map(clk => clk, reset => reset, start => start_1CH, arret_conversion => arret,
@@ -86,5 +86,9 @@ FSM_conversion_sequentielle : FSM_conversion_seq_choix_canaux_adc12bits port map
 																											termine_rdc_config => termine_config, termine_rdc_recup => termine_recup,
 																											choix_canaux => sequence, termine => termine2, demarrer_transfert => start_config2,
 																											demarrer_recup => start_recup2, load => load_config2);
+																											
+--registre de sortie de récupération des données
+registre_sortie: registreNbits generic map(16) port map(clk => clk, reset => reset, en => termine_recup, d => data_out_int, q_out => data_out_conversion);	
+																										
 end Behavioral;
 

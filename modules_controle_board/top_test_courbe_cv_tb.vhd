@@ -25,8 +25,11 @@
 -- to guarantee that the testbench will bind correctly to the post-implementation 
 -- simulation model.
 --------------------------------------------------------------------------------
-LIBRARY ieee;
-USE ieee.std_logic_1164.ALL;
+library IEEE;
+library modules;
+use modules.usr_package.all;
+use IEEE.STD_LOGIC_1164.ALL;
+use ieee.std_logic_unsigned.all;
  
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -36,7 +39,8 @@ ENTITY top_test_courbe_cv_tb IS
 END top_test_courbe_cv_tb;
  
 ARCHITECTURE behavior OF top_test_courbe_cv_tb IS 
- 
+
+
     -- Component Declaration for the Unit Under Test (UUT)
  
     COMPONENT top_test_courbe_CV
@@ -47,7 +51,7 @@ ARCHITECTURE behavior OF top_test_courbe_cv_tb IS
          DOUT_12bits : IN  std_logic;
          DOUT_10bits : IN  std_logic;
          SSTRB_10bits : IN  std_logic;
-         --tx : OUT  std_logic;
+         tx : OUT  std_logic;
          CS_12bits : OUT  std_logic;
          DIN_12bits : OUT  std_logic;
          SCLk_12bits : OUT  std_logic;
@@ -78,7 +82,7 @@ ARCHITECTURE behavior OF top_test_courbe_cv_tb IS
    signal SSTRB_10bits : std_logic := '0';
 
  	--Outputs
-   --signal tx : std_logic;
+   signal tx : std_logic;
    signal CS_12bits : std_logic;
    signal DIN_12bits : std_logic;
    signal SCLk_12bits : std_logic;
@@ -110,7 +114,7 @@ BEGIN
           DOUT_12bits => DOUT_12bits,
           DOUT_10bits => DOUT_10bits,
           SSTRB_10bits => SSTRB_10bits,
-          --tx => tx,
+          tx => tx,
           CS_12bits => CS_12bits,
           DIN_12bits => DIN_12bits,
           SCLk_12bits => SCLk_12bits,
@@ -151,7 +155,8 @@ BEGIN
 		reset <= '1';
 		rx <= '1';
 		SSTRB_10bits <= '1';
-		
+		DOUT_10bits <= '1';
+		DOUT_12bits <= '1';
 		--paramètre sin
 		
 		--mode

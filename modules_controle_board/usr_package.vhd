@@ -44,7 +44,6 @@ component top_generation_forme_onde is
            occupe, termine, FSYNC, SCLK, DIN, OSR1, OSR2, BPB, MUTEB, RSTB : out  STD_LOGIC);
 end component;
 
-
 component FSM_conversion_1CH_adc10bits is
     Port ( clk, reset, start, termine_conversion : in  STD_LOGIC;
            nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);
