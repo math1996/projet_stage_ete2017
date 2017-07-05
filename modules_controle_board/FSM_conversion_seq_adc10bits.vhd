@@ -35,7 +35,6 @@ use ieee.std_logic_unsigned.all;
 entity FSM_conversion_seq_adc10bits is
     Port ( clk, reset, start, termine_conversion : in  STD_LOGIC;
            nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);
-           nb_canaux : in  STD_LOGIC_VECTOR (3 downto 0);
            sequence : in  STD_LOGIC_VECTOR (7 downto 0);
            start_conversion, occupe, termine : out  STD_LOGIC;
            canal_conversion : out  STD_LOGIC_VECTOR (2 downto 0));
@@ -46,8 +45,7 @@ architecture Behavioral of FSM_conversion_seq_adc10bits is
 type etat_conv_seq_adc10bits is (attente, verification_sequence, compter_sequence, demarrer_conversion, attente_conversion, compter_cycle, verification_fin, fin);
 signal etat_present, etat_suivant : etat_conv_seq_adc10bits;
 
-signal cmp_fin, cmp_seq, cmp_fin_sequence, reset_compteur_seq, enable_compteur_seq, reset_compteur_nb_cycle, enable_compteur_nb_cycle,
-		 reset_compteur_nb_canaux, enable_compteur_nb_canaux : std_logic;
+signal cmp_fin, cmp_seq, cmp_fin_sequence, reset_compteur_seq, enable_compteur_seq, reset_compteur_nb_cycle, enable_compteur_nb_cycle : std_logic;
 signal compte_seq : std_logic_vector(2 downto 0);
 signal compte_nb_cycle : std_logic_vector(31 downto 0);
 signal compte_nb_canaux : std_logic_vector(3 downto 0);
@@ -60,9 +58,6 @@ compteur_seq_canaux : compteurNbits generic map(3) port map(clk => clk, reset =>
 
 --compteur du nombre de cycle de conversion fait
 compteur_nb_cycle_conv : compteurNbits generic map(32) port map(clk => clk, reset => reset_compteur_nb_cycle, enable => enable_compteur_nb_cycle, output => compte_nb_cycle);
-
---compteur du nombre de canaux convertis
-compteur_nb_canaux_conv : compteurNbits generic map(4) port map(clk => clk, reset => reset_compteur_nb_canaux, enable => enable_compteur_nb_canaux, output => compte_nb_canaux);
 
 --mux de la séquence de canaux
 cmp_seq <= sequence(7) when compte_seq = "000" else
@@ -88,9 +83,6 @@ canal_conversion <=  "000" when compte_seq = "000" else
 cmp_fin <= '1' when compte_nb_cycle >= nb_cycle_conversion else
 					'0';
 
-cmp_fin_sequence <= '1' when compte_nb_canaux >= nb_canaux else
-						  '0';
-
 --machine à état de la conversion séquentielle
 process(reset, clk)
 begin
@@ -109,8 +101,6 @@ begin
 			enable_compteur_seq <= '0';
 			reset_compteur_nb_cycle <= '0';
 			enable_compteur_nb_cycle <= '0';
-			reset_compteur_nb_canaux <= '0';
-			enable_compteur_nb_canaux <= '0';
 			start_conversion <= '0';
 			occupe <= '0';
 			termine <= '0';
@@ -125,8 +115,6 @@ begin
 			enable_compteur_seq <= '0';
 			reset_compteur_nb_cycle <= '1';
 			enable_compteur_nb_cycle <= '0';
-			reset_compteur_nb_canaux <= '1';
-			enable_compteur_nb_canaux <= '0';
 			start_conversion <= '0';
 			occupe <= '1';
 			termine <= '0';
@@ -141,8 +129,6 @@ begin
 			enable_compteur_seq <= '1';
 			reset_compteur_nb_cycle <= '1';
 			enable_compteur_nb_cycle <= '0';
-			reset_compteur_nb_canaux <= '1';
-			enable_compteur_nb_canaux <= '0';
 			start_conversion <= '0';
 			occupe <= '1';
 			termine <= '0';
@@ -153,8 +139,6 @@ begin
 			enable_compteur_seq <= '0';
 			reset_compteur_nb_cycle <= '1';
 			enable_compteur_nb_cycle <= '0';
-			reset_compteur_nb_canaux <= '1';
-			enable_compteur_nb_canaux <= '1';
 			start_conversion <= '1';
 			occupe <= '1';
 			termine <= '0';
@@ -165,15 +149,11 @@ begin
 			enable_compteur_seq <= '0';
 			reset_compteur_nb_cycle <= '1';
 			enable_compteur_nb_cycle <= '0';
-			reset_compteur_nb_canaux <= '1';
-			enable_compteur_nb_canaux <= '0';
 			start_conversion <= '0';
 			occupe <= '1';
 			termine <= '0';
-			if(termine_conversion = '1' and cmp_fin_sequence = '1') then
+			if(termine_conversion = '1') then
 				etat_suivant <= compter_cycle;
-			elsif(termine_conversion = '1' and cmp_fin_sequence = '0') then
-				etat_suivant <= compter_sequence;
 			else
 				etat_suivant <= attente_conversion;
 			end if;
@@ -183,8 +163,6 @@ begin
 			enable_compteur_seq <= '0';
 			reset_compteur_nb_cycle <= '1';
 			enable_compteur_nb_cycle <= '1';
-			reset_compteur_nb_canaux <= '1';
-			enable_compteur_nb_canaux <= '0';
 			start_conversion <= '0';
 			occupe <= '1';
 			termine <= '0';
@@ -195,8 +173,6 @@ begin
 			enable_compteur_seq <= '0';
 			reset_compteur_nb_cycle <= '1';
 			enable_compteur_nb_cycle <= '0';
-			reset_compteur_nb_canaux <= '0';
-			enable_compteur_nb_canaux <= '0';
 			start_conversion <= '0';
 			occupe <= '1';
 			termine <= '0';
@@ -211,8 +187,6 @@ begin
 			enable_compteur_seq <= '0';
 			reset_compteur_nb_cycle <= '0';
 			enable_compteur_nb_cycle <= '0';
-			reset_compteur_nb_canaux <= '0';
-			enable_compteur_nb_canaux <= '0';
 			start_conversion <= '0';
 			occupe <= '1';
 			termine <= '1';
@@ -223,8 +197,6 @@ begin
 			enable_compteur_seq <= '0';
 			reset_compteur_nb_cycle <= '0';
 			enable_compteur_nb_cycle <= '0';
-			reset_compteur_nb_canaux <= '0';
-			enable_compteur_nb_canaux <= '0';
 			start_conversion <= '0';
 			occupe <= '0';
 			termine <= '0';

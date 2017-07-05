@@ -55,7 +55,6 @@ end component;
 component FSM_conversion_seq_adc10bits is
     Port ( clk, reset, start, termine_conversion : in  STD_LOGIC;
            nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);
-           nb_canaux : in  STD_LOGIC_VECTOR (3 downto 0);
            sequence : in  STD_LOGIC_VECTOR (7 downto 0);
            start_conversion, occupe, termine : out  STD_LOGIC;
            canal_conversion : out  STD_LOGIC_VECTOR (2 downto 0));
@@ -67,7 +66,6 @@ component top_controle_adc_10bits is
            sequence_conversion : in  STD_LOGIC_VECTOR (7 downto 0);
            mode_conversion : in  STD_LOGIC_VECTOR (1 downto 0);
            nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);
-           nb_canaux_conversion : in  STD_LOGIC_VECTOR (3 downto 0);
            donnee_conversion_pret, DIN, SCLK, CS, SHDN, occupe, termine : out  STD_LOGIC;
 			  donnee_conversion : out std_logic_vector(15 downto 0));
 end component;
@@ -77,7 +75,6 @@ component FSM_controle_mode_adc_10bits is
            mode : in  STD_LOGIC_VECTOR (1 downto 0);
 			  sequence : in std_logic_vector(7 downto 0);
            nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);
-           nb_canaux : in  STD_LOGIC_VECTOR (3 downto 0);
 			  canal_conversion : in std_logic_vector(2 downto 0);
 			  canal_a_convertir : out std_logic_vector(2 downto 0);
            occupe, termine, enable_input, reset_input, start_conversion : out  STD_LOGIC);
@@ -89,7 +86,6 @@ component top_controle_adc_12bits is
            sequence_conversion : in  STD_LOGIC_VECTOR (7 downto 0);
            mode_conversion : in  STD_LOGIC_VECTOR (1 downto 0);
            nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);
-           nb_canaux_conversion : in  STD_LOGIC_VECTOR (3 downto 0);
            donne_conversion_pret, CS, SCLK, DIN, occupe, termine : out  STD_LOGIC;
            donne_conversion : out  STD_LOGIC_VECTOR (15 downto 0));
 end component;
@@ -106,7 +102,6 @@ component FSM_controle_mode_adc_12bits is
     Port ( clk, reset, start, termine_conversion_canal, fin_conversion : in  STD_LOGIC;
            mode : in  STD_LOGIC_VECTOR (1 downto 0);
            nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);
-			  nb_canaux : in std_logic_vector(3 downto 0);
            start_1CH, start_seq, arret, occupe, termine, reset_input, enable_input : out  STD_LOGIC);
 end component;
 

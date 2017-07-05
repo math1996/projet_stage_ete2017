@@ -38,7 +38,6 @@ entity top_controle_adc_10bits is
            sequence_conversion : in  STD_LOGIC_VECTOR (7 downto 0);
            mode_conversion : in  STD_LOGIC_VECTOR (1 downto 0);
            nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);
-           nb_canaux_conversion : in  STD_LOGIC_VECTOR (3 downto 0);
            donnee_conversion_pret, DIN, SCLK, CS, SHDN, occupe, termine : out  STD_LOGIC;
 			  donnee_conversion : out std_logic_vector(15 downto 0));
 end top_controle_adc_10bits;
@@ -49,7 +48,6 @@ signal start_conv_recup, occupe_conversion_recup, termine_conversion_recup, occu
 signal canal_conversion_int, canal_a_convertir_int : std_logic_vector(2 downto 0);
 signal mode_conversion_int : std_logic_vector(1 downto 0);
 signal nb_cycle_conversion_int : std_logic_vector(31 downto 0);
-signal nb_canaux_conversion_int : std_logic_vector(3 downto 0);
 signal sequence_conversion_int : std_logic_vector(7 downto 0);
 signal donnee_conversion_int : std_logic_vector(15 downto 0);
 
@@ -65,7 +63,7 @@ registre_canal_conv : registreNbits generic map(3) port map(clk => clk, reset =>
 registre_sequence_conv : registreNbits generic map(8) port map(clk => clk, reset => reset_input, en => enable_input, d => sequence_conversion, q_out => sequence_conversion_int);
 registre_mode_conv : registreNbits generic map(2) port map(clk => clk, reset => reset_input, en => enable_input, d => mode_conversion, q_out => mode_conversion_int);
 registre_nb_cycle_conv : registreNbits generic map(32) port map(clk => clk, reset => reset_input, en => enable_input, d => nb_cycle_conversion, q_out => nb_cycle_conversion_int);
-registre_nb_canaux_conv : registreNbits generic map(4) port map(clk => clk, reset => reset_input, en => enable_input, d => nb_canaux_conversion, q_out => nb_canaux_conversion_int);
+
 
 --module de controle et de récupération des données de l'ADC 10 bits
 ctrl_recup_adc10bits : controle_spi_adc_10bits port map(clk => clk, reset => reset, start => start_conv_recup, DOUT => DOUT, SSTRB => SSTRB, DIN => DIN, SCLK => SCLK, CS => CS,
@@ -75,7 +73,7 @@ ctrl_recup_adc10bits : controle_spi_adc_10bits port map(clk => clk, reset => res
 																		 
 --module de controle des modes de fonctionnement de l'ADC 10 bits
 fsm_ctrl_mode: FSM_controle_mode_adc_10bits port map(clk => clk, reset => reset, start => start, termine_conversion_canal => termine_conversion_recup, mode => mode_conversion_int,
-																	  sequence => sequence_conversion_int, nb_cycle_conversion => nb_cycle_conversion_int, nb_canaux => nb_canaux_conversion_int,
+																	  sequence => sequence_conversion_int, nb_cycle_conversion => nb_cycle_conversion_int,
 																	  canal_conversion => canal_conversion_int, canal_a_convertir => canal_a_convertir_int, occupe => occupe_mode, termine => termine,
 																	  enable_input => enable_input, reset_input => reset_input, start_conversion => start_conv_recup);																		 
 

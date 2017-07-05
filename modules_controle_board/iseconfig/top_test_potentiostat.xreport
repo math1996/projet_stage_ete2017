@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2017-05-05T15:13:31</DateModified>
-  <ModuleName>FSM_configurer_adc_12bits</ModuleName>
-  <SummaryTimeStamp>2017-05-05T14:13:09</SummaryTimeStamp>
-  <SavedFilePath>C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/iseconfig/top_test_potentiostat.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board\</ImplementationReportsDirectory>
-  <DateInitialized>2017-05-05T15:13:31</DateInitialized>
+  <DateModified>2017-06-29T13:45:58</DateModified>
+  <ModuleName>top_test_courbe_CV</ModuleName>
+  <SummaryTimeStamp>2017-06-29T13:43:34</SummaryTimeStamp>
+  <SavedFilePath>C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/iseconfig/top_test_potentiostat.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board\</ImplementationReportsDirectory>
+  <DateInitialized>2017-06-29T13:45:58</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>
  <body>

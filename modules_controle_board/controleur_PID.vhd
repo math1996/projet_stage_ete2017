@@ -18,7 +18,10 @@
 --
 ----------------------------------------------------------------------------------
 library IEEE;
+library modules;
+use modules.usr_package.all;
 use IEEE.STD_LOGIC_1164.ALL;
+use ieee.std_logic_unsigned.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,16 +35,73 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity controleur_PID is
     Port ( clk, reset, start : in  STD_LOGIC;
            Ek0, Ek1, Ek2 : in  STD_LOGIC_VECTOR (15 downto 0);
-           u : out  STD_LOGIC;
+           u : out  STD_LOGIC_vector(15 downto 0);
            termine, occupe, transfert_dac : out  STD_LOGIC);
 end controleur_PID;
 
 architecture Behavioral of controleur_PID is
 
-constant kp : std_logic_vector(31 downto 0) ;
+constant kp : std_logic_vector(31 downto 0) := (others => '0');
+constant ki : std_logic_vector(31 downto 0) := (others => '1');
+constant kd : std_logic_vector(31 downto 0) := "11111101111111010000110111011011";
+
+signal add1, add2 : std_logic_vector(31 downto 0);
+signal mult1, mult2, mult3 : std_logic_vector(63 downto 0);
+signal sortie_reg_partie1, sortie_reg_partie2, sortie_reg_partie3,
+			Ek0_int, Ek1_int, Ek2_int, sortie_reg_partie1_int, sortie_reg_partie2_int,
+			sortie_reg_partie3_int, addition, soustraction : std_logic_vector(15 downto 0);
+
+signal reset_reg, enable_reg : std_logic;
 
 begin
 
+--conversion complément 2 entrées add
+Ek0_int <= not(Ek0) + 1 when Ek0(15) = '1' else
+			  Ek0;
+			  
+Ek1_int <= not(Ek1) + 1 when Ek1(15) = '1' else
+			  Ek1;
 
+Ek2_int <= not(Ek2) + 1 when Ek2(15) = '1' else
+			  Ek2;			  
+
+--partie 1 équation
+add1 <= kp + ki + kd;
+mult1 <= (Ek0_int & "0000000000000000") * add1;
+
+registre_partie1 : registreNbits generic map(16) port map(clk => clk, reset => reset, en => '1', d => mult1(47 downto 32), q_out => sortie_reg_partie1);
+
+--partie 2 équation
+add2 <= kp + kd + kd;
+mult2 <= (Ek1_int & "0000000000000000") * add2;
+
+registre_partie2 : registreNbits generic map(16) port map(clk => clk, reset => reset, en => '1', d => mult2(47 downto 32), q_out => sortie_reg_partie2);
+
+--partie 3 équation
+mult3 <= (Ek2_int & "0000000000000000") * kd;
+
+registre_partie3 : registreNbits generic map(16) port map(clk => clk, reset => reset, en => '1', d => mult3(47 downto 32), q_out => sortie_reg_partie3);
+
+--conversion complément 2 sortie registre
+sortie_reg_partie1_int <= not(sortie_reg_partie1) + 1 when Ek0(15) = '1' else
+								  sortie_reg_partie1;
+								  
+sortie_reg_partie2_int <= not(sortie_reg_partie2) + 1 when Ek1(15) = '1' else
+								  sortie_reg_partie2;
+
+sortie_reg_partie3_int <= not(sortie_reg_partie3) + 1 when Ek2(15) = '1' else
+								  sortie_reg_partie3;	
+								  
+--soustraction addition sortie registre
+soustraction <= sortie_reg_partie1_int + sortie_reg_partie2_int;
+
+addition <= sortie_reg_partie3_int + soustraction;
+
+--registre de sortie
+registre_action : registreNbits generic map(16) port map(clk => clk, reset => reset, en => '1', d => addition, q_out => u);
+
+
+--ajouter la machine à état qui va controler le PID (registre, distribution des données)
+--trouver les constantes de l'asservissement
 end Behavioral;
 

@@ -38,7 +38,6 @@ entity FSM_controle_mode_adc_10bits is
            mode : in  STD_LOGIC_VECTOR (1 downto 0);
 			  sequence : in std_logic_vector(7 downto 0);
            nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);
-           nb_canaux : in  STD_LOGIC_VECTOR (3 downto 0);
 			  canal_conversion : in std_logic_vector(2 downto 0);
 			  canal_a_convertir : out std_logic_vector(2 downto 0);
            occupe, termine, enable_input, reset_input, start_conversion : out  STD_LOGIC);
@@ -69,7 +68,7 @@ FSM_conv_1CH : FSM_conversion_1CH_adc10bits port map(clk => clk, reset => reset_
 																	  
 --module de conversion séquentielle
 FSM_conv_seq : FSM_conversion_seq_adc10bits port map(clk => clk, reset => reset_fsm_seq, start => start_fsm_seq, termine_conversion => termine_conversion_canal,
-																	  nb_cycle_conversion => nb_cycle_conversion, nb_canaux => nb_canaux, sequence => sequence,
+																	  nb_cycle_conversion => nb_cycle_conversion, sequence => sequence,
 																	  start_conversion => demarrer_conv_seq, occupe => occupe_fsm_seq, termine => termine_fsm_seq, 
 																	  canal_conversion => canal_conversion_seq_int);
 																	  
