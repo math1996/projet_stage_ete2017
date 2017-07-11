@@ -1,0 +1,14 @@
+//10 juillet
+-Test de courbe CV avec la dopamine
+-Compilation des résultats
+-Rencontre concernant le cours de VLSI
+-Planifications d'un écéhancier pour la revue des lab
+-Rencontre avec Jessy conernant l'alogrithme
+
+//11 juillet
+-Lecture du lab 0 de VLSI 
+-Modifications du lab 0
+-Ajout de la génération d'un IP core
+-Première lecture de lab 1
+-Début de l'élaboration d'une architecture pour l'algorithme
+-Discussion avec jessy concernant l'approximation polynomiale
