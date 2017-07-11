@@ -1,0 +1,13 @@
+//Réunion, vendredi 19 mai
+
+-Précision sur l'interface graphique (commande à envoyer, affichage de courbes)
+-Discussion sur la pertinance d'utiliser le bluetooth
+-Discussion sur le fait d'utiliser une mémoire externe ou celle fournie par le FPGA 
+-Déplacement de la génération de forme d'onde au mois de mai, garder les modes de fonctionnement pour le mois de juin
+-Précision sur la génération de formes d'ondes => ondes paramétrables (fréquence, amplitude, offset, nb de cycles généré)
+
+Actions à poser :
+	-Faire des schémas claires du controle des ADC et DAC
+	-Faire des recherche et débuter la génération de forme d'ondes paramétrables
+	-Débuter l'Interface graphique
+	-Faire des recherches sur le contrôle du module bluetooth

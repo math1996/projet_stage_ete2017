@@ -1,0 +1,26 @@
+//19 juin
+-Modification du top module de la génération de forme d'onde
+-Test de l'interface graphique et du module de génération de forme d'ond modifié
+-Début de la programmation de l'interface graphique pour les test de cyclovoltamétrie
+-Exploration de la communication série avec matlab
+-Programmation d'un module de test pour l'implémentation de cyclovoltmétrie
+-Recherche sur un contrôleur PID en VHDL
+
+//20 juin
+-Symposium
+
+//21 juin
+-Lecture et recherche sur le controleur PID
+-Lecture de l'article de Jessy
+-Élaboration d'une méthode afin de minimiser le décalage entre la mesure du courant et celle de la tension
+-Programmation de l'interface graphique du test de cyclovoltamétrie
+-Élaboration de la suite du module de test des courbe CV
+-Test des modifications du module de génération de formes d'Onde (avec nouvel interface V2)
+-Continuer la programmation du module de test de courbe CV
+
+//22 juin
+-Programmation du module de test de courbe CV (presque terminé)
+-Test en simulation du module
+-Reste à connecter le module d'envoie sur le port série (tx)
+-Dessiner le schéma du top level du test de courbe CV (ordinateur)
+-Envoie du rapport hebdomadaire

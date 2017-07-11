@@ -1,0 +1,8 @@
+//Ordre du jour
+- Retour sur l'échéancier
+- Discussion du travail effectué durant la semaine
+- Présenter liste des pièces à acheter
+- Discuter des modes de fonctionnement de l'adc 12 bit et 10 bits 
+- Discuter de la fonction d'oversampling (mémoire tampon)
+- Discuter du stockage des données mesurées sur RAM
+- Varia

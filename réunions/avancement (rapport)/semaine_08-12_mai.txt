@@ -1,0 +1,46 @@
+//8 mai
+-programmation du module du configuration de l'adc 10 bits
+-programmation du module de récupération des données de l'adc 10 bits
+-programmation du module de controle SPI de l'adc 10 bits (inclusion des 2 modules précédants)
+-recherche de module bluetooth et wifi 
+-recherche de AVR atmega32u4
+-test bench de tous les modules précédents
+-programmation d'une mémoire tampon NxM (récupération des données)
+
+//9 mai
+-programmation du module de controle de l'ADC 12 bits (inclusion des modules de configuration et de récupération de donnée)
+-développement d'une architecture multi-canaux (mémoire tampons, écriture sur RAM, oversampling) (sur papier)
+-élaboration de modes de fonctionnement (sur papier) des ADC
+-Planification des tests de fonctionnement des ADC
+-tests en simulation des modules développés
+-Recherche sur le contrôle de la mémoire RAM sur le FPGA
+-programmation d'un module de mémoire tampon Nx16 dans l'optique d'oversampling
+
+//10 mai
+-programmation d'une machine à état contrôlant le module d'envoie sur le port série
+-test concluant de la communication via le port série (envoie et réception) :
+	-Envoie d'un paquet de 8 bits sur le port série (PC => FPGA)
+	-Renvoie de ce même paquet sur le port série (FPGA => PC)
+	-Affichage à l'écran avec Hercules
+-programmation d'un module de test du controle de l'ADC 12 bits
+-planification du test de l'ADC 12 bits :
+	-Envoie d'un signal de départ via le port série
+	-démarrage de la configuration de l'ADC (configuration fixe : canal 0, faire 1 seule conversion, utiliser 1 seule canal)
+	-Envoie du résultat de la conversion sur le port série (2 envoie de 8 bits)
+	-vérification des données reçus
+-lecture en profondeur de la datasheet du DAC 16 bits
+-développement du module de controle (sur papier)
+-début de la programmation du module de contrôle du DAC 16 bits
+
+//11 mai
+-tests du contrôle SPI de l'ADC 12 bits
+-les tests du contrôle SPI de l'ADC 12 bits sont réussis!
+-tests de 8 canaux avec un signal DC
+-planification de l'échéancier du mois de juin 
+-programmation d'un module de test du controle de l'ADC 10 bits
+-planification du test de l'ADC 10 bits (identique à l'ADC 10 bits)
+
+//12 mai
+-réunions à 11h30
+-tests de l'ADC 10 bits => pas réussis, vérifier SSTRB?
+-Début du module de controle du DAC 16 bits

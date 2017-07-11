@@ -1,0 +1,35 @@
+//12 juin
+-Essai du convertisseur USB/série pour by-passer le micro-controleur
+-Débuggage du module d'envoie sur le port série (TX, réussi)
+-Test des modes de fonctionnement de l'ADC 12 bits (réussis)
+-Début de la compilation des données (matlab)
+
+//13 juin
+-Programmation d'une machine à état controlant les modes de fonctionnement de l'ADC 10 bits
+-Finalisation du module de controle de l'ADC 10 bits
+-Programmation d'un test bench afin de tester en simulation le module de controle de l'ADC 10 bits (behavioral et post-translate)
+-Programmation d'un module de test pour l'implémentation physique
+-Reprise du test de l'ADC 12 bits avec une onde sinusoïdale de fréquence plus basse (25 khz à la place de 100 khz)
+-Programmation d'un script sur matlab afin de traiter les données recueillis par l'ADC 12 bits
+
+//14 juin
+-Test de l'ADC 10 bits (concluant seulement pour la conversion d'un canal)
+-Modifications de la machine à état de la gestion de la conversion séquentielle
+-Test en simulation (réussi)
+-Test de l'ADC 10 bits (séquentiel et 1 canal) => réussi!
+-Compilation des résultats sur matlab
+
+//15 juin
+-Design d'une interface afin de contrôler la génération de forme d'onde
+-Programmation de l'interface
+-Test de l'interface en générant différentes formes d'onde (réussi)
+-Mise à jour de l'échéancier
+-Élaboration de l'interface contrôlant les mode de fonctionnements des ADC (sur papier)
+-Début de la programmation de cet interface
+
+//16 juin
+-Programmation de l'interface des modes de fonctionnement
+-Test de l'interface
+-Élaboration d'une méthode de synchronisation des 2 ADC
+-Discussion sur les mois à suivre
+-Planififcation de l'échéancier

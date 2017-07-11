@@ -1,0 +1,19 @@
+//RÉUNION, vendredi 12 mai 2017
+
+-discussion sur l'avancement du projet :
+	-ADC 12 bit et 10 bits presque complétés
+	-DAC débuté
+	-Validation expérimentale débutée
+
+-Achat des pièces : puce bluetooth, puce wifi, puce zigbee, AVR atmega32U4 => voir pour une horloge
+-Achat des pièces : faire les pour/contre selon les critères de coûts, vitesse de transfert, portée du signal
+-Validation des modes de fonctionnement des ADC (mode "shutdown", mode 1 canal, mode canaux choisis séquentiels, mode 8 canaux séquentiels)
+-Validation de la fonction d'oversampling, mémoire tampon et mémoire RAM sur FPGA
+-Mettre à jour l'échéancier
+
+Actions à poser :
+	-mettre à jour l'échéancier
+	-comparer les différentes pièces à acheter
+	-Débuter les modes de fonctionnement des ADC
+	-Tester les ADC avec des charges (résistance, résistance/condensateur, solution)
+	-Tester le comportement des 8 autres potentiomètre (si le temps)

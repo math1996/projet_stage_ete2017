@@ -1,0 +1,16 @@
+//RÉUNION DU LUNDI, 8 MAI 2017
+
+-Vérification de l'échéancier du mois de mai
+-Vérification de l'échéancier des autres mois
+-Mise à jour sur l'avancement du projet :	1- Contrôle et test de la résistance variable
+						2- Programmation et contrôle des ADC
+						3- Protocole de communication série imlémenté
+
+-Recherche d'autres protocoles de communication (Wi-fi, Bluetooth, ZigBi)
+-Est-ce que la résistance variable offre un feedback de sa résistance?
+-Recherche d'un micro-contrôleur pour l'implémentation sur système embarqué
+-Recherche du modules pour les autres protocoles de communication (Wi-fi, Bluetooth, ZigBi)
+-Le micro-contrôleur servira en grande partie à gérer les protocoles de communication
+
+Mathieu Gagnon.
+					

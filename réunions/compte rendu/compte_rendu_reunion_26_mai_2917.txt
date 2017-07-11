@@ -1,0 +1,11 @@
+//Réunion, vendredi 26 mai
+
+-Retour sur l'échéancier, ajout des mode de fonctionnement des ADC dans le mois de mai
+-Discussion sur les problèmes du générateur d'onde triangulaire, pistes de solutions
+-Discussion sur le dépannage du cours de VLSI
+-Discussion des résultats des tests du modèle RC
+
+Actions à poser :	-Tester les ADC avec une résitance seulement
+			-Investiguer le générateur d'Onde triangulaire
+			-Modifier l'échéancier
+			-Modifier les onglets des tests (ajouter la date)

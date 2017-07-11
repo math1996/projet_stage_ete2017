@@ -1,0 +1,7 @@
+//Ordre du jour
+-Discussion du travail fait durant le semaine
+-Retour sur le test des ADC avec un résistance
+-Retour sur les tests de génération de formes d'ondes
+-Retour sur l'échéancier
+-Précision sur l'asservissement digital
+-Varia

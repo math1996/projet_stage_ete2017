@@ -1,0 +1,32 @@
+//22 mai
+-Programmation et test et simulation d'un compteur N bits bidirectionnel
+-Programmation d'un module de génération d'une onde carrée paramétrable (fréquence, amplitude, offset, duty cycle)
+-Test en simulation du module de générateur d'onde carrée
+-Programmation d'un module de test de la génération d'une onde carrée paramétrable
+-Planification du test du générateur d'onde carrée (sur papier)
+-Mise au propre des schémas du controle SPI des ADC, du DAC et du potentiostat
+
+//23 mai
+-Test du générateur d'onde carrée, vérification à l'oscilloscope (pour plusieurs configurations des paramètre)
+-Ajout d'un paramètre permettant de générée un nombre fini de cycle du signal
+-Début du développement du module pour générer l'onde triangulaire (sur papier)
+-Trouver la manière de paramétriser l'onde triangulaire (sur papier)
+-Test du générateur d'onde carré réussis!
+-Consigner les résultats dans des graphiques (matlab)
+
+//24 mai
+-Finalisation des tests du générateur d'onde carré (générer une onde pendant un certain nombre de cycles)
+-Programmation d'un module permettant de générer une onde triangulaire paramétrable (fréquence, amplitude, offset)
+-Test du module en simulation (behavioral et post-translate)
+-Programmation d'un module de test du générateur d'onde triangulaire
+-Planification des tests du générateur d'onde triangulaire (sur papier)
+
+//25 mai
+-Test du générateur d'onde triangulaire
+-Le générateur fonctionne, mais modifier la méthode de tests pour assurer la fonctionnalité
+-Génération d'une onde triangulaire paramétrable réussi!
+-Problème survenu lorsque l'on demande un certain nombre de cycles, résultats incohérants
+-Planification de la modification du module de tests du générateur d'onde triangulaire 
+	(ajouter un buffer pour envoyer les paramètre directement sur le port série)
+-Modification de l'échéancier
+-Envoie du rapport hebdomadaire

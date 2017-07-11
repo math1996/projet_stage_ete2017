@@ -1,0 +1,13 @@
+//Réunion, vendredi 2 mai
+
+-Discussion sur les résultats obtenus de mesure de tension et de courant avec les ADC
+-Discussion sur les résultats de la génération de forme d'onde
+-Discussion sur les problèmes lié à Matlab et le mojo (communication série)
+-Révision de l'échéancier et discussion sur les éléments du projet à venir
+
+Actions à poser :
+	-Refaire les tests des ADC en mesurant le courant et la tension appliquée directement à la résistance
+	-Mettre à jour l'échéancier
+	-Investiguer les problèmes liée à Matlab et le port série (utiliser un script python, utiliser simulink)
+	-Refaire les tests des ADC avec une résistance de 500 ohm et de 10 k
+	-Tester la génération d'une forme d'onde dans une charge

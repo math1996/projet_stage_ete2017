@@ -1,0 +1,36 @@
+//26 juin
+-Fin de la programmation du module de test de courbe CV
+-Programmation de la réception et du traitement des données sur matlab (normalisation, affichage)
+-Test avec une résistance de la courbe CV (réussi)
+-Test avec un modèle RC d'une solution (réussis)
+-Compilation des courbes obtenus
+-Recherche sur l'architecture pour le controleur PID (sur papier)
+
+//27 juin
+-Ajout de fonctionnalité sur l'interface graphique (sauvegarde d'une courbe (CSV), afficher une courbe sauvegardée,
+						    zoomer sur la courbe, ajuster les axes en fct de l'amplitude)
+-Test des fonctionnalité de l'interface (réussi)
+-Élaboration de l'architecture du PID sur papier
+-Début de la programmation du module PID
+-Planification et préparation du test de courbe CV en solution
+
+//28 juin
+-Test de cyclovoltamétrie en solution (eau, dopamine)
+-Test concluant pour l'eau, ajustement du gain avec résistance variable optimal
+-Test non concluant pour la dopamine, ajuster le gain et continuer à tester
+-Compilation des résultats
+-Utilisation du potentiostat commercial pour la comparaison des résultats
+-Modification de l'interface graphique (affichage et récupération des données)
+
+//29 juin
+-Modification de l'interface graphique (accélération des tests, pouvoir ne pas afficher en temps réel)
+-Test courbe CV en solution de la dopamine (réussi)
+-Écriture des textes descriptifs des schémas du top level
+-Élaboration du schéma du module de controle des ADC
+-Élaboration du schéma du module de génération de forme d'onde
+-Élaboration du schéma du module de controle du DAC
+-Modification du schéma du top level (test courbe CV)
+-Compilation des résultats des test de courbe CV (matlab, graphique)
+
+//30 juin
+-Férié :)

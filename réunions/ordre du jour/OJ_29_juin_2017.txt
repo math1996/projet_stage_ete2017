@@ -1,0 +1,7 @@
+//Ordre du jour
+-Retour sur le travail effectué durant la semaine
+-Retour sur les résultats des test de courbe CV 
+-Retour sur les schéma de l'architecture VHDL (4)
+-Présentation des textes descriptifs des schémas (4)
+-Retour sur l'échéancier
+-Varia

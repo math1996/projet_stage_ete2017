@@ -1,0 +1,13 @@
+//Vendredi, 16 juin
+
+-Discussion sur le travail effectué durant la semaine
+-Discussion sur l'asservissement digital
+-Discussion sur l'évantualité d'acheter un nouveau FPGA
+-Discussion sur la synchronisation des ADC
+
+Actions à poser:
+	-Faire un schéma du top module (assez détaillé) sur VISIO
+	-Implémenter une RAM pour stocker le sinus au lieu d'une LUT
+	-Terminer l'interface graphique
+	-Tester le top module avec une résistance, circuit R-C, solution (courbe CV)
+

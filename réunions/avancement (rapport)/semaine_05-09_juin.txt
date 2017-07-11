@@ -1,0 +1,39 @@
+//5 juin
+-Test des ADC et du DAC avec un résistance, noter les résultats
+-Changer la résistance pour une 470 ohms et 10k et observe l'effet
+-Test des ADC réussis
+-Compilation des résultats du test
+-Test du générateur de forme d'onde complet (presque réussis)
+-Prise de photo de formes d'ondes à 0.1 Hz
+-Planification du débugage pour le lendemain
+
+//6 juin
+-Débugage du module de test de génération d'onde
+-Test du module de génération de form d'onde sur toute la plage de fréquence (0.01 Hz à 10 kHz)
+-Modifications des noms des images de formes d'ondes (noms significatifs)
+-Programmation du module de gestion des modes de fonctionnement de l'ADC 12 bits
+-Test en simulation de ce module (behavioral et post-translate)
+-Élaboration d'un module de test des modes de fonctionnement de l'adc 12 bits pour implémentation physique
+-Début de la programmation de ce module
+
+//7 juin
+-Programmation d'une machine à état contrôlant la gestion des mode de fonctionnement de l'ADC 12 bits
+-Programmation d'un module de test pour l'implémentation physique des modes de fonctionnement
+-Test exhaustifs en simulation du module de test pour implémentation physique et la machine à état de gestion des modes
+-Ajout de commentaires dans les modules (au besoin)
+-Modifications de l'architecture des modes de fonctionnement de l'ADC 12 bits afin de la rendre plus modulaire
+-Planification des tests à effectuer lors de l'implémentation physique (sur papier et excel)
+
+//8 juin
+-Ajout de la communication série (tx) au module de test
+-Test des modes de fonctionnement de l'ADC 12 bits (concluant)
+-Débuggage de l'envoie sur le port série (problème lorsque l'on envoie bcp de data)
+-Mise à jour de l'échéancier
+-Séminaire sur l'utilisation de l'octentiostat
+
+//9 juin
+-Test et validation du fonctionnement du module implémentant les modes de fonctionnements de l'ADC 12 bits
+-Recherche sur un moyen alternatif d'envoyer beaucoup de données sur le port série (problème avec le mojo, essayer avec le module AVR interface)
+-Élaboration des modes de fonctionnement de l'ADC 10 bits (sur papier)
+
+

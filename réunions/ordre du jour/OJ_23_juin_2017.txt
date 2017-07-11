@@ -1,0 +1,6 @@
+//Ordre du jour
+-Retour sur la travail effectué durant la semaine
+-Schéma de l'architecture
+-Retour sur les test effectués durant la semaine
+-Retour sur l'échéancier
+-Varia

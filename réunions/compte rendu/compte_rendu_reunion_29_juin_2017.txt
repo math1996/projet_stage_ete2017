@@ -1,0 +1,13 @@
+//Jeudi, 29 juin
+
+-Discussion de l'échéancier
+-Observation des courbes obtenus (CV)
+-Discussion sur les modifcations à apporter au schéma
+-Discussion sur les modifications à apporter au texte
+
+Actions à poser :
+	-Faire des tests de courbe CV avec d'autres liquides (eau, dopamine, café, etc..)
+	-Modifier la concentration des liquides (la noter)
+	-Superposer les courbes de références et obtenus
+	-Apporter les modifications aux schémas
+	-Avancer le PID 

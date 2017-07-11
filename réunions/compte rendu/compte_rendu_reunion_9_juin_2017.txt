@@ -1,0 +1,11 @@
+//Réunion, vendredi 9 juin
+
+-Retour sur l'échéancier et sur le travail fait durant la semain
+-Utilisation d'un convertisseur USB série à la place du M-C
+-Discussion sur les figures de formes d'onde
+
+Actions à poser :
+	-Tester le convertisseur série-USB
+	-Tester les modes de fonctionnement des ADC avec ce convertisseur
+	-Lire la datasheet du convertisseur USB-série
+	

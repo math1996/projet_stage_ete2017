@@ -1,0 +1,6 @@
+//Ordre du jour
+-Retour sur le travail fait durant la semaine
+-Précisions sur l'asservissement digital
+-Discussion sur les résulats des tests avec le modèle RC d'une solution
+-Retour sur l'échéancier
+-Varia

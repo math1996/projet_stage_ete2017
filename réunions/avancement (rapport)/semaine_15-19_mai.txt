@@ -1,0 +1,42 @@
+//15 mai
+-Continuer les test de l'ADC 10 bits
+-Programmation du module de controle du DAC 16 bits
+-Test en simulation du module de contrôle du DAC
+-Planification des tests du DAC
+-Tests de l'ADC 10 bits réussi pour les 8 canaux!
+
+//16 mai
+-Test du DAC 16 bits :
+	-utiliser le port série (voir notes pour les modes)
+	-configurer le DAC
+	-lire la tension à la sortie
+	-comparer à la datasheet
+-Test du DAC sont réussis
+-Recherche d'un oscillateur de crystal (50 MHz)
+-Comparaison des protocoles de communication ZigBee, Bluetooth et wi-fi
+-Choix du protocole selon les comparaisons => Bluetooth
+-Élaboration des modes de fonctionnement des ADC (sur papier)
+
+//17 mai
+-Programmtion d'une machine à état pour la conversion d'un seul canal de l'ADC 12 bits
+-Test en simulation (behevioral et post-translate) du module
+-Programmation d'une machine à état pour la conversion équentielle de plusieurs ou de tous les canaux de l'ADC 12 bits
+-Test en simulation du module
+-Programmation d'une machine à état effectuant la gestion des différents modes par le port série
+-Planification du test avec des ADC et du DAC avec le modèle R-C d'une solution
+
+//18 mai
+-Programmation d'un module de test des ADC et du DAC avec le modèle R-C d'une solution
+-Planification de l'orde du jour de la réunion du 19 mai
+-Tests avec le modèle R-C d'une solution:
+	-Envoyer une commande au DAC (via port série)
+	-Mesurer la tension et le courant à l'aide des ADC 10 bits et 10 bits
+	-Envoyer les résultats sur le port série
+	-Répéter l'expérience pour différentes consignes
+
+//19 mai
+-Effectuer les tests présentés précédement, noter les résultats
+-Tests des ADC et du DAC réussi avec le modèle RC
+-Rencontre hebdomadaire avec Amine
+-Planification de l'échéancier
+

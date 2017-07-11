@@ -1,0 +1,33 @@
+//3 juillet
+-Intégration du module de controle du potentiomètre afin d'ajuster le gain de la mesure de courant
+-Test de l'implémentation (réussi)
+-Test en solution (courbe CV):
+	-eau désionisée
+	-eau robinet
+	-eau salée (KCL, concentration variable)
+	-PBS
+-Compilation des courbes (comparaison référence vs expérimentale)
+
+//4 juillet
+-Test de courbe CV avec différente concentration de dopamine
+-Test de courbe CV avec PBS seul
+-Test avec une résistance (reprendre les mesurer avec le bon gain)
+-Modification des modes de fonctionnement ADC 12 bits et 10 bits
+-Test des modifications (pas concluant, débuggage plus poussé)
+-Compilation des courbes
+
+//5 juillet
+-Test de courbe CV avec KCL (ok)
+-Compilation des courbes
+-Modifications du top module de test de courbe CV (bug réglé en mode conversion séquentielle)
+-Test des modifications (réussi)
+-Discussion avec Jessy (décider de comparer avec octentiostat, ordre électorde important!)
+-Programmation du module PID
+
+//6 juillet
+-Test de courbe CV avec l'octentiostat (refaire eau, KCL, dopamine)
+-Compilation des courbes sur matlab
+-Modifications des schémas de l'architecture
+-Modification de l'échéancier
+-Élaboration de la FSM contrôlant le PID (sur papier)
+-Élaboration de l'architecture du test de courbe CV avec asservissement digital (sur papier)

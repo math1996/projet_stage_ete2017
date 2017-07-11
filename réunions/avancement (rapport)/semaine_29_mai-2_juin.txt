@@ -1,0 +1,30 @@
+//29 mai
+-Élaboration d'une méthode de génération d'une onde sinusoïdale
+-Opter pour lire une mémoire RAM  (ou une LUT)et envoyer au DAC les valeur 
+	selon la fréquence désirée (enregistrer 1/2 période)
+-Élaboration d'une formule afin de déterminer combien de temps attendre entre les envoies au DAC
+-Début de la programmation du module de génération d'onde sinusoïdale
+-Test de la communication série avec Matlab (fail)
+
+//30 mai
+-Programmation d'un script matlab pour générer une LUT du signal sinusoïdal normalisé
+-Programmation du module de génération du signal sinusoïdal
+-Test en simulation du module (behavioral et post-translate) réussis!
+-Début de la programmation du module de test de la génération d'onde sinusoïdale implémentée
+-Planification du test du module 
+
+//31 mai
+-Test du générateur d'onde sinusoïdale
+-Modification du calcul à effectuer pour définir la fréquence du signal
+-Test du générateur d'onde sinusoïdal réussi!
+-Traitement des résultats sur matlab
+-Élaboration d'un module permettant la génération d'une onde triangulaire pulsée en réutilisant le module d'onde triangulaire déjà utilisé
+-Début de la programmation d'une module permettant la génération d'une onde triangulaire pulsé + module de test
+
+//1 juin
+-Programmation d'un module de génération d'onde triangulaire pulsée
+-Test en simulation de ce module (réussis)
+-Programmation d'une module de test pour l'implémentation physique du générateur d'onde triangulaire pulsée
+-Test de l'implémentation physique du générateur d'onde pulsée (réussis)
+-Test de mesure de courant et de voltage avec les ADC 12 bits en utilisant une résistance
+-Mise à jour de l'échéancier

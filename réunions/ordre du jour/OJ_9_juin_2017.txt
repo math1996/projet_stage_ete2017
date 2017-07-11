@@ -1,0 +1,6 @@
+//Ordre du jour
+-Retour sur le travail effectué durant la semaine
+-Retour sur l'échéancier
+-Retour sur les problèmes liés à l'envoie sur le port série
+-Achat d'une chip bluetooth?
+-Varia
