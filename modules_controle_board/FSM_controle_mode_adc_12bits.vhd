@@ -32,10 +32,9 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity FSM_controle_mode_adc_12bits is
-    Port ( clk, reset, start, termine_conversion_canal, fin_conversion : in  STD_LOGIC;
+    Port ( clk, reset, start, fin_conversion : in  STD_LOGIC;
            mode : in  STD_LOGIC_VECTOR (1 downto 0);
-           nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);
-           start_1CH, start_seq, arret, occupe, termine, enable_input, reset_input : out  STD_LOGIC);
+           start_1CH, start_seq, occupe, termine, enable_input, reset_input : out  STD_LOGIC);
 end FSM_controle_mode_adc_12bits;
 
 architecture Behavioral of FSM_controle_mode_adc_12bits is
@@ -43,19 +42,15 @@ architecture Behavioral of FSM_controle_mode_adc_12bits is
 type etat_ctrl_mode_adc12bits is (attente, choix_mode, load_input, demarrer_conversion_mode1, demarrer_conversion_seq,attente_conversion, arret_conversion, fin);
 signal etat_present, etat_suivant : etat_ctrl_mode_adc12bits;
 
-signal enable_compteur_nb_cycle_conv, reset_compteur_nb_cycle_conv, enable_compteur_nb_canaux_conv,
-		 reset_compteur_nb_canaux_conv, cmp_fin_conversion, cmp_nb_canaux_converti : std_logic;
-signal compte_nb_cycle_conversion : std_logic_vector(31 downto 0);
-
 begin
 
 --compteur du nb de cycle de conversion
-compteur_nb_cycle_conversion : compteurNbits generic map(32) port map(clk => clk, enable => enable_compteur_nb_cycle_conv,
-																							reset => reset_compteur_nb_cycle_conv, output => compte_nb_cycle_conversion);
+--compteur_nb_cycle_conversion : compteurNbits generic map(32) port map(clk => clk, enable => enable_compteur_nb_cycle_conv,
+--																							reset => reset_compteur_nb_cycle_conv, output => compte_nb_cycle_conversion);
 
 --comparateurs
-cmp_fin_conversion <= '1' when compte_nb_cycle_conversion >= nb_cycle_conversion else
-							 '0';
+--cmp_fin_conversion <= '1' when compte_nb_cycle_conversion >= nb_cycle_conversion else
+--							 '0';
 																						 
 --machine à état du contrôle des modes
 process(reset, clk)
@@ -67,17 +62,14 @@ begin
 	end if;
 end process;
 
-process(etat_present, mode, start, termine_conversion_canal, fin_conversion, cmp_fin_conversion, cmp_nb_canaux_converti)
+process(etat_present, mode, start, fin_conversion)
 begin
 	case etat_present is
 		when attente =>
 			reset_input <= '0';
 			enable_input <= '0';
-			enable_compteur_nb_cycle_conv <= '0';
-			reset_compteur_nb_cycle_conv <= '0';
 			start_1CH <= '0';
 			start_seq <= '0';
-			arret <= '0';
 			occupe <= '0';
 			termine <= '0';
 			if(start = '1') then
@@ -89,11 +81,8 @@ begin
 		when load_input =>
 			reset_input <= '1';
 			enable_input <= '1';
-			enable_compteur_nb_cycle_conv <= '0';
-			reset_compteur_nb_cycle_conv <= '0';
 			start_1CH <= '0';
 			start_seq <= '0';
-			arret <= '0';
 			occupe <= '1';
 			termine <= '0';
 			etat_suivant <= choix_mode;
@@ -101,11 +90,8 @@ begin
 		when choix_mode =>
 			reset_input <= '1';
 			enable_input <= '0';
-			enable_compteur_nb_cycle_conv <= '0';
-			reset_compteur_nb_cycle_conv <= '0';
 			start_1CH <= '0';
 			start_seq <= '0';
-			arret <= '0';
 			occupe <= '1';
 			termine <= '0';
 			if(mode = "01") then
@@ -119,11 +105,8 @@ begin
 		when demarrer_conversion_mode1 =>
 			reset_input <= '1';
 			enable_input <= '0';
-			enable_compteur_nb_cycle_conv <= '0';
-			reset_compteur_nb_cycle_conv <= '0';
 			start_1CH <= '1';
 			start_seq <= '0';
-			arret <= '0';
 			occupe <= '1';
 			termine <= '0';
 			etat_suivant <= attente_conversion;
@@ -131,11 +114,8 @@ begin
 		when demarrer_conversion_seq =>
 			reset_input <= '1';
 			enable_input <= '0';
-			enable_compteur_nb_cycle_conv <= '0';
-			reset_compteur_nb_cycle_conv <= '0';
 			start_1CH <= '0';
 			start_seq <= '1';
-			arret <= '0';
 			occupe <= '1';
 			termine <= '0';
 			etat_suivant <= attente_conversion;
@@ -143,43 +123,21 @@ begin
 		when attente_conversion =>
 			reset_input <= '1';
 			enable_input <= '0';
-			enable_compteur_nb_cycle_conv <= termine_conversion_canal;
-			reset_compteur_nb_cycle_conv <= '1';
 			start_1CH <= '0';
 			start_seq <= '0';
-			arret <= '0';
-			occupe <= '1';
-			termine <= '0';
-			if(cmp_fin_conversion = '1') then
-				etat_suivant <= arret_conversion;
-			else
-				etat_suivant <= attente_conversion;
-			end if;
-		
-		when arret_conversion =>
-			reset_input <= '0';
-			enable_input <= '0';
-			enable_compteur_nb_cycle_conv <= '0';
-			reset_compteur_nb_cycle_conv <= '0';
-			start_1CH <= '0';
-			start_seq <= '0';
-			arret <= '1';
 			occupe <= '1';
 			termine <= '0';
 			if(fin_conversion = '1') then
 				etat_suivant <= fin;
 			else
-				etat_suivant <= arret_conversion;
+				etat_suivant <= attente_conversion;
 			end if;
 			
 		when fin =>
 			reset_input <= '0';
 			enable_input <= '0';
-			enable_compteur_nb_cycle_conv <= '0';
-			reset_compteur_nb_cycle_conv <= '0';
 			start_1CH <= '0';
 			start_seq <= '0';
-			arret <= '0';
 			occupe <= '1';
 			termine <= '1';
 			etat_suivant <= attente;
@@ -187,11 +145,8 @@ begin
 		when others =>
 			reset_input <= '0';
 			enable_input <= '0';
-			enable_compteur_nb_cycle_conv <= '0';
-			reset_compteur_nb_cycle_conv <= '0';
 			start_1CH <= '0';
 			start_seq <= '0';
-			arret <= '0';
 			occupe <= '0';
 			termine <= '0';
 			etat_suivant <= attente;

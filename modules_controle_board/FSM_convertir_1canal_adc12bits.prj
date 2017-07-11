@@ -1,0 +1,3 @@
+vhdl modules "usr_package.vhd"
+vhdl modules "compteurNbits.vhd"
+vhdl modules "FSM_convertir_1canal_adc12bits.vhd"

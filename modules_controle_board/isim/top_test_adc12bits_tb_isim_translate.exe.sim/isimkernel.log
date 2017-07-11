@@ -1,0 +1,29 @@
+Command line:
+   top_test_adc12bits_tb_isim_translate.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  61105
+
+Tue Jul 11 14:26:09 2017
+
+
+ Elaboration Time: 0.625 sec
+
+ Current Memory Usage: 1221.02 Meg
+
+ Total Signals          : 8068
+ Total Nets             : 5445
+ Total Signal Drivers   : 5381
+ Total Blocks           : 1534
+ Total Primitive Blocks : 868
+ Total Processes        : 5375
+ Total Traceable Variables  : 11905
+ Total Scalar Nets and Variables : 38300
+Total Line Count : 14292
+
+ Total Simulation Time: 2.35938 sec
+
+ Current Memory Usage: 1220.98 Meg
+
+Tue Jul 11 14:26:47 2017
+

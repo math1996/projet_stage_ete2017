@@ -44,7 +44,7 @@ end top_controle_adc_12bits;
 
 architecture Behavioral of top_controle_adc_12bits is
 
-signal start_seq_int, start_1Ch_int, arret_conversion, occupe_conversion, termine_conversion, donne_conversion_pret_int,
+signal start_seq_int, start_1Ch_int, occupe_conversion, termine_conversion, donne_conversion_pret_int,
 		 occupe_mode, termine_mode, reset_input, enable_input : std_logic;
 signal canal_conversion_int : std_logic_vector(2 downto 0);
 signal mode_conversion_int : std_logic_vector(1 downto 0);
@@ -63,14 +63,14 @@ registre_sequence_conv : registreNbits generic map(8) port map(clk => clk, reset
 
 --module de controle de l'ADC 12 bits
 ctrl_adc_12bits : top_controle_spi_adc_12bits port map(clk => clk, start_seq => start_seq_int, start_1CH => start_1CH_int, reset => reset, 
-																		 DOUT => DOUT, arret => arret_conversion, occupe => occupe_conversion, termine => termine_conversion,
+																		 DOUT => DOUT, occupe => occupe_conversion, termine => termine_conversion,
 																		 data_rdy => donne_conversion_pret_int, CS => CS, SCLK => SCLK, DIN => DIN, data_out_conversion => donne_conversion,
-																		 canal => canal_conversion_int, sequence => sequence_conversion_int);
+																		 canal => canal_conversion_int, sequence => sequence_conversion_int, nb_cycle_conversion => nb_cycle_conversion_int);
 --module de controle de mode de l'ADC 12 bits
-FSM_ctrl_mode : FSM_controle_mode_adc_12bits port map(clk => clk, reset => reset, start => start, termine_conversion_canal => donne_conversion_pret_int,
-																		fin_conversion => termine_conversion, mode => mode_conversion_int, nb_cycle_conversion => nb_cycle_conversion_int,
+FSM_ctrl_mode : FSM_controle_mode_adc_12bits port map(clk => clk, reset => reset, start => start,
+																		fin_conversion => termine_conversion, mode => mode_conversion_int,
 																		start_1CH => start_1CH_int, start_seq => start_seq_int, occupe => occupe_mode,
-																		termine => termine_mode, arret => arret_conversion, reset_input => reset_input, enable_input => enable_input);
+																		termine => termine_mode, reset_input => reset_input, enable_input => enable_input);
 																		
 --signaux sortie
 donne_conversion_pret <= donne_conversion_pret_int;

@@ -1,0 +1,2 @@
+xst -intstyle ise -ifn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/top_controle_spi_adc_12bits.xst" -ofn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/top_controle_spi_adc_12bits.syr" 
+xst -intstyle ise -ifn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/top_controle_spi_adc_12bits.xst" -ofn "C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/top_controle_spi_adc_12bits.syr" 

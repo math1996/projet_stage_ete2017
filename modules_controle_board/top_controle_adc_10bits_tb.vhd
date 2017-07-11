@@ -57,7 +57,6 @@ ARCHITECTURE behavior OF top_controle_adc_10bits_tb IS
          sequence_conversion : IN  std_logic_vector(7 downto 0);
          mode_conversion : IN  std_logic_vector(1 downto 0);
          nb_cycle_conversion : IN  std_logic_vector(31 downto 0);
-         nb_canaux_conversion : IN  std_logic_vector(3 downto 0);
          donnee_conversion_pret : OUT  std_logic;
          DIN : OUT  std_logic;
          SCLK : OUT  std_logic;
@@ -79,7 +78,6 @@ ARCHITECTURE behavior OF top_controle_adc_10bits_tb IS
    signal canal_conversion : std_logic_vector(2 downto 0) := (others => '0');
    signal sequence_conversion : std_logic_vector(7 downto 0) := (others => '0');
    signal mode_conversion : std_logic_vector(1 downto 0) := (others => '0');
-   signal nb_cycle_conversion : std_logic_vector(31 downto 0) := (others => '0');
    signal nb_canaux_conversion : std_logic_vector(3 downto 0) := (others => '0');
 
  	--Outputs
@@ -108,7 +106,6 @@ BEGIN
           sequence_conversion => sequence_conversion,
           mode_conversion => mode_conversion,
           nb_cycle_conversion => nb_cycle_conversion,
-          nb_canaux_conversion => nb_canaux_conversion,
           donnee_conversion_pret => donnee_conversion_pret,
           DIN => DIN,
           SCLK => SCLK,
@@ -142,7 +139,6 @@ BEGIN
 		sequence_conversion <= "00000000";
 		mode_conversion <= "01";
 		nb_cycle_conversion <= "00000000000000000000000000000100";
-		nb_canaux_conversion <= "0000";
 		wait for clk_period;
 		start <= '0';
       wait for clk_period*10;
@@ -155,7 +151,6 @@ BEGIN
 		sequence_conversion <= "11111111";
 		mode_conversion <= "10";
 		nb_cycle_conversion <= "00000000000000000000000000000100";
-		nb_canaux_conversion <= "1000";
 		wait for clk_period;
 		start <= '0';
 		wait for clk_period*10;
@@ -169,7 +164,6 @@ BEGIN
 		sequence_conversion <= "10001001";
 		mode_conversion <= "10";
 		nb_cycle_conversion <= "00000000000000000000000000000001";
-		nb_canaux_conversion <= "0011";
 		wait for clk_period;
 		start <= '0';
 		wait for clk_period*20;

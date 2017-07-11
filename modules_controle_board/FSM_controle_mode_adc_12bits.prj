@@ -1,0 +1,2 @@
+vhdl modules "usr_package.vhd"
+vhdl modules "FSM_controle_mode_adc_12bits.vhd"

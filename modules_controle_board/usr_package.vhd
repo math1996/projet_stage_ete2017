@@ -91,18 +91,18 @@ component top_controle_adc_12bits is
 end component;
 
 component top_controle_spi_adc_12bits is
-    Port ( clk, start_seq, start_1CH, reset, DOUT, arret : in  STD_LOGIC;
+    Port ( clk, start_seq, start_1CH, reset, DOUT : in  STD_LOGIC;
            occupe, termine, data_rdy, CS, SCLK, DIN : out  STD_LOGIC;
            data_out_conversion : out  STD_LOGIC_VECTOR (15 downto 0);
+			  nb_cycle_conversion : in std_logic_vector(31 downto 0);
            canal : in  STD_LOGIC_VECTOR (2 downto 0);
 			  sequence : in std_logic_vector(7 downto 0));
 end component;
 
 component FSM_controle_mode_adc_12bits is
-    Port ( clk, reset, start, termine_conversion_canal, fin_conversion : in  STD_LOGIC;
+    Port ( clk, reset, start, fin_conversion : in  STD_LOGIC;
            mode : in  STD_LOGIC_VECTOR (1 downto 0);
-           nb_cycle_conversion : in  STD_LOGIC_VECTOR (31 downto 0);
-           start_1CH, start_seq, arret, occupe, termine, reset_input, enable_input : out  STD_LOGIC);
+           start_1CH, start_seq, occupe, termine, reset_input, enable_input : out  STD_LOGIC);
 end component;
 
 component generation_pulse is
@@ -171,15 +171,17 @@ component addition_offset is
 end component;
 
 component FSM_conversion_seq_choix_canaux_adc12bits is
-    Port ( clk, start, reset, arret_conversion, termine_rdc_config, termine_rdc_recup : in  STD_LOGIC;
+    Port ( clk, start, reset, termine_rdc_config, termine_rdc_recup : in  STD_LOGIC;
            choix_canaux : in  STD_LOGIC_VECTOR (7 downto 0);
+				nb_cycle_conversion : in std_logic_vector(31 downto 0);
            termine, demarrer_transfert, demarrer_recup : out  STD_LOGIC;
            load : out  STD_LOGIC_VECTOR (15 downto 0));
 end component;
 
 component FSM_convertir_1canal_adc12bits is
-    Port ( clk, reset, start, arret_conversion, termine_RDC_config, termine_RDC_recup : in  STD_LOGIC;
+    Port ( clk, reset, start, termine_RDC_config, termine_RDC_recup : in  STD_LOGIC;
 				canal_conversion : in std_logic_vector(2 downto 0);
+				nb_cycle_conversion : in std_logic_vector(31 downto 0);
            termine, demarrer_transfert, demarrer_recup : out  STD_LOGIC;
            load : out  STD_LOGIC_VECTOR (15 downto 0));
 end component;

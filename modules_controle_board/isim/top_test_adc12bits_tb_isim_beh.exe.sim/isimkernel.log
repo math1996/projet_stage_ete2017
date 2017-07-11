@@ -1,0 +1,29 @@
+Command line:
+   top_test_adc12bits_tb_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  60835
+
+Tue Jul 11 14:24:55 2017
+
+
+ Elaboration Time: 0.34375 sec
+
+ Current Memory Usage: 1349.43 Meg
+
+ Total Signals          : 432
+ Total Nets             : 465
+ Total Signal Drivers   : 133
+ Total Blocks           : 114
+ Total Primitive Blocks : 62
+ Total Processes        : 91
+ Total Traceable Variables  : 65
+ Total Scalar Nets and Variables : 898
+Total Line Count : 633
+
+ Total Simulation Time: 0.46875 sec
+
+ Current Memory Usage: 1349.43 Meg
+
+Tue Jul 11 14:25:10 2017
+
