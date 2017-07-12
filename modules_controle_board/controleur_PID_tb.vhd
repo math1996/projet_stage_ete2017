@@ -47,7 +47,8 @@ ARCHITECTURE behavior OF controleur_PID_tb IS
          Ek0 : IN  std_logic_vector(15 downto 0);
          Ek1 : IN  std_logic_vector(15 downto 0);
          Ek2 : IN  std_logic_vector(15 downto 0);
-         u : OUT  std_logic;
+			termine_dac : in std_logic;
+         u : OUT  std_logic_vector(15 downto 0);
          termine : OUT  std_logic;
          occupe : OUT  std_logic;
          transfert_dac : OUT  std_logic
@@ -62,9 +63,10 @@ ARCHITECTURE behavior OF controleur_PID_tb IS
    signal Ek0 : std_logic_vector(15 downto 0) := (others => '0');
    signal Ek1 : std_logic_vector(15 downto 0) := (others => '0');
    signal Ek2 : std_logic_vector(15 downto 0) := (others => '0');
+	signal termine_dac : std_logic;
 
  	--Outputs
-   signal u : std_logic;
+   signal u : std_logic_vector(15 downto 0);
    signal termine : std_logic;
    signal occupe : std_logic;
    signal transfert_dac : std_logic;
@@ -84,6 +86,7 @@ BEGIN
           Ek2 => Ek2,
           u => u,
           termine => termine,
+			 termine_dac => termine_dac,
           occupe => occupe,
           transfert_dac => transfert_dac
         );
@@ -102,10 +105,37 @@ BEGIN
    stim_proc: process
    begin		
       -- hold reset state for 100 ns.
+		reset <= '0';
       wait for 100 ns;	
-
+		reset <= '1';
+		termine_dac <= '0';
       wait for clk_period*10;
-
+		Ek0 <= "0000000011001101";
+		start <= '1';
+		wait for clk_period;
+		start <= '0';
+		wait for clk_period*30;
+		termine_dac <= '1';
+		wait for clk_period*20;
+		Ek1 <= "1111111111110100";
+		Ek2 <= "0000000000100010";
+		start <= '1';
+		termine_dac <= '0';
+		wait for clk_period;
+		start <= '0';
+		wait for clk_period*10;
+		termine_dac <= '1';
+		wait for clk_period*20;
+		Ek0 <= "1111111100110011";
+		Ek1 <= "1111111111110100";
+		Ek2 <= "1111111111011110";
+		start <= '1';
+		termine_dac <= '0';
+		wait for clk_period;
+		start <= '0';
+		wait for clk_period*10;
+		termine_dac <= '1';
+		
       -- insert stimulus here 
 
       wait;

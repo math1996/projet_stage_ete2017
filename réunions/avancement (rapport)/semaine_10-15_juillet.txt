@@ -12,3 +12,10 @@
 -Première lecture de lab 1
 -Début de l'élaboration d'une architecture pour l'algorithme
 -Discussion avec jessy concernant l'approximation polynomiale
+
+//12 juillet
+-Programmation de la FSM gérant le cycle d'asservissement
+-Test en simulation du module contrôleur PID réussis (behavioral et post-translate)
+-Fabrication d'électrode en carbone
+-Test implémentation physique des modifications du module de l'ADC 12 bits (réussis)
+-Compilation de la courbe CV de dopamine pour différentes concentrations
