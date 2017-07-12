@@ -19,3 +19,5 @@
 -Fabrication d'électrode en carbone
 -Test implémentation physique des modifications du module de l'ADC 12 bits (réussis)
 -Compilation de la courbe CV de dopamine pour différentes concentrations
+-Lecture du code de la gestion des 2 caméras (VLSI)
+-Élaboration d'une archiecture sur papier de l'enleèvement de la courbe de fond
