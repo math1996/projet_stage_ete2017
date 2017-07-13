@@ -21,3 +21,9 @@
 -Compilation de la courbe CV de dopamine pour différentes concentrations
 -Lecture du code de la gestion des 2 caméras (VLSI)
 -Élaboration d'une archiecture sur papier de l'enleèvement de la courbe de fond
+
+//13 juillet
+-Lecture et analyse en profondeur du schéma d'architecture proposé par Jessy
+-Lecture et analyse du document explicatif sur l'algorithme de jessy
+-Clarification de certains points concernants l'algorithme (fréquence de fonctionnement ADC, Séparation de la courbe, Analyse par dérivée)
+-ajout de modifications proposées au lab 0 VLSI
