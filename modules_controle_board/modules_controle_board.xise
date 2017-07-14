@@ -464,6 +464,10 @@
       <association xil_pn:name="Implementation" xil_pn:seqID="36"/>
       <library xil_pn:name="modules"/>
     </file>
+    <file xil_pn:name="top_controleur_PID.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="114"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="114"/>
+    </file>
   </files>
 
   <properties>

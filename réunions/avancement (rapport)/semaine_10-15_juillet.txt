@@ -27,3 +27,10 @@
 -Lecture et analyse du document explicatif sur l'algorithme de jessy
 -Clarification de certains points concernants l'algorithme (fréquence de fonctionnement ADC, Séparation de la courbe, Analyse par dérivée)
 -ajout de modifications proposées au lab 0 VLSI
+
+//14 jullet
+-Lecture et analyse de la partie de l'approximation polynomiale et de l'approximation itérative de la courbe de fond
+-Discussion avec Jessy
+-Test de courbe CV avec le café, pepsi et pepsi et éthanol (pas vraiment concluant, ressemblance à l'eau)
+-Début de la programmation de l'algorithme d'enlèvement de la courbe de fond sur matlab (utiliser les principes que l'on va implémenter sur FPGA)
+
