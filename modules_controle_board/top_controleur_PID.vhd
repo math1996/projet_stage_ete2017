@@ -30,9 +30,10 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity top_controleur_PID is
-    Port ( tension : in  STD_LOGIC_VECTOR (11 downto 0);
-           courant : in  STD_LOGIC_VECTOR (13 downto 0);
+    Port ( tension : in  STD_LOGIC_VECTOR (10 downto 0);
+           courant : in  STD_LOGIC_VECTOR (12 downto 0);
            onde_gen : in  STD_LOGIC_VECTOR (15 downto 0);
+			  gain : in std_logic_vector(7 downto 0);
            clk, reset, data_pret : in  STD_LOGIC;
            occupe, termine, transfer_dac : out  STD_LOGIC;
            u : out  STD_LOGIC_VECTOR (15 downto 0));
@@ -40,7 +41,16 @@ end top_controleur_PID;
 
 architecture Behavioral of top_controleur_PID is
 
+signal tension_16bits, courant_16 bits : std_logic_vector(15 downto 0);
+
 begin
+
+--normaliser sur 16 bits les courant et la tension
+tension_16bits <= tension & "00000";
+courant_16bits <= courant & "000";
+
+
+
 
 
 end Behavioral;

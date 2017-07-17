@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2017-07-11T11:57:22</DateModified>
-  <ModuleName>top_test_courbe_CV</ModuleName>
+  <DateModified>2017-07-17T12:37:35</DateModified>
+  <ModuleName>controleur_PID</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
   <SavedFilePath>C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board/iseconfig/controleur_PID.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board</ImplementationReportsDirectory>
+  <ImplementationReportsDirectory>C:/Users/Mathieu/Desktop/projet_stage_ete2017/modules_controle_board\</ImplementationReportsDirectory>
   <DateInitialized>2017-07-11T11:57:22</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

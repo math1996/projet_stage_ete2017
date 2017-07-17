@@ -34,7 +34,7 @@ use ieee.std_logic_unsigned.all;
 
 entity controleur_PID is
     Port ( clk, reset, start, termine_dac : in  STD_LOGIC;
-           Ek0, Ek1, Ek2 : in  STD_LOGIC_VECTOR (15 downto 0);
+           Ek0, Ek1, Ek2 : in  STD_LOGIC_VECTOR (31 downto 0);
            u : out  STD_LOGIC_vector(15 downto 0);
            termine, occupe, transfert_dac : out  STD_LOGIC);
 end controleur_PID;
@@ -48,10 +48,9 @@ constant kd : std_logic_vector(31 downto 0) := "00000000000001001010101110000101
 type etat_FSM_PID is (attente, latch_erreur, latch_res1, latch_res_sortie, demarrer_dac, attente_dac, fin);
 signal etat_present, etat_suivant : etat_FSM_PID;
 
-signal add1, add2 : std_logic_vector(31 downto 0);
+signal add1, add2, Ek0_int, Ek1_int, Ek2_int : std_logic_vector(31 downto 0);
 signal mult1, mult2, mult3 : std_logic_vector(63 downto 0);
-signal sortie_reg_partie1, sortie_reg_partie2, sortie_reg_partie3,
-			Ek0_int, Ek1_int, Ek2_int, sortie_reg_partie1_int, sortie_reg_partie2_int,
+signal sortie_reg_partie1, sortie_reg_partie2, sortie_reg_partie3, sortie_reg_partie1_int, sortie_reg_partie2_int,
 			sortie_reg_partie3_int, addition, soustraction : std_logic_vector(15 downto 0);
 
 signal reset_reg, en_latch1, en_latch2 : std_logic;
@@ -70,18 +69,18 @@ Ek2_int <= not(Ek2) + 1 when Ek2(15) = '1' else
 
 --partie 1 équation
 add1 <= kp + ki + kd;
-mult1 <= (Ek0_int & "0000000000000000") * add1;
+mult1 <= Ek0_int * add1;
 
 registre_partie1 : registreNbits generic map(16) port map(clk => clk, reset => reset_reg, en => en_latch1, d => mult1(47 downto 32), q_out => sortie_reg_partie1);
 
 --partie 2 équation
 add2 <= kp + kd + kd;
-mult2 <= (Ek1_int & "0000000000000000") * add2;
+mult2 <= Ek1_int * add2;
 
 registre_partie2 : registreNbits generic map(16) port map(clk => clk, reset => reset_reg, en => en_latch1, d => mult2(47 downto 32), q_out => sortie_reg_partie2);
 
 --partie 3 équation
-mult3 <= (Ek2_int & "0000000000000000") * kd;
+mult3 <= Ek2_int * kd;
 
 registre_partie3 : registreNbits generic map(16) port map(clk => clk, reset => reset_reg, en => en_latch1, d => mult3(47 downto 32), q_out => sortie_reg_partie3);
 
