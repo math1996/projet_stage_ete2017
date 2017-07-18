@@ -36,7 +36,7 @@ entity controleur_PID is
     Port ( clk, reset, start, termine_dac : in  STD_LOGIC;
            Ek0, Ek1, Ek2 : in  STD_LOGIC_VECTOR (31 downto 0);
            u : out  STD_LOGIC_vector(15 downto 0);
-           termine, occupe, transfert_dac : out  STD_LOGIC);
+           termine, occupe, transfert_dac, enable_reg_erreur : out  STD_LOGIC);
 end controleur_PID;
 
 architecture Behavioral of controleur_PID is
@@ -45,7 +45,7 @@ constant kp : std_logic_vector(31 downto 0) := "00000000000000110010100011110101
 constant ki : std_logic_vector(31 downto 0) := "00000000000001010101010001111010";
 constant kd : std_logic_vector(31 downto 0) := "00000000000001001010101110000101";
 
-type etat_FSM_PID is (attente, latch_erreur, latch_res1, latch_res_sortie, demarrer_dac, attente_dac, fin);
+type etat_FSM_PID is (attente, latch_erreur, attente_calcul, latch_res1, latch_res_sortie, demarrer_dac, attente_dac, fin);
 signal etat_present, etat_suivant : etat_FSM_PID;
 
 signal add1, add2, Ek0_int, Ek1_int, Ek2_int : std_logic_vector(31 downto 0);
@@ -122,6 +122,7 @@ begin
 			transfert_dac <= '0';
 			occupe <= '0';
 			termine <= '0';
+			enable_reg_erreur <= '0';
 			if(start = '1') then
 				etat_suivant <= latch_erreur;
 			else
@@ -135,8 +136,9 @@ begin
 			transfert_dac <= '0';
 			occupe <= '1';
 			termine <= '0';
+			enable_reg_erreur <= '1';
 			etat_suivant <= latch_res1;
-		
+			
 		when latch_res1 =>
 			reset_reg <= '1';
 			en_latch1 <= '1';
@@ -144,6 +146,7 @@ begin
 			transfert_dac <= '0';
 			occupe <= '1';
 			termine <= '0';
+			enable_reg_erreur <= '0';
 			etat_suivant <= latch_res_sortie;
 			
 		when latch_res_sortie =>
@@ -153,6 +156,7 @@ begin
 			transfert_dac <= '0';
 			occupe <= '1';
 			termine <= '0';
+			enable_reg_erreur <= '0';
 			etat_suivant <= demarrer_dac;
 		
 		when demarrer_dac =>
@@ -162,6 +166,7 @@ begin
 			transfert_dac <= '1';
 			occupe <= '1';
 			termine <= '0';
+			enable_reg_erreur <= '0';
 			etat_suivant <= attente_dac;
 		
 		when attente_dac =>
@@ -171,6 +176,7 @@ begin
 			transfert_dac <= '0';
 			occupe <= '1';
 			termine <= '0';
+			enable_reg_erreur <= '0';
 			if(termine_dac = '1') then
 				etat_suivant <= fin;
 			else
@@ -184,6 +190,7 @@ begin
 			transfert_dac <= '0';
 			occupe <= '1';
 			termine <= '1';
+			enable_reg_erreur <= '0';
 			etat_suivant <= attente;
 			
 		when others =>
@@ -193,6 +200,7 @@ begin
 			transfert_dac <= '0';
 			occupe <= '0';
 			termine <= '0';
+			enable_reg_erreur <= '0';
 			etat_suivant <= attente;
 	end case;
 end process;

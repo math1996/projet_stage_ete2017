@@ -32,6 +32,18 @@ type tableau_memoire_8bits is array(natural range <>) of std_logic_vector(7 down
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component LUT_256_gain is
+    Port ( adresse : in  STD_LOGIC_VECTOR (7 downto 0);
+           valeur : out  STD_LOGIC_VECTOR (31 downto 0));
+end component;
+
+component controleur_PID is
+    Port ( clk, reset, start, termine_dac : in  STD_LOGIC;
+           Ek0, Ek1, Ek2 : in  STD_LOGIC_VECTOR (31 downto 0);
+           u : out  STD_LOGIC_vector(15 downto 0);
+           termine, occupe, transfert_dac, enable_reg_erreur : out  STD_LOGIC);
+end component;
+
 component top_generation_forme_onde is
     Port ( clk, reset, start : in  STD_LOGIC;
 			  choix_onde : std_logic_vector(2 downto 0);

@@ -1,1 +1,7 @@
-work	"controleur_PID.vhd"
+modules	"LUT_256_gain.vhd"
+modules	"compteurNbits.vhd"
+modules	"controleur_PID.vhd"
+work	"ipcore_dir/diviseur.vhd"
+modules	"registreNbits.vhd"
+work	"top_controleur_PID.vhd"
+modules	"usr_package.vhd"

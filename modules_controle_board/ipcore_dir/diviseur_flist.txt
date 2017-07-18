@@ -1,0 +1,13 @@
+# Output products list for <diviseur>
+_xmsgs\pn_parser.xmsgs
+diviseur.asy
+diviseur.gise
+diviseur.ngc
+diviseur.sym
+diviseur.vhd
+diviseur.vho
+diviseur.xco
+diviseur.xise
+diviseur_flist.txt
+diviseur_readme.txt
+diviseur_xmdf.tcl

@@ -1,0 +1,15 @@
+//17 juillet
+-Révision du laboratoire 1 de VLSI
+-Programamtion d'un test bench pour valider la fonction F3 du lab 1
+-Correction de fautes et modification de tournure de phrase lab1 VLSI
+-Ajout de texte afin de clarifier l'énoncé du lab 1
+-Programmation du top level du controleur PID
+-Installation de matlab et labview sur le nouvel ordinateur
+
+//18 juillet
+-Programmation du module de controle d'un cycle d'asservissement
+-Programmation d'un module s'occupant de diviser le gain du courant
+-Implémentation d'une LUT pour diviser le courant par le gain
+-Test en simulation (behavioral et post-translate) du module top level du PID (réussis)
+-Élaboration d'une architecture pour les test en implémentation physique (sur papier)
+-Début de l'élaboration de l'échéancier de l'enlèvement de la courbe de fond (algo)
