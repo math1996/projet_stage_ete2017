@@ -15,6 +15,9 @@ package usr_package is
 
 type tableau_memoire is array(natural range <>) of std_logic_vector(15 downto 0);
 type tableau_memoire_8bits is array(natural range <>) of std_logic_vector(7 downto 0);
+
+type ligne_matrice_16bits is array(natural range <>) of std_logic_vector(15 downto 0);
+
 -- type <new_type> is
 --  record
 --    <type_name>        : std_logic_vector( 7 downto 0);
@@ -31,6 +34,41 @@ type tableau_memoire_8bits is array(natural range <>) of std_logic_vector(7 down
 -- function <function_name>  (signal <signal_name> : in <type_declaration>) return <type_declaration>;
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
+
+component mux_add_sous_matrice_Nbits is
+	generic(N : integer :=16);
+    Port ( choix : in  STD_LOGIC;
+           d0, d1 : in  STD_LOGIC_VECTOR (1 downto 0);
+           output : out  STD_LOGIC);
+end component;
+
+component top_controleur_PID is
+    Port ( tension : in  STD_LOGIC_VECTOR (10 downto 0);
+           courant : in  STD_LOGIC_VECTOR (12 downto 0);
+           onde_gen : in  STD_LOGIC_VECTOR (15 downto 0);
+			  gain : in std_logic_vector(7 downto 0);
+           clk, reset, data_pret, termine_dac : in  STD_LOGIC;
+           occupe, termine, transfert_dac : out  STD_LOGIC;
+           u : out  STD_LOGIC_VECTOR (15 downto 0));
+end component;
+
+component top_generation_forme_onde_PID is
+    Port ( clk, reset, start : in  STD_LOGIC;
+           choix_onde : in  STD_LOGIC_VECTOR (2 downto 0);
+           amplitude, offset : in  STD_LOGIC_VECTOR (15 downto 0);
+           duty_cycle_carre, nb_coup_horloge_par_cycle_carre, nb_cycle : in  STD_LOGIC_VECTOR (31 downto 0);
+           pas_comptage_tri : in  STD_LOGIC_VECTOR (15 downto 0);
+           temps_attente_tri, temps_attente_sin : in  STD_LOGIC_VECTOR (31 downto 0);
+           pas_comptage_sin : in  STD_LOGIC_VECTOR (7 downto 0);
+           choix_clk_pulse : in  STD_LOGIC_VECTOR (3 downto 0);
+           occupe, termine : out  STD_LOGIC;
+			  onde_gen : out std_logic_vector(15 downto 0));
+end component;
+
+component simulation_dac is
+    Port ( clk, reset, start : in  STD_LOGIC;
+           termine, occupe : out  STD_LOGIC);
+end component;
 
 component LUT_256_gain is
     Port ( adresse : in  STD_LOGIC_VECTOR (7 downto 0);

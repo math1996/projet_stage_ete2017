@@ -13,3 +13,9 @@
 -Test en simulation (behavioral et post-translate) du module top level du PID (réussis)
 -Élaboration d'une architecture pour les test en implémentation physique (sur papier)
 -Début de l'élaboration de l'échéancier de l'enlèvement de la courbe de fond (algo)
+
+//19 juillet
+-Programmation du module de test pour l'implémentation physique du PID
+-Test du module en simulation (presque réussis)
+-Programmation d'un module d'addition/soustraction de matrice NxM en pipeline
+-Élaboration d'un module de multiplication matriciel en pipeline (sur papier)

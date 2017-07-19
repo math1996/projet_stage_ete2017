@@ -2,15 +2,15 @@
 -- Company: 
 -- Engineer:
 --
--- Create Date:   11:06:04 06/22/2017
+-- Create Date:   11:03:10 07/19/2017
 -- Design Name:   
--- Module Name:   C:/Users/super/Desktop/projet_stage_ete2017/modules_controle_board/top_test_courbe_cv_tb.vhd
+-- Module Name:   C:/Users/mathieu/Desktop/projet_stage_ete2017/modules_controle_board/top_test_PID_tb.vhd
 -- Project Name:  modules_controle_board
 -- Target Device:  
 -- Tool versions:  
 -- Description:   
 -- 
--- VHDL Test Bench Created by ISE for module: top_test_courbe_CV
+-- VHDL Test Bench Created by ISE for module: top_test_PID
 -- 
 -- Dependencies:
 -- 
@@ -25,25 +25,21 @@
 -- to guarantee that the testbench will bind correctly to the post-implementation 
 -- simulation model.
 --------------------------------------------------------------------------------
-library IEEE;
-library modules;
-use modules.usr_package.all;
-use IEEE.STD_LOGIC_1164.ALL;
-use ieee.std_logic_unsigned.all;
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
  
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
  
-ENTITY top_test_courbe_cv_tb IS
-END top_test_courbe_cv_tb;
+ENTITY top_test_PID_tb IS
+END top_test_PID_tb;
  
-ARCHITECTURE behavior OF top_test_courbe_cv_tb IS 
-
-
+ARCHITECTURE behavior OF top_test_PID_tb IS 
+ 
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT top_test_courbe_CV
+    COMPONENT top_test_PID
     PORT(
          clk : IN  std_logic;
          reset : IN  std_logic;
@@ -51,10 +47,9 @@ ARCHITECTURE behavior OF top_test_courbe_cv_tb IS
          DOUT_12bits : IN  std_logic;
          DOUT_10bits : IN  std_logic;
          SSTRB_10bits : IN  std_logic;
-         tx : OUT  std_logic;
          CS_12bits : OUT  std_logic;
          DIN_12bits : OUT  std_logic;
-         SCLk_12bits : OUT  std_logic;
+         SCLK_12bits : OUT  std_logic;
          CS_10bits : OUT  std_logic;
          DIN_10bits : OUT  std_logic;
          SCLK_10bits : OUT  std_logic;
@@ -63,10 +58,13 @@ ARCHITECTURE behavior OF top_test_courbe_cv_tb IS
          OSR1_dac : OUT  std_logic;
          OSR2_dac : OUT  std_logic;
          RSTB_dac : OUT  std_logic;
-         MUTEb_dac : OUT  std_logic;
+         MUTEB_dac : OUT  std_logic;
          FSYNC_dac : OUT  std_logic;
          DIN_dac : OUT  std_logic;
          SCLK_dac : OUT  std_logic;
+         SCLK_pot : OUT  std_logic;
+         CS_pot : OUT  std_logic;
+         SDI : OUT  std_logic;
          occupe : OUT  std_logic;
          termine : OUT  std_logic
         );
@@ -82,10 +80,9 @@ ARCHITECTURE behavior OF top_test_courbe_cv_tb IS
    signal SSTRB_10bits : std_logic := '0';
 
  	--Outputs
-   signal tx : std_logic;
    signal CS_12bits : std_logic;
    signal DIN_12bits : std_logic;
-   signal SCLk_12bits : std_logic;
+   signal SCLK_12bits : std_logic;
    signal CS_10bits : std_logic;
    signal DIN_10bits : std_logic;
    signal SCLK_10bits : std_logic;
@@ -94,10 +91,13 @@ ARCHITECTURE behavior OF top_test_courbe_cv_tb IS
    signal OSR1_dac : std_logic;
    signal OSR2_dac : std_logic;
    signal RSTB_dac : std_logic;
-   signal MUTEb_dac : std_logic;
+   signal MUTEB_dac : std_logic;
    signal FSYNC_dac : std_logic;
    signal DIN_dac : std_logic;
    signal SCLK_dac : std_logic;
+   signal SCLK_pot : std_logic;
+   signal CS_pot : std_logic;
+   signal SDI : std_logic;
    signal occupe : std_logic;
    signal termine : std_logic;
 
@@ -107,17 +107,16 @@ ARCHITECTURE behavior OF top_test_courbe_cv_tb IS
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: top_test_courbe_CV PORT MAP (
+   uut: top_test_PID PORT MAP (
           clk => clk,
           reset => reset,
           rx => rx,
           DOUT_12bits => DOUT_12bits,
           DOUT_10bits => DOUT_10bits,
           SSTRB_10bits => SSTRB_10bits,
-          tx => tx,
           CS_12bits => CS_12bits,
           DIN_12bits => DIN_12bits,
-          SCLk_12bits => SCLk_12bits,
+          SCLK_12bits => SCLK_12bits,
           CS_10bits => CS_10bits,
           DIN_10bits => DIN_10bits,
           SCLK_10bits => SCLK_10bits,
@@ -126,10 +125,13 @@ BEGIN
           OSR1_dac => OSR1_dac,
           OSR2_dac => OSR2_dac,
           RSTB_dac => RSTB_dac,
-          MUTEb_dac => MUTEb_dac,
+          MUTEB_dac => MUTEB_dac,
           FSYNC_dac => FSYNC_dac,
           DIN_dac => DIN_dac,
           SCLK_dac => SCLK_dac,
+          SCLK_pot => SCLK_pot,
+          CS_pot => CS_pot,
+          SDI => SDI,
           occupe => occupe,
           termine => termine
         );
@@ -461,7 +463,7 @@ BEGIN
 		wait for clk_period*54;
 		rx <= '1';
 		
-		--gain
+			--gain
 		wait for clk_period*5;
 		rx <= '0';
 		wait for clk_period*54;
@@ -490,28 +492,6 @@ BEGIN
 		rx <= '0';
 		wait for clk_period*54;
 		rx <= '1';
-		wait for clk_period*54;
-		rx <= '0';
-		wait for clk_period*54;
-		rx <= '0';
-		wait for clk_period*54;
-		rx <= '0';
-		wait for clk_period*54;
-		rx <= '0';
-		wait for clk_period*54;
-		rx <= '0';
-		wait for clk_period*54;
-		rx <= '0';
-		wait for clk_period*54;
-		rx <= '0';
-		wait for clk_period*54;
-		rx <= '1';
-		
-		--sequence
-		wait for clk_period*5;
-		rx <= '0';
-		wait for clk_period*54;
-		rx <= '0';
 		wait for clk_period*54;
 		rx <= '0';
 		wait for clk_period*54;
@@ -720,6 +700,7 @@ BEGIN
 		rx <= '0';
 		wait for clk_period*54;
 		rx <= '1';
+		
       -- insert stimulus here 
 
       wait;

@@ -45,7 +45,7 @@ constant kp : std_logic_vector(31 downto 0) := "00000000000000110010100011110101
 constant ki : std_logic_vector(31 downto 0) := "00000000000001010101010001111010";
 constant kd : std_logic_vector(31 downto 0) := "00000000000001001010101110000101";
 
-type etat_FSM_PID is (attente, latch_erreur, attente_calcul, latch_res1, latch_res_sortie, demarrer_dac, attente_dac, fin);
+type etat_FSM_PID is (attente, latch_erreur, latch_res1, latch_res_sortie, demarrer_dac, attente_dac, fin);
 signal etat_present, etat_suivant : etat_FSM_PID;
 
 signal add1, add2, Ek0_int, Ek1_int, Ek2_int : std_logic_vector(31 downto 0);

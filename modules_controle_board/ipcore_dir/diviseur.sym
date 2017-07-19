@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <symbol version="7" name="diviseur">
     <symboltype>BLOCK</symboltype>
-    <timestamp>2017-7-18T18:37:25</timestamp>
+    <timestamp>2017-7-19T18:8:37</timestamp>
     <pin polarity="Input" x="0" y="80" name="clk" />
     <pin polarity="Input" x="0" y="112" name="ce" />
     <pin polarity="Input" x="0" y="144" name="sclr" />

@@ -5,5 +5,11 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
+<msg type="warning" file="HDLCompiler" num="89" delta="unknown" >"C:/Users/mathieu/Desktop/projet_stage_ete2017/modules_controle_board/test_division.vhd" Line 57: &lt;<arg fmt="%s" index="1">diviseur</arg>&gt; remains a black-box since it has no binding entity.
+</msg>
+
+<msg type="warning" file="Simulator" num="648" delta="unknown" >&quot;<arg fmt="%s" index="1">C:/Users/mathieu/Desktop/projet_stage_ete2017/modules_controle_board/test_division.vhd</arg>&quot; Line <arg fmt="%d" index="2">57</arg>. Instance <arg fmt="%s" index="3">diviseur</arg> is unbound
+</msg>
+
 </messages>
 

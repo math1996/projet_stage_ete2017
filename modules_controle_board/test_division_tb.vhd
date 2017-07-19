@@ -27,7 +27,7 @@
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
- 
+
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
@@ -39,9 +39,9 @@ ARCHITECTURE behavior OF test_division_tb IS
  
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT test_division
+    COMPONENT division_module
     PORT(
-         clk : IN  std_logic;
+         clk,ce, sclr : IN  std_logic;
          dividend : IN  std_logic_vector(31 downto 0);
          divisor : IN  std_logic_vector(31 downto 0);
          quotien : OUT  std_logic_vector(31 downto 0);
@@ -52,7 +52,7 @@ ARCHITECTURE behavior OF test_division_tb IS
     
 
    --Inputs
-   signal clk : std_logic := '0';
+   signal clk, ce, sclr : std_logic := '0';
    signal dividend : std_logic_vector(31 downto 0) := (others => '0');
    signal divisor : std_logic_vector(31 downto 0) := (others => '0');
 
@@ -67,8 +67,10 @@ ARCHITECTURE behavior OF test_division_tb IS
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: test_division PORT MAP (
+   uut: division_module PORT MAP (
           clk => clk,
+			 ce => ce,
+			 sclr => sclr,
           dividend => dividend,
           divisor => divisor,
           quotien => quotien,
@@ -90,11 +92,12 @@ BEGIN
    stim_proc: process
    begin		
       -- hold reset state for 100 ns.
-      wait for 100 ns;	
+      wait for 100 ns;
+		ce <= '1';
+		sclr <= '0';
 		dividend <= "00000000000000111000000000000000";
-		divisor <= "00000000000000101000000000000000";
+		divisor <= "00000000000000011000000000000000";
       wait for clk_period*10;
-
 
       -- insert stimulus here 
 

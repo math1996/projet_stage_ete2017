@@ -57,21 +57,22 @@ signal courant_int : std_logic_vector(12 downto 0);
 signal tension_int : std_logic_vector(10 downto 0);
 signal compte_div : std_logic_vector(7 downto 0);
 
-component diviseur
-	port (
-	clk: in std_logic;
-	ce: in std_logic;
-	sclr: in std_logic;
-	rfd: out std_logic;
-	dividend: in std_logic_vector(31 downto 0);
-	divisor: in std_logic_vector(31 downto 0);
-	quotient: out std_logic_vector(31 downto 0);
-	fractional: out std_logic_vector(31 downto 0));
+component diviseur is
+  port (
+    sclr : in STD_LOGIC := 'X'; 
+    ce : in STD_LOGIC := 'X'; 
+    rfd : out STD_LOGIC; 
+    clk : in STD_LOGIC := 'X'; 
+    dividend : in STD_LOGIC_VECTOR ( 31 downto 0 ); 
+    quotient : out STD_LOGIC_VECTOR ( 31 downto 0 ); 
+    divisor : in STD_LOGIC_VECTOR ( 31 downto 0 ); 
+    fractional : out STD_LOGIC_VECTOR ( 31 downto 0 ) 
+  );
 end component;
+
 
 begin
 
---tester en sim si le cycle s'exécute bien, tester en post-translate, tester division, s'assurer que le gain est bon
 
 --registres contenant les entrées de courant et de tension
 registre_courant : registreNbits generic map(13) port map(clk => clk, reset => reset_reg, en => enable_input, d => courant, q_out => courant_int);
@@ -116,7 +117,7 @@ courant_32Bits_gain <= partie_entiere_div(15 downto 0) & partie_frac_div(31 down
 compteur_div : compteurNbits generic map(8) port map(clk => clk, reset => reset_compteur, enable => enable_compteur, output => compte_div);
 
 --comparateur
-cmp_fin_div <= '1' when compte_div >= 68 else
+cmp_fin_div <= '1' when compte_div >= 69 else
 					'0';
 
 --machine à état du controle du cycle d'asservissement

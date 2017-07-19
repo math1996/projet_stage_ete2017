@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    11:42:35 06/19/2017 
+-- Create Date:    09:43:29 07/19/2017 
 -- Design Name: 
--- Module Name:    top_test_courbe_CV - Behavioral 
+-- Module Name:    top_test_PID - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -22,7 +22,6 @@ library modules;
 use modules.usr_package.all;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.std_logic_unsigned.all;
-
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 --use IEEE.NUMERIC_STD.ALL;
@@ -32,19 +31,38 @@ use ieee.std_logic_unsigned.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity top_test_courbe_CV is
-    Port ( clk, reset, rx, DOUT_12bits, DOUT_10bits, SSTRB_10bits  : in  STD_LOGIC;
-           tx : out std_logic;
-			  CS_12bits, DIN_12bits, SCLK_12bits : out  STD_LOGIC;
+entity top_test_PID is
+    Port ( clk, reset, rx, DOUT_12bits, DOUT_10bits, SSTRB_10bits : in  STD_LOGIC;
+           CS_12bits, DIN_12bits, SCLK_12bits : out  STD_LOGIC;
            CS_10bits, DIN_10bits, SCLK_10bits, SHDN_10bits : out  STD_LOGIC;
-           BPB_dac, OSR1_dac, OSR2_dac, RSTB_dac, MUTEb_dac, FSYNC_dac, DIN_dac, SCLK_dac : out  STD_LOGIC;
-			  SCLK_pot, CS_pot, SDI : out std_logic;
-           occupe, termine, conversion_adc12bits: out std_logic;
-			  test_output_led : out std_logic_vector(2 downto 0));
-end top_test_courbe_CV;
+           BPB_dac, OSR1_dac, OSR2_dac, RSTB_dac, MUTEB_dac, FSYNC_dac, DIN_dac, SCLK_dac : out  STD_LOGIC;
+           SCLK_pot, CS_pot, SDI : out  STD_LOGIC;
+           occupe, termine : out  STD_LOGIC);
+end top_test_PID;
 
+architecture Behavioral of top_test_PID is
 
-architecture Behavioral of top_test_courbe_CV is
+type etat_test_PID is (attente, attente_param_onde, latch_param_onde, attente_param_adc, latch_param_adc, attente_onde, attente_start_adc10bits,
+								attente_start_adc12bits, attente_start_gen, fin);
+signal etat_present, etat_suivant : etat_test_PID;
+
+signal clk_25MHZ, clk_12_5MHZ, clk_1_5MHZ, new_data_int, reset_buffer_rx, enable_compteur_buffer, reset_compteur_buffer, reset_input, enable_input, reset_gen, demarrer_gen,
+		cmp_attente_carre,cmp_attente_tri, cmp_attente_sin,cmp_attente_pulse, reset_reg_choix, enable_reg_choix, occupe_gen, termine_gen, enable_param_onde,
+		cmp_fin_attente_param, reset_adc, start_adc12bits, occupe_adc12bits, termine_adc12bits, donnee_adc12bits_pret, enable_param_adc, cmp_attente_param_adc,
+		start_adc10bits, donnee_adc10bits_pret, occupe_adc10bits, termine_adc10bits, enable_attente, reset_attente, occupe_PID, termine_PID,
+		cmp_fin_start_adc10bits, reset_termine, cmp_fin, start_gain, occupe_pot, termine_pot, occupe_dac, termine_dac, start_transfert_int: std_logic;
+		 
+signal data_recu, pas_comptage_sin_int, sequence_int, valeur_gain_int  : std_logic_vector(7 downto 0);
+signal compte_buffer: std_logic_vector(4 downto 0);
+signal clk_out, compte_attente_start : std_logic_vector(4 downto 0);
+signal mode, canal_int, signal_termine : std_logic_vector(2 downto 0);
+signal mode_int : std_logic_vector(1 downto 0);
+signal amplitude_int, offset_int, pas_comptage_tri_int, donne_conversion_adc12bits, donne_conversion_adc10bits, data_int,
+		donne_adc12bits_int, donne_adc10bits_int, onde_gen_int, load_int : std_logic_vector(15 downto 0);
+signal duty_cycle_carre_int, nb_coup_horloge_par_cycle_carre_int, temps_attente_tri_int, temps_attente_sin_int, nb_cycle_int,
+		 nb_cycle_12bits_int, nb_cycle_10bits_int : std_logic_vector(31 downto 0);
+signal choix_clk_pulse_int : std_logic_vector(3 downto 0);
+signal output_buffer_rx : tableau_memoire_8bits(16 downto 0);
 
 component serial_rx is 
 	port(clk, rst, rx : in std_logic;
@@ -52,41 +70,18 @@ component serial_rx is
 			new_data : out std_logic);
 end component;
 
-type etat_courbe_CV is (attente, attente_param_onde, latch_param_onde, attente_param_adc, latch_param_adc, attente_onde, attente_start_adc10bits,
-								attente_start_adc12bits, attente_start_gen, fin, demarrer_envoie1, demarrer_envoie2, attente_envoie1, attente_envoie2);
-signal etat_present, etat_suivant : etat_courbe_CV;
-
-signal clk_25MHZ, clk_12MHZ, clk_781KHZ, new_data_int, reset_buffer_rx, enable_compteur_buffer, reset_compteur_buffer, reset_input, enable_input, reset_gen, demarrer_gen,
-		cmp_attente_carre,cmp_attente_tri, cmp_attente_sin,cmp_attente_pulse, reset_reg_choix, enable_reg_choix, occupe_gen, termine_gen, enable_param_onde,
-		cmp_fin_attente_param, reset_adc, start_adc12bits, occupe_adc12bits, termine_adc12bits, donnee_adc12bits_pret, enable_param_adc, cmp_attente_param_adc,
-		start_adc10bits, donnee_adc10bits_pret, occupe_adc10bits, termine_adc10bits, occupe_envoie, termine_envoie, start_envoie, enable_attente, reset_attente,
-		cmp_fin_start_adc10bits, reset_termine, enable_input_envoie, mode_envoie, cmp_fin, start_gain, occupe_pot, termine_pot: std_logic;
-		 
-signal data_recu, pas_comptage_sin_int, sequence_int, valeur_gain_int  : std_logic_vector(7 downto 0);
-signal compte_buffer: std_logic_vector(4 downto 0);
-signal clk_out, compte_attente_start : std_logic_vector(5 downto 0);
-signal mode, canal_int, signal_termine : std_logic_vector(2 downto 0);
-signal mode_int : std_logic_vector(1 downto 0);
-signal amplitude_int, offset_int, pas_comptage_tri_int, donne_conversion_adc12bits, donne_conversion_adc10bits, data_int,
-		donne_adc12bits_int, donne_adc10bits_int : std_logic_vector(15 downto 0);
-signal duty_cycle_carre_int, nb_coup_horloge_par_cycle_carre_int, temps_attente_tri_int, temps_attente_sin_int, nb_cycle_int,
-		 nb_cycle_12bits_int, nb_cycle_10bits_int : std_logic_vector(31 downto 0);
-signal choix_clk_pulse_int : std_logic_vector(3 downto 0);
-signal output_buffer_rx : tableau_memoire_8bits(16 downto 0);
-
 begin
 
---signaux de sortie
-occupe <= occupe_pot or occupe_gen or occupe_adc12bits or occupe_adc10bits or occupe_envoie;
-termine <= termine_gen or termine_pot;
-conversion_adc12bits <= donnee_adc12bits_pret;
-test_output_led <= signal_termine;
+--tester en simulation!!!!
 
---diviseur d'horloge à 25 MHz
-diviseur_horloge : compteurNbits generic map(6) port map(clk => clk, reset => reset, enable => '1', output => clk_out);
+occupe <= occupe_dac or occupe_pot or occupe_PID or occupe_gen or occupe_adc12bits or occupe_adc10bits;
+termine <= termine_PID;
+
+--diviseur d'horloge
+diviseur_horloge : compteurNbits generic map(5) port map(clk => clk, reset => reset, enable => '1', output => clk_out);
 clk_25MHZ <= clk_out(0);
-clk_12MHZ <= clk_out(1);
-clk_781KHZ <= clk_out(5);
+clk_12_5MHZ <= clk_out(1);
+clk_1_5MHZ <= clk_out(4);
 
 --comparateurs
 cmp_attente_carre <= '1' when compte_buffer >= 17 else
@@ -103,55 +98,63 @@ cmp_attente_pulse <= '1' when compte_buffer >= 16 else
 							
 cmp_attente_param_adc <= '1' when compte_buffer >= 10 else
 								 '0';
-								 
-cmp_fin_start_adc10bits	<= '1' when compte_attente_start >= 32 else
-									'0';
-									
+
 cmp_fin_attente_param <= cmp_attente_carre when mode = "001" else
 								 cmp_attente_tri when mode = "010" else
 								 cmp_attente_sin when mode = "011" else
 								 cmp_attente_pulse when mode = "100" else
 								 '0';
-
+								 
+cmp_fin_start_adc10bits	<= '1' when compte_attente_start >= 16 else
+									'0';
+									
 cmp_fin <= '1' when signal_termine = "111" else
 			  '0';
-								 
-data_int <= donne_adc12bits_int when mode_envoie = '0' else
-				donne_adc10bits_int;
+									
+--module de communication série
+com_serie_rx : serial_rx port map(clk => clk_25MHZ, rst => reset, rx => rx, data => data_recu, new_data => new_data_int);
+
+--buffer de réception des paramètres
+buffer_rx : buffer_8xM generic map(17) port map(clk => clk_25MHZ, enable => new_data_int, reset => (reset_buffer_rx and reset), input => data_recu, output => output_buffer_rx);
 
 --module de controle de la résistance variable
 potentiometre_dig : controle_spi_potentiostat port map(clk => clk_25MHZ, reset => reset, start => start_gain, load_in => valeur_gain_int, CLK_OUT => SCLK_pot,
 																		CS => CS_pot, SDI => SDI, occupe => occupe_pot, termine => termine_pot);
---module de communication série
-com_serie_rx : serial_rx port map(clk => clk_25MHZ, rst => reset, rx => rx, data => data_recu, new_data => new_data_int);
-
---buffer de réception des données de configuration des formes d'onde
-buffer_rx : buffer_8xM generic map(17) port map(clk => clk_25MHZ, enable => new_data_int, reset => (reset_buffer_rx and reset), input => data_recu, output => output_buffer_rx);
-
+																		
 --compteur du nombre de données reçus dans le buffer
 compteur_buffer : compteurNbits generic map(5) port map(clk => clk_25MHZ, enable => (new_data_int and enable_compteur_buffer), reset => reset_compteur_buffer,
 																				output => compte_buffer);
 
 --compteur de l'attente pour le start de l'ADC 10 bits
-compteur_start : compteurNbits generic map(6) port map(clk => clk_25MHZ, enable => enable_attente, reset => reset_attente, output => compte_attente_start);
+compteur_start : compteurNbits generic map(5) port map(clk => clk_25MHZ, enable => enable_attente, reset => reset_attente, output => compte_attente_start);
 
+--module	de controle SPI du DAC 16 bits
+ctrl_serie_dac16 : controle_serie_dac_16bits port map(clk => clk_25MHZ, reset => reset_gen, start => start_transfert_int,
+																		load => load_int, FSYNC => FSYNC_dac, SCLK => SCLK_dac, DIN => DIN_dac,
+																		OSR1 => OSR1_dac, OSR2 => OSR2_dac, BPB => BPB_dac, MUTEB => MUTEB_dac, 
+																		RSTB => RSTB_dac, occupe => occupe_dac, termine => termine_dac);
+
+--module de controle du PID
+ctrl_PID : top_controleur_PID port map(clk => clk_25MHZ, reset => reset_gen, data_pret => donnee_adc10bits_pret, termine_dac => termine_dac, tension => donne_conversion_adc10bits(15 downto 5),
+													courant => donne_conversion_adc12bits(12 downto 0), onde_gen => onde_gen_int, gain => valeur_gain_int, occupe => occupe_PID, termine => termine_PID,
+													transfert_dac => start_transfert_int, u => load_int);
+		
 --module de génération de forme d'onde
-generation_forme_onde : top_generation_forme_onde port map(clk => clk_25MHZ, reset => reset_gen, start => demarrer_gen, nb_cycle => nb_cycle_int, choix_onde => mode,
+generation_forme_onde : top_generation_forme_onde_PID port map(clk => clk_25MHZ, reset => reset_gen, start => demarrer_gen, nb_cycle => nb_cycle_int, choix_onde => mode,
 																			  amplitude => amplitude_int, offset => offset_int, duty_cycle_carre => duty_cycle_carre_int, 
 																			  nb_coup_horloge_par_cycle_carre => nb_coup_horloge_par_cycle_carre_int, pas_comptage_tri => pas_comptage_tri_int,
 																			  temps_attente_tri => temps_attente_tri_int, temps_attente_sin => temps_attente_sin_int,
 																			  pas_comptage_sin => pas_comptage_sin_int, choix_clk_pulse => choix_clk_pulse_int, occupe => occupe_gen, termine => termine_gen,
-																			  FSYNC => FSYNC_dac, SCLK => SCLK_dac, DIN => DIN_dac, OSR1 => OSR1_dac, OSR2 => OSR2_dac, BPB => BPB_dac,
-																			  MUTEB => MUTEB_dac, RSTB => RSTB_dac);
+																			  onde_gen => onde_gen_int);
 
 --module de controle de l'ADC 12 bits 
-controle_adc12bits : top_controle_adc_12bits port map(clk => clk_12MHZ, reset => reset_adc, start => start_adc12bits, DOUT => DOUT_12bits, canal_conversion => canal_int,
+controle_adc12bits : top_controle_adc_12bits port map(clk => clk_12_5MHZ, reset => reset_adc, start => start_adc12bits, DOUT => DOUT_12bits, canal_conversion => canal_int,
 																	  sequence_conversion => sequence_int, mode_conversion => mode_int, nb_cycle_conversion => nb_cycle_12bits_int,
 																	   donne_conversion_pret => donnee_adc12bits_pret, CS => CS_12bits, SCLK => SCLK_12bits,
 																	  DIN => DIN_12bits, occupe => occupe_adc12bits, termine => termine_adc12bits, donne_conversion => donne_conversion_adc12bits);
 
 --module de controle de l'ADC 10 bits
-controle_adc10bits : top_controle_adc_10bits port map(clk => clk_781KHZ, reset => reset_adc, start => start_adc10bits, DOUT => DOUT_10bits, SSTRB => SSTRB_10bits,
+controle_adc10bits : top_controle_adc_10bits port map(clk => clk_1_5MHZ, reset => reset_adc, start => start_adc10bits, DOUT => DOUT_10bits, SSTRB => SSTRB_10bits,
 																	   canal_conversion => canal_int, sequence_conversion => sequence_int, mode_conversion => mode_int, 
 																		nb_cycle_conversion => nb_cycle_10bits_int,
 																		donnee_conversion_pret => donnee_adc10bits_pret, DIN => DIN_10bits, SCLK => SCLK_10bits, SHDN => SHDN_10bits,
@@ -159,19 +162,9 @@ controle_adc10bits : top_controle_adc_10bits port map(clk => clk_781KHZ, reset =
 
 --registre de sortie des modules du signal termine
 registre_termine_gen : registre1bit	port map(clk => clk_25MHZ, reset => reset_adc, en => termine_gen, d => termine_gen, q_out => signal_termine(0));
-registre_termine_adc12bits : registre1bit port map(clk => clk_12MHZ, reset => reset_adc, en => termine_adc12bits, d => termine_adc12bits, q_out => signal_termine(1));
-registre_termine_adc10bits : registre1bit port map(clk => clk_781KHZ, reset => reset_adc, en => termine_adc10bits, d => termine_adc10bits, q_out => signal_termine(2));
-																 
---module d'envoie sur le port série (tx)
-com_serie_tx : FSM_envoyer_Noctets generic map(2) port map(clk => clk_25MHZ, reset => reset, start => start_envoie, data => data_int, tx => tx,
-																		    occupe => occupe_envoie, termine => termine_envoie);																	 
-
---registre pour envoyer les données
-registre_envoie_courant : registreNbits generic map(16) port map(clk => clk_25MHZ, reset => reset, en => enable_input_envoie, d => 	donne_conversion_adc12bits,
-																					  q_out => donne_adc12bits_int);
-registre_envoie_tension : registreNbits generic map(16) port map(clk => clk_25MHZ, reset => reset, en => enable_input_envoie, d => donne_conversion_adc10bits,
-																					  q_out => donne_adc10bits_int);
-																					  
+registre_termine_adc12bits : registre1bit port map(clk => clk_12_5MHZ, reset => reset_adc, en => termine_adc12bits, d => termine_adc12bits, q_out => signal_termine(1));
+registre_termine_adc10bits : registre1bit port map(clk => clk_1_5MHZ, reset => reset_adc, en => termine_adc10bits, d => termine_adc10bits, q_out => signal_termine(2));
+																	
 --registre du choix de type d'onde
 registre_choix_onde : registreNbits generic map(3) port map(clk => clk_25MHZ, reset => (reset_reg_choix and reset), en => (enable_reg_choix and new_data_int),
 									d => data_recu(2 downto 0), q_out => mode);
@@ -231,7 +224,7 @@ registre_nb_cycle_10bits : registreNbits generic map(32) port map(clk => clk_25M
 --registre du gain de résistance
 registre_gain : registreNbits generic map(8) port map(clk => clk_25MHZ, reset => reset_input, en => enable_param_onde, d => output_buffer_rx(0),
 									q_out => valeur_gain_int);
-									
+
 --machine à état de la gestion du test
 process(reset, clk_25MHZ)
 begin
@@ -242,8 +235,7 @@ begin
 	end if;
 end process;
 
-process(etat_present, new_data_int, cmp_fin_attente_param, cmp_attente_param_adc, cmp_fin_start_adc10bits,
-		 donnee_adc10bits_pret, termine_envoie, cmp_fin)
+process(etat_present, new_data_int, cmp_fin_attente_param, cmp_attente_param_adc, cmp_fin_start_adc10bits, cmp_fin)
 begin
 	case etat_present is
 		when attente =>
@@ -262,9 +254,6 @@ begin
 			enable_param_adc <= '0';
 			reset_attente <= '0';
 			enable_attente <= '0';
-			enable_input_envoie <= '0';
-			mode_envoie <= '0';
-			start_envoie <= '0';
 			start_gain <= '0';
 			if(new_data_int = '1') then
 				etat_suivant <= attente_param_onde;
@@ -288,10 +277,7 @@ begin
 			enable_param_adc <= '0';
 			reset_attente <= '0';
 			enable_attente <= '0';
-			enable_input_envoie <= '0';
-			mode_envoie <= '0';
 			start_gain <= '0';
-			start_envoie <= '0';
 			if(cmp_fin_attente_param = '1') then
 				etat_suivant <= latch_param_onde;
 			else
@@ -314,9 +300,6 @@ begin
 			enable_param_adc <= '0';
 			reset_attente <= '0';
 			enable_attente <= '0';
-			enable_input_envoie <= '0';
-			mode_envoie <= '0';
-			start_envoie <= '0';
 			start_gain <= '1';
 			etat_suivant <= attente_param_adc;
 			
@@ -336,9 +319,6 @@ begin
 			enable_param_adc <= '0';
 			reset_attente <= '0';
 			enable_attente <= '0';
-			enable_input_envoie <= '0';
-			mode_envoie <= '0';
-			start_envoie <= '0';
 			start_gain <= '0';
 			if(cmp_attente_param_adc = '1') then
 				etat_suivant <= latch_param_adc;
@@ -362,9 +342,6 @@ begin
 			enable_param_adc <= '1';
 			reset_attente <= '0';
 			enable_attente <= '0';
-			enable_input_envoie <= '0';
-			mode_envoie <= '0';
-			start_envoie <= '0';
 			start_gain <= '0';
 			etat_suivant <= attente_start_adc10bits;
 			
@@ -384,9 +361,6 @@ begin
 			enable_param_adc <= '0';
 			reset_attente <= '1';
 			enable_attente <= '1';
-			enable_input_envoie <= '0';
-			mode_envoie <= '0';
-			start_envoie <= '0';
 			start_gain <= '0';
 			if(cmp_fin_start_adc10bits = '1') then
 				etat_suivant <= attente_start_adc12bits;
@@ -410,9 +384,6 @@ begin
 			enable_param_adc <= '0';
 			reset_attente <= '0';
 			enable_attente <= '0';
-			enable_input_envoie <= '0';
-			mode_envoie <= '0';
-			start_envoie <= '0';
 			start_gain <= '0';
 			etat_suivant <= attente_start_gen;
 			
@@ -432,9 +403,6 @@ begin
 			enable_param_adc <= '0';
 			reset_attente <= '0';
 			enable_attente <= '0';
-			enable_input_envoie <= '0';
-			mode_envoie <= '0';
-			start_envoie <= '0';
 			start_gain <= '0';
 			etat_suivant <= attente_onde;
 			
@@ -454,115 +422,11 @@ begin
 			enable_param_adc <= '0';
 			reset_attente <= '0';
 			enable_attente <= '0';
-			enable_input_envoie <= '0';
-			mode_envoie <= '0';
-			start_envoie <= '0';
 			start_gain <= '0';
-			if(donnee_adc10bits_pret = '1' and cmp_fin = '0') then
-				etat_suivant <= demarrer_envoie1;
-			elsif(donnee_adc10bits_pret = '0' and cmp_fin = '1') then
-				etat_suivant <= fin;
-			elsif(donnee_adc10bits_pret = '1' and cmp_fin = '1') then
+			if(cmp_fin = '1') then
 				etat_suivant <= fin;
 			else
 				etat_suivant <= attente_onde;
-			end if;
-			
-	
-		when demarrer_envoie1 =>
-			reset_buffer_rx <= '1';
-			reset_reg_choix <= '1';
-			enable_reg_choix <= '0';
-			enable_compteur_buffer <= '0';
-			reset_compteur_buffer <= '0';
-			reset_gen <= '1';
-			demarrer_gen <= '0';
-			reset_adc <= '1';
-			start_adc12bits <= '0';
-			start_adc10bits <= '0';
-			reset_input <= '1';
-			enable_param_onde <= '0';
-			enable_param_adc <= '0';
-			reset_attente <= '0';
-			enable_attente <= '0';
-			enable_input_envoie <= '1';
-			mode_envoie <= '0';
-			start_envoie <= '1';
-			start_gain <= '0';
-			etat_suivant <= attente_envoie1;
-			
-		when attente_envoie1 =>
-			reset_buffer_rx <= '1';
-			reset_reg_choix <= '1';
-			enable_reg_choix <= '0';
-			enable_compteur_buffer <= '0';
-			reset_compteur_buffer <= '0';
-			reset_gen <= '1';
-			demarrer_gen <= '0';
-			reset_adc <= '1';
-			start_adc12bits <= '0';
-			start_adc10bits <= '0';
-			reset_input <= '1';
-			enable_param_onde <= '0';
-			enable_param_adc <= '0';
-			reset_attente <= '0';
-			enable_attente <= '0';
-			enable_input_envoie <= '0';
-			mode_envoie <= '0';
-			start_envoie <= '0';
-			start_gain <= '0';
-			if(termine_envoie = '1') then
-				etat_suivant <= demarrer_envoie2;
-			else
-				etat_suivant <= attente_envoie1;
-			end if;
-			
-		when demarrer_envoie2 =>
-			reset_buffer_rx <= '1';
-			reset_reg_choix <= '1';
-			enable_reg_choix <= '0';
-			enable_compteur_buffer <= '0';
-			reset_compteur_buffer <= '0';
-			reset_gen <= '1';
-			demarrer_gen <= '0';
-			reset_adc <= '1';
-			start_adc12bits <= '0';
-			start_adc10bits <= '0';
-			reset_input <= '1';
-			enable_param_onde <= '0';
-			enable_param_adc <= '0';
-			reset_attente <= '0';
-			enable_attente <= '0';
-			enable_input_envoie <= '0';
-			mode_envoie <= '1';
-			start_envoie <= '1';
-			start_gain <= '0';
-			etat_suivant <= attente_envoie2;
-			
-		when attente_envoie2 =>
-			reset_buffer_rx <= '1';
-			reset_reg_choix <= '1';
-			enable_reg_choix <= '0';
-			enable_compteur_buffer <= '0';
-			reset_compteur_buffer <= '0';
-			reset_gen <= '1';
-			demarrer_gen <= '0';
-			reset_adc <= '1';
-			start_adc12bits <= '0';
-			start_adc10bits <= '0';
-			reset_input <= '1';
-			enable_param_onde <= '0';
-			enable_param_adc <= '0';
-			reset_attente <= '0';
-			enable_attente <= '0';
-			enable_input_envoie <= '0';
-			mode_envoie <= '1';
-			start_envoie <= '0';
-			start_gain <= '0';
-			if(termine_envoie = '1') then
-				etat_suivant <= attente_onde;
-			else
-				etat_suivant <= attente_envoie2;
 			end if;
 			
 		when fin =>
@@ -581,9 +445,6 @@ begin
 			enable_param_adc <= '0';
 			reset_attente <= '0';
 			enable_attente <= '0';
-			enable_input_envoie <= '0';
-			mode_envoie <= '0';
-			start_envoie <= '0';
 			start_gain <= '0';
 			etat_suivant <= attente;
 		
@@ -603,12 +464,9 @@ begin
 			enable_param_adc <= '0';
 			reset_attente <= '0';
 			enable_attente <= '0';
-			enable_input_envoie <= '0';
-			mode_envoie <= '0';
-			start_envoie <= '0';
 			start_gain <= '0';
 			etat_suivant <= attente;
 	end case;	
-end process;								
+end process;		
 end Behavioral;
 

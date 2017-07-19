@@ -39,19 +39,11 @@ end FSM_controle_mode_adc_12bits;
 
 architecture Behavioral of FSM_controle_mode_adc_12bits is
 
-type etat_ctrl_mode_adc12bits is (attente, choix_mode, load_input, demarrer_conversion_mode1, demarrer_conversion_seq,attente_conversion, arret_conversion, fin);
+type etat_ctrl_mode_adc12bits is (attente, choix_mode, load_input, demarrer_conversion_mode1, demarrer_conversion_seq,attente_conversion, fin);
 signal etat_present, etat_suivant : etat_ctrl_mode_adc12bits;
 
 begin
-
---compteur du nb de cycle de conversion
---compteur_nb_cycle_conversion : compteurNbits generic map(32) port map(clk => clk, enable => enable_compteur_nb_cycle_conv,
---																							reset => reset_compteur_nb_cycle_conv, output => compte_nb_cycle_conversion);
-
---comparateurs
---cmp_fin_conversion <= '1' when compte_nb_cycle_conversion >= nb_cycle_conversion else
---							 '0';
-																						 
+									 
 --machine à état du contrôle des modes
 process(reset, clk)
 begin
