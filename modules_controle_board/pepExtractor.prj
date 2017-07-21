@@ -1,1 +1,6 @@
-work	"C:/Users/mathieu/Desktop/projet_stage_ete2017/modules_controle_board/top_test_PID.vhd"
+modules	"addition_soustraction_matrice_NxN.vhd"
+modules	"compteurNbits.vhd"
+modules	"mux_add_sous_matrice_Nbits.vhd"
+modules	"registreNbits.vhd"
+work	"test_add_sous_pipeline.vhd"
+modules	"usr_package.vhd"

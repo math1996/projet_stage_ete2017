@@ -37,24 +37,24 @@ entity addition_soustraction_matrice_NxM is
 	generic(N, M : integer := 4);
     Port ( clk, reset, start, choix_add_sous : in  STD_LOGIC;
            ligne_matrice1, ligne_matrice2 : in  ligne_matrice_16bits (M-1 downto 0);
-           ligne_resultat : in  ligne_matrice_16bits (M-1 downto 0);
-           donnee_prete, occupe, termine : in  STD_LOGIC);
+           ligne_resultat : out  ligne_matrice_16bits (M-1 downto 0);
+           donnee_prete, occupe, termine : out  STD_LOGIC);
 end addition_soustraction_matrice_NxM;
 
 architecture Behavioral of addition_soustraction_matrice_NxM is
 
-constant nb_bits : integer := integer(ceil(log2(real(N))));
-
 type etat_add_sous_mat is (attente, addition, latch_res, verif_fin, fin);
 signal etat_present, etat_suivant : etat_add_sous_mat;
-signal compte_nb_ligne : std_logic_vector(nb_bits - 1 downto 0);
+signal compte_nb_ligne : std_logic_vector((integer(ceil(log2(real(N))))) downto 0);
 signal res_add_sous, ligne_matrice2_int  : ligne_matrice_16bits(M-1 downto 0);
+
+signal reset_compteur, reset_reg, enable_compteur, enable_reg, cmp_fin : std_logic;
 
 
 begin
 
 --compteur du nombre de lignes additionnées
-compteur_nb_lignes : compteurNbits generic map(nb_bits) port map(clk => clk, reset => reset_compteur, enable => enable_compteur, output => compte_nb_ligne);
+compteur_nb_lignes : compteurNbits generic map(integer(ceil(log2(real(N)))) + 1) port map(clk => clk, reset => reset_compteur, enable => enable_compteur, output => compte_nb_ligne);
 
 --génération des registres de sortie et de l'addition/soustraction
 gen_module : for i in 0 to M-1 generate
@@ -63,6 +63,10 @@ gen_module : for i in 0 to M-1 generate
 																				 output => ligne_matrice2_int(i));
 	res_add_sous(i) <= ligne_matrice1(i) + ligne_matrice2_int(i);
 end generate gen_module;
+
+--comparateur
+cmp_fin <= '1' when compte_nb_ligne >= N else
+			  '0';
 
 --machine à état de la gestion du calcul
 process(clk, reset)

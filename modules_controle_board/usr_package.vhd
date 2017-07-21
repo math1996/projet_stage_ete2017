@@ -35,11 +35,19 @@ type ligne_matrice_16bits is array(natural range <>) of std_logic_vector(15 down
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component addition_soustraction_matrice_NxM is
+	generic(N, M : integer := 4);
+    Port ( clk, reset, start, choix_add_sous : in  STD_LOGIC;
+           ligne_matrice1, ligne_matrice2 : in  ligne_matrice_16bits (M-1 downto 0);
+           ligne_resultat : out  ligne_matrice_16bits (M-1 downto 0);
+           donnee_prete, occupe, termine : out  STD_LOGIC);
+end component;
+
 component mux_add_sous_matrice_Nbits is
 	generic(N : integer :=16);
     Port ( choix : in  STD_LOGIC;
-           d0, d1 : in  STD_LOGIC_VECTOR (1 downto 0);
-           output : out  STD_LOGIC);
+           d0, d1 : in  STD_LOGIC_VECTOR (N-1 downto 0);
+           output : out  STD_LOGIC_vector(N-1 downto 0));
 end component;
 
 component top_controleur_PID is

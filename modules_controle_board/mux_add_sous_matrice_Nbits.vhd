@@ -32,8 +32,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity mux_add_sous_matrice_Nbits is
 	generic(N : integer :=16);
     Port ( choix : in  STD_LOGIC;
-           d0, d1 : in  STD_LOGIC_VECTOR (1 downto 0);
-           output : out  STD_LOGIC);
+           d0, d1 : in  STD_LOGIC_VECTOR (N-1 downto 0);
+           output : out  STD_LOGIC_vector(N-1 downto 0));
 end mux_add_sous_matrice_Nbits;
 
 architecture Behavioral of mux_add_sous_matrice_Nbits is

@@ -19,3 +19,11 @@
 -Test du module en simulation (presque réussis)
 -Programmation d'un module d'addition/soustraction de matrice NxM en pipeline
 -Élaboration d'un module de multiplication matriciel en pipeline (sur papier)
+
+//20 juillet
+-Avancement du laboratoire 1 de VLSI
+-Mise sur papier d'idées pour le dernier numéro du lab
+-fin de la programmation du module d'addition/soustraction matricielle en pipeline
+-Test du module en simulation (behavioral et post-translate, réussis)
+-Réunion avec J-F pour le projet final de VLSI + lab3
+-Analyse de la datasheet et du code de la caméra VMOD cam de digilent

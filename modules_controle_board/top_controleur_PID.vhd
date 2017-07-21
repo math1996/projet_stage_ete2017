@@ -99,7 +99,6 @@ division_gain : diviseur port map (clk => clk, rfd => rfd_int, dividend => coura
 												
 --comparaison de la tension et du courant (ajouter un diviseur pour retirer le gain)
 diff_tension_courant <= tension_32bits + (not(courant_32bits_gain) + 1);
-
 --mpasser du complément 1 à complément 2
 onde_int_signe <= onde_gen_int when onde_gen_int(31) = '0' else
 						onde_gen_int + 1;
