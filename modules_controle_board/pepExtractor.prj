@@ -1,6 +1,6 @@
-modules	"addition_soustraction_matrice_NxN.vhd"
 modules	"compteurNbits.vhd"
+modules	"multiplication_matricielle_NxM.vhd"
 modules	"mux_add_sous_matrice_Nbits.vhd"
 modules	"registreNbits.vhd"
-work	"test_add_sous_pipeline.vhd"
+work	"test_mult_matricielle_pipeline.vhd"
 modules	"usr_package.vhd"

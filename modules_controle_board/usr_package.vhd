@@ -17,7 +17,7 @@ type tableau_memoire is array(natural range <>) of std_logic_vector(15 downto 0)
 type tableau_memoire_8bits is array(natural range <>) of std_logic_vector(7 downto 0);
 
 type ligne_matrice_16bits is array(natural range <>) of std_logic_vector(15 downto 0);
-
+type ligne_matrice_32bits is array(natural range <>) of std_logic_vector(31 downto 0);
 -- type <new_type> is
 --  record
 --    <type_name>        : std_logic_vector( 7 downto 0);
@@ -34,6 +34,23 @@ type ligne_matrice_16bits is array(natural range <>) of std_logic_vector(15 down
 -- function <function_name>  (signal <signal_name> : in <type_declaration>) return <type_declaration>;
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
+
+component multiplication_matricielle_NxM is
+	generic(N, M : integer := 4);
+    Port ( clk, reset, start : in  STD_LOGIC;
+           ligne_matrice1, colonne_matrice2 : in  ligne_matrice_16bits (M-1 downto 0);
+           resultat : out  STD_LOGIC_VECTOR (31 downto 0);
+           donnee_prete, occupe, termine : out  STD_LOGIC);
+end component;
+
+
+component multiplication_epe_matrice_NxM is
+	generic(N, M : integer := 4);
+    Port ( clk, reset, start : in  STD_LOGIC;
+           ligne_matrice1, ligne_matrice2 : in  ligne_matrice_16bits (M-1 downto 0);
+           ligne_resultat : out  ligne_matrice_32bits (M-1 downto 0);
+           donnee_prete, occupe, termine : out  STD_LOGIC);
+end component;
 
 component addition_soustraction_matrice_NxM is
 	generic(N, M : integer := 4);

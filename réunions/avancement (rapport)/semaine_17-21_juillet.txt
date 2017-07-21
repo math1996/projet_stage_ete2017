@@ -27,3 +27,13 @@
 -Test du module en simulation (behavioral et post-translate, réussis)
 -Réunion avec J-F pour le projet final de VLSI + lab3
 -Analyse de la datasheet et du code de la caméra VMOD cam de digilent
+
+//21 juillet
+-Finalisation du lab 1 de VLSI (reste à ajuster les barèmes + grille de correction)
+-Lecture et analyse de la version précédante du lab2
+-Début de l'élaboration du lab2 de VLSI (sur papier)
+-Programmation d'un module de multiplication matricielle élément par élément en pipeline
+-Test en simulation du module de multiplication matricielle epe en pipeline (behavioral et post-translate, réussi!)
+-Programmation d'un module de multiplication matricielle pour des matrices multiple de 2 
+-Test en simulation du module de mult matricielle en pipeline (behavioral et post-translate, réussis!)
+

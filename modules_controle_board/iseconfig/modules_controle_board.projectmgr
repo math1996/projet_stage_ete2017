@@ -44,6 +44,7 @@
          <ClosedNode>/memoire_tampon_16xM - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|memoire_tampon_16xM.vhd</ClosedNode>
          <ClosedNode>/mojo_top C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|mojo_top.v/avr_interface - avr_interface/serial_rx - serial_rx</ClosedNode>
          <ClosedNode>/recuperation_donnee_spi_adc_10bits - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|recuperation_donnee_spi_adc_10bits.vhd</ClosedNode>
+         <ClosedNode>/test_add_sous_pipeline - Behavioral C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_add_sous_pipeline.vhd</ClosedNode>
          <ClosedNode>/test_add_sous_pipeline - Behavioral C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_add_sous_pipeline.vhd/add_sous_mat - addition_soustraction_matrice_NxM - Behavioral</ClosedNode>
          <ClosedNode>/test_division - Behavioral C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_division.vhd</ClosedNode>
          <ClosedNode>/test_generation_onde_carre - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_carre.vhd</ClosedNode>
@@ -82,6 +83,9 @@
          <ClosedNode>/test_generation_onde_triangle_pulse - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle_pulse.vhd/buffer_rx - buffer_8xM - Behavioral</ClosedNode>
          <ClosedNode>/test_generation_onde_triangle_pulse - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle_pulse.vhd/ctrl_serie_dac16 - controle_serie_dac_16bits - Behavioral</ClosedNode>
          <ClosedNode>/test_generation_onde_triangle_pulse - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle_pulse.vhd/gen_onde_triangle - generation_onde_triangle - Behavioral</ClosedNode>
+         <ClosedNode>/test_mult_epe_pipeline - Behavioral C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_mult_epe_pipeline.vhd</ClosedNode>
+         <ClosedNode>/test_mult_epe_pipeline - Behavioral C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_mult_epe_pipeline.vhd/mult - multiplication_epe_matrice_NxM - Behavioral</ClosedNode>
+         <ClosedNode>/test_mult_matricielle_pipeline - Behavioral C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_mult_matricielle_pipeline.vhd/mult_matricielle - multiplication_matricielle_NxM - Behavioral</ClosedNode>
          <ClosedNode>/test_serial_tx - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_serial_tx.vhd</ClosedNode>
          <ClosedNode>/test_serial_tx - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_serial_tx.vhd/com_serie_tx - FSM_envoyer_Noctets - Behavioral</ClosedNode>
          <ClosedNode>/test_serial_tx - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_serial_tx.vhd/com_serie_tx - FSM_serial_tx - Behavioral</ClosedNode>
@@ -114,6 +118,7 @@
          <ClosedNode>/top_generation_onde - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_generation_onde.vhd/gen_onde_pulse - generation_pulse - Behavioral</ClosedNode>
          <ClosedNode>/top_generation_onde - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_generation_onde.vhd/gen_onde_sinus - generation_onde_sin - Behavioral</ClosedNode>
          <ClosedNode>/top_generation_onde - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_generation_onde.vhd/gen_onde_triangle - generation_onde_triangle - Behavioral</ClosedNode>
+         <ClosedNode>/top_test_PID - Behavioral C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_PID.vhd</ClosedNode>
          <ClosedNode>/top_test_PID - Behavioral C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_PID.vhd/buffer_rx - buffer_8xM - Behavioral</ClosedNode>
          <ClosedNode>/top_test_PID - Behavioral C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_PID.vhd/controle_adc10bits - top_controle_adc_10bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_PID - Behavioral C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_PID.vhd/controle_adc12bits - top_controle_adc_12bits - Behavioral</ClosedNode>
@@ -230,13 +235,13 @@
          <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd/rdc_output_led_test - rdc_Nbits - Behavioral</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>top_test_PID - Behavioral (C:/Users/mathieu/Desktop/projet_stage_ete2017/modules_controle_board/top_test_PID.vhd)</SelectedItem>
+         <SelectedItem>test_mult_matricielle_pipeline - Behavioral (C:/Users/mathieu/Desktop/projet_stage_ete2017/modules_controle_board/test_mult_matricielle_pipeline.vhd)</SelectedItem>
       </SelectedItems>
-      <ScrollbarPosition orientation="vertical" >11</ScrollbarPosition>
+      <ScrollbarPosition orientation="vertical" >9</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000002020000000100000001000000640000029d000000020000000000000000000000000200000064ffffffff0000008100000003000000020000029d0000000100000003000000000000000100000003</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000264000000020000000000000000000000000200000064ffffffff000000810000000300000002000002640000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>top_test_PID - Behavioral (C:/Users/mathieu/Desktop/projet_stage_ete2017/modules_controle_board/top_test_PID.vhd)</CurrentItem>
+      <CurrentItem>test_mult_matricielle_pipeline - Behavioral (C:/Users/mathieu/Desktop/projet_stage_ete2017/modules_controle_board/test_mult_matricielle_pipeline.vhd)</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="" guiview="Process" >
       <ClosedNodes>
@@ -272,7 +277,7 @@
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >35</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000000000000000100000000000000000000000000000000000000f8000000010001000100000000000000000000000064ffffffff000000810000000000000001000000f80000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000000000000000100000000000000000000000000000000000001b2000000010001000100000000000000000000000064ffffffff000000810000000000000001000001b20000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
       <CurrentItem>usr_package.vhd</CurrentItem>
    </ItemView>
@@ -285,13 +290,13 @@
          <ClosedNode>Implement Design/Place &amp; Route</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>View RTL Schematic</SelectedItem>
+         <SelectedItem>Synthesize - XST</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001b2000000010000000100000000000000000000000064ffffffff000000810000000000000001000001b20000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem>View RTL Schematic</CurrentItem>
+      <CurrentItem>Synthesize - XST</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_UCF" guiview="Process" >
       <ClosedNodes>
@@ -322,7 +327,7 @@
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
       <CurrentItem/>
    </ItemView>
-   <SourceProcessView>000000ff00000000000000020000012e0000016001000000050100000002</SourceProcessView>
+   <SourceProcessView>000000ff00000000000000020000012d0000013b01000000050100000002</SourceProcessView>
    <CurrentView>Implementation</CurrentView>
    <ItemView engineview="BehavioralSim" guiview="Source" compilemode="AutoCompile" >
       <ClosedNodes>
@@ -383,6 +388,8 @@
          <ClosedNode>/test_FSM_configurer_adc12bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_FSM_configurer_adc12bits_tb.vhd/uut - FSM_configurer_adc_12bits - Behavioral/rdc_configurer_adc_12bits - configuration_spi_adc_12bits - Behavioral</ClosedNode>
          <ClosedNode>/test_FSM_configurer_adc12bits_tb - behavior C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_FSM_configurer_adc12bits_tb.vhd</ClosedNode>
          <ClosedNode>/test_FSM_configurer_adc12bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_FSM_configurer_adc12bits_tb.vhd</ClosedNode>
+         <ClosedNode>/test_add_sous_pipeline_tb - behavior C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_add_sous_pipeline_tb.vhd</ClosedNode>
+         <ClosedNode>/test_division_tb - behavior C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_division_tb.vhd</ClosedNode>
          <ClosedNode>/test_generation_onde_carre - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_carre.vhd</ClosedNode>
          <ClosedNode>/test_generation_onde_carre - Behavioral C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_carre.vhd</ClosedNode>
          <ClosedNode>/test_generation_onde_carre - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_carre.vhd</ClosedNode>
@@ -395,6 +402,7 @@
          <ClosedNode>/test_generation_onde_triangle - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle.vhd</ClosedNode>
          <ClosedNode>/test_generation_onde_triangle_pulse - Behavioral C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle_pulse.vhd</ClosedNode>
          <ClosedNode>/test_generation_onde_triangle_pulse - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_generation_onde_triangle_pulse.vhd</ClosedNode>
+         <ClosedNode>/test_mult_epe_pipeline_tb - behavior C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_mult_epe_pipeline_tb.vhd/uut - test_mult_epe_pipeline - Behavioral/mult - multiplication_epe_matrice_NxM - Behavioral</ClosedNode>
          <ClosedNode>/test_serial_tx - Behavioral C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_serial_tx.vhd</ClosedNode>
          <ClosedNode>/test_serial_tx - Behavioral C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_serial_tx.vhd</ClosedNode>
          <ClosedNode>/test_serial_tx - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_serial_tx.vhd</ClosedNode>
@@ -409,6 +417,7 @@
          <ClosedNode>/test_sim_mode_adc12bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_sim_mode_adc12bits_tb.vhd/uut - top_test_mode_adc_12bits - Behavioral/ctrl_adc12bits - top_controle_adc_12bits - Behavioral/ctrl_adc_12bits - top_controle_spi_adc_12bits - Behavioral</ClosedNode>
          <ClosedNode>/test_top_gen_tb - behavior C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_top_gen_tb.vhd</ClosedNode>
          <ClosedNode>/test_top_gen_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_top_gen_tb.vhd</ClosedNode>
+         <ClosedNode>/testbench - behavior C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|tes_mult_epe_pipeline_tb.vhd</ClosedNode>
          <ClosedNode>/top_control_spi_adc12bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_control_spi_adc12bits_tb.vhd</ClosedNode>
          <ClosedNode>/top_control_spi_adc12bits_tb - behavior C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_control_spi_adc12bits_tb.vhd</ClosedNode>
          <ClosedNode>/top_control_spi_adc12bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_control_spi_adc12bits_tb.vhd</ClosedNode>
@@ -417,6 +426,7 @@
          <ClosedNode>/top_controleur_PID_tb - behavior C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_controleur_PID_tb.vhd</ClosedNode>
          <ClosedNode>/top_controleur_PID_tb - behavior C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_controleur_PID_tb.vhd/uut - top_controleur_PID - Behavioral/ctrl_PID - controleur_PID - Behavioral</ClosedNode>
          <ClosedNode>/top_generation_onde - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_generation_onde.vhd</ClosedNode>
+         <ClosedNode>/top_test_PID_tb - behavior C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_PID_tb.vhd</ClosedNode>
          <ClosedNode>/top_test_PID_tb - behavior C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_PID_tb.vhd/uut - top_test_PID - Behavioral/buffer_rx - buffer_8xM - Behavioral</ClosedNode>
          <ClosedNode>/top_test_PID_tb - behavior C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_PID_tb.vhd/uut - top_test_PID - Behavioral/controle_adc10bits - top_controle_adc_10bits - Behavioral</ClosedNode>
          <ClosedNode>/top_test_PID_tb - behavior C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|top_test_PID_tb.vhd/uut - top_test_PID - Behavioral/controle_adc12bits - top_controle_adc_12bits - Behavioral</ClosedNode>
@@ -458,13 +468,13 @@
          <ClosedNode>/top_test_potentiostat - Behavioral C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_test_potentiostat.vhd</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>top_test_PID_tb - behavior (C:/Users/mathieu/Desktop/projet_stage_ete2017/modules_controle_board/top_test_PID_tb.vhd)</SelectedItem>
+         <SelectedItem>test_mult_matricielle_pipeline_tb - behavior (C:/Users/mathieu/Desktop/projet_stage_ete2017/modules_controle_board/test_mult_matricielle_pipeline_tb.vhd)</SelectedItem>
       </SelectedItems>
-      <ScrollbarPosition orientation="vertical" >39</ScrollbarPosition>
+      <ScrollbarPosition orientation="vertical" >18</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000002b1000000020000000000000000000000000200000064ffffffff000000810000000300000002000002b10000000100000003000000000000000100000003</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000278000000020000000000000000000000000200000064ffffffff000000810000000300000002000002780000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>top_test_PID_tb - behavior (C:/Users/mathieu/Desktop/projet_stage_ete2017/modules_controle_board/top_test_PID_tb.vhd)</CurrentItem>
+      <CurrentItem>test_mult_matricielle_pipeline_tb - behavior (C:/Users/mathieu/Desktop/projet_stage_ete2017/modules_controle_board/test_mult_matricielle_pipeline_tb.vhd)</CurrentItem>
    </ItemView>
    <ItemView engineview="BehavioralSim" sourcetype="" guiview="Process" >
       <ClosedNodes>
@@ -472,26 +482,26 @@
          <ClosedNode>Design Utilities</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem/>
+         <SelectedItem></SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001cf000000010000000100000000000000000000000064ffffffff000000810000000000000001000001cf0000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001c3000000010000000100000000000000000000000064ffffffff000000810000000000000001000001c30000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem/>
+      <CurrentItem></CurrentItem>
    </ItemView>
    <ItemView engineview="BehavioralSim" sourcetype="DESUT_VHDL_ARCHITECTURE" guiview="Process" >
       <ClosedNodes>
          <ClosedNodesVersion>1</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem/>
+         <SelectedItem>Simulate Behavioral Model</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001cf000000010000000100000000000000000000000064ffffffff000000810000000000000001000001cf0000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001c3000000010000000100000000000000000000000064ffffffff000000810000000000000001000001c30000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem/>
+      <CurrentItem>Simulate Behavioral Model</CurrentItem>
    </ItemView>
    <ItemView engineview="PostTransSim" guiview="Source" compilemode="AutoCompile" >
       <ClosedNodes>
@@ -527,6 +537,7 @@
          <ClosedNode>/recup_donnee_spi_adc10bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|recup_donnee_spi_adc10bits_tb.vhd</ClosedNode>
          <ClosedNode>/test_FSM_configurer_adc12bits_tb - behavior C:|Users|Mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_FSM_configurer_adc12bits_tb.vhd</ClosedNode>
          <ClosedNode>/test_FSM_configurer_adc12bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_FSM_configurer_adc12bits_tb.vhd</ClosedNode>
+         <ClosedNode>/test_mult_epe_pipeline_tb - behavior C:|Users|mathieu|Desktop|projet_stage_ete2017|modules_controle_board|test_mult_epe_pipeline_tb.vhd</ClosedNode>
          <ClosedNode>/test_sim_gen_onde_tri_pulse_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_sim_gen_onde_tri_pulse_tb.vhd</ClosedNode>
          <ClosedNode>/test_sim_mode_adc12bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_sim_mode_adc12bits_tb.vhd</ClosedNode>
          <ClosedNode>/test_top_gen_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|test_top_gen_tb.vhd</ClosedNode>
@@ -534,13 +545,13 @@
          <ClosedNode>/top_control_spi_adc12bits_tb - behavior C:|Users|super|Desktop|projet_stage_ete2017|modules_controle_board|top_control_spi_adc12bits_tb.vhd</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>test_add_sous_pipeline_tb - behavior (C:/Users/mathieu/Desktop/projet_stage_ete2017/modules_controle_board/test_add_sous_pipeline_tb.vhd)</SelectedItem>
+         <SelectedItem>test_mult_matricielle_pipeline_tb - behavior (C:/Users/mathieu/Desktop/projet_stage_ete2017/modules_controle_board/test_mult_matricielle_pipeline_tb.vhd)</SelectedItem>
       </SelectedItems>
-      <ScrollbarPosition orientation="vertical" >33</ScrollbarPosition>
+      <ScrollbarPosition orientation="vertical" >34</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000002020000000100000001000000640000027e000000020000000000000000000000000200000064ffffffff0000008100000003000000020000027e0000000100000003000000000000000100000003</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000002020000000100000001000000640000023c000000020000000000000000000000000200000064ffffffff0000008100000003000000020000023c0000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>test_add_sous_pipeline_tb - behavior (C:/Users/mathieu/Desktop/projet_stage_ete2017/modules_controle_board/test_add_sous_pipeline_tb.vhd)</CurrentItem>
+      <CurrentItem>test_mult_matricielle_pipeline_tb - behavior (C:/Users/mathieu/Desktop/projet_stage_ete2017/modules_controle_board/test_mult_matricielle_pipeline_tb.vhd)</CurrentItem>
    </ItemView>
    <ItemView engineview="PostTransSim" sourcetype="" guiview="Process" >
       <ClosedNodes>
@@ -561,13 +572,13 @@
          <ClosedNodesVersion>1</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem/>
+         <SelectedItem>ISim Simulator</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001cf000000010000000100000000000000000000000064ffffffff000000810000000000000001000001cf0000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001c3000000010000000100000000000000000000000064ffffffff000000810000000000000001000001c30000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem/>
+      <CurrentItem>ISim Simulator</CurrentItem>
    </ItemView>
    <ItemView engineview="PostMapSim" guiview="Source" compilemode="AutoCompile" >
       <ClosedNodes>
