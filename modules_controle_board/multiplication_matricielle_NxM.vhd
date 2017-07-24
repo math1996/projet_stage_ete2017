@@ -35,9 +35,9 @@ use ieee.numeric_std.all;
 --use UNISIM.VComponents.all;
 
 entity multiplication_matricielle_NxM is
-	generic(N, M : integer := 4);
+	generic(N, M, S : integer := 4);
     Port ( clk, reset, start : in  STD_LOGIC;
-           ligne_matrice1, colonne_matrice2 : in  ligne_matrice_16bits (M-1 downto 0);
+           ligne_matrice1, colonne_matrice2 : in  ligne_matrice_16bits (S-1 downto 0);
            resultat : out  STD_LOGIC_VECTOR (31 downto 0);
            donnee_prete, occupe, termine : out  STD_LOGIC);
 end multiplication_matricielle_NxM;
@@ -46,9 +46,9 @@ architecture Behavioral of multiplication_matricielle_NxM is
 
 type etat_mult_matricielle is (attente, multiplication, latch_res, verif_fin, fin);
 
-signal res_mult_unsigned, res_mult_int : ligne_matrice_32bits(M-1 downto 0);
-signal ligne_matrice1_int, colonne_matrice2_int : ligne_matrice_16bits(M-1 downto 0);
-signal res_addition : ligne_matrice_32bits(M-2 downto 0);
+signal res_mult_unsigned, res_mult_int : ligne_matrice_32bits(S-1 downto 0);
+signal ligne_matrice1_int, colonne_matrice2_int : ligne_matrice_16bits(S-1 downto 0);
+signal res_addition : ligne_matrice_32bits(S-2 downto 0);
 signal etat_present, etat_suivant : etat_mult_matricielle;
 signal compte_nb_ligne : std_logic_vector((integer(ceil(log2(real(N*M))))) downto 0);
 
@@ -59,7 +59,7 @@ begin
 compteur_nb_lignes : compteurNbits generic map(integer(ceil(log2(real(N*M)))) + 1) port map(clk => clk, reset => reset_compteur, enable => enable_compteur, output => compte_nb_ligne);
 
 --générer les multiplieurs
-gen_mult : for i in 0 to M-1 generate
+gen_mult : for i in 0 to S-1 generate
 	--mux pour enlever le signe si besoin
 	mux_mat1 : mux_add_sous_matrice_Nbits generic map(16) port map(choix => ligne_matrice1(i)(15), d0 => ligne_matrice1(i), d1 => (not(ligne_matrice1(i)) + 1),
 																				 output => ligne_matrice1_int(i));
@@ -77,18 +77,14 @@ gen_mult : for i in 0 to M-1 generate
 end generate gen_mult;
 
 --génération additionneur arbre n = multiple de 2
-gen_add : for i in 0 to M-2 generate
-	arbre1 : if(i < M/2) generate
-		res_addition(i) <= res_mult_int(2*i) + res_mult_int(2*i +1);
+gen_add : for i in 0 to S-2 generate
+	arbre1 : if( i = 0) generate
+		res_addition(i) <= res_mult_int(0) + res_mult_int(1);
 	end generate arbre1;
 	
-	arbre2 : if(i = M/2) generate
-		res_addition(i) <= res_addition(0) + res_addition(1);
+	arbre2 : if(i > 0) generate
+		res_addition(i) <= res_addition(i-1) + res_mult_int(i+1);
 	end generate arbre2;
-	
-	arbre3 : if(i >M/2) generate
-		res_addition(i) <= res_addition(i-1) + res_addition(i-3);
-	end generate arbre3;
 end generate gen_add;
 
 --registre sortie

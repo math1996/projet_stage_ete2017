@@ -1,0 +1,9 @@
+//24 juillet
+-Modification et test du module de multiplication matricielle pour le faire généric et l'adapter à n'importe quelle taille de matrice valide
+-Lecture et analyse de lab 2 de VLSI de 2016
+-Écriture de l'énoncé du lab2
+-Programmation de 2 test bench pour le test du RDC 8 bits et du comparateur 16 bits
+-Développement d'une machine à état simplifié du receveur UART
+-Programmation du receveur à partir de cette FSM et test en simualtion (réussis)
+-Programamtion des autres modules du lab afin d'avoir un code de référence pour chacun des modules lors de la correction
+-Test de l'implémentation physique du UART développé (valider pour donner une FSM fonctionnelle aux étudiants)

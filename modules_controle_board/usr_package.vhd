@@ -36,9 +36,9 @@ type ligne_matrice_32bits is array(natural range <>) of std_logic_vector(31 down
 --
 
 component multiplication_matricielle_NxM is
-	generic(N, M : integer := 4);
+	generic(N, M, S : integer := 4);
     Port ( clk, reset, start : in  STD_LOGIC;
-           ligne_matrice1, colonne_matrice2 : in  ligne_matrice_16bits (M-1 downto 0);
+           ligne_matrice1, colonne_matrice2 : in  ligne_matrice_16bits (S-1 downto 0);
            resultat : out  STD_LOGIC_VECTOR (31 downto 0);
            donnee_prete, occupe, termine : out  STD_LOGIC);
 end component;

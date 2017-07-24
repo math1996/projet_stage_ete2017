@@ -141,7 +141,7 @@ ligne_matrice2_int <= colonne1 when compte_ligne = "0000" else
 compteur_ligne : compteurNbits generic map(4) port map(clk => clk, enable => data_rdy, reset => reset, output => compte_ligne);
 
 --module de multiplication matricielle
-mult_matricielle : multiplication_matricielle_NxM generic map(4,4) port map(clk => clk, reset => reset, start => start, ligne_matrice1 => ligne_matrice1_int,
+mult_matricielle : multiplication_matricielle_NxM generic map(4,4,4) port map(clk => clk, reset => reset, start => start, ligne_matrice1 => ligne_matrice1_int,
 						colonne_matrice2 => ligne_matrice2_int, resultat => resultat, donnee_prete => data_rdy, occupe => occupe, termine => termine);
 						
 end Behavioral;
