@@ -16,4 +16,4 @@
 -Programamtion d'un module de test pour l'implémentation physique du diviseur d'horloge + petit GUI
 -Test de l'implémentation du diviseur d'horloge précis (réussis, précision augmente aux fréquences plus basses, comme attendu)
 -Élaboration sur papier du module d'oversampling (FSM et architecture), début de la programmation du module
--
+-Avancement du laboratoire 2 de VLSI (schéma machine à état UART + explication sommaire des états)
