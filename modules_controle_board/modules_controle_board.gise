@@ -32,6 +32,7 @@
       <branch xil_pn:name="BehavioralSim"/>
     </file>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="serial_rx_guide.ncd" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_NCD" xil_pn:name="test_diviseur_clk_precision_guide.ncd" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="test_generation_onde_carre_guide.ncd" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="test_generation_onde_sinus_guide.ncd" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="test_generation_onde_triangle_guide.ncd" xil_pn:origination="imported"/>
@@ -49,6 +50,11 @@
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="top_test_potentiostat_guide.ncd" xil_pn:origination="imported"/>
   </files>
 
-  <transforms xmlns="http://www.xilinx.com/XMLSchema"/>
+  <transforms xmlns="http://www.xilinx.com/XMLSchema">
+    <transform xil_pn:end_ts="1501000709" xil_pn:in_ck="3615323299879212161" xil_pn:name="TRAN_SubProjectAbstractToPreProxy" xil_pn:start_ts="1501000709">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+  </transforms>
 
 </generated_project>

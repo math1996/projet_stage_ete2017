@@ -35,6 +35,13 @@ type ligne_matrice_32bits is array(natural range <>) of std_logic_vector(31 down
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component diviseur_clk_precision is
+    Port ( clk, reset, start : in  STD_LOGIC;
+           temps_attente : in  STD_LOGIC_VECTOR (31 downto 0);
+           clk_out : out  STD_LOGIC);
+end component;
+
+
 component multiplication_matricielle_NxM is
 	generic(N, M, S : integer := 4);
     Port ( clk, reset, start : in  STD_LOGIC;

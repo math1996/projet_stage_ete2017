@@ -6,4 +6,14 @@
 -Développement d'une machine à état simplifié du receveur UART
 -Programmation du receveur à partir de cette FSM et test en simualtion (réussis)
 -Programamtion des autres modules du lab afin d'avoir un code de référence pour chacun des modules lors de la correction
--Test de l'implémentation physique du UART développé (valider pour donner une FSM fonctionnelle aux étudiants)
+-Test de l'implémentation physique du UART développé (valider pour donner une FSM fonctionnelle aux étudiants) (réussis)
+-Élaboration d'un module pour diviser la fréquence de l'horloge précisément (sur papier)
+
+//25 juillet
+-Test de courbe CV avec dopamine et électrode de carbone, modifications de l'interface
+-Programmation d'un module permettant de générer une horloge à une fréquence précise
+-Test du module en simulation (behavioral et post-translate, réussis)
+-Programamtion d'un module de test pour l'implémentation physique du diviseur d'horloge + petit GUI
+-Test de l'implémentation du diviseur d'horloge précis (réussis, précision augmente aux fréquences plus basses, comme attendu)
+-Élaboration sur papier du module d'oversampling (FSM et architecture), début de la programmation du module
+-
