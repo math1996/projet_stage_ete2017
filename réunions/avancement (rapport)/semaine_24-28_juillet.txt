@@ -17,3 +17,13 @@
 -Test de l'implémentation du diviseur d'horloge précis (réussis, précision augmente aux fréquences plus basses, comme attendu)
 -Élaboration sur papier du module d'oversampling (FSM et architecture), début de la programmation du module
 -Avancement du laboratoire 2 de VLSI (schéma machine à état UART + explication sommaire des états)
+
+//27 juillet
+-Programamtion du module d'oversampling
+-Programamtion d'une architecture permettant de choisir le type d'oversampling à partir de l'interface
+-Test du module d'oversampling en simulation (behavioral, post-translate, réussis!)
+-Modifications du module de multiplication matricielle (rétroaction dans l'addition)
+-Test des modifications en simulation (behavioral et post-translate, réussis!)
+-Programmation d'une méthode pour séparer la montée de la descente du signal triangulaire (sortir un signal)
+-Test de la méthode en implémentation physique avec le module de test de courbe CV (réussis)
+-Planification du test d'oversampling sur papier (sur la courbe de courant)

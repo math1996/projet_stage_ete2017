@@ -40,7 +40,7 @@ entity top_generation_forme_onde_PID is
            temps_attente_tri, temps_attente_sin : in  STD_LOGIC_VECTOR (31 downto 0);
            pas_comptage_sin : in  STD_LOGIC_VECTOR (7 downto 0);
            choix_clk_pulse : in  STD_LOGIC_VECTOR (3 downto 0);
-           occupe, termine : out  STD_LOGIC;
+           occupe, termine, pente_onde_tri : out  STD_LOGIC;
 			  onde_gen : out std_logic_vector(15 downto 0));
 end top_generation_forme_onde_PID;
 
@@ -80,7 +80,7 @@ gen_onde_triangle : generation_onde_triangle port map(clk => clk, reset => reset
 																		temps_attente => temps_attente_tri, pas_comptage => pas_comptage_tri, 
 																		amplitude => amplitude,offset => offset, onde_genere => onde_tri_int, 
 																		demarrer_transfert => start_dac_onde_tri, nombre_cycle => nb_cycle, occupe => occupe_onde_tri,
-																		termine => termine_onde_tri); 	
+																		termine => termine_onde_tri, pente_onde_tri => pente_onde_tri); 	
 
 --module de génération d'une onde sinusoïdale
 gen_onde_sinus : generation_onde_sin port map(clk => clk, reset => reset_onde_sin, start => start_onde_sin, termine_dac => termine_dac,

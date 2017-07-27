@@ -44,15 +44,16 @@ end multiplication_matricielle_NxM;
 
 architecture Behavioral of multiplication_matricielle_NxM is
 
-type etat_mult_matricielle is (attente, multiplication, latch_res, verif_fin, fin);
+type etat_mult_matricielle is (attente, multiplication, addition_etat, latch_res, verif_fin, fin);
 
 signal res_mult_unsigned, res_mult_int : ligne_matrice_32bits(S-1 downto 0);
 signal ligne_matrice1_int, colonne_matrice2_int : ligne_matrice_16bits(S-1 downto 0);
-signal res_addition : ligne_matrice_32bits(S-2 downto 0);
 signal etat_present, etat_suivant : etat_mult_matricielle;
 signal compte_nb_ligne : std_logic_vector((integer(ceil(log2(real(N*M))))) downto 0);
-
-signal reset_compteur, reset_reg, enable_compteur, enable_reg, cmp_fin : std_logic;
+signal compte_parcour : std_logic_vector((integer(ceil(log2(real(S))))) - 1 downto 0);
+signal res_addition, reg_addition_out, addition : std_logic_vector(63 downto 0);
+signal reset_compteur, reset_reg, enable_compteur, enable_reg, cmp_fin, reset_reg_add, enable_reg_add, cmp_fin_add : std_logic;
+signal signe, data_add : std_logic_vector(31 downto 0);
 begin
 
 --compteur du nombre d'élément calculé
@@ -76,23 +77,32 @@ gen_mult : for i in 0 to S-1 generate
 							 res_mult_unsigned(i);
 end generate gen_mult;
 
---génération additionneur arbre n = multiple de 2
-gen_add : for i in 0 to S-2 generate
-	arbre1 : if( i = 0) generate
-		res_addition(i) <= res_mult_int(0) + res_mult_int(1);
-	end generate arbre1;
-	
-	arbre2 : if(i > 0) generate
-		res_addition(i) <= res_addition(i-1) + res_mult_int(i+1);
-	end generate arbre2;
-end generate gen_add;
+--additionneur en rétroaction
+res_addition <= reg_addition_out + addition;
+
+registre_res_addition : registreNbits generic map(64) port map(clk => clk, reset => reset_reg_add, en => enable_reg_add, d => res_addition,
+																					q_out => reg_addition_out);
+
+--compteur du parcour des résultats de la Multiplication
+compteur_parcour : compteurNbits generic map((integer(ceil(log2(real(S)))))) port map(clk => clk, reset => reset_reg_add, enable => enable_reg_add, output => compte_parcour);
+			
+--mux du parcour des résultats de la multiplication
+signe <= (others => '0') when data_add(31) = '0' else
+			(others => '1');
+			
+data_add <= res_mult_int(to_integer(unsigned(compte_parcour)));
+
+addition <=  signe & data_add;
 
 --registre sortie
-registre_sortie : registreNbits generic map(32) port map(clk => clk, reset => reset_reg, en => enable_reg, d => res_addition(M-2), q_out => resultat);
+registre_sortie : registreNbits generic map(32) port map(clk => clk, reset => reset_reg, en => enable_reg, d => reg_addition_out(31 downto 0), q_out => resultat);
 
 --comparateur
 cmp_fin <= '1' when compte_nb_ligne >= (N*M) else
 			  '0';
+			  
+cmp_fin_add <= '1' when compte_parcour >= (S-1) else
+					'0';
 
 --machine à état de la gestion du calcul
 process(clk, reset)
@@ -104,7 +114,7 @@ begin
 	end if;
 end process;
 
-process(etat_present, start, cmp_fin)
+process(etat_present, start, cmp_fin, cmp_fin_add)
 begin
 	case etat_present is
 		when attente =>
@@ -115,6 +125,8 @@ begin
 			occupe <= '0';
 			termine <= '0';
 			donnee_prete <= '0';
+			reset_reg_add <= '0';
+			enable_reg_add <= '0';
 			if(start = '1') then
 				etat_suivant <= multiplication;
 			else
@@ -129,7 +141,25 @@ begin
 			occupe <= '1';
 			termine <= '0';
 			donnee_prete <= '0';
-			etat_suivant <= latch_res;
+			reset_reg_add <= '0';
+			enable_reg_add <= '0';
+			etat_suivant <= addition_etat;
+		
+		when addition_etat =>
+			reset_compteur <= '1';
+			enable_compteur <= '0';
+			reset_reg <= '1';
+			enable_reg <= '0';
+			occupe <= '1';
+			termine <= '0';
+			donnee_prete <= '0';
+			reset_reg_add <= '1';
+			enable_reg_add <= '1';
+			if(cmp_fin_add = '1') then
+				etat_suivant <= latch_res;
+			else
+				etat_suivant <= addition_etat;
+			end if;
 			
 		when latch_res =>
 			reset_compteur <= '1';
@@ -139,6 +169,8 @@ begin
 			occupe <= '1';
 			termine <= '0';
 			donnee_prete <= '0';
+			reset_reg_add <= '1';
+			enable_reg_add <= '0';
 			etat_suivant <= verif_fin;
 			
 		when verif_fin =>
@@ -149,6 +181,8 @@ begin
 			occupe <= '1';
 			termine <= '0';
 			donnee_prete <= '1';
+			reset_reg_add <= '0';
+			enable_reg_add <= '0';
 			if(cmp_fin = '1') then
 				etat_suivant <= fin;
 			else
@@ -163,6 +197,8 @@ begin
 			occupe <= '0';
 			termine <= '1';
 			donnee_prete <= '0';
+			reset_reg_add <= '0';
+			enable_reg_add <= '0';
 			etat_suivant <= attente;
 		
 		when others =>
@@ -173,6 +209,8 @@ begin
 			occupe <= '0';
 			termine <= '0';
 			donnee_prete <= '0';
+			reset_reg_add <= '0';
+			enable_reg_add <= '0';
 			etat_suivant <= attente;
 	end case;				
 end process;

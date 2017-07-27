@@ -35,6 +35,7 @@ NET "clk" LOC = P56 | IOSTANDARD = LVTTL;
 NET "occupe" LOC = P123 | IOSTANDARD = LVTTL;
 NET "termine" LOC = P124 | IOSTANDARD = LVTTL;
 NET "conversion_adc12bits" LOC = P126 | IOSTANDARD = LVTTL;
+NET "pente_onde_tri" LOC = P134 | IOSTANDARD = LVTTL;
 NET "test_output_led[0]" LOC = P132 | IOSTANDARD = LVTTL;
 NET "test_output_led[1]" LOC = P131 | IOSTANDARD = LVTTL;
 NET "test_output_led[2]" LOC = P127 | IOSTANDARD = LVTTL;

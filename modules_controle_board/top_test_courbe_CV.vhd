@@ -39,7 +39,7 @@ entity top_test_courbe_CV is
            CS_10bits, DIN_10bits, SCLK_10bits, SHDN_10bits : out  STD_LOGIC;
            BPB_dac, OSR1_dac, OSR2_dac, RSTB_dac, MUTEb_dac, FSYNC_dac, DIN_dac, SCLK_dac : out  STD_LOGIC;
 			  SCLK_pot, CS_pot, SDI : out std_logic;
-           occupe, termine, conversion_adc12bits: out std_logic;
+           occupe, termine, conversion_adc12bits, pente_onde_tri: out std_logic;
 			  test_output_led : out std_logic_vector(2 downto 0));
 end top_test_courbe_CV;
 
@@ -142,7 +142,7 @@ generation_forme_onde : top_generation_forme_onde port map(clk => clk_25MHZ, res
 																			  temps_attente_tri => temps_attente_tri_int, temps_attente_sin => temps_attente_sin_int,
 																			  pas_comptage_sin => pas_comptage_sin_int, choix_clk_pulse => choix_clk_pulse_int, occupe => occupe_gen, termine => termine_gen,
 																			  FSYNC => FSYNC_dac, SCLK => SCLK_dac, DIN => DIN_dac, OSR1 => OSR1_dac, OSR2 => OSR2_dac, BPB => BPB_dac,
-																			  MUTEB => MUTEB_dac, RSTB => RSTB_dac);
+																			  MUTEB => MUTEB_dac, RSTB => RSTB_dac, pente_onde_tri => pente_onde_tri);
 
 --module de controle de l'ADC 12 bits 
 controle_adc12bits : top_controle_adc_12bits port map(clk => clk_12MHZ, reset => reset_adc, start => start_adc12bits, DOUT => DOUT_12bits, canal_conversion => canal_int,

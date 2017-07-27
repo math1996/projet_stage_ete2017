@@ -41,7 +41,7 @@ entity top_generation_forme_onde is
 			  temps_attente_tri, temps_attente_sin : std_logic_vector(31 downto 0);
 			  pas_comptage_sin : std_logic_vector(7 downto 0);
 			  choix_clk_pulse : std_logic_vector(3 downto 0);
-           occupe, termine, FSYNC, SCLK, DIN, OSR1, OSR2, BPB, MUTEB, RSTB : out  STD_LOGIC);
+           occupe, termine, FSYNC, SCLK, DIN, OSR1, OSR2, BPB, MUTEB, RSTB, pente_onde_tri : out  STD_LOGIC);
 end top_generation_forme_onde;
 
 architecture Behavioral of top_generation_forme_onde is
@@ -82,7 +82,7 @@ gen_onde_triangle : generation_onde_triangle port map(clk => clk, reset => reset
 																		temps_attente => temps_attente_tri, pas_comptage => pas_comptage_tri, 
 																		amplitude => amplitude,offset => offset, onde_genere => onde_tri_int, 
 																		demarrer_transfert => start_dac_onde_tri, nombre_cycle => nb_cycle, occupe => occupe_onde_tri,
-																		termine => termine_onde_tri); 	
+																		termine => termine_onde_tri, pente_onde_tri => pente_onde_tri); 	
 
 --module de génération d'une onde sinusoïdale
 gen_onde_sinus : generation_onde_sin port map(clk => clk, reset => reset_onde_sin, start => start_onde_sin, termine_dac => termine_dac,

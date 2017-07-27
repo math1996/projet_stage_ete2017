@@ -40,7 +40,7 @@ entity generation_onde_triangle is
            offset : in  STD_LOGIC_VECTOR (15 downto 0);
 			  nombre_cycle : in std_logic_vector(31 downto 0);
            onde_genere : out  STD_LOGIC_VECTOR (15 downto 0);
-			  demarrer_transfert, occupe, termine : out std_logic);
+			  demarrer_transfert, occupe, termine, pente_onde_tri : out std_logic);
 end generation_onde_triangle;
 
 architecture Behavioral of generation_onde_triangle is
@@ -119,6 +119,7 @@ begin
 			choix_signe <= '0';
 			start_load <= '0';
 			reset_input <= '0';
+			pente_onde_tri <= '0';
 			if(start = '1') then 
 				etat_suivant <= load_input;
 			else
@@ -139,6 +140,7 @@ begin
 			choix_signe <= '0';
 			start_load <= '1';
 			reset_input <= '1';
+			pente_onde_tri <= '0';
 			etat_suivant <= compter_cycle;
 		
 		when compter_cycle =>
@@ -155,6 +157,7 @@ begin
 			choix_signe <= '0';
 			start_load <= '0';
 			reset_input <= '1';
+			pente_onde_tri <= '0';
 			etat_suivant <= partie_up_pos;
 			
 		when partie_up_pos =>
@@ -171,6 +174,7 @@ begin
 			choix_signe <= '0';
 			start_load <= '0';
 			reset_input <= '1';
+			pente_onde_tri <= '1';
 			etat_suivant <= attente_dac1_pos;
 			
 		when attente_dac1_pos =>
@@ -187,6 +191,7 @@ begin
 			choix_signe <= '0';
 			start_load <= '0';
 			reset_input <= '1';
+			pente_onde_tri <= '1';
 			if(termine_dac = '1') then	
 				etat_suivant <= attente_partie_up_pos;
 			else
@@ -207,6 +212,7 @@ begin
 			choix_signe <= '0';
 			start_load <= '0';
 			reset_input <= '1';
+			pente_onde_tri <= '1';
 			if(cmp_seuil = '1' and cmp_attente = '1') then
 				etat_suivant <=partie_down_pos;
 			elsif(cmp_seuil = '0' and cmp_attente = '1') then
@@ -229,6 +235,7 @@ begin
 			choix_signe <= '0';
 			start_load <= '0';
 			reset_input <= '1';
+			pente_onde_tri <= '0';
 			etat_suivant <= attente_dac2_pos;
 			
 		when attente_dac2_pos =>
@@ -245,6 +252,7 @@ begin
 			choix_signe <= '0';
 			start_load <= '0';
 			reset_input <= '1';
+			pente_onde_tri <= '0';
 			if(termine_dac = '1') then
 				etat_suivant <= attente_partie_down_pos;
 			else
@@ -265,6 +273,7 @@ begin
 			choix_signe <= '0';
 			start_load <= '0';
 			reset_input <= '1';
+			pente_onde_tri <= '0';
 			if(cmp_zero = '1' and cmp_attente = '1') then
 				etat_suivant <= partie_up_neg;
 			elsif(cmp_zero = '0' and cmp_attente = '1') then
@@ -287,6 +296,7 @@ begin
 			choix_signe <= '1';
 			start_load <= '0';
 			reset_input <= '1';
+			pente_onde_tri <= '0';
 			etat_suivant <= attente_dac1_neg;
 			
 		when attente_dac1_neg =>
@@ -303,6 +313,7 @@ begin
 			choix_signe <= '1';
 			start_load <= '0';
 			reset_input <= '1';
+			pente_onde_tri <= '0';
 			if(termine_dac = '1') then	
 				etat_suivant <= attente_partie_up_neg;
 			else
@@ -323,6 +334,7 @@ begin
 			choix_signe <= '1';
 			start_load <= '0';
 			reset_input <= '1';
+			pente_onde_tri <= '0';
 			if(cmp_seuil = '1' and cmp_attente = '1') then
 				etat_suivant <=partie_down_neg;
 			elsif(cmp_seuil = '0' and cmp_attente = '1') then
@@ -345,6 +357,7 @@ begin
 			choix_signe <= '1';
 			start_load <= '0';
 			reset_input <= '1';
+			pente_onde_tri <= '1';
 			etat_suivant <= attente_dac2_neg;
 			
 		when attente_dac2_neg =>
@@ -361,6 +374,7 @@ begin
 			choix_signe <= '1';
 			start_load <= '0';
 			reset_input <= '1';
+			pente_onde_tri <= '1';
 			if(termine_dac = '1') then
 				etat_suivant <= attente_partie_down_neg;
 			else
@@ -381,6 +395,7 @@ begin
 			choix_signe <= '1';
 			start_load <= '0';
 			reset_input <= '1';
+			pente_onde_tri <= '1';
 			if(cmp_zero = '1' and cmp_attente = '1') then
 				etat_suivant <= verification_fin;
 			elsif(cmp_zero = '0' and cmp_attente = '1') then
@@ -403,6 +418,7 @@ begin
 			choix_signe <= '1';
 			start_load <= '0';
 			reset_input <= '1';
+			pente_onde_tri <= '1';
 			if(cmp_fin = '1') then
 				etat_suivant <= fin;
 			else
@@ -424,6 +440,7 @@ begin
 			choix_signe <= '0';
 			start_load <= '0';
 			reset_input <= '0';
+			pente_onde_tri <= '0';
 			etat_suivant <= attente;
 		
 		when others =>
@@ -440,6 +457,7 @@ begin
 			choix_signe <= '0';
 			start_load <= '0';
 			reset_input <= '0';
+			pente_onde_tri <= '0';
 			etat_suivant <= attente;
 	end case;			
 end process;

@@ -93,7 +93,7 @@ component top_generation_forme_onde_PID is
            temps_attente_tri, temps_attente_sin : in  STD_LOGIC_VECTOR (31 downto 0);
            pas_comptage_sin : in  STD_LOGIC_VECTOR (7 downto 0);
            choix_clk_pulse : in  STD_LOGIC_VECTOR (3 downto 0);
-           occupe, termine : out  STD_LOGIC;
+           occupe, termine, pente_onde_tri : out  STD_LOGIC;
 			  onde_gen : out std_logic_vector(15 downto 0));
 end component;
 
@@ -123,7 +123,7 @@ component top_generation_forme_onde is
 			  temps_attente_tri, temps_attente_sin : std_logic_vector(31 downto 0);
 			  pas_comptage_sin : std_logic_vector(7 downto 0);
 			  choix_clk_pulse : std_logic_vector(3 downto 0);
-           occupe, termine, FSYNC, SCLK, DIN, OSR1, OSR2, BPB, MUTEB, RSTB : out  STD_LOGIC);
+           occupe, termine, FSYNC, SCLK, DIN, OSR1, OSR2, BPB, MUTEB, RSTB, pente_onde_tri : out  STD_LOGIC);
 end component;
 
 component FSM_conversion_1CH_adc10bits is
@@ -226,7 +226,7 @@ component generation_onde_triangle is
            offset : in  STD_LOGIC_VECTOR (15 downto 0);
 			  nombre_cycle : in std_logic_vector(31 downto 0);
            onde_genere : out  STD_LOGIC_VECTOR (15 downto 0);
-			  demarrer_transfert, occupe, termine : out std_logic);
+			  demarrer_transfert, occupe, termine, pente_onde_tri : out std_logic);
 end component;
 
 component compteurNbits_mode is
@@ -397,6 +397,13 @@ component configuration_spi_adc_12bits is
     Port ( clk, reset, start : in  STD_LOGIC;
 			  load : in std_logic_vector(15 downto 0);
            DIN, SCLK, CS, occupe, termine: out  STD_LOGIC);
+end component;
+
+component memoire_tampon_16xM is
+generic(M: integer := 8);
+    Port ( clk, enable, reset : in  STD_LOGIC;
+           input : in  STD_LOGIC_VECTOR (15 downto 0);
+           output : out  tableau_memoire(M-1 downto 0));
 end component;
 
 end usr_package;

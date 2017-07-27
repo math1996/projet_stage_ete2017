@@ -50,7 +50,7 @@ signal clk_25MHZ, clk_12_5MHZ, clk_1_5MHZ, new_data_int, reset_buffer_rx, enable
 		cmp_attente_carre,cmp_attente_tri, cmp_attente_sin,cmp_attente_pulse, reset_reg_choix, enable_reg_choix, occupe_gen, termine_gen, enable_param_onde,
 		cmp_fin_attente_param, reset_adc, start_adc12bits, occupe_adc12bits, termine_adc12bits, donnee_adc12bits_pret, enable_param_adc, cmp_attente_param_adc,
 		start_adc10bits, donnee_adc10bits_pret, occupe_adc10bits, termine_adc10bits, enable_attente, reset_attente, occupe_PID, termine_PID,
-		cmp_fin_start_adc10bits, reset_termine, cmp_fin, start_gain, occupe_pot, termine_pot, occupe_dac, termine_dac, start_transfert_int: std_logic;
+		cmp_fin_start_adc10bits, reset_termine, cmp_fin, start_gain, occupe_pot, termine_pot, occupe_dac, termine_dac, start_transfert_int, pente_int: std_logic;
 		 
 signal data_recu, pas_comptage_sin_int, sequence_int, valeur_gain_int  : std_logic_vector(7 downto 0);
 signal compte_buffer: std_logic_vector(4 downto 0);
@@ -145,7 +145,7 @@ generation_forme_onde : top_generation_forme_onde_PID port map(clk => clk_25MHZ,
 																			  nb_coup_horloge_par_cycle_carre => nb_coup_horloge_par_cycle_carre_int, pas_comptage_tri => pas_comptage_tri_int,
 																			  temps_attente_tri => temps_attente_tri_int, temps_attente_sin => temps_attente_sin_int,
 																			  pas_comptage_sin => pas_comptage_sin_int, choix_clk_pulse => choix_clk_pulse_int, occupe => occupe_gen, termine => termine_gen,
-																			  onde_gen => onde_gen_int);
+																			  onde_gen => onde_gen_int, pente_onde_tri => pente_int);
 
 --module de controle de l'ADC 12 bits 
 controle_adc12bits : top_controle_adc_12bits port map(clk => clk_12_5MHZ, reset => reset_adc, start => start_adc12bits, DOUT => DOUT_12bits, canal_conversion => canal_int,
