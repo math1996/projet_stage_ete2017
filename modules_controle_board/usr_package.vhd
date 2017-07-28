@@ -35,6 +35,15 @@ type ligne_matrice_32bits is array(natural range <>) of std_logic_vector(31 down
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component oversampling_N is
+    Port ( clk, reset, enable_rdc : in  STD_LOGIC;
+			  data_in : in std_logic_vector(15 downto 0);
+			  choix_oversampling : in std_logic_vector(2 downto 0);
+           data_rdy, occupe : out  STD_LOGIC;
+           data_out : out  STD_LOGIC_VECTOR (15 downto 0));
+end component;
+
+
 component diviseur_clk_precision is
     Port ( clk, reset, start : in  STD_LOGIC;
            temps_attente : in  STD_LOGIC_VECTOR (31 downto 0);

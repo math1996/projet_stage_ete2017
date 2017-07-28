@@ -42,6 +42,7 @@
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="top_generation_onde_guide.ncd" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="top_test_adc10bits_guide.ncd" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="top_test_adc12bits_guide.ncd" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_NCD" xil_pn:name="top_test_coubre_CV_oversampling_guide.ncd" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="top_test_courbe_CV_guide.ncd" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="top_test_dac16bits_guide.ncd" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="top_test_mode_adc_10bits_guide.ncd" xil_pn:origination="imported"/>
@@ -51,7 +52,7 @@
   </files>
 
   <transforms xmlns="http://www.xilinx.com/XMLSchema">
-    <transform xil_pn:end_ts="1501182117" xil_pn:in_ck="3615323299879212161" xil_pn:name="TRAN_SubProjectAbstractToPreProxy" xil_pn:start_ts="1501182117">
+    <transform xil_pn:end_ts="1501250331" xil_pn:in_ck="3615323299879212161" xil_pn:name="TRAN_SubProjectAbstractToPreProxy" xil_pn:start_ts="1501250331">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>

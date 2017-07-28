@@ -27,3 +27,7 @@
 -Programmation d'une méthode pour séparer la montée de la descente du signal triangulaire (sortir un signal)
 -Test de la méthode en implémentation physique avec le module de test de courbe CV (réussis)
 -Planification du test d'oversampling sur papier (sur la courbe de courant)
+
+//28 juillet
+-Programmation d'un module effectuant la dérvivée (Yn - Yn-1) point par point
+-
