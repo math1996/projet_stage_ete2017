@@ -1,5 +1,5 @@
-modules	"compteurNbits.vhd"
+modules	"matrice_NxM.vhd"
 modules	"memoire_tampon_16xM.vhd"
-work	"overampling_N.vhd"
 modules	"registreNbits.vhd"
+work	"test_stockage_matrice.vhd"
 modules	"usr_package.vhd"

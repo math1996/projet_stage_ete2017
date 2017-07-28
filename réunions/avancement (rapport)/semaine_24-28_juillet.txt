@@ -30,4 +30,10 @@
 
 //28 juillet
 -Programmation d'un module effectuant la dérvivée (Yn - Yn-1) point par point
--
+-Programmation de l'ajout du module d'oversampling au module de test de courbe CV
+-Modification de l'interface afin de supporter le filtre moyenneur
+-Test de l'implémentation physique du filtre moyenneur (oversampling, réussis)
+-Compilation et comparaison des courbes de courant moyennées
+-Avancement du lab 2 de VLSI (reset seulement à ajuster le barème et faire approuver + corriger fautes)
+-Programmation d'un module permettant de stocker efficacement une matrice NxM et de récupérer une ligne ou une colonne
+-Test du module en simulation (behavioral et post-translate, réussis!)

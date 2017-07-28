@@ -9,7 +9,8 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.all;
-
+use IEEE.math_real.all;
+use ieee.numeric_std.all;
 
 package usr_package is
 
@@ -34,6 +35,16 @@ type ligne_matrice_32bits is array(natural range <>) of std_logic_vector(31 down
 -- function <function_name>  (signal <signal_name> : in <type_declaration>) return <type_declaration>;
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
+
+component matrice_NxM is
+generic(N,M : integer := 4);
+    Port ( input_element : in  std_logic_vector(15 downto 0);
+           clk, reset, enable : in  STD_LOGIC;
+           numero_ligne : in  STD_LOGIC_VECTOR((integer(ceil(log2(real(N)))))-1 downto 0);
+           ligne : out  ligne_matrice_16bits(M-1 downto 0);
+			  numero_colonne : in std_logic_vector((integer(ceil(log2(real(M)))))-1 downto 0);
+           colonne : out  ligne_matrice_16bits(N-1 downto 0));
+end component;
 
 component oversampling_N is
     Port ( clk, reset, enable_rdc : in  STD_LOGIC;
