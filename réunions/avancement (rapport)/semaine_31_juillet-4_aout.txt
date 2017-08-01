@@ -1,0 +1,11 @@
+//31 juillet
+-Travail sur le lab 2 et 3 de VLSI
+
+//1 août
+-Programmation de l'interface graphique de test des opérations matricielles + début de test
+-Programmation du module de test des opérations matricielles
+-Élaboration de la manière d'envoyer les matrices sur le port série
+-Modification du module de stockage d'une matrice
+-Test en simulation des modifications + test avec des matrices de taille irrégulières (2x8,1x13,3x5, réussis)
+-Élaboration de la modification du module de multiplication matricielle afin de multiplexer les lignes et colonnes directement dans le module
+-Élaboration sur papier du tests des différents modules d'opération matricielles

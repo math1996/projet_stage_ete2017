@@ -39,9 +39,9 @@ entity matrice_NxM is
 generic(N,M : integer := 4);
     Port ( input_element : in  std_logic_vector(15 downto 0);
            clk, reset, enable : in  STD_LOGIC;
-           numero_ligne : in  STD_LOGIC_VECTOR((integer(ceil(log2(real(N)))))-1 downto 0);
+           numero_ligne : in  STD_LOGIC_VECTOR((integer(ceil(log2(real(N))))) downto 0);
            ligne : out  ligne_matrice_16bits(M-1 downto 0);
-			  numero_colonne : in std_logic_vector((integer(ceil(log2(real(M)))))-1 downto 0);
+			  numero_colonne : in std_logic_vector((integer(ceil(log2(real(M))))) downto 0);
            colonne : out  ligne_matrice_16bits(N-1 downto 0));
 end matrice_NxM;
 
@@ -61,7 +61,7 @@ end generate gen_ligne;
 
 --générer les colonnes
 gen_colonne : for j in 0 to N-1 generate
-		colonne(j) <= output_matrice((N*M - 1) - (to_integer(unsigned(numero_colonne)) + j*N));
+		colonne(j) <= output_matrice((N*M - 1) - (to_integer(unsigned(numero_colonne)) + j*M));
 end generate gen_colonne;
 
 end Behavioral;

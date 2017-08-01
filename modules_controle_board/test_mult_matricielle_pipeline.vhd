@@ -48,6 +48,7 @@ signal compte_ligne : std_logic_vector(3 downto 0);
 signal matrice1, matrice2 : matrice_NxM(3 downto 0);
 signal ligne_matrice1_int, ligne_matrice2_int, colonne1, colonne2, colonne3, colonne4 : ligne_matrice_16bits(3 downto 0);
 signal ligne_res_int : ligne_matrice_32bits(3 downto 0);
+signal compte_col_int, compte_lig_int : std_logic_vector(1 downto 0);
 
 begin
 
@@ -143,6 +144,6 @@ compteur_ligne : compteurNbits generic map(4) port map(clk => clk, enable => dat
 --module de multiplication matricielle
 mult_matricielle : multiplication_matricielle_NxM generic map(4,4,4) port map(clk => clk, reset => reset, start => start, ligne_matrice1 => ligne_matrice1_int,
 						colonne_matrice2 => ligne_matrice2_int, resultat => resultat, donnee_prete => data_rdy, occupe => occupe, termine => termine);
-						
+
 end Behavioral;
 

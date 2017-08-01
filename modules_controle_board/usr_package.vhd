@@ -40,9 +40,9 @@ component matrice_NxM is
 generic(N,M : integer := 4);
     Port ( input_element : in  std_logic_vector(15 downto 0);
            clk, reset, enable : in  STD_LOGIC;
-           numero_ligne : in  STD_LOGIC_VECTOR((integer(ceil(log2(real(N)))))-1 downto 0);
+           numero_ligne : in  STD_LOGIC_VECTOR((integer(ceil(log2(real(N))))) downto 0);
            ligne : out  ligne_matrice_16bits(M-1 downto 0);
-			  numero_colonne : in std_logic_vector((integer(ceil(log2(real(M)))))-1 downto 0);
+			  numero_colonne : in std_logic_vector((integer(ceil(log2(real(M))))) downto 0);
            colonne : out  ligne_matrice_16bits(N-1 downto 0));
 end component;
 
