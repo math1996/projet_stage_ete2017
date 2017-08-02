@@ -1,0 +1,18 @@
+//Avancement de l'algorithme
+
+Les modules d'opération matricielle sont développés et testés en simulation. Un interface de test à été programmé afin de tester les opération matricielles et les comparer
+aux résultats obtenus sur matlab. Je suis actuellement en train de programmer le module de test sur FPGA afin d'effectuer les tests d'opérations matricielles. De plus,
+j'ai programmé un module de filtre moyenneur (oversampling). Ce module à été testé en simulation et l'implémentation physique fonctionne, j'ai des courbes CV pour le prouver et
+les résultats sont concluants. J'ai développé un module permettant de diviser l'horloge plus précisément l'aide de compteurs afin d'obtenir approximativement la fréquence de fonctionnement
+désirée. Ce module à été testé en simulation ets ont implémentation physique fonctionne, à basse fréquence, je peux obtenir une fréquence avec une bonne précision 
+comparativement à la fréquence demandée. J'ai aussi modifié le module de génération de forme d'onde afin de signaler lorsque l'on est dans une montée ou une descente du signal triangulaire.
+Cela permettra de simplifier le traitement des données lors de l'exécution de l'algorithme. Cette modification a été testée et sont implémentation physique fonctionne
+
+//Avancement du lab de VLSI
+
+L'énoncé du laboratoire 1 et 2 sont terminées. Pour les 2 laboratoires, il reste seulement à ajuster les barèmes de correction et fixer officiellement les dates de remises et
+de validation. Pour le laboratoire 1, les test bench de validation sont fais. Pour le laboratoire 2, j'ai implémenté tous les modules demandées dans le lab et le UART selon
+le modèle de la machine à état que j'ai donné aux étudiants et cela fonctionne, donc on aura un code de référence pour la correction. J'ai programmé tous les modules en environ
+2 heures, donc je crois que le niveau de difficulté de ce lab est très correct. En ce qui concerne le lab 3, je n'ai pas encore débuté l'énoncé, mais j'ai déjà mes idées dont nous
+pourrions discuter à la prochaine réunion. Par contre, j'ai ouvert le code donnée par digilent et analysé celui-ci afin de le comprendre. Je vais évantuellement synthétier le code
+et essayer le module afin de vérifier que le code qu'ils ont donnés est bel et bien fonctionnel.

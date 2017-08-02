@@ -1,5 +1,1 @@
-modules	"matrice_NxM.vhd"
-modules	"memoire_tampon_16xM.vhd"
-modules	"registreNbits.vhd"
-work	"test_stockage_matrice.vhd"
-modules	"usr_package.vhd"
+work	"C:/Users/mathieu/Desktop/projet_stage_ete2017/modules_controle_board/test_operation_matricielle.vhd"

@@ -15,11 +15,6 @@
   <version xil_pn:ise_version="14.7" xil_pn:schema_version="2"/>
 
   <files>
-    <file xil_pn:name="registre1bit.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
-      <library xil_pn:name="modules"/>
-    </file>
     <file xil_pn:name="registreNbits.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="2"/>
       <association xil_pn:name="Implementation" xil_pn:seqID="2"/>
@@ -42,8 +37,8 @@
       <association xil_pn:name="PostTranslateSimulation" xil_pn:seqID="0"/>
     </file>
     <file xil_pn:name="serial_rx.v" xil_pn:type="FILE_VERILOG">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="6"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="6"/>
     </file>
     <file xil_pn:name="top_test_potentiostat.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
@@ -134,8 +129,8 @@
       <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="memoire_tampon_16xM.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="3"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="3"/>
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="4"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="4"/>
       <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="memoire_tampon_16xM_tb.vhd" xil_pn:type="FILE_VHDL">
@@ -286,8 +281,8 @@
       <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
     </file>
     <file xil_pn:name="buffer_8xM.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="11"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="11"/>
       <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="test_generation_onde_triangle.ucf" xil_pn:type="FILE_UCF">
@@ -349,8 +344,8 @@
       <association xil_pn:name="PostTranslateSimulation" xil_pn:seqID="0"/>
     </file>
     <file xil_pn:name="compteurNbits.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="5"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="5"/>
       <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="top_test_mode_adc_12bits.vhd" xil_pn:type="FILE_VHDL">
@@ -514,13 +509,13 @@
       <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
     </file>
     <file xil_pn:name="addition_soustraction_matrice_NxN.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="12"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="12"/>
       <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="mux_add_sous_matrice_Nbits.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="3"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="3"/>
       <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="addition_soustraction_matrice_NxN_tb.vhd" xil_pn:type="FILE_VHDL">
@@ -540,8 +535,8 @@
       <association xil_pn:name="PostTranslateSimulation" xil_pn:seqID="0"/>
     </file>
     <file xil_pn:name="multiplication_epe_matrice_NxM.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="9"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="9"/>
       <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="test_mult_epe_pipeline.vhd" xil_pn:type="FILE_VHDL">
@@ -555,8 +550,8 @@
       <association xil_pn:name="PostTranslateSimulation" xil_pn:seqID="0"/>
     </file>
     <file xil_pn:name="multiplication_matricielle_NxM.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="8"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="8"/>
       <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="test_mult_matricielle_pipeline.vhd" xil_pn:type="FILE_VHDL">
@@ -572,6 +567,7 @@
     <file xil_pn:name="rdc_load_nbits.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
       <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
+      <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="diviseur_clk_precision.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
@@ -611,23 +607,33 @@
       <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
     </file>
     <file xil_pn:name="matrice_NxM.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="4"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="4"/>
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="10"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="10"/>
       <library xil_pn:name="modules"/>
     </file>
     <file xil_pn:name="test_stockage_matrice.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="5"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="5"/>
-    </file>
-    <file xil_pn:name="test_stockage_matrice_tb.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="6"/>
-      <association xil_pn:name="PostMapSimulation" xil_pn:seqID="178"/>
-      <association xil_pn:name="PostRouteSimulation" xil_pn:seqID="178"/>
-      <association xil_pn:name="PostTranslateSimulation" xil_pn:seqID="2"/>
-    </file>
-    <file xil_pn:name="test_operation_matricielle.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
       <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
+    </file>
+    <file xil_pn:name="test_stockage_matrice_tb.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
+      <association xil_pn:name="PostMapSimulation" xil_pn:seqID="178"/>
+      <association xil_pn:name="PostRouteSimulation" xil_pn:seqID="178"/>
+      <association xil_pn:name="PostTranslateSimulation" xil_pn:seqID="0"/>
+    </file>
+    <file xil_pn:name="test_operation_matricielle.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="13"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="13"/>
+    </file>
+    <file xil_pn:name="test_operation_matricielle_tb.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="14"/>
+      <association xil_pn:name="PostMapSimulation" xil_pn:seqID="231"/>
+      <association xil_pn:name="PostRouteSimulation" xil_pn:seqID="231"/>
+      <association xil_pn:name="PostTranslateSimulation" xil_pn:seqID="2"/>
+    </file>
+    <file xil_pn:name="registre1bit.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="7"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="7"/>
     </file>
     <file xil_pn:name="ipcore_dir/diviseur.xise" xil_pn:type="FILE_COREGENISE">
       <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
@@ -880,11 +886,11 @@
     <property xil_pn:name="Run for Specified Time Translate" xil_pn:value="true" xil_pn:valueState="default"/>
     <property xil_pn:name="Safe Implementation" xil_pn:value="No" xil_pn:valueState="default"/>
     <property xil_pn:name="Security" xil_pn:value="Enable Readback and Reconfiguration" xil_pn:valueState="default"/>
-    <property xil_pn:name="Selected Module Instance Name" xil_pn:value="/test_stockage_matrice_tb" xil_pn:valueState="non-default"/>
-    <property xil_pn:name="Selected Simulation Root Source Node Behavioral" xil_pn:value="work.test_stockage_matrice_tb" xil_pn:valueState="non-default"/>
+    <property xil_pn:name="Selected Module Instance Name" xil_pn:value="/test_operation_matricielle_tb" xil_pn:valueState="non-default"/>
+    <property xil_pn:name="Selected Simulation Root Source Node Behavioral" xil_pn:value="work.test_operation_matricielle_tb" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Selected Simulation Root Source Node Post-Map" xil_pn:value="work.top_controle_adc_10bits_tb" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Selected Simulation Root Source Node Post-Route" xil_pn:value="work.top_controle_adc_10bits_tb" xil_pn:valueState="non-default"/>
-    <property xil_pn:name="Selected Simulation Root Source Node Post-Translate" xil_pn:value="work.test_stockage_matrice_tb" xil_pn:valueState="non-default"/>
+    <property xil_pn:name="Selected Simulation Root Source Node Post-Translate" xil_pn:value="work.test_operation_matricielle_tb" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Selected Simulation Source Node" xil_pn:value="uut" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Set SPI Configuration Bus Width spartan6" xil_pn:value="1" xil_pn:valueState="default"/>
     <property xil_pn:name="Setup External Master Clock Division spartan6" xil_pn:value="1" xil_pn:valueState="default"/>
@@ -899,10 +905,10 @@
     <property xil_pn:name="Simulator" xil_pn:value="ISim (VHDL/Verilog)" xil_pn:valueState="default"/>
     <property xil_pn:name="Slice Utilization Ratio" xil_pn:value="100" xil_pn:valueState="default"/>
     <property xil_pn:name="Specify 'define Macro Name and Value" xil_pn:value="" xil_pn:valueState="default"/>
-    <property xil_pn:name="Specify Top Level Instance Names Behavioral" xil_pn:value="work.test_stockage_matrice_tb" xil_pn:valueState="default"/>
+    <property xil_pn:name="Specify Top Level Instance Names Behavioral" xil_pn:value="work.test_operation_matricielle_tb" xil_pn:valueState="default"/>
     <property xil_pn:name="Specify Top Level Instance Names Post-Map" xil_pn:value="work.top_controle_adc_10bits_tb" xil_pn:valueState="default"/>
     <property xil_pn:name="Specify Top Level Instance Names Post-Route" xil_pn:value="work.top_controle_adc_10bits_tb" xil_pn:valueState="default"/>
-    <property xil_pn:name="Specify Top Level Instance Names Post-Translate" xil_pn:value="work.test_stockage_matrice_tb" xil_pn:valueState="default"/>
+    <property xil_pn:name="Specify Top Level Instance Names Post-Translate" xil_pn:value="work.test_operation_matricielle_tb" xil_pn:valueState="default"/>
     <property xil_pn:name="Speed Grade" xil_pn:value="-2" xil_pn:valueState="non-default"/>
     <property xil_pn:name="Starting Placer Cost Table (1-100) Map spartan6" xil_pn:value="1" xil_pn:valueState="default"/>
     <property xil_pn:name="Synthesis Tool" xil_pn:value="XST (VHDL/Verilog)" xil_pn:valueState="default"/>
@@ -951,14 +957,14 @@
     <!--                                                                                  -->
     <!-- The following properties are for internal use only. These should not be modified.-->
     <!--                                                                                  -->
-    <property xil_pn:name="PROP_BehavioralSimTop" xil_pn:value="Architecture|test_stockage_matrice_tb|behavior" xil_pn:valueState="non-default"/>
+    <property xil_pn:name="PROP_BehavioralSimTop" xil_pn:value="Architecture|test_operation_matricielle_tb|behavior" xil_pn:valueState="non-default"/>
     <property xil_pn:name="PROP_DesignName" xil_pn:value="modules_controle_board" xil_pn:valueState="non-default"/>
     <property xil_pn:name="PROP_DevFamilyPMName" xil_pn:value="spartan6" xil_pn:valueState="default"/>
     <property xil_pn:name="PROP_FPGAConfiguration" xil_pn:value="FPGAConfiguration" xil_pn:valueState="default"/>
     <property xil_pn:name="PROP_PostMapSimTop" xil_pn:value="Architecture|top_controle_adc_10bits_tb|behavior" xil_pn:valueState="non-default"/>
     <property xil_pn:name="PROP_PostParSimTop" xil_pn:value="Architecture|top_controle_adc_10bits_tb|behavior" xil_pn:valueState="non-default"/>
     <property xil_pn:name="PROP_PostSynthSimTop" xil_pn:value="" xil_pn:valueState="default"/>
-    <property xil_pn:name="PROP_PostXlateSimTop" xil_pn:value="Architecture|test_stockage_matrice_tb|behavior" xil_pn:valueState="non-default"/>
+    <property xil_pn:name="PROP_PostXlateSimTop" xil_pn:value="Architecture|test_operation_matricielle_tb|behavior" xil_pn:valueState="non-default"/>
     <property xil_pn:name="PROP_PreSynthesis" xil_pn:value="PreSynthesis" xil_pn:valueState="default"/>
     <property xil_pn:name="PROP_intProjectCreationTimestamp" xil_pn:value="2017-05-02T13:53:57" xil_pn:valueState="non-default"/>
     <property xil_pn:name="PROP_intWbtProjectID" xil_pn:value="746AA5200C1E423C9B7F3BC8AAEF1F38" xil_pn:valueState="non-default"/>

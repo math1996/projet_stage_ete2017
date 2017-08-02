@@ -47,11 +47,9 @@ begin
 
 reg0: registreNbits generic map(16) port map(clk => clk, reset => reset, en => enable, d => input, q_out => q_int(0));
 
-reg_loop: for i in 1 to M-2 generate
+reg_loop: for i in 1 to M-1 generate
 	registres : registreNbits generic map(16) port map(clk => clk, reset => reset, en => enable, d => q_int(i-1), q_out => q_int(i));
 end generate;
-
-reg_fin : registreNbits generic map(16) port map(clk => clk, reset => reset, en => enable, d => q_int(M-2), q_out => q_int(M-1));
 
 output <= q_int;
 end Behavioral;

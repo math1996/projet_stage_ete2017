@@ -9,3 +9,11 @@
 -Test en simulation des modifications + test avec des matrices de taille irrégulières (2x8,1x13,3x5, réussis)
 -Élaboration de la modification du module de multiplication matricielle afin de multiplexer les lignes et colonnes directement dans le module
 -Élaboration sur papier du tests des différents modules d'opération matricielles
+
+//2 août
+-Modification du module de multiplication matricielle afin de multiplexer les lignes et colonnes
+-Correction de bug du module de stockage et multplication matricielle
+-Test des modifications en simulation (behavioral et post-translate, réussis)
+-Vérification du matériel pour la caméra (lab3 VLSI)
+-Programmation de la réception des matrices, du stockage et du démarrage de l'opération
+-Test de ces fonctionnalités en simulation (behavioral, post translate, réussi!)

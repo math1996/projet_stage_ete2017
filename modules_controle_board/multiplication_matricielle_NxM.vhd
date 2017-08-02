@@ -39,12 +39,14 @@ entity multiplication_matricielle_NxM is
     Port ( clk, reset, start : in  STD_LOGIC;
            ligne_matrice1, colonne_matrice2 : in  ligne_matrice_16bits (S-1 downto 0);
            resultat : out  STD_LOGIC_VECTOR (31 downto 0);
-           donnee_prete, occupe, termine : out  STD_LOGIC);
+           donnee_prete, occupe, termine : out  STD_LOGIC;
+			  compte_ligne : out std_logic_vector((integer(ceil(log2(real(N))))) downto 0);
+			  compte_colonne : out std_logic_vector((integer(ceil(log2(real(M))))) downto 0));
 end multiplication_matricielle_NxM;
 
 architecture Behavioral of multiplication_matricielle_NxM is
 
-type etat_mult_matricielle is (attente, multiplication, addition_etat, latch_res, verif_fin, fin);
+type etat_mult_matricielle is (attente, multiplication, addition_etat, latch_res, verif_fin, fin, verif_compte, compter_ligne);
 
 signal res_mult_unsigned, res_mult_int : ligne_matrice_32bits(S-1 downto 0);
 signal ligne_matrice1_int, colonne_matrice2_int : ligne_matrice_16bits(S-1 downto 0);
@@ -52,12 +54,20 @@ signal etat_present, etat_suivant : etat_mult_matricielle;
 signal compte_nb_ligne : std_logic_vector((integer(ceil(log2(real(N*M))))) downto 0);
 signal compte_parcour : std_logic_vector((integer(ceil(log2(real(S))))) - 1 downto 0);
 signal res_addition, reg_addition_out, addition : std_logic_vector(63 downto 0);
-signal reset_compteur, reset_reg, enable_compteur, enable_reg, cmp_fin, reset_reg_add, enable_reg_add, cmp_fin_add : std_logic;
+signal reset_reg, enable_reg, cmp_fin, reset_reg_add, enable_reg_add, cmp_fin_add, reset_compte_col, enable_compte_col, 
+		 reset_compte_lig, enable_compte_lig, cmp_fin_col: std_logic;
 signal signe, data_add : std_logic_vector(31 downto 0);
+signal compte_col_int : std_logic_vector((integer(ceil(log2(real(M))))) downto 0);
+signal compte_lig_int : std_logic_vector((integer(ceil(log2(real(N))))) downto 0);
+
 begin
 
+--assignation des sorties
+compte_ligne <= compte_lig_int;
+compte_colonne <= compte_col_int;
+
 --compteur du nombre d'élément calculé
-compteur_nb_lignes : compteurNbits generic map(integer(ceil(log2(real(N*M)))) + 1) port map(clk => clk, reset => reset_compteur, enable => enable_compteur, output => compte_nb_ligne);
+compteur_nb_lignes : compteurNbits generic map(integer(ceil(log2(real(N*M)))) + 1) port map(clk => clk, reset => reset, enable => enable_compte_col, output => compte_nb_ligne);
 
 --générer les multiplieurs
 gen_mult : for i in 0 to S-1 generate
@@ -85,7 +95,13 @@ registre_res_addition : registreNbits generic map(64) port map(clk => clk, reset
 
 --compteur du parcour des résultats de la Multiplication
 compteur_parcour : compteurNbits generic map((integer(ceil(log2(real(S)))))) port map(clk => clk, reset => reset_reg_add, enable => enable_reg_add, output => compte_parcour);
-			
+
+--compteur des colonnes
+compteur_colonne : compteurNbits generic map((integer(ceil(log2(real(M))))) + 1) port map(clk => clk, reset => reset_compte_col, enable => enable_compte_col, output => compte_col_int);
+
+--compteur des colonnes
+compteur_ligne : compteurNbits generic map((integer(ceil(log2(real(N))))) + 1) port map(clk => clk, reset => reset_compte_lig, enable => enable_compte_lig, output => compte_lig_int);	
+
 --mux du parcour des résultats de la multiplication
 signe <= (others => '0') when data_add(31) = '0' else
 			(others => '1');
@@ -103,6 +119,9 @@ cmp_fin <= '1' when compte_nb_ligne >= (N*M) else
 			  
 cmp_fin_add <= '1' when compte_parcour >= (S-1) else
 					'0';
+					
+cmp_fin_col <= '1' when compte_col_int >= M else
+					'0';
 
 --machine à état de la gestion du calcul
 process(clk, reset)
@@ -114,12 +133,14 @@ begin
 	end if;
 end process;
 
-process(etat_present, start, cmp_fin, cmp_fin_add)
+process(etat_present, start, cmp_fin, cmp_fin_add, cmp_fin_col)
 begin
 	case etat_present is
 		when attente =>
-			reset_compteur <= '0';
-			enable_compteur <= '0';
+			reset_compte_col <= '0';
+			enable_compte_col <= '0';
+			reset_compte_lig <= '0';
+			enable_compte_lig <= '0';
 			reset_reg <= '0';
 			enable_reg <= '0';
 			occupe <= '0';
@@ -134,8 +155,10 @@ begin
 			end if;
 			
 		when multiplication =>
-			reset_compteur <= '1';
-			enable_compteur <= '0';
+			reset_compte_col <= '1';
+			enable_compte_col <= '0';
+			reset_compte_lig <= '1';
+			enable_compte_lig <= '0';
 			reset_reg <= '1';
 			enable_reg <= '0';
 			occupe <= '1';
@@ -146,8 +169,10 @@ begin
 			etat_suivant <= addition_etat;
 		
 		when addition_etat =>
-			reset_compteur <= '1';
-			enable_compteur <= '0';
+			reset_compte_col <= '1';
+			enable_compte_col <= '0';
+			reset_compte_lig <= '1';
+			enable_compte_lig <= '0';
 			reset_reg <= '1';
 			enable_reg <= '0';
 			occupe <= '1';
@@ -162,8 +187,10 @@ begin
 			end if;
 			
 		when latch_res =>
-			reset_compteur <= '1';
-			enable_compteur <= '1';
+			reset_compte_col <= '1';
+			enable_compte_col <= '1';
+			reset_compte_lig <= '1';
+			enable_compte_lig <= '0';
 			reset_reg <= '1';
 			enable_reg <= '1';
 			occupe <= '1';
@@ -171,16 +198,50 @@ begin
 			donnee_prete <= '0';
 			reset_reg_add <= '1';
 			enable_reg_add <= '0';
-			etat_suivant <= verif_fin;
+			etat_suivant <= verif_compte;
 			
-		when verif_fin =>
-			reset_compteur <= '1';
-			enable_compteur <= '0';
+		when verif_compte =>
+			reset_compte_col <= '1';
+			enable_compte_col <= '0';
+			reset_compte_lig <= '1';
+			enable_compte_lig <= '0';
 			reset_reg <= '1';
 			enable_reg <= '0';
 			occupe <= '1';
 			termine <= '0';
 			donnee_prete <= '1';
+			reset_reg_add <= '0';
+			enable_reg_add <= '0';
+			if(cmp_fin_col = '1') then
+				etat_suivant <= compter_ligne;
+			else
+				etat_suivant <= verif_fin;
+			end if;
+		
+		when compter_ligne =>
+			reset_compte_col <= '0';
+			enable_compte_col <= '0';
+			reset_compte_lig <= '1';
+			enable_compte_lig <= '1';
+			reset_reg <= '1';
+			enable_reg <= '0';
+			occupe <= '1';
+			termine <= '0';
+			donnee_prete <= '0';
+			reset_reg_add <= '0';
+			enable_reg_add <= '0';
+			etat_suivant <= verif_fin;
+			
+		when verif_fin =>
+			reset_compte_col <= '1';
+			enable_compte_col <= '0';
+			reset_compte_lig <= '1';
+			enable_compte_lig <= '0';
+			reset_reg <= '1';
+			enable_reg <= '0';
+			occupe <= '1';
+			termine <= '0';
+			donnee_prete <= '0';
 			reset_reg_add <= '0';
 			enable_reg_add <= '0';
 			if(cmp_fin = '1') then
@@ -190,8 +251,10 @@ begin
 			end if;
 			
 		when fin =>
-			reset_compteur <= '0';
-			enable_compteur <= '0';
+			reset_compte_col <= '0';
+			enable_compte_col <= '0';
+			reset_compte_lig <= '0';
+			enable_compte_lig <= '0';
 			reset_reg <= '0';
 			enable_reg <= '0';
 			occupe <= '0';
@@ -202,8 +265,10 @@ begin
 			etat_suivant <= attente;
 		
 		when others =>
-			reset_compteur <= '0';
-			enable_compteur <= '0';
+			reset_compte_col <= '0';
+			enable_compte_col <= '0';
+			reset_compte_lig <= '0';
+			enable_compte_lig <= '0';
 			reset_reg <= '0';
 			enable_reg <= '0';
 			occupe <= '0';

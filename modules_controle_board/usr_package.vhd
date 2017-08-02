@@ -67,7 +67,9 @@ component multiplication_matricielle_NxM is
     Port ( clk, reset, start : in  STD_LOGIC;
            ligne_matrice1, colonne_matrice2 : in  ligne_matrice_16bits (S-1 downto 0);
            resultat : out  STD_LOGIC_VECTOR (31 downto 0);
-           donnee_prete, occupe, termine : out  STD_LOGIC);
+           donnee_prete, occupe, termine : out  STD_LOGIC;
+			  compte_ligne : out std_logic_vector((integer(ceil(log2(real(N))))) downto 0);
+			  compte_colonne : out std_logic_vector((integer(ceil(log2(real(M))))) downto 0));	  
 end component;
 
 
