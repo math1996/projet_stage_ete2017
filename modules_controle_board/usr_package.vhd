@@ -36,6 +36,16 @@ type ligne_matrice_32bits is array(natural range <>) of std_logic_vector(31 down
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component cmp_A_plus_petit_B_signe is
+    Port ( A,B : in  STD_LOGIC_VECTOR (31 downto 0);
+           comparaison : out  STD_LOGIC);
+end component;
+
+component cmp_A_plus_grand_B_signe is
+    Port ( A,B : in  STD_LOGIC_VECTOR (31 downto 0);
+           comparaison : out  STD_LOGIC);
+end component;
+
 component matrice_NxM is
 generic(N,M : integer := 4);
     Port ( input_element : in  std_logic_vector(15 downto 0);

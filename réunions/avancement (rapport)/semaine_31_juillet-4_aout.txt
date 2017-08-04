@@ -17,3 +17,23 @@
 -Vérification du matériel pour la caméra (lab3 VLSI)
 -Programmation de la réception des matrices, du stockage et du démarrage de l'opération
 -Test de ces fonctionnalités en simulation (behavioral, post translate, réussi!)
+
+//3 août
+-Trouver un moyen de display les images de la caméra VMOD sur un écran (seulement pour tester le module)
+-Finalisation des test en simulation de la réception des matrices, du stockage et de l'opération
+-Implémentation et test des modules du lab1 afin d'avoir un code de référence (réussis)
+-Modification du lab1
+-Ajout d'un numéro bonus dans le lab (incluant une table de karnaugh)
+-Test et implémentation du numéro bonus (verrouillage par mot de passe)
+-Travaille sur le cours de VLSI 
+
+//4 août
+-Essai de la caméra avec le code VHDL du fabricant (presque concluant)
+-Analyse du code afin de trouver le problème (affichage de pixels plein de couleurs, pas de flux vidéo)
+-Ajout du code de référence pour le demi-additionneur dans le corrigé (lab1 VLSI)
+-Ajout de la table de vérité et de la table de karnaugh du demi-additionneur dans le corrigé (lab1 VLSI)
+-Programmation de l'opérateur A > B signé sur 32 bits
+-Programmation du module de comparaison du seuil de la dérivée première en pipeline
+-Test en simulation de ce module (behavioral et post-translate)
+-Programmation de l'opérateur A < B signé sur 32 bits (reste à le tester)
+
