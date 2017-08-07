@@ -1,2 +1,4 @@
-work	"comparaison_seuil_derive1.vhd"
-work	"registre1bit.vhd"
+modules	"compteurNbits.vhd"
+modules	"registreNbits.vhd"
+work	"trouver_min_vecteur_1xN.vhd"
+modules	"usr_package.vhd"

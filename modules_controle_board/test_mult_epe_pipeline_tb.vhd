@@ -49,6 +49,7 @@ ARCHITECTURE behavior OF test_mult_epe_pipeline_tb IS
          resultat3 : OUT  std_logic_vector(31 downto 0);
          resultat4 : OUT  std_logic_vector(31 downto 0);
          occupe : OUT  std_logic;
+			data_pret : out std_logic;
          termine : OUT  std_logic
         );
     END COMPONENT;
@@ -58,6 +59,7 @@ ARCHITECTURE behavior OF test_mult_epe_pipeline_tb IS
    signal clk : std_logic := '0';
    signal reset : std_logic := '0';
    signal start : std_logic := '0';
+	signal data_pret : std_logic := '0';
 
  	--Outputs
    signal resultat1 : std_logic_vector(31 downto 0);
@@ -81,6 +83,7 @@ BEGIN
           resultat2 => resultat2,
           resultat3 => resultat3,
           resultat4 => resultat4,
+			 data_pret => data_pret,
           occupe => occupe,
           termine => termine
         );

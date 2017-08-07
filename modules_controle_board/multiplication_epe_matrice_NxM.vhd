@@ -23,6 +23,7 @@ use modules.usr_package.all;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.std_logic_unsigned.all;
 use IEEE.math_real.all;
+use ieee.numeric_std.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -37,30 +38,38 @@ entity multiplication_epe_matrice_NxM is
 	generic(N, M : integer := 4);
     Port ( clk, reset, start : in  STD_LOGIC;
            ligne_matrice1, ligne_matrice2 : in  ligne_matrice_16bits (M-1 downto 0);
-           ligne_resultat : out  ligne_matrice_32bits (M-1 downto 0);
-           donnee_prete, occupe, termine : out  STD_LOGIC);
+           resultat : out  std_logic_vector(31 downto 0);
+           donnee_prete,compter_ligne, occupe, termine : out  STD_LOGIC);
 end multiplication_epe_matrice_NxM;
 
 architecture Behavioral of multiplication_epe_matrice_NxM is
 
-type etat_mult_epe is (attente, multiplication, latch_res, verif_fin, fin);
+type etat_mult_epe is (attente, multiplication, latch_res, avancer_ligne, verif_fin, fin);
 signal etat_present, etat_suivant : etat_mult_epe;
 signal compte_nb_ligne : std_logic_vector((integer(ceil(log2(real(N))))) downto 0);
+signal compte_nb_col : std_logic_vector((integer(ceil(log2(real(M))))) downto 0);
 signal ligne_matrice2_int, ligne_matrice1_int  : ligne_matrice_16bits(M-1 downto 0);
 signal res_mult_unsigned, res_mult_int : ligne_matrice_32bits(M-1 downto 0);
 
-signal reset_compteur, reset_reg, enable_compteur, enable_reg, cmp_fin : std_logic;
+signal reset_compteur, reset_reg, enable_compteur, enable_reg, cmp_fin, cmp_fin_col, reset_sortie, enable_sortie : std_logic;
 
 begin
+
+--sortie
+donnee_prete <= enable_sortie;
+compter_ligne <= enable_compteur;
+
+--mux pour parcourir la colonne
+resultat <= res_mult_int(to_integer(unsigned((M-1) - compte_nb_col)));
 
 --compteur du nombre de lignes mutliplié
 compteur_nb_lignes : compteurNbits generic map(integer(ceil(log2(real(N)))) + 1) port map(clk => clk, reset => reset_compteur, enable => enable_compteur, output => compte_nb_ligne);
 
+--compteur du nombre d'éléments sur une colonne
+compteur_nb_element_col : compteurNbits generic map(integer(ceil(log2(real(M)))) + 1) port map(clk => clk, reset => reset_sortie, enable => enable_sortie, output => compte_nb_col);
+
 --génération des registres de sortie et de la multpilication
 gen_module : for i in 0 to M-1 generate
-	--registres de sortie
-	registre_res : registreNbits generic map(32) port map(clk => clk, reset => reset_reg, en => enable_reg, d => res_mult_int(i), q_out => ligne_resultat(i));
-	
 	--mux pour enlever le signe si besoin
 	mux_mat1 : mux_add_sous_matrice_Nbits generic map(16) port map(choix => ligne_matrice1(i)(15), d0 => ligne_matrice1(i), d1 => (not(ligne_matrice1(i)) + 1),
 																				 output => ligne_matrice1_int(i));
@@ -82,6 +91,8 @@ end generate gen_module;
 cmp_fin <= '1' when compte_nb_ligne >= N else
 			  '0';
 
+cmp_fin_col <= '1' when compte_nb_col >= M-1 else
+						'0';
 --machine à état de la gestion du calcul
 process(clk, reset)
 begin
@@ -92,17 +103,16 @@ begin
 	end if;
 end process;
 
-process(etat_present, start, cmp_fin)
+process(etat_present, start, cmp_fin, cmp_fin_col)
 begin
 	case etat_present is
 		when attente =>
 			reset_compteur <= '0';
 			enable_compteur <= '0';
-			reset_reg <= '0';
-			enable_reg <= '0';
+			reset_sortie <= '0';
+			enable_sortie <= '0';
 			occupe <= '0';
 			termine <= '0';
-			donnee_prete <= '0';
 			if(start = '1') then
 				etat_suivant <= multiplication;
 			else
@@ -112,31 +122,41 @@ begin
 		when multiplication =>
 			reset_compteur <= '1';
 			enable_compteur <= '0';
-			reset_reg <= '1';
-			enable_reg <= '0';
+			reset_sortie <= '0';
+			enable_sortie <= '0';
 			occupe <= '1';
 			termine <= '0';
-			donnee_prete <= '0';
 			etat_suivant <= latch_res;
 			
 		when latch_res =>
 			reset_compteur <= '1';
-			enable_compteur <= '1';
-			reset_reg <= '1';
-			enable_reg <= '1';
+			enable_compteur <= '0';
+			reset_sortie <= '1';
+			enable_sortie <= '1';
 			occupe <= '1';
 			termine <= '0';
-			donnee_prete <= '0';
+			if(cmp_fin_col = '1') then
+				etat_suivant <= avancer_ligne;
+			else
+					etat_suivant <= latch_res;
+			end if;
+		
+		when avancer_ligne =>
+			reset_compteur <= '1';
+			enable_compteur <= '1';
+			reset_sortie <= '0';
+			enable_sortie <= '0';
+			occupe <= '1';
+			termine <= '0';
 			etat_suivant <= verif_fin;
 			
 		when verif_fin =>
 			reset_compteur <= '1';
 			enable_compteur <= '0';
-			reset_reg <= '1';
-			enable_reg <= '0';
+			reset_sortie <= '0';
+			enable_sortie <= '0';
 			occupe <= '1';
 			termine <= '0';
-			donnee_prete <= '1';
 			if(cmp_fin = '1') then
 				etat_suivant <= fin;
 			else
@@ -146,21 +166,19 @@ begin
 		when fin =>
 			reset_compteur <= '0';
 			enable_compteur <= '0';
-			reset_reg <= '0';
-			enable_reg <= '0';
-			occupe <= '0';
+			reset_sortie <= '0';
+			enable_sortie <= '0';
+			occupe <= '1';
 			termine <= '1';
-			donnee_prete <= '0';
 			etat_suivant <= attente;
 		
 		when others =>
 			reset_compteur <= '0';
 			enable_compteur <= '0';
-			reset_reg <= '0';
-			enable_reg <= '0';
+			reset_sortie <= '0';
+			enable_sortie <= '0';
 			occupe <= '0';
 			termine <= '0';
-			donnee_prete <= '0';
 			etat_suivant <= attente;
 	end case;				
 end process;

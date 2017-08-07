@@ -38,20 +38,22 @@ entity test_mult_epe_pipeline is
 generic(N: integer := 4);
     Port ( clk, reset, start : in  STD_LOGIC;
            resultat1, resultat2, resultat3, resultat4 : out  STD_LOGIC_VECTOR (31 downto 0);
-           occupe, termine : out  STD_LOGIC);
+           occupe, termine, data_pret : out  STD_LOGIC);
 end test_mult_epe_pipeline;
 
 architecture Behavioral of test_mult_epe_pipeline is
 
 type matrice_NxM is array(natural range <>) of ligne_matrice_16bits(N-1 downto 0);
 
-signal data_rdy : std_logic;
+signal data_rdy, enable_rdc : std_logic;
 signal compte_ligne : std_logic_vector(2 downto 0);
 signal matrice1, matrice2 : matrice_NxM(3 downto 0);
 signal ligne_matrice1_int, ligne_matrice2_int : ligne_matrice_16bits(3 downto 0);
-signal ligne_res_int : ligne_matrice_32bits(3 downto 0);
+signal res_int : std_logic_vector(31 downto 0);
 
 begin
+
+
 
 --assignation des matrices
 matrice1(0)(0) <= std_logic_vector(to_unsigned(77, 16));
@@ -106,12 +108,12 @@ compteur_ligne : compteurNbits generic map(3) port map(clk => clk, enable => dat
 
 --module de multiplication matricielle élément par élément
 mult : multiplication_epe_matrice_NxM generic map(4,4) port map(clk => clk, reset => reset, start => start, ligne_matrice1 => ligne_matrice1_int,
-						ligne_matrice2 => ligne_matrice2_int, ligne_resultat => ligne_res_int, donnee_prete => data_rdy, occupe => occupe, termine => termine);
+						ligne_matrice2 => ligne_matrice2_int, resultat => res_int, donnee_prete => data_pret, compter_ligne => data_rdy, occupe => occupe, termine => termine);
 						
-resultat1 <= ligne_res_int(0);
-resultat2 <= ligne_res_int(1);	
-resultat3 <= ligne_res_int(2);	
-resultat4 <= ligne_res_int(3);							
+resultat1 <= res_int;
+resultat2 <= res_int;
+resultat3 <= res_int;
+resultat4 <= res_int;							
 							 
 end Behavioral;
 

@@ -1,0 +1,11 @@
+//7 août
+-Programmation d'un mdoule de comparaison du seuil de la dérivée seconde en pipeline
+-Test du module en simulation (behavioral et post-translate, réussis)
+-Programmation d'un module permettant de trouver la position de l'élément minimal d'un vecteur 1xN
+-Test du module pour trouver la position du minimum d'un vecteur 1xN (behavioral et post-translate, réussis)
+-Modification des modules d'addition/soustraction afin que les éléments de sortie sortent comme la multiplication matricielle (un après l'autre)
+-Test des modifications en simulation (behavioral et post-translate, réussis)
+-Modification du module de multiplication élément par élément afin de supporte le pipeline plus poussé 
+-Test des modifications en simulation (behavioral, post-translate, réussis!)
+
+//8 août

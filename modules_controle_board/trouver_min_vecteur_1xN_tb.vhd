@@ -2,15 +2,15 @@
 -- Company: 
 -- Engineer:
 --
--- Create Date:   12:35:13 07/20/2017
+-- Create Date:   13:05:01 08/07/2017
 -- Design Name:   
--- Module Name:   C:/Users/mathieu/Desktop/projet_stage_ete2017/modules_controle_board/test_add_sous_pipeline_tb.vhd
+-- Module Name:   C:/Users/mathieu/Desktop/projet_stage_ete2017/modules_controle_board/trouver_min_vecteur_1xN_tb.vhd
 -- Project Name:  modules_controle_board
 -- Target Device:  
 -- Tool versions:  
 -- Description:   
 -- 
--- VHDL Test Bench Created by ISE for module: test_add_sous_pipeline
+-- VHDL Test Bench Created by ISE for module: trouver_min_vecteur_1xN
 -- 
 -- Dependencies:
 -- 
@@ -32,23 +32,21 @@ USE ieee.std_logic_1164.ALL;
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
  
-ENTITY test_add_sous_pipeline_tb IS
-END test_add_sous_pipeline_tb;
+ENTITY trouver_min_vecteur_1xN_tb IS
+END trouver_min_vecteur_1xN_tb;
  
-ARCHITECTURE behavior OF test_add_sous_pipeline_tb IS 
+ARCHITECTURE behavior OF trouver_min_vecteur_1xN_tb IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT test_add_sous_pipeline
+    COMPONENT trouver_min_vecteur_1xN
     PORT(
-         start : IN  std_logic;
          clk : IN  std_logic;
          reset : IN  std_logic;
-         choix_add_sous : IN  std_logic;
-         resultat1 : OUT  std_logic_vector(15 downto 0);
-         resultat2 : OUT  std_logic_vector(15 downto 0);
-         resultat3 : OUT  std_logic_vector(15 downto 0);
-         resultat4 : OUT  std_logic_vector(15 downto 0);
+         start : IN  std_logic;
+         data_in : IN  std_logic_vector(31 downto 0);
+         position_min : OUT  std_logic_vector(2 downto 0);
+         enable_decalage : OUT  std_logic;
          occupe : OUT  std_logic;
          termine : OUT  std_logic
         );
@@ -56,34 +54,33 @@ ARCHITECTURE behavior OF test_add_sous_pipeline_tb IS
     
 
    --Inputs
-   signal start : std_logic := '0';
    signal clk : std_logic := '0';
    signal reset : std_logic := '0';
-   signal choix_add_sous : std_logic := '0';
+   signal start : std_logic := '0';
+   signal data_in : std_logic_vector(31 downto 0) := (others => '0');
 
  	--Outputs
-   signal resultat1 : std_logic_vector(15 downto 0);
-   signal resultat2 : std_logic_vector(15 downto 0);
-   signal resultat3 : std_logic_vector(15 downto 0);
-   signal resultat4 : std_logic_vector(15 downto 0);
+   signal position_min : std_logic_vector(2 downto 0);
+   signal enable_decalage : std_logic;
    signal occupe : std_logic;
    signal termine : std_logic;
 
+
+	type valeur is array(2 downto 0) of std_logic_vector(31 downto 0);
+	signal rdc : valeur := ("00110110111101110011110110111110","11110110111101110011110110111110","00110110111101110011110110111110");
    -- Clock period definitions
    constant clk_period : time := 10 ns;
  
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: test_add_sous_pipeline PORT MAP (
-          start => start,
+   uut: trouver_min_vecteur_1xN PORT MAP (
           clk => clk,
           reset => reset,
-          choix_add_sous => choix_add_sous,
-          resultat1 => resultat1,
-          resultat2 => resultat2,
-          resultat3 => resultat3,
-          resultat4 => resultat4,
+          start => start,
+          data_in => data_in,
+          position_min => position_min,
+          enable_decalage => enable_decalage,
           occupe => occupe,
           termine => termine
         );
@@ -102,27 +99,30 @@ BEGIN
    stim_proc: process
    begin		
       -- hold reset state for 100 ns.
-      wait for 100 ns;	
 		reset <= '0';
-		start <= '0';
-      wait for clk_period*10;
-		start <= '1';
+      wait for 100 ns;	
 		reset <= '1';
-		choix_add_sous <= '0';
+      wait for clk_period;
+		start <= '1';
 		wait for clk_period;
 		start <= '0';
 		
-		wait for clk_period*50;
-		reset <= '0';
-		wait for clk_period;
-		reset <= '1';
-		start <= '1';
-		choix_add_sous <= '1';
-		wait for clk_period;
-		start <= '0';
       -- insert stimulus here 
 
       wait;
    end process;
 
+	rdc_process : process(reset,clk,enable_decalage)
+	begin
+	if(reset = '0') then
+		rdc <= ("11111111111101110011110110111111","11110110111101110011110110111110","11111110111101110011110110111110");
+	elsif(clk'event and clk = '1') then
+		if(enable_decalage = '1') then
+			rdc(2 downto 1) <= rdc(1 downto 0);
+			rdc(0) <= (others => '0');
+		end if;
+	end if;
+	end process;
+
+	data_in <= rdc(2);
 END;

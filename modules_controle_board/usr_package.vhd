@@ -36,6 +36,20 @@ type ligne_matrice_32bits is array(natural range <>) of std_logic_vector(31 down
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component comparaison_seuil_derive1 is
+    Port ( clk, reset : in  STD_LOGIC;
+           data_in : in  std_logic_vector(31 downto 0);
+           seuil : in  STD_LOGIC_VECTOR (31 downto 0);
+           comparaison_out : out  STD_LOGIC);
+end component;
+
+component comparaison_seuil_derive2 is
+    Port ( clk, reset : in  STD_LOGIC;
+           data_in : in  STD_LOGIC_VECTOR (31 downto 0);
+           seuil : in  STD_LOGIC_VECTOR (31 downto 0);
+           comparaison_out : out  STD_LOGIC);
+end component;
+
 component cmp_A_plus_petit_B_signe is
     Port ( A,B : in  STD_LOGIC_VECTOR (31 downto 0);
            comparaison : out  STD_LOGIC);
@@ -87,16 +101,16 @@ component multiplication_epe_matrice_NxM is
 	generic(N, M : integer := 4);
     Port ( clk, reset, start : in  STD_LOGIC;
            ligne_matrice1, ligne_matrice2 : in  ligne_matrice_16bits (M-1 downto 0);
-           ligne_resultat : out  ligne_matrice_32bits (M-1 downto 0);
-           donnee_prete, occupe, termine : out  STD_LOGIC);
+           resultat : out  std_logic_vector(31 downto 0);
+           donnee_prete,compter_ligne, occupe, termine : out  STD_LOGIC);
 end component;
 
 component addition_soustraction_matrice_NxM is
 	generic(N, M : integer := 4);
     Port ( clk, reset, start, choix_add_sous : in  STD_LOGIC;
            ligne_matrice1, ligne_matrice2 : in  ligne_matrice_16bits (M-1 downto 0);
-           ligne_resultat : out  ligne_matrice_16bits (M-1 downto 0);
-           donnee_prete, occupe, termine : out  STD_LOGIC);
+           resultat : out  std_logic_vector(15 downto 0);
+           donnee_prete, compter_ligne, occupe, termine : out  STD_LOGIC);
 end component;
 
 component mux_add_sous_matrice_Nbits is
