@@ -16,6 +16,7 @@ package usr_package is
 
 type tableau_memoire is array(natural range <>) of std_logic_vector(15 downto 0);
 type tableau_memoire_8bits is array(natural range <>) of std_logic_vector(7 downto 0);
+type tableau_memoire_32bits is array(natural range <>) of std_logic_vector(31 downto 0);
 
 type ligne_matrice_16bits is array(natural range <>) of std_logic_vector(15 downto 0);
 type ligne_matrice_32bits is array(natural range <>) of std_logic_vector(31 downto 0);

@@ -47,15 +47,9 @@ ARCHITECTURE behavior OF test_operation_matricielle_tb IS
          tx : OUT  std_logic;
          occupe : OUT  std_logic;
          termine : OUT  std_logic;
-         resultat_add_sous1 : OUT  std_logic_vector(15 downto 0);
-         resultat_add_sous2 : OUT  std_logic_vector(15 downto 0);
-         resultat_add_sous3 : OUT  std_logic_vector(15 downto 0);
-         resultat_add_sous4 : OUT  std_logic_vector(15 downto 0);
-         resultat_mult_epe1 : OUT  std_logic_vector(31 downto 0);
-         resultat_mult_epe2 : OUT  std_logic_vector(31 downto 0);
-         resultat_mult_epe3 : OUT  std_logic_vector(31 downto 0);
-         resultat_mult_epe4 : OUT  std_logic_vector(31 downto 0);
-         resultat_mult_mat : OUT  std_logic_vector(31 downto 0)
+         resultat_add_sous_out : OUT  std_logic_vector(15 downto 0);
+         resultat_mult_epe_out : OUT  std_logic_vector(31 downto 0);
+         resultat_mult_mat_out : OUT  std_logic_vector(31 downto 0)
         );
     END COMPONENT;
     
@@ -69,15 +63,9 @@ ARCHITECTURE behavior OF test_operation_matricielle_tb IS
    signal tx : std_logic;
    signal occupe : std_logic;
    signal termine : std_logic;
-   signal resultat_add_sous1 : std_logic_vector(15 downto 0);
-   signal resultat_add_sous2 : std_logic_vector(15 downto 0);
-   signal resultat_add_sous3 : std_logic_vector(15 downto 0);
-   signal resultat_add_sous4 : std_logic_vector(15 downto 0);
-   signal resultat_mult_epe1 : std_logic_vector(31 downto 0);
-   signal resultat_mult_epe2 : std_logic_vector(31 downto 0);
-   signal resultat_mult_epe3 : std_logic_vector(31 downto 0);
-   signal resultat_mult_epe4 : std_logic_vector(31 downto 0);
-   signal resultat_mult_mat : std_logic_vector(31 downto 0);
+   signal resultat_add_sous_out : std_logic_vector(15 downto 0);
+   signal resultat_mult_epe_out : std_logic_vector(31 downto 0);
+   signal resultat_mult_mat_out : std_logic_vector(31 downto 0);
 
    -- Clock period definitions
    constant clk_period : time := 10 ns;
@@ -92,15 +80,9 @@ BEGIN
           tx => tx,
           occupe => occupe,
           termine => termine,
-          resultat_add_sous1 => resultat_add_sous1,
-          resultat_add_sous2 => resultat_add_sous2,
-          resultat_add_sous3 => resultat_add_sous3,
-          resultat_add_sous4 => resultat_add_sous4,
-          resultat_mult_epe1 => resultat_mult_epe1,
-          resultat_mult_epe2 => resultat_mult_epe2,
-          resultat_mult_epe3 => resultat_mult_epe3,
-          resultat_mult_epe4 => resultat_mult_epe4,
-          resultat_mult_mat => resultat_mult_mat
+          resultat_add_sous_out => resultat_add_sous_out,
+          resultat_mult_epe_out => resultat_mult_epe_out,
+          resultat_mult_mat_out => resultat_mult_mat_out
         );
 
    -- Clock process definitions

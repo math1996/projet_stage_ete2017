@@ -9,3 +9,12 @@
 -Test des modifications en simulation (behavioral, post-translate, réussis!)
 
 //8 août
+-Travail à la maison 
+
+//9 août
+-Débuggage de la caméra pour le lab 3 de VLSI 
+-Analyse et lecture approfondi du code
+-Test de la caméra (non concluant)
+-Essai avec un câble HDMi directement (non concluant)
+-Modification du module de test d'opération matrcicielle en pipeline
+-Programmation d'une mémoire tampon de 32xM afin de récupérer les résultats des opérations matricielles et de les envoyer sur le port série

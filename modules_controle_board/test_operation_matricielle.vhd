@@ -36,9 +36,9 @@ use ieee.numeric_std.all;
 entity test_operation_matricielle is
     Port ( clk, reset, rx : in  STD_LOGIC;
            tx, occupe, termine : out  STD_LOGIC;
-			  resultat_add_sous1, resultat_add_sous2, resultat_add_sous3, resultat_add_sous4 : out std_logic_vector(15 downto 0);
-			  resultat_mult_epe1, resultat_mult_epe2, resultat_mult_epe3, resultat_mult_epe4  : out std_logic_vector(31 downto 0);
-			  resultat_mult_mat : out std_logic_vector(31 downto 0));
+			  resultat_add_sous_out : out std_logic_vector(15 downto 0);
+			  resultat_mult_epe_out: out std_logic_vector(31 downto 0);
+			  resultat_mult_mat_out : out std_logic_vector(31 downto 0));
 end test_operation_matricielle;
 
 architecture Behavioral of test_operation_matricielle is
@@ -60,30 +60,19 @@ signal ligne_mat1, ligne_mat2, col_mat2: ligne_matrice_16bits(3 downto 0);
 signal reset_buffer, new_data_int, enable_stockage_mat, enable_stockage_mat1, enable_stockage_mat2, reset_operation, start_add_sous, choix_add_sous_int,
 		 data_rdy_add_sous, occupe_add_sous, termine_add_sous, start_mult_epe, data_rdy_mult_epe, occupe_mult_epe, termine_mult_epe,
 		 start_mult_mat, occupe_mult_mat, termine_mult_mat, data_rdy_mult_mat, reset_compteur_param, enable_compteur_param, reset_input, enable_input,
-		 num_matrice, cmp_attente_param, reset_compteur_ligne, enable_reg_op, reset_compteur_nb_data, enable_compteur_nb_data, termine_operation, cmp_fin_data : std_logic;
+		 num_matrice, cmp_attente_param, reset_compteur_ligne, enable_reg_op, reset_compteur_nb_data, enable_compteur_nb_data, termine_operation,
+		 cmp_fin_data, compter_ligne_add_sous, compter_ligne_mult_epe : std_logic;
 signal compte_ligne_int, compte_ligne_seul  : std_logic_vector(2 downto 0);
 signal compte_colonne_int : std_logic_vector(2 downto 0);
 signal operation, compte_param : std_logic_vector(1 downto 0);
 signal output_buffer_rx : tableau_memoire_8bits(1 downto 0);
 signal nb_data_matrice, compte_nb_data : std_logic_vector(7 downto 0);
-signal resultat_add_sous : ligne_matrice_16bits(3 downto 0);
-signal resultat_mult_epe : ligne_matrice_32bits(3 downto 0);
 
 begin
 
 --assignation signaux de sortie
 occupe <= occupe_add_sous or occupe_mult_epe or occupe_mult_mat;
 termine_operation <= termine_add_sous or termine_mult_epe or termine_mult_mat;
-
-resultat_add_sous1 <= resultat_add_sous(0);
-resultat_add_sous2 <= resultat_add_sous(1);
-resultat_add_sous3 <= resultat_add_sous(2);
-resultat_add_sous4 <= resultat_add_sous(3);
-
-resultat_mult_epe1 <= resultat_mult_epe(0);
-resultat_mult_epe2 <= resultat_mult_epe(1);
-resultat_mult_epe3 <= resultat_mult_epe(2);
-resultat_mult_epe4 <= resultat_mult_epe(3);
 
 --module de communication série
 com_serie_rx : serial_rx port map(clk => clk, rst => reset, rx => rx, data => data_recu, new_data => new_data_int);
@@ -97,16 +86,17 @@ stockage_matrice2 : matrice_NxM generic map(4,4) port map(input_element => (outp
 
 --module d'addition/soustraction matricielle
 add_sous_matricielle : addition_soustraction_matrice_NxM generic map(4,4) port map(clk => clk, reset => reset_operation, start => start_add_sous,
-							choix_add_sous => operation(0), ligne_matrice1 => ligne_mat1, ligne_matrice2 => ligne_mat2, ligne_resultat => resultat_add_sous,
-							donnee_prete => data_rdy_add_sous, occupe => occupe_add_sous, termine => termine_add_sous);
+							choix_add_sous => operation(0), ligne_matrice1 => ligne_mat1, ligne_matrice2 => ligne_mat2, resultat => resultat_add_sous_out,
+							donnee_prete => data_rdy_add_sous, compter_ligne => compter_ligne_add_sous, occupe => occupe_add_sous, termine => termine_add_sous);
 							
 --module de multiplication élément par élément
 mult_epe : multiplication_epe_matrice_NxM generic map(4,4) port map(clk => clk, reset => reset_operation, start => start_mult_epe, ligne_matrice1 => ligne_mat1,
-							ligne_matrice2 => ligne_mat2, ligne_resultat => resultat_mult_epe, donnee_prete => data_rdy_mult_epe, occupe => occupe_mult_epe, termine => termine_mult_epe);
+							ligne_matrice2 => ligne_mat2, resultat => resultat_mult_epe_out, donnee_prete => data_rdy_mult_epe, compter_ligne => compter_ligne_mult_epe,
+							occupe => occupe_mult_epe, termine => termine_mult_epe);
 							
 --module de multiplication matricielle
 mult_matricielle : multiplication_matricielle_NxM generic map(4,4,4) port map(clk => clk, reset => reset_operation, start => start_mult_mat, ligne_matrice1 => ligne_mat1,
-							colonne_matrice2 => col_mat2, resultat => resultat_mult_mat, donnee_prete => data_rdy_mult_mat, occupe => occupe_mult_mat, termine => termine_mult_mat,
+							colonne_matrice2 => col_mat2, resultat => resultat_mult_mat_out, donnee_prete => data_rdy_mult_mat, occupe => occupe_mult_mat, termine => termine_mult_mat,
 							compte_ligne => compte_ligne_int, compte_colonne => compte_colonne_int);
 
 --compteur lignes
