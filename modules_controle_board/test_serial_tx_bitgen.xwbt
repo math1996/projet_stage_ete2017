@@ -1,8 +1,8 @@
 INTSTYLE=ise
-INFILE=C:\Users\super\Desktop\projet_stage_ete2017\modules_controle_board\test_serial_tx.ncd
-OUTFILE=C:\Users\super\Desktop\projet_stage_ete2017\modules_controle_board\test_serial_tx.bit
+INFILE=C:\Users\mathieu\Desktop\projet_stage_ete2017\modules_controle_board\test_serial_tx.ncd
+OUTFILE=C:\Users\mathieu\Desktop\projet_stage_ete2017\modules_controle_board\test_serial_tx.bit
 FAMILY=Spartan6
 PART=xc6slx9-2tqg144
-WORKINGDIR=C:\Users\super\Desktop\projet_stage_ete2017\modules_controle_board
+WORKINGDIR=C:\Users\mathieu\Desktop\projet_stage_ete2017\modules_controle_board
 LICENSE=WebPack
 USER_INFO=211237173_0_0_656

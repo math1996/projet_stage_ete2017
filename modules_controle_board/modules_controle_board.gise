@@ -37,6 +37,7 @@
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="test_generation_onde_sinus_guide.ncd" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="test_generation_onde_triangle_guide.ncd" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="test_generation_onde_triangle_pulse_guide.ncd" xil_pn:origination="imported"/>
+    <file xil_pn:fileType="FILE_NCD" xil_pn:name="test_operation_matricielle_guide.ncd" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="test_serial_tx_guide.ncd" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="top_controle_adc_10bits_guide.ncd" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="top_generation_onde_guide.ncd" xil_pn:origination="imported"/>
@@ -51,6 +52,11 @@
     <file xil_pn:fileType="FILE_NCD" xil_pn:name="top_test_potentiostat_guide.ncd" xil_pn:origination="imported"/>
   </files>
 
-  <transforms xmlns="http://www.xilinx.com/XMLSchema"/>
+  <transforms xmlns="http://www.xilinx.com/XMLSchema">
+    <transform xil_pn:end_ts="1503621785" xil_pn:in_ck="5205802337913494039" xil_pn:name="TRAN_SubProjectAbstractToPreProxy" xil_pn:start_ts="1503621785">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+  </transforms>
 
 </generated_project>

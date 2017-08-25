@@ -45,12 +45,12 @@ end addition_soustraction_matrice_NxM;
 
 architecture Behavioral of addition_soustraction_matrice_NxM is
 
-type etat_add_sous_mat is (attente, addition, latch_res, avancer_ligne, verif_fin, fin);
+type etat_add_sous_mat is (attente, addition, latch_res, avancer_ligne, verif_fin, verif_col, compter_col, fin);
 signal etat_present, etat_suivant : etat_add_sous_mat;
 signal compte_nb_ligne : std_logic_vector((integer(ceil(log2(real(N))))) downto 0);
 signal compte_nb_col : std_logic_vector((integer(ceil(log2(real(M))))) downto 0);
 signal res_add_sous, ligne_matrice2_int  : ligne_matrice_16bits(M-1 downto 0);
-signal reset_compteur, reset_reg, enable_compteur, enable_reg, cmp_fin, cmp_fin_col, reset_sortie, enable_sortie  : std_logic;
+signal reset_compteur, reset_reg, enable_compteur, enable_reg, cmp_fin, cmp_fin_col, reset_sortie, enable_sortie, enable_compteur_col  : std_logic;
 
 begin
 
@@ -59,13 +59,13 @@ donnee_prete <= enable_sortie;
 compter_ligne <= enable_compteur;
 
 --mux pour parcourir la colonne
-resultat <= res_add_sous(to_integer(unsigned((M-1) - compte_nb_col)));
+resultat <= res_add_sous(to_integer(unsigned(compte_nb_col)));
 
 --compteur du nombre de lignes additionnées
 compteur_nb_lignes : compteurNbits generic map(integer(ceil(log2(real(N)))) + 1) port map(clk => clk, reset => reset_compteur, enable => enable_compteur, output => compte_nb_ligne);
 
 --compteur du nombre d'éléments sur une colonne
-compteur_nb_element_col : compteurNbits generic map(integer(ceil(log2(real(M)))) + 1) port map(clk => clk, reset => reset_sortie, enable => enable_sortie, output => compte_nb_col);
+compteur_nb_element_col : compteurNbits generic map(integer(ceil(log2(real(M)))) + 1) port map(clk => clk, reset => reset_sortie, enable => enable_compteur_col, output => compte_nb_col);
 
 --génération des registres de sortie et de l'addition/soustraction
 gen_module : for i in 0 to M-1 generate
@@ -75,7 +75,7 @@ gen_module : for i in 0 to M-1 generate
 end generate gen_module;
 
 --comparateur
-cmp_fin <= '1' when compte_nb_ligne >= N else
+cmp_fin <= '1' when compte_nb_ligne >= N-1 else
 			  '0';
 
 cmp_fin_col <= '1' when compte_nb_col >= M-1 else
@@ -99,6 +99,7 @@ begin
 			enable_compteur <= '0';
 			reset_sortie <= '0';
 			enable_sortie <= '0';
+			enable_compteur_col <= '0';
 			occupe <= '0';
 			termine <= '0';
 			if(start = '1') then
@@ -112,6 +113,7 @@ begin
 			enable_compteur <= '0';
 			reset_sortie <= '0';
 			enable_sortie <= '0';
+			enable_compteur_col <= '0';
 			occupe <= '1';
 			termine <= '0';
 			etat_suivant <= latch_res;
@@ -121,34 +123,57 @@ begin
 			enable_compteur <= '0';
 			reset_sortie <= '1';
 			enable_sortie <= '1';
+			enable_compteur_col <= '0';
+			occupe <= '1';
+			termine <= '0';
+			etat_suivant <= verif_col;
+			
+		when verif_col =>
+			reset_compteur <= '1';
+			enable_compteur <= '0';
+			reset_sortie <= '1';
+			enable_sortie <= '0';
+			enable_compteur_col <= '0';
 			occupe <= '1';
 			termine <= '0';
 			if(cmp_fin_col = '1') then
-				etat_suivant <= avancer_ligne;
+				etat_suivant <= verif_fin;
 			else
-					etat_suivant <= latch_res;
+				etat_suivant <= compter_col;
 			end if;
-		
+			
+		when compter_col =>
+			reset_compteur <= '1';
+			enable_compteur <= '0';
+			reset_sortie <= '1';
+			enable_sortie <= '0';
+			enable_compteur_col <= '1';
+			occupe <= '1';
+			termine <= '0';
+			etat_suivant <= latch_res;
+			
 		when avancer_ligne =>
 			reset_compteur <= '1';
 			enable_compteur <= '1';
 			reset_sortie <= '0';
 			enable_sortie <= '0';
+			enable_compteur_col <= '0';
 			occupe <= '1';
 			termine <= '0';
-			etat_suivant <= verif_fin;
+			etat_suivant <= addition;
 			
 		when verif_fin =>
 			reset_compteur <= '1';
 			enable_compteur <= '0';
 			reset_sortie <= '0';
 			enable_sortie <= '0';
+			enable_compteur_col <= '0';
 			occupe <= '1';
 			termine <= '0';
 			if(cmp_fin = '1') then
 				etat_suivant <= fin;
 			else
-				etat_suivant <= addition;
+				etat_suivant <= avancer_ligne;
 			end if;
 			
 		when fin =>
@@ -156,6 +181,7 @@ begin
 			enable_compteur <= '0';
 			reset_sortie <= '0';
 			enable_sortie <= '0';
+			enable_compteur_col <= '0';
 			occupe <= '1';
 			termine <= '1';
 			etat_suivant <= attente;
@@ -165,6 +191,7 @@ begin
 			enable_compteur <= '0';
 			reset_sortie <= '0';
 			enable_sortie <= '0';
+			enable_compteur_col <= '0';
 			occupe <= '0';
 			termine <= '0';
 			etat_suivant <= attente;

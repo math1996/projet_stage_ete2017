@@ -1,7 +1,7 @@
 
 # PlanAhead Generated physical constraints 
 
-NET "data_out_parallele[7]" LOC = P123 | IOSTANDARD = LVTTL;
+NET "data_out_parallele[7]" LOC = P101 | IOSTANDARD = LVTTL;
 NET "data_out_parallele[6]" LOC = P124 | IOSTANDARD = LVTTL;
 NET "data_out_parallele[5]" LOC = P126 | IOSTANDARD = LVTTL;
 NET "data_out_parallele[4]" LOC = P127 | IOSTANDARD = LVTTL;
@@ -13,3 +13,4 @@ NET "reset" LOC = P38 | IOSTANDARD = LVTTL;
 NET "rx" LOC = P111 | IOSTANDARD = LVTTL;
 NET "tx" LOC = P114 | IOSTANDARD = LVTTL;
 NET "clk" LOC = P56 | IOSTANDARD = LVTTL;
+NET "occupe" LOC = P123 | IOSTANDARD = LVTTL;

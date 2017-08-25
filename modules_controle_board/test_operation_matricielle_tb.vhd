@@ -47,9 +47,8 @@ ARCHITECTURE behavior OF test_operation_matricielle_tb IS
          tx : OUT  std_logic;
          occupe : OUT  std_logic;
          termine : OUT  std_logic;
-         resultat_add_sous_out : OUT  std_logic_vector(15 downto 0);
-         resultat_mult_epe_out : OUT  std_logic_vector(31 downto 0);
-         resultat_mult_mat_out : OUT  std_logic_vector(31 downto 0)
+         led_test : out std_logic_vector(31 downto 0);
+			led_test_etat : out std_logic_vector(4 downto 0)
         );
     END COMPONENT;
     
@@ -63,10 +62,8 @@ ARCHITECTURE behavior OF test_operation_matricielle_tb IS
    signal tx : std_logic;
    signal occupe : std_logic;
    signal termine : std_logic;
-   signal resultat_add_sous_out : std_logic_vector(15 downto 0);
-   signal resultat_mult_epe_out : std_logic_vector(31 downto 0);
-   signal resultat_mult_mat_out : std_logic_vector(31 downto 0);
-
+	signal led_test : std_logic_vector(31 downto 0);
+	signal led_test_etat : std_logic_vector(4 downto 0);
    -- Clock period definitions
    constant clk_period : time := 10 ns;
  
@@ -80,9 +77,8 @@ BEGIN
           tx => tx,
           occupe => occupe,
           termine => termine,
-          resultat_add_sous_out => resultat_add_sous_out,
-          resultat_mult_epe_out => resultat_mult_epe_out,
-          resultat_mult_mat_out => resultat_mult_mat_out
+			 led_test => led_test,
+			 led_test_etat => led_test_etat
         );
 
    -- Clock process definitions
@@ -105,18 +101,40 @@ BEGIN
 		reset <= '1';
       wait for clk_period*10;
 		
-		--opération
+--		--opération
+--		rx <= '0';
+--		wait for clk_period*27;
+--		rx <= '0';
+--		wait for clk_period*27;
+--		rx <= '0';
+--		wait for clk_period*27;
+--		rx <= '0';
+--		wait for clk_period*27;
+--		rx <= '0';
+--		wait for clk_period*27;
+--		rx <= '0';
+--		wait for clk_period*27;
+--		rx <= '0';
+--		wait for clk_period*27;
+--		rx <= '0';
+--		wait for clk_period*27;
+--		rx <= '0';
+--		wait for clk_period*27;
+--		rx <= '1';
+--		wait for clk_period*50;
+		
+		--nombre data 1
+		rx <= '0';
+		wait for clk_period*27;
+		rx <= '0';
+		wait for clk_period*27;
+		rx <= '0';
+		wait for clk_period*27;
+		rx <= '0';
+		wait for clk_period*27;
 		rx <= '0';
 		wait for clk_period*27;
 		rx <= '1';
-		wait for clk_period*27;
-		rx <= '1';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
 		wait for clk_period*27;
 		rx <= '0';
 		wait for clk_period*27;
@@ -127,7 +145,7 @@ BEGIN
 		rx <= '1';
 		wait for clk_period*50;
 		
-		--nombre data
+		--nombre data 2
 		rx <= '0';
 		wait for clk_period*27;
 		rx <= '0';
@@ -139,28 +157,6 @@ BEGIN
 		rx <= '0';
 		wait for clk_period*27;
 		rx <= '1';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '1';
-		wait for clk_period*50;
-		
-		--numéro matrice
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
 		wait for clk_period*27;
 		rx <= '0';
 		wait for clk_period*27;
@@ -841,50 +837,6 @@ BEGIN
 		rx <= '0';
 		wait for clk_period*27;
 		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '1';
-		wait for clk_period*50;
-		
-		--nombre data
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '1';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '1';
-		wait for clk_period*50;
-		
-		--numéro matrice
-		rx <= '0';
-		wait for clk_period*27;
-		rx <= '1';
 		wait for clk_period*27;
 		rx <= '0';
 		wait for clk_period*27;

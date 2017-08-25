@@ -49,7 +49,7 @@ ARCHITECTURE behavior OF test_add_sous_pipeline_tb IS
          resultat2 : OUT  std_logic_vector(15 downto 0);
          resultat3 : OUT  std_logic_vector(15 downto 0);
          resultat4 : OUT  std_logic_vector(15 downto 0);
-         occupe : OUT  std_logic;
+         occupe, donnee_pret : OUT  std_logic;
          termine : OUT  std_logic
         );
     END COMPONENT;
@@ -66,7 +66,7 @@ ARCHITECTURE behavior OF test_add_sous_pipeline_tb IS
    signal resultat2 : std_logic_vector(15 downto 0);
    signal resultat3 : std_logic_vector(15 downto 0);
    signal resultat4 : std_logic_vector(15 downto 0);
-   signal occupe : std_logic;
+   signal occupe, donnee_pret : std_logic;
    signal termine : std_logic;
 
    -- Clock period definitions
@@ -85,6 +85,7 @@ BEGIN
           resultat3 => resultat3,
           resultat4 => resultat4,
           occupe => occupe,
+			 donnee_pret => donnee_pret,
           termine => termine
         );
 
@@ -112,7 +113,7 @@ BEGIN
 		wait for clk_period;
 		start <= '0';
 		
-		wait for clk_period*50;
+		wait for clk_period*100;
 		reset <= '0';
 		wait for clk_period;
 		reset <= '1';

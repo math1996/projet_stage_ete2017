@@ -1,0 +1,21 @@
+//21 aout
+-finalisation et test du demux sur arduino
+-Modification du module de test de courbe CV avec oversampling, ajout du diviseur de fréquence précis
+-Modification de l'interface graphique afin de supporter cette fonction
+-Test de l'implémentation des modifications
+-Test en simulation du module d'opération matricielle (débuggage) => solution envisagée = tester seulement la multiplication matricielle (plus important)
+
+//22 aout
+-Élaboration d'une architecture pour la communication entre PI et FPGA + algorithme (sur papier)
+-Test de l'ancien module de multiplication matricielle (laisser tomber)
+-Programation d'un nouveau module de multiplication matricielle en pipeline (nouvelle approche, ne plus utiliser le module stockage_matrice)
+-Test du module en simulation (behavioral et post-translate, réussis)
+-Test de différentes grandeurs (pas des multiples de 2)
+-Programation d'un module pour le test avec des matrices
+
+//23 août
+-Modification du module de multiplication matricielle (correction de bug)
+-Simulation de multiplication matricielle (behavioral, post-translate,différentes grandueurs (4x4 et 4x4, 4x4 et 4x1, 4x5 et 5x1, 6x3 et 3x3)
+-Comparaison des résultats en simulation avec ceux de matlab (réussis)
+-Programmation du module de test pour l'implémentation physique de la multiplication matricielle
+-Test en simulation de ce module (behavioral = réussi, post-translate = ?)

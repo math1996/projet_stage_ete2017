@@ -1,3 +1,4 @@
+
 #I/O dac 16 bits
 NET "BPB_dac" LOC = P121 | IOSTANDARD = LVTTL;
 NET "FSYNC_dac" LOC = P83 | IOSTANDARD = LVTTL;
@@ -28,8 +29,8 @@ NET "SDI" LOC = P120 | IOSTANDARD = LVTTL;
 NET "CS_pot" LOC = P118 | IOSTANDARD = LVTTL;
 
 #I/O general
-NET "rx" LOC = P111 | IOSTANDARD = LVTTL;
-NET "tx" LOC = P114 | IOSTANDARD = LVTTL;
+NET "rx" LOC = P74 | IOSTANDARD = LVTTL;
+NET "tx" LOC = P78 | IOSTANDARD = LVTTL;
 NET "reset" LOC = P38 | IOSTANDARD = LVTTL;
 NET "clk" LOC = P56 | IOSTANDARD = LVTTL;
 NET "occupe" LOC = P123 | IOSTANDARD = LVTTL;
@@ -39,3 +40,4 @@ NET "pente_onde_tri" LOC = P134 | IOSTANDARD = LVTTL;
 NET "test_output_led[0]" LOC = P132 | IOSTANDARD = LVTTL;
 NET "test_output_led[1]" LOC = P131 | IOSTANDARD = LVTTL;
 NET "test_output_led[2]" LOC = P127 | IOSTANDARD = LVTTL;
+NET "reg_start_adc10bits" LOC = P5 | IOSTANDARD = LVTTL;

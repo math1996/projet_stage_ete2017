@@ -32,14 +32,14 @@ use ieee.std_logic_unsigned.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity memoire_tampn_32xM is
+entity memoire_tampon_32xM is
 generic(m : integer := 4);
     Port ( clk, enable, reset : in  STD_LOGIC;
            input : in  STD_LOGIC_VECTOR (31 downto 0);
            output : out  tableau_memoire_32bits(M-1 downto 0));
-end memoire_tampn_32xM;
+end memoire_tampon_32xM;
 
-architecture Behavioral of memoire_tampn_32xM is
+architecture Behavioral of memoire_tampon_32xM is
 
 signal q_int : tableau_memoire_32bits(M-1 downto 0);
 

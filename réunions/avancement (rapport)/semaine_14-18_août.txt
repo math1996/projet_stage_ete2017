@@ -1,0 +1,34 @@
+//14 août
+-Rencontre hebdomadaire avec l'équipe de recherche
+-Démonstration du fonctionnement de la caméra avec Amine
+-Discussion sur le modèle du support de la caméra
+-Modification du code de référence afin de pouvoir activer/désactiver le rouge,bleu,vert de la caméra (réussis, ajout au lab3)
+-Recherche sur des algorithmes simples de traitements d'image
+-Écriture de l'énoncé du lab 3 de VLSI
+-Recherche de référence sur l'explication de l'espace RGB et du RGB 565 pour les élèves
+-Recherche sur une façon de détecter des couleurs dans l'espace RGB avec la caméra (seuil)
+-Début de la programmation d'un transmetteur UART pour le lab 3 de VLSI
+
+//15 août
+-Programmation et test du transmetteur UART pour le lab 3 (réussis)
+-Rencontre avec amine sur le déroulement du projet
+-Discussion avec Jessys sur la répartition des tâches (MCU, FPGA)
+-Modification du module de test des opérations matricielles
+-Test du module (concluant, reste en envoyer les résultats sur le port série)
+-Lecture de l'article de Jessy sur MUSIC, élaboration des tâches (sur papier)
+-Travail sur l'énoncé du laboratoire 3 de VLSI
+
+//16 août
+-Réunions
+-Rencontre avec Jessy sur MUSIC
+-Travail sur démux avec MOJO
+
+//17 août
+-Test des opérations matrcicielles (modifications du code + test)
+-Ajout du receveur et transmetteur écrit en VHDL 
+-Programmation d'un module de transmission UART qui permet d'envoyer N octets
+-Test du module en simulation et implémentation physique (réussis)
+-Inclure le module dans le module de test des opérations matricielles
+-Test d'opération matricielle réussis, mais les réusltats sont tous 0 => voir les mux pour les lignes, colonnes (ne pas dépasser le max du vecteur/compteur)
+-Lecture du code et Programmation de l'arduino pour le démux des électrodes
+-Test du code VHDL et du code Arduino

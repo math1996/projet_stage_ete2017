@@ -1,4 +1,5 @@
 modules	"compteurNbits.vhd"
+modules	"multiplication_matricielle_pipeline_NxM.vhd"
 modules	"registreNbits.vhd"
-work	"trouver_min_vecteur_1xN.vhd"
+work	"test_mult_mat_pipeline_nouveau.vhd"
 modules	"usr_package.vhd"

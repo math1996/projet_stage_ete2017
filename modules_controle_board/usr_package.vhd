@@ -37,6 +37,50 @@ type ligne_matrice_32bits is array(natural range <>) of std_logic_vector(31 down
 -- procedure <procedure_name> (<type_declaration> <constant_name>	: in <type_declaration>);
 --
 
+component multiplication_matricielle_pipeline_NxM_MxS is
+generic(N,M,S: integer := 4; largeur_data  : integer := 16);
+    Port ( clk, start, reset : in  STD_LOGIC;
+           element_mat1 : in  STD_LOGIC_VECTOR (largeur_data - 1 downto 0);
+           element_mat2 : in  STD_LOGIC_VECTOR (largeur_data - 1 downto 0);
+           numero_element_mat1 : out  STD_LOGIC_VECTOR ((integer(ceil(log2(real(N*M))))) - 1 downto 0);
+           numero_element_mat2 : out  STD_LOGIC_VECTOR ((integer(ceil(log2(real(M*S))))) - 1 downto 0);
+			  resultat : out std_logic_vector((2*largeur_data) - 1 downto 0);
+           occupe, termine, data_rdy, changer_element : out  STD_LOGIC);
+end component;
+
+component transmetteur_UART_Noctets is
+generic(N : integer := 2);
+    Port ( clk, reset, start : in  STD_LOGIC;
+           data_in : in  STD_LOGIC_VECTOR ((8*N)-1 downto 0);
+           occupe, termine, tx : out  STD_LOGIC);
+end component;
+
+component transmetteur_UART is
+    Port ( clk, reset, start : in  STD_LOGIC;
+           data_in : in  STD_LOGIC_VECTOR (7 downto 0);
+           occupe, termine, tx : out  STD_LOGIC);
+end component;
+
+
+component receveur_UART is
+    Port ( clk, reset, rx : in  STD_LOGIC;
+           data_out : out  STD_LOGIC_VECTOR (7 downto 0);
+           data_rdy, occupe : out  STD_LOGIC);
+end component;
+
+component FSM_recup_matrice_rx is
+    Port ( clk, reset, start, new_data_int : in  STD_LOGIC;
+           nb_data : in  STD_LOGIC_VECTOR (7 downto 0);
+           latch_data, termine, occupe : out  STD_LOGIC);
+end component;
+
+component memoire_tampon_32xM is
+generic(m : integer := 4);
+    Port ( clk, enable, reset : in  STD_LOGIC;
+           input : in  STD_LOGIC_VECTOR (31 downto 0);
+           output : out  tableau_memoire_32bits(M-1 downto 0));
+end component;
+
 component comparaison_seuil_derive1 is
     Port ( clk, reset : in  STD_LOGIC;
            data_in : in  std_logic_vector(31 downto 0);

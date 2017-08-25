@@ -50,11 +50,9 @@ begin
 
 reg0: registre1bit port map(clk => clk, en => enable, reset => reset, d => sortie_mux(0), q_out => q_int(0));
 
-reg_loop: for i in 1 to N-2 generate
+reg_loop: for i in 1 to N-1 generate
 	reg: registre1bit port map(clk => clk, en => enable, reset => reset, d => sortie_mux(i), q_out => q_int(i));
 end generate;
-
-reg_fin: registre1bit port map(clk => clk, en => enable, reset => reset, d => sortie_mux(N-1), q_out => q_int(N-1));
 
 mux0: mux_2_1 port map(choix => mode, input(0) => input, input(1) => load(0), output => sortie_mux(0));
 

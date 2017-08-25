@@ -34,7 +34,7 @@ use ieee.std_logic_unsigned.all;
 
 entity test_serial_tx is
     Port ( clk, reset, rx : in  STD_LOGIC;
-           tx : out  STD_LOGIC;
+           tx, occupe : out  STD_LOGIC;
 			  data_out_parallele : out std_logic_vector(7 downto 0));
 end test_serial_tx;
 
@@ -56,8 +56,8 @@ type etat_test_tx is (attente, demarrer_envoie, attente_envoie, fin_envoie, fin)
 signal etat_present, etat_suivant : etat_test_tx;
 
 signal termine_int, occupe_int, ready_int, clk_int, reset_compteur, enable_compteur, start_envoie, cmp, busy_int, demarrer_transfert,
-			occupe_envoie, termine_envoie, mode: std_logic;
-signal data_recu : std_Logic_vector(7 downto 0);
+			occupe_envoie, termine_envoie, mode, occupe_rx, occupe_tx: std_logic;
+signal data_recu, data_recu_int : std_Logic_vector(7 downto 0);
 signal data_int_add, data_envoie : std_logic_vector(7 downto 0);
 signal data_int : std_logic_vector(15 downto 0);
 signal compteur : std_logic_vector(7 downto 0);
@@ -67,6 +67,7 @@ begin
 
 cmp <= '1' when compteur >=  16 else
 		 '0';
+occupe <= occupe_rx or occupe_tx;
 
 process(clk_int, reset_compteur, enable_compteur)
 begin
@@ -148,9 +149,13 @@ end process;
 
 diviseur_horloge: diviseur_clk generic map(0) port map(clk => clk, reset => reset, enable => '1', clk_out_reg => clk_int);
 
-com_serie_tx : FSM_envoyer_Noctets generic map(2) port map(clk => clk_int, reset => reset, start => start_envoie, data => data_int, tx => tx,
-																		occupe => occupe_int, termine => termine_int);
-com_serie_rx : serial_rx port map(clk => clk_int, rst => reset, rx => rx, data => data_recu, new_data => ready_int);
+--com_serie_tx : FSM_envoyer_Noctets generic map(2) port map(clk => clk_int, reset => reset, start => start_envoie, data => data_int, tx => tx,
+--																		occupe => occupe_int, termine => termine_int);
+																		
+--com_serie_rx : serial_rx port map(clk => clk_int, rst => reset, rx => rx, data => data_recu, new_data => ready_int);
+
+com_serie_rx : receveur_UART port map(clk => clk_int, reset => reset, rx => rx, data_out => data_recu_int, data_rdy => ready_int, occupe => occupe_rx);
+com_serie_tx : transmetteur_UART_Noctets generic map(2) port map(clk => clk_int, reset => reset, start => start_envoie, data_in => data_int, occupe => occupe_tx, termine => termine_int, tx => tx);
 
 --com_serie_tx : serial_tx port map(clk => clk_int, rst => reset, block_tx => '0', new_data => demarrer_transfert, data => data_int_add, busy => busy_int, tx => tx);
 --com_serie_tx : FSM_serial_tx port map(clk => clk_int, start => demarrer_transfert, reset => reset, block_tx => '0', data => data_envoie, tx => tx, occupe => occupe_envoie,
@@ -242,6 +247,7 @@ com_serie_rx : serial_rx port map(clk => clk_int, rst => reset, rx => rx, data =
 --	end case;	
 --end process;
 
+data_recu <= data_recu_int(0) & data_recu_int(1) & data_recu_int(2) & data_recu_int(3) & data_recu_int(4) & data_recu_int(5) & data_recu_int(6) & data_recu_int(7);
 data_out_parallele <= data_int_add;
 data_int_add <= data_recu + 1;
 data_int(15 downto 8) <= data_recu;

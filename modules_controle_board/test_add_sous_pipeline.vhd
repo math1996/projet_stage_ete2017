@@ -38,7 +38,7 @@ entity test_add_sous_pipeline is
 generic(N: integer := 4);
     Port ( start, clk, reset, choix_add_sous : in  STD_LOGIC;
            resultat1, resultat2, resultat3, resultat4 : out  STD_LOGIC_vector(15 downto 0);
-			  occupe, termine : out std_logic);
+			  occupe, termine, donnee_pret: out std_logic);
 end test_add_sous_pipeline;
 
 architecture Behavioral of test_add_sous_pipeline is
@@ -50,7 +50,7 @@ signal compte_ligne : std_logic_vector(2 downto 0);
 signal matrice1, matrice2 : matrice_NxM(3 downto 0);
 signal res_int : std_logic_vector(15 downto 0);
 signal ligne_matrice1_int, ligne_matrice2_int : ligne_matrice_16bits(3 downto 0);
-signal ligne_res_int : tableau_memoire(3 downto 0);
+signal ligne_res_int : std_logic_vector(15 downto 0);
 
 
 
@@ -109,16 +109,14 @@ compteur_ligne : compteurNbits generic map(3) port map(clk => clk, enable => dat
 
 --module d'add/sous
 add_sous_mat : addition_soustraction_matrice_NxM generic map(4,4) port map(clk => clk, reset => reset, start => start, choix_add_sous => choix_add_sous,
-					ligne_matrice1 => ligne_matrice1_int, ligne_matrice2 => ligne_matrice2_int, resultat => res_int, occupe => occupe, termine => termine,
-					compter_ligne => data_rdy, donnee_prete => enable_rdc);
+					ligne_matrice1 => ligne_matrice1_int, ligne_matrice2 => ligne_matrice2_int, resultat => ligne_res_int, occupe => occupe, termine => termine,
+					compter_ligne => data_rdy, donnee_prete => donnee_pret);
 
---rdc_buffer
-rdc : memoire_tampon_16xM generic map(4) port map(clk => clk, reset => reset, enable => enable_rdc, input => res_int, output => ligne_res_int);
 
-resultat1 <= ligne_res_int(0);
-resultat2 <= ligne_res_int(1);
-resultat3 <= ligne_res_int(2);
-resultat4 <= ligne_res_int(3);
+resultat1 <= ligne_res_int;
+resultat2 <= ligne_res_int;
+resultat3 <= ligne_res_int;
+resultat4 <= ligne_res_int;
 
 end Behavioral;
 

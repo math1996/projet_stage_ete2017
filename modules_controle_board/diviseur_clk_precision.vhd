@@ -41,22 +41,28 @@ end diviseur_clk_precision;
 
 architecture Behavioral of diviseur_clk_precision is
 
-type etat_div_clk is (attente, latch_input, attente_1, reset_compte1, attente_0, reset_compte2);
+type etat_div_clk is (attente, attente_clk, reset_clk);--attente_1, reset_compte1, attente_0, reset_compte2);
 signal etat_present, etat_suivant : etat_div_clk;
 
-signal cmp_attente, reset_compteur, enable_compteur, reset_input, enable_input : std_logic;
+signal cmp_attente, reset_compteur, enable_compteur, reset_input, enable_input, enable_reg, q_int, q_int_n  : std_logic;
 signal compte_attente, temps_attente_int : std_logic_vector(31 downto 0);
 
 begin
 
 --registre temps attente
-registre_param_attente : registreNbits generic map(32) port map(clk => clk, reset => reset_input, en => enable_input, d => temps_attente, q_out => temps_attente_int);
+--registre_param_attente : registreNbits generic map(32) port map(clk => clk, reset => reset_input, en => enable_input, d => temps_attente, q_out => temps_attente_int);
 
 --compteur du diviseur de fréquence
 compteur_div_clk : compteurNbits generic map(32) port map(clk => clk, reset => reset_compteur, enable => enable_compteur, output => compte_attente);
 
+--registre clk
+reg_clk : registre1bit port map(clk => clk, reset => reset, en => enable_reg, d => q_int_n, q_out => q_int);
+
+q_int_n <= not(q_int);
+clk_out <= q_int;
+
 --comparateur 
-cmp_attente <= '1' when compte_attente >= (temps_attente_int - 1) else
+cmp_attente <= '1' when compte_attente >= (temps_attente - 1) else
 					'0';
 
 --machine à état du diviseur d'horloge
@@ -75,69 +81,83 @@ begin
 		when attente =>
 			reset_compteur <= '0';
 			enable_compteur <= '0';
-			reset_input <= '0';
-			enable_input <= '0';
-			clk_out <= '0';
+--			reset_input <= '0';
+--			enable_input <= '0';
+			enable_reg <= '0';
 			if(start = '1') then
-				etat_suivant <= latch_input;
+				etat_suivant <= attente_clk;
 			else
 				etat_suivant <= attente;
 			end if;
-			
-		when latch_input =>
-			reset_compteur <= '0';
-			enable_compteur <= '0';
-			reset_input <= '1';
-			enable_input <= '1';
-			clk_out <= '0';
-			etat_suivant <= attente_1;
-			
-		when attente_1 =>
-			reset_compteur <= '1';
-			enable_compteur <= '1';
-			reset_input <= '1';
-			enable_input <= '0';
-			clk_out <= '1';
-			if(cmp_attente = '1') then
-				etat_suivant <= reset_compte1;
-			else
-				etat_suivant <= attente_1;
-			end if;
-			
-		when reset_compte1 =>
-			reset_compteur <= '0';
-			enable_compteur <= '0';
-			reset_input <= '1';
-			enable_input <= '0';
-			clk_out <= '1';
-			etat_suivant <= attente_0;
 		
-		when attente_0 =>
+		when attente_clk =>
 			reset_compteur <= '1';
 			enable_compteur <= '1';
-			reset_input <= '1';
-			enable_input <= '0';
-			clk_out <= '0';
+			enable_reg <= '0';
 			if(cmp_attente = '1') then
-				etat_suivant <= reset_compte2;
+				etat_suivant <= reset_clk;
 			else
-				etat_suivant <= attente_0;
+				etat_suivant <= attente_clk;
 			end if;
 			
-		when reset_compte2 =>
+		when reset_clk =>
 			reset_compteur <= '0';
 			enable_compteur <= '0';
-			reset_input <= '1';
-			enable_input <= '0';
-			clk_out <= '0';
-			etat_suivant <= attente_1;
+			enable_reg <= '1';
+			etat_suivant <= attente_clk;
 			
+--		when latch_input =>
+--			reset_compteur <= '0';
+--			enable_compteur <= '0';
+--			reset_input <= '1';
+--			enable_input <= '1';
+--			clk_out <= '0';
+--			etat_suivant <= attente_1;
+			
+--		when attente_1 =>
+--			reset_compteur <= '1';
+--			enable_compteur <= '1';
+----			reset_input <= '1';
+----			enable_input <= '0';
+--			clk_out <= '1';
+--			if(cmp_attente = '1') then
+--				etat_suivant <= reset_compte1;
+--			else
+--				etat_suivant <= attente_1;
+--			end if;
+--			
+--		when reset_compte1 =>
+--			reset_compteur <= '0';
+--			enable_compteur <= '0';
+----			reset_input <= '1';
+----			enable_input <= '0';
+--			clk_out <= '1';
+--			etat_suivant <= attente_0;
+--		
+--		when attente_0 =>
+--			reset_compteur <= '1';
+--			enable_compteur <= '1';
+----			reset_input <= '1';
+----			enable_input <= '0';
+--			clk_out <= '0';
+--			if(cmp_attente = '1') then
+--				etat_suivant <= reset_compte2;
+--			else
+--				etat_suivant <= attente_0;
+--			end if;
+--			
+--		when reset_compte2 =>
+--			reset_compteur <= '0';
+--			enable_compteur <= '0';
+----			reset_input <= '1';
+----			enable_input <= '0';
+--			clk_out <= '0';
+--			etat_suivant <= attente_1;
+--			
 		when others => 
 			reset_compteur <= '0';
 			enable_compteur <= '0';
-			reset_input <= '0';
-			enable_input <= '0';
-			clk_out <= '0';
+			enable_reg <= '0';
 			etat_suivant <= attente;
 	end case;
 end process;

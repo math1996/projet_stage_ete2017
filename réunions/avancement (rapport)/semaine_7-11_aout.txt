@@ -18,3 +18,16 @@
 -Essai avec un câble HDMi directement (non concluant)
 -Modification du module de test d'opération matrcicielle en pipeline
 -Programmation d'une mémoire tampon de 32xM afin de récupérer les résultats des opérations matricielles et de les envoyer sur le port série
+
+//10 août
+-Fonctionnement de la caméra pour le lab 3 de VLSI (réussi)
+-Programmation du module de test des opération matricielles (buffer de récupération)
+-Test en simulation des opérations (addition = réussis, soustraction = réussis, multiplication epe = réussis et multiplication matricielle = réussis / matrice 4x4, réussis!)
+-Programmation de l'interface graphique afin d'envoyer les matrices sur le port série vers le FPGA (pour calculer)
+-Programmation du module de test des opérations matricielles (envoie des données sur le port série)
+
+//11 août
+-Test de l'implémentation physique des opérations matricielles (non concluant)
+-Test et modification de l'interface de test (afin de récupérer les résultats du FPGA)
+-Débugage du module de test des opérations matricielles
+-Élaboration d'une machine à état afin de récupérer la matrice sur le port série (subdiviser la grosse FSM, sur papier)
